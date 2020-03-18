@@ -64,6 +64,9 @@ The addons listed below can be used to enhance your playing experience. They are
 - [Paleto Bay Medical Center](https://de.gta5-mods.com/maps/mlo-paleto-bay-medical-center) by MrBrown1999
 
 ## Legal
+- You are free to use the resource for your server in any way you want. Only requirement is a tag for PD5M in the server-name (can be any design, e.g. plain text, in brackets, vertical lines ...).
+- Creating modifications is encouraged however please publish your own content so everyone can enjoy it.
+- At the same time pull-requests are encouraged as well.
 
 ## Shoutouts
 Shoutouts go out to:
