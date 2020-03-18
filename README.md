@@ -14,9 +14,10 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 - Backend: Sync-structure so every client gets the same information of the peds
 
 ## Controls
-- Use `F3` to enable a crosshair that will help you determine what you are looking at.
-- Use `E` to interact with an npc you are looking at. Is also used to interact with every marker on the map.
-- Hold `X` to open the radialmenu. You can see every action your officer can possibly take. Hover your mouse over an action and release the key (no click necessary) to perform the action. Has different options on foot and in a car.
+- Use `F3` to enable a crosshair that will help you determine what you are looking at
+- Type `/tp` to open the teleport menu that can send you to every police- and DPOS-station
+- Use `E` to interact with an npc you are looking at. Is also used to interact with every marker on the map
+- Hold `X` to open the radialmenu. You can see every action your officer can possibly take. Hover your mouse over an action and release the key (no click necessary) to perform the action. Has different options on foot and in a car
 
 On Foot: To carry out an action, look at a ped and use E or X as described above.
 In a Car: The actions will get carried out for the vehicle directly in front of your vehicle.
