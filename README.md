@@ -37,18 +37,24 @@ ensure PD5M
 
 ## Optional Addons
 The addons listed below can be used to enhance your playing experience. They are fully supported by PD5M. If you want to use them, simply install them as per their installation instructions. Afterwards open `PD5M/Config/config_cl.lua` and set the respective bool at the top of the file to true.
-- [ELS]
-- [LSPD-Mega-Pack]() by T0y
-- [BCSO-Mega-Pack]() by BradM
-- [California Highway Patrol]() by Thehurk
+- [ELS](https://forum.cfx.re/t/release-els-fivem-server-sync-lights-sirens-custom-patterns/64048) by MrDaGree
+- [LSPD-Mega-Pack](https://www.lcpdfr.com/downloads/gta5mods/vehiclemodels/17911-los-santos-police-department-mega-pack-els/) by T0y
+- [BCSO-Mega-Pack](https://forum.cfx.re/t/els-bcso-mega-pack-fixed-again/81604) by BradM (FiveM-ready version by Kipz)
+- [California Highway Patrol](https://forum.cfx.re/t/release-2017-california-highway-patrol-mega-pack-els/64875) by Thehurk (FiveM-ready version by Broderick)
 - [traffic-changer]() by xSilvermanx 
 
-- [Community Mission Row PD]() by SLB2k11
-- [Sandy Sheriff Office Extension]() by Bamboozled
-- [Paleto Bay Sheriff's Office Extended]() by matus77
-- [Beaver Bush Park Ranger Station]() by Smokey7
+- [Community Mission Row PD](https://de.gta5-mods.com/maps/community-mission-row-pd) by SLB2k11
+- [Sandy Sheriff Office Extension](https://de.gta5-mods.com/maps/sandy-sheriff-office-extension-mlo-interior) by Bamboozled
+- [Paleto Bay Sheriff's Office Extended](https://de.gta5-mods.com/maps/paleto-bay-sheriff-s-office-extended-sp-and-fivem-mlo) by matus77
+- [Beaver Bush Park Ranger Station](https://forum.cfx.re/t/release-mlo-beaver-bush-park-ranger-station/1052889) by Smokey7
 
-- [Sandy Shores Hospital]() by grzybeek
-- [Paleto Bay Medical Center]() by MrBrown1999
+- [Sandy Shores Hospital](https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem) by grzybeek
+- [Paleto Bay Medical Center](https://de.gta5-mods.com/maps/mlo-paleto-bay-medical-center) by MrBrown1999
 
-##
+## Legal
+
+## Shoutouts
+Shoutouts go out to:
+- The teams of LSPDFR and PIS for their inspiration and small code-examples
+- IllidanS4 for his [Entity Iterators](https://gist.github.com/IllidanS4/9865ed17f60576425369fc1da70259b2)
+- The above mentioned mod authors
