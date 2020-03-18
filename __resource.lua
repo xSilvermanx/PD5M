@@ -1,0 +1,41 @@
+resource_manifest_version "44febabe-d386-4d18-afbe-5e627f4af937"
+
+server_scripts {
+	"Cleanupthreads/cleanupthreads_sv.lua",
+	"Common/common_sv_fct.lua",
+	"Common/def_gl.lua",
+	"Common/def_sv.lua",
+	"Common/global_fct.lua",
+	"Config/config_sv.lua",
+	"HUD/help_sv.lua",
+	"HUD/tp_sv.lua",
+	"Interaction/interaction_sv.lua",
+	"Radialmenu/radial_sv.lua",
+	"Service/coroner_sv.lua",
+	"Service/tow_sv.lua",
+	"Startup/startup_sv.lua",
+	"Sync/sync_sv.lua",
+}
+
+client_scripts {
+	"@warmenu/warmenu.lua",
+	"Cleanupthreads/cleanupthreads_cl.lua",
+	"Common/common_cl_fct.lua",
+	"Common/def_cl.lua",
+	"Common/def_gl.lua",
+	"Common/global_fct.lua",
+	"Config/config_cl.lua",
+	"Config/speechoptions_cl.lua",
+	"HUD/blips_cl.lua",
+	"HUD/crosshair_cl.lua",
+	"HUD/help_cl.lua",
+	"HUD/markers_cl.lua",
+	"HUD/notes_cl.lua",
+	"HUD/tp_cl.lua",
+	"Interaction/interaction_cl.lua",
+	"Interaction/pednopanic_cl.lua",
+	"Service/coroner_cl.lua",
+	"Service/tow_cl.lua",
+	"Startup/startup_cl.lua",
+	"Sync/sync_cl.lua",
+}
