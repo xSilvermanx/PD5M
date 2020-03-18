@@ -42,10 +42,8 @@ ensure PD5M
 - Open `PD5M/Radialmenu/` director. Move the files `config.lua` and `radialmenu.lua` to the `radialmenu/` resource (replace the existing files)
 
 ## Recommended Addons
-- [vMenu](https://forum.cfx.re/t/vmenu-v3-1-3/88868) by Vespura
-- Used to create an mp-ped as said functionality hasn't been added to PD5M yet
-- [Delete Vehicle Script](https://forum.cfx.re/t/release-delete-vehicle-script-1-0-5/7727) by WolfKnight
-- As traffic loves to get crazy this helps you clean any mess
+- [vMenu](https://forum.cfx.re/t/vmenu-v3-1-3/88868) by Vespura, used to create an mp-ped as said functionality hasn't been added to PD5M yet
+- [Delete Vehicle Script](https://forum.cfx.re/t/release-delete-vehicle-script-1-0-5/7727) by WolfKnight. As traffic loves to get crazy this helps you clean any mess
 
 ## Optional Addons
 The addons listed below can be used to enhance your playing experience. They are fully supported by PD5M. If you want to use them, simply install them as per their installation instructions. Afterwards open `PD5M/Config/config_cl.lua` and set the respective bool at the top of the file to true.
