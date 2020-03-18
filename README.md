@@ -20,10 +20,35 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 ## Installation Instructions
 - Download radialmenu and warmenu
 - Download the latest master-branch of PD5M
-- Move radialmenu, warmenu and PD5M to the `resource/` directory (or any category)
+- Move radialmenu, warmenu and PD5M to `resource/` directory (or any category)
 - Edit your server.cfg to include:
 ```
 ensure warmenu
 ensure radialmenu
 ensure PD5M
 ```
+- Open `PD5M/Radialmenu/` director. Move the files `config.lua` and `radialmenu.lua` to the `radialmenu/` resource (replace the existing files)
+
+## Recommended Addons
+- [vMenu](https://forum.cfx.re/t/vmenu-v3-1-3/88868) by Vespura
+- Used to create an mp-ped as said functionality hasn't been added to PD5M yet
+- [Delete Vehicle Script](https://forum.cfx.re/t/release-delete-vehicle-script-1-0-5/7727) by WolfKnight
+- As traffic loves to get crazy this helps you clean any mess
+
+## Optional Addons
+The addons listed below can be used to enhance your playing experience. They are fully supported by PD5M. If you want to use them, simply install them as per their installation instructions. Afterwards open `PD5M/Config/config_cl.lua` and set the respective bool at the top of the file to true.
+- [ELS]
+- [LSPD-Mega-Pack]() by T0y
+- [BCSO-Mega-Pack]() by BradM
+- [California Highway Patrol]() by Thehurk
+- [traffic-changer]() by xSilvermanx 
+
+- [Community Mission Row PD]() by SLB2k11
+- [Sandy Sheriff Office Extension]() by Bamboozled
+- [Paleto Bay Sheriff's Office Extended]() by matus77
+- [Beaver Bush Park Ranger Station]() by Smokey7
+
+- [Sandy Shores Hospital]() by grzybeek
+- [Paleto Bay Medical Center]() by MrBrown1999
+
+##
