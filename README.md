@@ -16,3 +16,14 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 ## Requirements
 - [radialmenu](https://forum.cfx.re/t/release-radialmenu-configurable-menu-for-chat-commands-using-wheelnav-js/543690) by Brent_Peterson
 - [warmenu](https://forum.cfx.re/t/release-0-9-8-final-warmenu-lua-menu-framework/41249) by Warxander
+
+## Installation Instructions
+- Download radialmenu and warmenu
+- Download the latest master-branch of PD5M
+- Move radialmenu, warmenu and PD5M to the `resource/` directory (or any category)
+- Edit your server.cfg to include:
+```
+ensure warmenu
+ensure radialmenu
+ensure PD5M
+```
