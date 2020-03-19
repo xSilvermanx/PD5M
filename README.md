@@ -41,7 +41,8 @@ ensure radialmenu
 ensure PD5M
 ```
 
-- Open `PD5M/Radialmenu/` director. Move the files `config.lua` and `radialmenu.lua` to the `radialmenu/` resource (replace the existing files)
+- Open `PD5M/Radialmenu/` directory. Move the files `config.lua` and `radialmenu.lua` to the `radialmenu/` resource (replace the existing files)
+- Open `PD%M/Radialmenu/html` directory. Move the file `menu.html` to the `radialmenu/html/` resource (replace the existing file)
 
 ## Recommended Addons
 - [vMenu](https://forum.cfx.re/t/vmenu-v3-1-3/88868) by Vespura, used to create an mp-ped as said functionality hasn't been added to PD5M yet
