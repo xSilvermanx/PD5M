@@ -75,3 +75,4 @@ Shoutouts go out to:
 - IllidanS4 for his [Entity Iterators](https://gist.github.com/IllidanS4/9865ed17f60576425369fc1da70259b2)
 - The above mentioned mod authors
 - Everyone involved in testing the mod prior to this release.
+- DrBlackError for creating and managing our wonderful [discord](https://discord.gg/3DNTHeT)!
