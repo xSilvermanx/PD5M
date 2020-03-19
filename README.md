@@ -32,6 +32,7 @@ Make sure to talk to people before taking an action against them (e.g. arresting
 - Download radialmenu and warmenu
 - Download the latest master-branch of PD5M
 - Move radialmenu, warmenu and PD5M to `resource/` directory (or any category)
+- Make sure that the warmenu-resource is called `warmenu`, or you'll need to edit the PD5M-`__resource.lua`
 - Edit your server.cfg to include:
 
 ```
