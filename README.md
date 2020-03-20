@@ -24,6 +24,10 @@ In a Car: The actions will get carried out for the vehicle directly in front of 
 
 Make sure to talk to people before taking an action against them (e.g. arresting them). You wouldn't like that in real life either!
 
+## Discord
+
+Join our [Discord](https://discord.gg/3DNTHeT) for the latest announcements, patchnotes and more. Support is offered for this resource over there as well.
+
 ## Requirements
 - [radialmenu](https://forum.cfx.re/t/release-radialmenu-configurable-menu-for-chat-commands-using-wheelnav-js/543690) by Brent_Peterson
 - [warmenu](https://forum.cfx.re/t/release-0-9-8-final-warmenu-lua-menu-framework/41249) by Warxander
@@ -63,10 +67,6 @@ The addons listed below can be used to enhance your playing experience. They are
 -
 - [Sandy Shores Hospital](https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem) by grzybeek
 - [Paleto Bay Medical Center](https://de.gta5-mods.com/maps/mlo-paleto-bay-medical-center) by MrBrown1999
-
-## Discord
-
-Join our [Discord](https://discord.gg/3DNTHeT) for the latest announcements, patchnotes and more. Support is offered for this resource over there as well.
 
 ## Legal
 - You are free to use the resource for your server in any way you want. Only requirement is a tag for PD5M in the server-name (can be any design, e.g. plain text, in brackets, vertical lines ...).
