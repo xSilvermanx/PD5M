@@ -64,6 +64,10 @@ The addons listed below can be used to enhance your playing experience. They are
 - [Sandy Shores Hospital](https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem) by grzybeek
 - [Paleto Bay Medical Center](https://de.gta5-mods.com/maps/mlo-paleto-bay-medical-center) by MrBrown1999
 
+## Discord
+
+Join our [Discord](https://discord.gg/3DNTHeT) for the latest announcements, patchnotes and more. Support is offered for this resource over there as well.
+
 ## Legal
 - You are free to use the resource for your server in any way you want. Only requirement is a tag for PD5M in the server-name (can be any design, e.g. plain text, in brackets, vertical lines ...).
 - Creating modifications is encouraged however please publish your own content so everyone can enjoy it.
@@ -75,4 +79,4 @@ Shoutouts go out to:
 - IllidanS4 for his [Entity Iterators](https://gist.github.com/IllidanS4/9865ed17f60576425369fc1da70259b2)
 - The above mentioned mod authors
 - Everyone involved in testing the mod prior to this release.
-- DrBlackError for creating and managing our wonderful [discord](https://discord.gg/3DNTHeT)!
+- DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
