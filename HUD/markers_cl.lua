@@ -1559,7 +1559,7 @@ function spawnCar(carname)
 		for i,coord in ipairs(list) do
 			if location == coord.handle then
 				if IsAnyVehicleNearPoint(coord.x, coord.y, coord.z, 5.0) then
-					Notify('Der Ausparkpunkt ist belegt. Bitte das Fahrzeug entfernen.')
+					Notify('Please remove the vehicle that is blocking the spawn point.')
 				else
 					local vehicle = CreateVehicle(car, coord.x, coord.y, coord.z, coord.angle, true, false)
 					SetVehicleNeonLightEnabled(vehicle, 2, true)
@@ -1610,7 +1610,7 @@ function spawnCar(carname)
 	end
 	
 	if not isspawned then
-		Notify('Wagen konnte nicht ausgeparkt werden.')
+		Notify("Vehicle couldn't be spawned.")
 	else
 		isspawned = false
 	end
