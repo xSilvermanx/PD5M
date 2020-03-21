@@ -111,42 +111,42 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	RandomIDDigits = "0"
 	
 	-- Chance for certain flags
-	if math.random(1, 10000) < 30 then
+	if math.random(1, 10000) <= PedDruggedChance*100 then
 		PedInfosListInit.flagdrug = true
 		PedInfosListInit.savedrug = DrugList[math.random(1, #DrugList)]
 		PedInfosListInit.savedruglevel = math.random(10, 200)
 	end
-	if math.random(1, 10000) < 200 then
+	if math.random(1, 10000) < PedDrunkChance*100 then
 		PedInfosListInit.flagdrunk = true
 		PedInfosListInit.savedrunklevel = math.random(20, 400)/100
 	end
-	if math.random(1, 10000) < 100 then
+	if math.random(1, 10000) < PedWantedChance*100 then
 		PedInfosListInit.flagwanted = true
 		PedInfosListInit.saveoffense = OffenseList[math.random(1, #OffenseList)]
 	end
-	if math.random(1, 10000) < 50 then
+	if math.random(1, 10000) < PedNoIDChance*100 then
 		PedInfosListInit.flagid = false
 	end
-	if math.random(1, 10000) < 300 then
+	if math.random(1, 10000) < PedNoDriverLicenceChance*100 then
 		PedInfosListInit.flaglicence = false
 	end
-	if math.random(1, 10000) < 7000 then
+	if math.random(1, 10000) < PedNoWeaponLicenceChance*100 then
 		PedInfosListInit.flagweaponlicence = false
 	end
 	
 	-- Chance to carry a weapon
-	local meleechance = 200
-	local weaponchance = 100
-	local illegalweaponchance = 50
+	local meleechance = PedMeleeBaseChance*100
+	local weaponchance = PedLegalWeapBaseChance*100
+	local illegalweaponchance = PedIllegalWeapBaseChance*100
 	if PedInfosListInit.flagweaponlicence then
-		meleechance = meleechance - 100
-		weaponchance = weaponchance * 15
-		illegalweaponchance = 0
+		meleechance = meleechance + PedMeleeWeaponLicenceModifier*100
+		weaponchance = weaponchance + PedLegalWeapLicenceModifier*100
+		illegalweaponchance = weaponchance + PedIllegalWeapLicenceModifier*100
 	end
 	if PedInfosListInit.flagwanted then
-		meleechance = meleechance + 200
-		weaponchance = weaponchance + 200
-		illegalweaponchance = illegalweaponchance + 200
+		meleechance = meleechance + PedMeleeWeaponWantedModifier*100
+		weaponchance = weaponchance + PedLegalWeapWantedModifier*100
+		illegalweaponchance = illegalweaponchance + PedIllegalWeapWantedModifier*100
 	end
 	if math.random(1, 10000) < meleechance then
 		for i=1,math.random(1,4),1 do
@@ -169,10 +169,10 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	end
 	
 	-- Chance to carry an illegal item
-	local illegalitemchance = 100
+	local illegalitemchance = PedIllegalItemBaseChance*100
 	
 	if PedInfosListInit.flagwanted then
-		illegalitemchance = illegalitemchance + 400
+		illegalitemchance = illegalitemchance + PedIllegalItemWantedModifier*100
 	end
 	if math.random(1, 10000) < illegalitemchance then
 		for i=1, math.random(1,4),1 do
@@ -180,7 +180,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 		end
 		PedInfosListInit.flagpedillegalitem = true
 	end
-	if PedInfosListInit.flagdrug and math.random(1, 10000) < 5000 then
+	if PedInfosListInit.flagdrug and math.random(1, 10000) < (PedIllegalItemDrugChance*100) then
 		table.insert(PedInfosListInit.savepeditems, PedInfosListInit.savedrug)
 		PedInfosListInit.flagpedillegalitem = true
 	end
@@ -198,43 +198,43 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	-- Chance to flee instant
 	-- Flag Resist Modifier
 	-- Chance to fight
-	local hideidchance = 30
-	local fleeinstantchance = 70
+	local hideidchance = PedHideIDBaseChance*100
+	local fleeinstantchance = PedFleeInstantBaseChance*100
 	local resistmodifier = 0
-	local fightchance = 50
+	local fightchance = PedFightBaseChance*100
 	
 	if PedInfosListInit.flagwanted then
-		hideidchance = hideidchance + 2970
-		fleeinstantchance = fleeinstantchance + 1980
+		hideidchance = hideidchance + PedHideIDWantedModifier*100
+		fleeinstantchance = fleeinstantchance + PedFleeInstantWantedModifier*100
 		if math.random(1, 10) <= 7 then
 			resistmodifier = resistmodifier + 1 + 2 + 4
 		end
-		fightchance = fightchance + 50
+		fightchance = fightchance + PedFightWantedModifier*100
 	end
 	if PedInfosListInit.flagpedillegalitem then
-		hideidchance = hideidchance + 70
-		fleeinstantchance = fleeinstantchance + 480
-		fightchance = fightchance + 50
+		hideidchance = hideidchance + PedHideIDIllegalItemModifier*100
+		fleeinstantchance = fleeinstantchance + PedFleeInstantIllegalItemModifier*100
+		fightchance = fightchance + PedFightIllegalItemModifier*100
 	end
 	if PedInfosListInit.flagpedillegalweapon then
-		hideidchance = hideidchance + 70
-		fleeinstantchance = fleeinstantchance + 480
-		fightchance = fightchance + 450
+		hideidchance = hideidchance + PedHideIDIllegalWeaponModifier*100
+		fleeinstantchance = fleeinstantchance + PedFleeInstantIllegalWeaponModifier*100
+		fightchance = fightchance + PedFightIllegalWeaponModifier*100
 	end
 	if PedInfosListInit.flagpedillegalitem or PedInfosListInit.flagpedillegalweapon then
 		resistmodifier = resistmodifier + 32768 + 262144
 	end
 	if PedInfosListInit.flagdrug then
-		hideidchance = hideidchance - 10
-		fleeinstantchance = fleeinstantchance + 1450
+		hideidchance = hideidchance + PedHideIDDruggedModifier*100
+		fleeinstantchance = fleeinstantchance + PedFleeInstantDruggedModifier*100
 		resistmodifier = resistmodifier + 16384
-		fightchance = fightchance + 1450
+		fightchance = fightchance + PedFightDruggedModifier*100
 	end
 	if PedInfosListInit.flagdrunk then
-		hideidchance = hideidchance - 10
-		fleeinstantchance = fleeinstantchance + 950
+		hideidchance = hideidchance + PedHideIDDrunkModifier*100
+		fleeinstantchance = fleeinstantchance + PedFleeInstantDrunkModifier*100
 		resistmodifier = resistmodifier + 8192
-		fightchance = fightchance + 950
+		fightchance = fightchance + PedFightDrunkModifier*100
 	end
 	if not PedInfosListInit.flagid then
 		hideidchance = 10000
@@ -312,12 +312,12 @@ AddEventHandler('pd5m:intsv:InitVehConfigList', function(VehNetID)
 	saveoffense = 'None',
 	}
 	
-	if math.random(1, 10000) < 100 then
+	if math.random(1, 10000) < (VehOwnerWantedChance*100) then
 		VehInfosListInit.flagwanted = true
 		VehInfosListInit.saveoffense = OffenseList[math.random(1, #OffenseList)]
 	end
 	
-	local illegalitemchance = 100
+	local illegalitemchance = VehIllegalItemChance*100
 	
 	if math.random(1, 10000) < illegalitemchance then
 		for i=1, math.random(1,4),1 do

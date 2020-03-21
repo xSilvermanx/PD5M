@@ -175,7 +175,7 @@ AddEventHandler('pd5m:int:initstopcar', function(targetveh)
 		if TargetInVeh ~= 0 and TargetInVeh ~= nil then
 			if GetVehicleFuelLevel(targetveh) == 0.0 then
 				SetVehicleFuelLevel(targetveh, 1000.0)
-				TaskVehicleDriveWander(TargetInVeh, targetveh, 30.0, 786603)
+				TaskVehicleDriveWander(TargetInVeh, targetveh, 30.0, NormalDrivingBehavior)
 				flag_VehicleSelected = 0
 				Notify('Vehicle released.')
 			else
@@ -200,7 +200,7 @@ AddEventHandler('pd5m:int:initstopcar', function(targetveh)
 				else
 					if releasecar then
 						SetVehicleFuelLevel(targetveh, 1000.0)
-						TaskVehicleDriveWander(TargetInVeh, targetveh, 30.0, 786603)
+						TaskVehicleDriveWander(TargetInVeh, targetveh, 30.0, NormalDrivingBehavior)
 						flag_VehicleSelected = 0
 						Notify('Vehicle released.')
 					else
@@ -293,7 +293,7 @@ AddEventHandler('pd5m:int:starttalk', function(target, flaginveh)
 	local playerped = GetPlayerPed(-1)
 	local TargetNetID = PedToNet(target)
 	
-	TriggerServerEvent('pd5m:syncsv:ShowCommunication', PedToNet(playerped), TargetNetID, 'One moment please!', 1500)
+	TriggerServerEvent('pd5m:syncsv:ShowCommunication', PedToNet(playerped), TargetNetID, 'One moment please!', SpeechLengthShown)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 
 	if ClientPedConfigList[TargetFlagListIndex].flagfleeinstant then
@@ -315,7 +315,7 @@ AddEventHandler('pd5m:int:starttalk', function(target, flaginveh)
 			TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 		end
 		
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PedToNet(playerped), NormalAddress[math.random(1, #NormalAddress)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PedToNet(playerped), NormalAddress[math.random(1, #NormalAddress)], SpeechLengthShown)
 		TriggerEvent('pd5m:int:activetalk', target, flaginveh)
 	end
 end)
@@ -337,44 +337,44 @@ AddEventHandler('pd5m:int:AskForLicence', function(target, LicenceIndex)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetResistModifier = ClientPedConfigList[TargetFlagListIndex].resistmodifier
 	if LicenceIndex == 1 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForID[math.random(1, #OFCAskForID)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForID[math.random(1, #OFCAskForID)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 0) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
 			if not ClientPedConfigList[TargetFlagListIndex].flagid then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoLicenceResponse[math.random(1, #NormalNoLicenceResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoLicenceResponse[math.random(1, #NormalNoLicenceResponse)], SpeechLengthShown)
 			elseif ClientPedConfigList[TargetFlagListIndex].flaghideid then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceHideResponse[math.random(1, #NormalLicenceHideResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceHideResponse[math.random(1, #NormalLicenceHideResponse)], SpeechLengthShown)
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceResponse[math.random(1, #NormalLicenceResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceResponse[math.random(1, #NormalLicenceResponse)], SpeechLengthShown)
 				TriggerEvent('pd5m:int:showid', target)
 			end
 		end
 	elseif LicenceIndex == 2 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForDriverLicence[math.random(1, #OFCAskForDriverLicence)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForDriverLicence[math.random(1, #OFCAskForDriverLicence)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 1) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
 			if not ClientPedConfigList[TargetFlagListIndex].flaglicence then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoLicenceResponse[math.random(1, #NormalNoLicenceResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoLicenceResponse[math.random(1, #NormalNoLicenceResponse)], SpeechLengthShown)
 			elseif ClientPedConfigList[TargetFlagListIndex].flaghideid then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceHideResponse[math.random(1, #NormalLicenceHideResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceHideResponse[math.random(1, #NormalLicenceHideResponse)], SpeechLengthShown)
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceResponse[math.random(1, #NormalLicenceResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceResponse[math.random(1, #NormalLicenceResponse)], SpeechLengthShown)
 				TriggerEvent('pd5m:int:showdriverlicence', target)
 			end
 		end
 	elseif LicenceIndex == 3 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForGunLicence[math.random(1, #OFCAskForGunLicence)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForGunLicence[math.random(1, #OFCAskForGunLicence)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 2) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
 			if not ClientPedConfigList[TargetFlagListIndex].flagweaponlicence then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoLicenceResponse[math.random(1, #NormalNoLicenceResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoLicenceResponse[math.random(1, #NormalNoLicenceResponse)], SpeechLengthShown)
 			elseif ClientPedConfigList[TargetFlagListIndex].flaghideid then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceHideResponse[math.random(1, #NormalLicenceHideResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceHideResponse[math.random(1, #NormalLicenceHideResponse)], SpeechLengthShown)
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceResponse[math.random(1, #NormalLicenceResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalLicenceResponse[math.random(1, #NormalLicenceResponse)], SpeechLengthShown)
 				TriggerEvent('pd5m:int:showweaponpermit', target)
 			end
 		end
@@ -388,68 +388,68 @@ AddEventHandler('pd5m:int:AskForItems', function(target, LicenceIndex)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetResistModifier = ClientPedConfigList[TargetFlagListIndex].resistmodifier
 	if LicenceIndex == 1 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForSubstance[math.random(1, #OFCAskForSubstance)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForSubstance[math.random(1, #OFCAskForSubstance)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 3) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
 			if not ClientPedConfigList[TargetFlagListIndex].flagdrug then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoDrugResponse[math.random(1, #NormalNoDrugResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoDrugResponse[math.random(1, #NormalNoDrugResponse)], SpeechLengthShown)
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalDrugResponse[math.random(1, #NormalDrugResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalDrugResponse[math.random(1, #NormalDrugResponse)], SpeechLengthShown)
 			end
 		end
 	elseif LicenceIndex == 2 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForAlcohol[math.random(1, #OFCAskForAlcohol)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForAlcohol[math.random(1, #OFCAskForAlcohol)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 4) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
 			if not ClientPedConfigList[TargetFlagListIndex].flagdrunk then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoAlcoholResponse[math.random(1, #NormalNoAlcoholResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoAlcoholResponse[math.random(1, #NormalNoAlcoholResponse)], SpeechLengthShown)
 			else
 				if math.random(1, 10) <= 2 then
-					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAlcoholHideResponse[math.random(1, #NormalAlcoholHideResponse)], 2000)
+					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAlcoholHideResponse[math.random(1, #NormalAlcoholHideResponse)], SpeechLengthShown)
 				else
-					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAlcoholResponse[math.random(1, #NormalAlcoholResponse)], 2000)
+					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAlcoholResponse[math.random(1, #NormalAlcoholResponse)], SpeechLengthShown)
 				end
 			end
 		end
 	elseif LicenceIndex == 3 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForIllegalItems[math.random(1, #OFCAskForIllegalItems)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForIllegalItems[math.random(1, #OFCAskForIllegalItems)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 5) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
 			if not ClientPedConfigList[TargetFlagListIndex].flagpedillegalitem then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoIllegalItemsResponse[math.random(1, #NormalNoIllegalItemsResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoIllegalItemsResponse[math.random(1, #NormalNoIllegalItemsResponse)], SpeechLengthShown)
 			else
 				if math.random(1, 10) <= 5 then
-					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalIllegalItemsHideResponse[math.random(1, #NormalIllegalItemsHideResponse)], 2000)
+					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalIllegalItemsHideResponse[math.random(1, #NormalIllegalItemsHideResponse)], SpeechLengthShown)
 				else
-					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalIllegalItemsResponse[math.random(1, #NormalIllegalItemsResponse)], 2000)
+					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalIllegalItemsResponse[math.random(1, #NormalIllegalItemsResponse)], SpeechLengthShown)
 				end
 			end
 		end
 	elseif LicenceIndex == 4 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForWeapons[math.random(1, #OFCAskForWeapons)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForWeapons[math.random(1, #OFCAskForWeapons)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 6) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
 			if ClientPedConfigList[TargetFlagListIndex].savepedweapons == {} or not ClientPedConfigList[TargetFlagListIndex].flagweaponlicence then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoWeaponsResponse[math.random(1, #NormalNoWeaponsResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoWeaponsResponse[math.random(1, #NormalNoWeaponsResponse)], SpeechLengthShown)
 			else
 				if ClientPedConfigList[TargetFlagListIndex].flagpedillegalweapon then
 					TellTheOfficerYouAreIllegallyArmed = math.random(1, 100)
 					if TellTheOfficerYouAreIllegallyArmed <= 70 then
-						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalIllegalWeaponsHideResponse[math.random(1, #NormalIllegalWeaponsHideResponse)], 2000)
+						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalIllegalWeaponsHideResponse[math.random(1, #NormalIllegalWeaponsHideResponse)], SpeechLengthShown)
 					elseif TellTheOfficerYouAreIllegallyArmed <= 95 and TellTheOfficerYouAreIllegallyArmed > 70 then
-						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalWeaponsResponse[math.random(1, #NormalWeaponsResponse)], 2000)
+						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalWeaponsResponse[math.random(1, #NormalWeaponsResponse)], SpeechLengthShown)
 					else
-						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalIllegalWeaponsResponse[math.random(1, #NormalIllegalWeaponsResponse)], 2000)
+						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalIllegalWeaponsResponse[math.random(1, #NormalIllegalWeaponsResponse)], SpeechLengthShown)
 					end
 				else
 					if math.random(1, 10) <= 2 then
-						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalWeaponsHideResponse[math.random(1, #NormalWeaponsHideResponse)], 2000)
+						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalWeaponsHideResponse[math.random(1, #NormalWeaponsHideResponse)], SpeechLengthShown)
 					else
-						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalWeaponsResponse[math.random(1, #NormalWeaponsResponse)], 2000)
+						TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalWeaponsResponse[math.random(1, #NormalWeaponsResponse)], SpeechLengthShown)
 					end
 				end
 			end
@@ -464,37 +464,37 @@ AddEventHandler('pd5m:int:QuestionPed', function(target, LicenceIndex)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetResistModifier = ClientPedConfigList[TargetFlagListIndex].resistmodifier
 	if LicenceIndex == 1 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForStartingPoint[math.random(1, #OFCAskForStartingPoint)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForStartingPoint[math.random(1, #OFCAskForStartingPoint)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 7) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAnswerStartingPoint[math.random(1, #NormalAnswerStartingPoint)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAnswerStartingPoint[math.random(1, #NormalAnswerStartingPoint)], SpeechLengthShown)
 		end
 	elseif LicenceIndex == 2 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForDestination[math.random(1, #OFCAskForDestination)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForDestination[math.random(1, #OFCAskForDestination)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 8) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAnswerDestination[math.random(1, #NormalAnswerDestination)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAnswerDestination[math.random(1, #NormalAnswerDestination)], SpeechLengthShown)
 		end
 	elseif LicenceIndex == 3 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForActivity[math.random(1, #OFCAskForActivity)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForActivity[math.random(1, #OFCAskForActivity)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 9) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAnswerActivity[math.random(1, #NormalAnswerActivity)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAnswerActivity[math.random(1, #NormalAnswerActivity)], SpeechLengthShown)
 		end
 	elseif LicenceIndex == 4 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForSuspiciousActivity[math.random(1, #OFCAskForSuspiciousActivity)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCAskForSuspiciousActivity[math.random(1, #OFCAskForSuspiciousActivity)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 10) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseQuestionResponse[math.random(1, #NormalRefuseQuestionResponse)], SpeechLengthShown)
 		else
 			if ClientPedConfigList[TargetFlagListIndex].PedUnusualActivity[1] ~= nil then
 				for i, entry in ClientPedConfigList[TargetFlagListIndex].PedUnusualActivity do
-					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, entry, 2000)
+					TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, entry, SpeechLengthShown)
 				end
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAnswerNoSuspiciousActivity[math.random(1, #NormalAnswerNoSuspiciousActivity)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAnswerNoSuspiciousActivity[math.random(1, #NormalAnswerNoSuspiciousActivity)], SpeechLengthShown)
 			end
 		end
 	end
@@ -507,29 +507,29 @@ AddEventHandler('pd5m:int:VehiclePedOrder', function(target, LicenceIndex)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetResistModifier = ClientPedConfigList[TargetFlagListIndex].resistmodifier
 	if LicenceIndex == 1 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCOrderOutOfVehicle[math.random(1, #OFCOrderOutOfVehicle)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCOrderOutOfVehicle[math.random(1, #OFCOrderOutOfVehicle)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 11) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			local VehicleNetID = ClientPedConfigList[TargetFlagListIndex].VehicleNetID
 			if VehicleNetID ~= nil and DoesEntityExist(NetToEnt(VehicleNetID)) and GetEntityType(NetToEnt(VehicleNetID)) == 2 then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)
 				TriggerEvent('pd5m:int:OrderPedInOutVehicle', target)
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], SpeechLengthShown)
 			end
 		end
 	elseif LicenceIndex == 2 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCOrderIntoVehicle[math.random(1, #OFCOrderIntoVehicle)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCOrderIntoVehicle[math.random(1, #OFCOrderIntoVehicle)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 12) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			local VehicleNetID = ClientPedConfigList[TargetFlagListIndex].VehicleNetID
 			if VehicleNetID ~= nil and DoesEntityExist(NetToEnt(VehicleNetID)) and GetEntityType(NetToEnt(VehicleNetID)) == 2 then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)
 				TriggerEvent('pd5m:int:OrderPedInOutVehicle', target)
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], SpeechLengthShown)
 			end
 		end
 	end
@@ -542,40 +542,40 @@ AddEventHandler('pd5m:int:InformPedInvestigation', function(target, LicenceIndex
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetResistModifier = ClientPedConfigList[TargetFlagListIndex].resistmodifier
 	if LicenceIndex == 1 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformBreathalyzer[math.random(1, #OFCInformBreathalyzer)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformBreathalyzer[math.random(1, #OFCInformBreathalyzer)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 13) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowbreathalyzer', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)	
 		end
 	elseif LicenceIndex == 2 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformDrugtest[math.random(1, #OFCInformDrugtest)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformDrugtest[math.random(1, #OFCInformDrugtest)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 14) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowdrugtest', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)	
 		end
 	elseif LicenceIndex == 3 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformPersonSearch[math.random(1, #OFCInformPersonSearch)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformPersonSearch[math.random(1, #OFCInformPersonSearch)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 15) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowpersonsearch', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)	
 		end
 	elseif LicenceIndex == 4 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformCarSearch[math.random(1, #OFCInformCarSearch)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformCarSearch[math.random(1, #OFCInformCarSearch)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 16) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			local VehicleNetID = ClientPedConfigList[TargetFlagListIndex].VehicleNetID
 			if VehicleNetID ~= nil and DoesEntityExist(NetToEnt(VehicleNetID)) and GetEntityType(NetToEnt(VehicleNetID)) == 2 then
 				TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowcarsearch', true)
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)	
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], SpeechLengthShown)
 			end
 		end
 	end
@@ -588,41 +588,41 @@ AddEventHandler('pd5m:int:InformPedActions', function(target, LicenceIndex)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetResistModifier = ClientPedConfigList[TargetFlagListIndex].resistmodifier
 	if LicenceIndex == 1 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformCarSeizure[math.random(1, #OFCInformCarSeizure)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformCarSeizure[math.random(1, #OFCInformCarSeizure)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 17) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			local VehicleNetID = ClientPedConfigList[TargetFlagListIndex].VehicleNetID
 			if VehicleNetID ~= nil and DoesEntityExist(NetToEnt(VehicleNetID)) and GetEntityType(NetToEnt(VehicleNetID)) == 2 then
 				TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowcarseizure', true)
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], SpeechLengthShown)
 			end
 		end
 	elseif LicenceIndex == 2 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformObjectConfiscation[math.random(1, #OFCInformObjectConfiscation)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformObjectConfiscation[math.random(1, #OFCInformObjectConfiscation)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 18) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowitemconfiscation', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)	
 		end
 	elseif LicenceIndex == 3 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformArrest[math.random(1, #OFCInformArrest)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformArrest[math.random(1, #OFCInformArrest)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 19) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowarrest', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)	
 		end
 	elseif LicenceIndex == 4 then
-		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformFine[math.random(1, #OFCInformFine)], 2000)
+		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformFine[math.random(1, #OFCInformFine)], SpeechLengthShown)
 		if GetNthBinaryFlag(TargetResistModifier, 20) == 1 then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowfine', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], SpeechLengthShown)	
 		end
 	end
 end)
@@ -1055,7 +1055,7 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 	end
 	Notify('Car has stopped.')
 	SetBlockingOfNonTemporaryEvents(TargetInVeh, false)
-	TaskVehicleDriveWander(target, targetveh, 30.0, 786603)
+	TaskVehicleDriveWander(target, targetveh, 30.0, NormalDrivingBehavior)
 end)
 
 -- This event makes the ped leave or enter its personal vehicle.
@@ -1817,7 +1817,7 @@ AddEventHandler('pd5m:int:fineped', function()
 				flagallowfine = ClientPedConfigList[TargetFlagListIndex].flagallowfine
 				if flagallowfine then
 					FineHeight = "Amount to fine in $."
-					FineText = "Enter the amount you want to fine the suspect."
+					FineText = ""
 					
 					AddTextEntry('RunIDLabel', FineText)
 					DisplayOnscreenKeyboard(6, "RunIDLabel", "", FineHeight, "", "", "", 30)
@@ -2125,11 +2125,11 @@ AddEventHandler('pd5m:int:letpedfollow', function()
 				if FlagFollowing then
 					table.remove(ClientFollowingList, index)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
-					TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, "Stop right there.", 2000)
+					TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, "Stop right there.", SpeechLengthShown)
 				else
 					table.insert(ClientFollowingList, TargetNetID)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoTalk')
-					TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, "Follow me, please.", 2000)
+					TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, "Follow me, please.", SpeechLengthShown)
 					CreateThread(function()
 						local FlagContinue = true
 						local ThreadTarget = target
@@ -2778,9 +2778,9 @@ AddEventHandler('pd5m:int:HavePedSurrender', function(target)
 		end
 		
 		if flaginveh then
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, 'Police, stop the vehicle and surrender!', 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, 'Police, stop the vehicle and surrender!', SpeechLengthShown)
 		else
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, 'Police, take your hands up!', 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, 'Police, take your hands up!', SpeechLengthShown)
 		end
 		
 		TriggerEvent('pd5m:int:PedThreatenedWeapon', target)
@@ -3057,17 +3057,17 @@ AddEventHandler('pd5m:int:PedResistAction', function(target, strength)
 		local targetveh = GetVehiclePedIsIn(target, false)
 		if strength == 2 then
 			ClearPedTasks(target)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalStopInteractionResponse[math.random(1, #NormalStopInteractionResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalStopInteractionResponse[math.random(1, #NormalStopInteractionResponse)], SpeechLengthShown)	
 			TriggerEvent('pd5m:int:stoptalk', target, true)
 		elseif strength == 3 then
 			ClearPedTasks(target)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalFleeResponse[math.random(1, #NormalFleeResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalFleeResponse[math.random(1, #NormalFleeResponse)], SpeechLengthShown)	
 			SetVehicleHandbrake(targetveh, false)
 			SetVehicleFuelLevel(targetveh, 1000.0)
 			TriggerEvent('pd5m:int:pedflee', target, playerped)
 		else
 			ClearPedTasks(target)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], SpeechLengthShown)	
 		end
 	else
 		if strength == 2 then
@@ -3076,21 +3076,21 @@ AddEventHandler('pd5m:int:PedResistAction', function(target, strength)
 			loadAnimDict("melee@unarmed@streamed_core")
 			loadAnimDict("reaction@shove")
 			Wait(800)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], SpeechLengthShown)
 			TaskPlayAnim(target, "melee@unarmed@streamed_core", "shove", 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 			Wait(200)
 			TaskPlayAnim(playerped, "reaction@shove", "shoved_front", 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 			Wait(1300)
 			TriggerEvent('pd5m:int:stoptalk', target, false)
 			Wait(500)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalStopInteractionResponse[math.random(1, #NormalStopInteractionResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalStopInteractionResponse[math.random(1, #NormalStopInteractionResponse)], SpeechLengthShown)	
 		elseif strength == 3 then
 			ClearPedTasks(target)
 			makeEntityFaceEntity(target, playerped)
 			Wait(800)
 			loadAnimDict("melee@unarmed@streamed_core")
 			loadAnimDict("get_up@standard")
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], 2000)
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], SpeechLengthShown)
 			TaskPlayAnim(playerped, "melee@unarmed@streamed_core", "victim_takedown_front_elbow", 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 			Wait(100)
 			local DisableFPCam = true
@@ -3103,10 +3103,10 @@ AddEventHandler('pd5m:int:PedResistAction', function(target, strength)
 			TaskPlayAnim(target, "melee@unarmed@streamed_core", "plyr_takedown_front_elbow", 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 			Wait(1300)
 			if ClientPedConfigList[TargetFlagListIndex].flagfight then --this can be expanded with a multitude of variables much like in "pd5m:int:PedThreatenedWeapon"
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalFightResponse[math.random(1, #NormalFightResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalFightResponse[math.random(1, #NormalFightResponse)], SpeechLengthShown)
 				TriggerEvent('pd5m:int:pedhostile', target, playerped)
 			else
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalFleeResponse[math.random(1, #NormalFleeResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalFleeResponse[math.random(1, #NormalFleeResponse)], SpeechLengthShown)
 				TriggerEvent('pd5m:int:pedflee', target, playerped)
 			end
 			local playerheading = GetEntityHeading(playerped)
@@ -3141,13 +3141,13 @@ AddEventHandler('pd5m:int:PedResistAction', function(target, strength)
 			
 			if PedGender == 'Female' then
 				loadAnimDict("reaction@back_away@f")
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], 2000)	
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], SpeechLengthShown)	
 				TaskPlayAnim(target, "reaction@back_away@f", direction, 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 				Wait(1500)
 				ClearPedTasks(target)
 			else
 				loadAnimDict("reaction@back_away@m")
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], 2000)	
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], SpeechLengthShown)	
 				TaskPlayAnim(target, "reaction@back_away@m", direction, 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 				Wait(1500)
 				ClearPedTasks(target)
@@ -3350,9 +3350,9 @@ CreateThread(function()
 		if WarMenu.IsMenuOpened('pd5m:int:talkmenu') then
 			if WarMenu.Button('Greet') then
 				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', MenuTargetNetID, 'Talking')
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuPlayerPedNetID, MenuTargetNetID, "Good day, my name is Officer " .. GetPlayerName(PlayerId()) .. ".", 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuPlayerPedNetID, MenuTargetNetID, "Good day, my name is Officer " .. GetPlayerName(PlayerId()) .. ".", SpeechLengthShown)
 				Wait(2000)
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuTargetNetID, MenuPlayerPedNetID, NormalGreetResponse[math.random(1, #NormalGreetResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuTargetNetID, MenuPlayerPedNetID, NormalGreetResponse[math.random(1, #NormalGreetResponse)], SpeechLengthShown)
 				Wait(100)
 				WarMenu.CloseMenu()
 			elseif WarMenu.ComboBox('Ask for Licences', LicenceList, CurrentLicenceIndex, SelectedLicenceIndex, function(currentIndex, selectedIndex)
@@ -3405,15 +3405,15 @@ CreateThread(function()
 					WarMenu.CloseMenu()
 			elseif WarMenu.Button('Let Ped Wait') then
 				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', MenuTargetNetID, 'Talking')
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuPlayerPedNetID, MenuTargetNetID, OFCWait[math.random(1, #OFCWait)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuPlayerPedNetID, MenuTargetNetID, OFCWait[math.random(1, #OFCWait)], SpeechLengthShown)
 				Wait(2000)
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuTargetNetID, MenuPlayerPedNetID, NormalWaitResponse[math.random(1, #NormalWaitResponse)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuTargetNetID, MenuPlayerPedNetID, NormalWaitResponse[math.random(1, #NormalWaitResponse)], SpeechLengthShown)
 				Wait(100)
 				WarMenu.CloseMenu()
 			elseif WarMenu.Button('Release Ped') then
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuPlayerPedNetID, MenuTargetNetID, OFCBye[math.random(1, #OFCBye)], 2000)
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuPlayerPedNetID, MenuTargetNetID, OFCBye[math.random(1, #OFCBye)], SpeechLengthShown)
 				Wait(2000)
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuTargetNetID, MenuPlayerPedNetID, NormalGoodbye[math.random(1, #NormalGoodbye)], 2000)	
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuTargetNetID, MenuPlayerPedNetID, NormalGoodbye[math.random(1, #NormalGoodbye)], SpeechLengthShown)	
 				TriggerEvent('pd5m:int:stoptalk', MenuTarget, MenuFlagInVeh)
 				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', MenuTargetNetID, 'Talking')
 				Wait(100)
@@ -3430,58 +3430,60 @@ end)
 -- Threads to imprison an arrested and grabbed ped.
 -- The first thread checks if the player is in range of the marker.
 -- If yes, pressing E will use the marker and delete the ped.
-atarrest = false
+if ActivateArrestMarkers then
+	atarrest = false
 
-CreateThread(function()
-	while true do
-		for i,coord in ipairs(list_arrest_coords) do
-			local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
-			local distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
-			if distance < 5 then
-				atarrest = true
-				StartHelpNotify('Press ~INPUT_CONTEXT~ to imprison the ped (must be handcuffed and grabbed).', 500)
-				Wait(40)
-				while distance < 5 do
-					HelpNotify('Press ~INPUT_CONTEXT~ to imprison the ped (must be handcuffed and grabbed).', 500)
-					Wait(500)
-					local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
-					distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+	CreateThread(function()
+		while true do
+			for i,coord in ipairs(list_arrest_coords) do
+				local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
+				local distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+				if distance < 5 then
+					atarrest = true
+					StartHelpNotify('Press ~INPUT_CONTEXT~ to imprison the ped (must be handcuffed and grabbed).', 500)
+					Wait(40)
+					while distance < 5 do
+						HelpNotify('Press ~INPUT_CONTEXT~ to imprison the ped (must be handcuffed and grabbed).', 500)
+						Wait(500)
+						local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
+						distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+					end
+					EndHelpNotify('Press ~INPUT_CONTEXT~ to imprison the ped (must be handcuffed and grabbed).', 500)
+					atarrest = false
 				end
-				EndHelpNotify('Press ~INPUT_CONTEXT~ to imprison the ped (must be handcuffed and grabbed).', 500)
-				atarrest = false
 			end
+			Wait(0)
 		end
-		Wait(0)
-	end
-end)
+	end)
 
-CreateThread(function()
-	while true do
-		if IsControlJustPressed(0, 51) and atarrest and flag_grabbed then
-			local target = grabbedTarget
-			DetachEntity(grabbedTarget, 0, true)
-			flag_grabbed = false
-			grabbedTarget = nil
-			
-			TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-			
-			local FirstName = ClientPedConfigList[TargetFlagListIndex].FirstName
-			local LastName = ClientPedConfigList[TargetFlagListIndex].LastName
-			
-			local TargetName = FirstName .. " " .. LastName
-			
-			DeleteEntity(target)
-			
-			BeginTextCommandThefeedPost("TWOSTRINGS")
-			AddTextComponentSubstringPlayerName("The suspect was brought into the prison and serves their sentence.")
-			EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Imprisonment report", TargetName)
-			EndTextCommandThefeedPostTicker(false, false)
-		elseif IsControlJustPressed(0,51) and atarrest then
-			Notify('You need to grab the ped to arrest it.')
+	CreateThread(function()
+		while true do
+			if IsControlJustPressed(0, 51) and atarrest and flag_grabbed then
+				local target = grabbedTarget
+				DetachEntity(grabbedTarget, 0, true)
+				flag_grabbed = false
+				grabbedTarget = nil
+				
+				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
+				
+				local FirstName = ClientPedConfigList[TargetFlagListIndex].FirstName
+				local LastName = ClientPedConfigList[TargetFlagListIndex].LastName
+				
+				local TargetName = FirstName .. " " .. LastName
+				
+				DeleteEntity(target)
+				
+				BeginTextCommandThefeedPost("TWOSTRINGS")
+				AddTextComponentSubstringPlayerName("The suspect was brought into the prison and serves their sentence.")
+				EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Imprisonment report", TargetName)
+				EndTextCommandThefeedPostTicker(false, false)
+			elseif IsControlJustPressed(0,51) and atarrest then
+				Notify('You need to grab the ped to arrest it.')
+			end
+			Wait(0)
 		end
-		Wait(0)
-	end
-end)
+	end)
+end
 
 -- This event is called after the player releases a ped by releasing it in the talking menu.
 -- Makes the ped wander around in the area randomly, resets flags like NoFear.
@@ -3527,6 +3529,6 @@ AddEventHandler('pd5m:int:stoptalk', function(target, flaginveh)
 		SetVehicleHandbrake(targetveh, false)
 		SetVehicleFuelLevel(targetveh, 1000.0)
 		SetEntityAsNoLongerNeeded(targetveh)
-		TaskVehicleDriveWander(target, targetveh, 30.0, 786603)
+		TaskVehicleDriveWander(target, targetveh, 30.0, NormalDrivingBehavior)
 	end
 end)
