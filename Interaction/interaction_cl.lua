@@ -44,10 +44,10 @@ CreateThread(function()
 							break
 						end
 					end
-					if GetEntityType(TargetInVeh) == 1 then
+					if GetEntityType(TargetInVeh) == 1 and not IsPedAPlayer(TargetInVeh) then
 						local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, GetEntityCoords(SelectTarget))
 						if distanceToTarget <= 30 then
-							TriggerEvent('pd5m:int:HavePedSurrender', SelectTarget)
+							TriggerEvent('pd5m:int:HavePedSurrender', TargetInVeh)
 							Wait(2000)
 						else
 							Notify('Too far away.')
@@ -96,7 +96,7 @@ CreateThread(function()
 									break
 								end
 							end
-							if GetEntityType(TargetInVeh) == 1 then
+							if GetEntityType(TargetInVeh) == 1 and not IsPedAPlayer(TargetInVeh) then
 								if GetEntitySpeed(targetVeh) < 0.2 then
 									local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 									if distanceToTarget <= 10 then
@@ -1854,7 +1854,7 @@ AddEventHandler('pd5m:int:fineped', function()
 							break
 						end
 					end
-					if TargetInVeh ~= 0 and TargetInVeh ~= nil then
+					if TargetInVeh ~= 0 and TargetInVeh ~= nil and not IsPedAPlayer(TargetInVeh) then
 						TargetNetID = PedToNet(TargetInVeh)
 				
 						TargetFlagListIndex, _ = SyncPedAndVeh(TargetInVeh, 0)
@@ -1896,7 +1896,7 @@ AddEventHandler('pd5m:int:fineped', function()
 								end
 							end
 						else
-							TriggerEvent('pd5m:int:PedResistAction', target, 2)
+							TriggerEvent('pd5m:int:PedResistAction', TargetInVeh, 2)
 						end
 					else
 						Notify('The car is empty.')
@@ -1963,42 +1963,24 @@ AddEventHandler('pd5m:int:arrestped', function()
 					SetEnableHandcuffs(target, false)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Arrested')
 					TriggerEvent('pd5m:int:PedSetAllAllowConfigFlags', target, false)
+
+					local PlayerpedNetID = PedToNet(playerped)
+
+					TriggerServerEvent('pd5m:syncsv:unhandcuffingevent', TargetNetID, PlayerpedNetID)
 					
-					makeEntityFaceEntity(playerped, target)
-					local newtargetheading = GetEntityHeading(playerped)
-					TaskAchieveHeading(target, newtargetheading, 1000)
-					
-					Wait(1000)
-					
-					loadAnimDict("mp_arresting")
-					
-					TaskPlayAnim(playerped, "mp_arresting", "a_uncuff", 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
-					Wait(1500)
-					TaskPlayAnim(target, "mp_arresting", "idle", 99999.0, 8.0, -1, 0, 0.0, 0, 0, 0)
-					
-					ClearPedTasks(target)
-					SetPedCanPlayGestureAnims(target, true)
 				elseif flagallowarrest then
 					TriggerEvent('pd5m:sync:PedSetAllAllowConfigFlags', target, true)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
-					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'Arrested')
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'Stopped')
+					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'Arrested')
 					
-					makeEntityFaceEntity(playerped, target)
-					local newtargetheading = GetEntityHeading(playerped)
-					TaskAchieveHeading(target, newtargetheading, 1000)
+					local PlayerpedNetID = PedToNet(playerped)
 					
-					Wait(1000)
-					loadAnimDict("mp_arresting")
+					--TriggerEvent('pd5m:int:handcuffingevent', TargetNetID, PlayerpedNetID)
 					
-					TaskPlayAnim(playerped, "mp_arresting", "a_uncuff", 8.0, -8, -1, 0, 0.0, 0, 0, 0)
-					TaskPlayAnim(target, "mp_arresting", "idle", 8.0, -8, -1, 50, 0.0, 0, 0, 0)
+					TriggerServerEvent('pd5m:syncsv:handcuffingevent', TargetNetID, PlayerpedNetID)
 					
-					SetEnableHandcuffs(target, true)
-					SetPedCanPlayGestureAnims(target, false)
-					Wait(2000)
-					
-					CreateThread(function()
+					--[[CreateThread(function()
 						local FlagContinue = true
 						local ThreadTarget = target
 						local ThreadTargetNetID = TargetNetID
@@ -2011,13 +1993,14 @@ AddEventHandler('pd5m:int:arrestped', function()
 								if IsEntityPlayingAnim(target, "mp_arresting", "idle", 3) then
 								
 								else
-									TaskPlayAnim(target, "mp_arresting", "idle", 8.0, -8, -1, 50, 0.0, 0, 0, 0)
+									TriggerServerEvent('pd5m:syncsv:TaskPlayAnim', target, "mp_arresting", "idle", 8.0, -8, -1, 50, 0.0, 0, 0, 0)
 									SetPedCanPlayGestureAnims(target, false)
 								end
 							end
 							Wait(500)
 						end
-					end)
+					end)]]
+					
 				else
 					TriggerEvent('pd5m:int:PedResistAction', target, 3)
 				end
@@ -2028,6 +2011,75 @@ AddEventHandler('pd5m:int:arrestped', function()
 			Notify('No ped found.')
 		end
 	end
+end)
+
+RegisterNetEvent('pd5m:int:handcuffingevent')
+AddEventHandler('pd5m:int:handcuffingevent', function(TargetNetID, PlayerpedNetID)
+	local playerped = NetToPed(PlayerpedNetID)
+	local target = NetToPed(TargetNetID)
+	
+	makeEntityFaceEntity(playerped, target)
+	local newtargetheading = GetEntityHeading(playerped)
+	TaskAchieveHeading(target, newtargetheading, 1000)
+	
+	loadAnimDict("mp_arresting")
+	
+	Wait(1000)	
+
+	TaskPlayAnim(playerped, "mp_arresting", "a_uncuff", 8.0, -8, -1, 0, 0.0, 0, 0, 0)
+	TaskPlayAnim(target, "mp_arresting", "idle", 8.0, 8.0, -1, 51, 1.0, 0, 0, 0)
+
+	SetEnableHandcuffs(target, true)
+	SetPedCanPlayGestureAnims(target, false)
+	SetPedCanPlayAmbientAnims(target, false)
+	SetPedCanPlayAmbientBaseAnims(target, false)
+	SetPedCanPlayInjuredAnims(target, false)
+	SetPedCanPlayVisemeAnims(target, false, 0)
+
+	Wait(1000)
+end)
+
+CreateThread(function()
+	while true do
+		for i, TargetNetID in ipairs(ClientPedArrestedList) do
+			local target = NetToPed(TargetNetID)
+			
+			loadAnimDict("mp_arresting")
+			
+			if IsEntityPlayingAnim(target, "mp_arresting", "idle", 3) then
+			
+			else
+				TaskPlayAnim(target, "mp_arresting", "idle", 8.0, 8.0, -1, 51, 1.0, 0, 0, 0)
+			end
+		end
+		Wait(500)
+	end
+end)
+
+RegisterNetEvent('pd5m:int:unhandcuffingevent')
+AddEventHandler('pd5m:int:unhandcuffingevent', function(TargetNetID, PlayerpedNetID)
+	local playerped = NetToPed(PlayerpedNetID)
+	local target = NetToPed(TargetNetID)
+	
+	makeEntityFaceEntity(playerped, target)
+	local newtargetheading = GetEntityHeading(playerped)
+	TaskAchieveHeading(target, newtargetheading, 1000)
+	
+	Wait(1000)
+	
+	loadAnimDict("mp_arresting")
+	
+	TaskPlayAnim(playerped, "mp_arresting", "a_uncuff", 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
+	Wait(2000)
+	TaskPlayAnim(target, "mp_arresting", "idle", 99999.0, 8.0, -1, 0, 0.0, 0, 0, 0)
+	
+	ClearPedTasks(target)
+	SetPedCanPlayGestureAnims(target, true)
+	SetPedCanPlayAmbientAnims(target, true)
+	SetPedCanPlayAmbientBaseAnims(target, true)
+	SetPedCanPlayInjuredAnims(target, true)
+	SetPedCanPlayVisemeAnims(target, true, 0)
+	
 end)
 
 RegisterNetEvent('pd5m:int:letpedfollow')
@@ -2118,7 +2170,9 @@ AddEventHandler('pd5m:int:grabped', function()
 	local TargetFlagListIndex = nil
 	
 	if flag_grabbed then
-		DetachEntity(grabbedTarget, 0, false)
+		local OwnerNetID = NetworkGetEntityOwner(grabbedTarget)
+		local TargetNetID = PedToNet(grabbedTarget)
+		TriggerServerEvent('pd5m:syncsv:ungrabped', TargetNetID)
 		flag_grabbed = false
 		grabbedTarget = nil
 	elseif not IsPedInAnyVehicle(playerped, true) then
@@ -2159,14 +2213,11 @@ AddEventHandler('pd5m:int:grabped', function()
 				local FlagArrested = CheckFlag(TargetNetID, 'Arrested')
 				
 				if FlagArrested then
-					local px, py, pz = table.unpack(playerpedcoords)
-					local targetElbow = GetEntityBoneIndexByName(target, "MH_L_Elbow")
-					local playerElbow = GetEntityBoneIndexByName(playerped, "MH_R_Elbow")
-					-- if not sync check PIS -> arr_client.lua -> line 417
-					AttachEntityToEntity(target, playerped, 11816, 0.3, 0.4, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
-					
+					local OwnerNetID = NetworkGetEntityOwner(target)
+					local PlayerpedNetID = PedToNet(playerped)
 					grabbedTarget = target
 					flag_grabbed = true
+					TriggerServerEvent('pd5m:syncsv:grabped', TargetNetID, PlayerpedNetID)
 				else
 					Notify('Arrest the ped to grab it.')
 				end				
@@ -2177,6 +2228,22 @@ AddEventHandler('pd5m:int:grabped', function()
 			Notify('No ped found.')
 		end
 	end
+end)
+
+RegisterNetEvent('pd5m:int:grabbingevent')
+AddEventHandler('pd5m:int:grabbingevent', function(TargetNetID, PlayerpedNetID)
+	local target = NetToPed(TargetNetID)
+	local playerped = NetToPed(PlayerpedNetID)
+	
+	local targetElbow = GetEntityBoneIndexByName(target, "MH_L_Elbow")
+	local playerElbow = GetEntityBoneIndexByName(playerped, "MH_R_Elbow")
+	AttachEntityToEntity(target, playerped, 11816, 0.3, 0.4, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
+end)
+
+RegisterNetEvent('pd5m:int:ungrabbingevent')
+AddEventHandler('pd5m:int:ungrabbingevent', function(TargetNetID)
+	local target = NetToPed(TargetNetID)
+	DetachEntity(target, 0, false)
 end)
 
 RegisterNetEvent('pd5m:int:packejectped')
@@ -2277,7 +2344,7 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
-							if tonumber(distance) < 0.05 then
+							if tonumber(distance) < 0.2 then
 								distanceCheck = false
 							end
 							Wait(100)
@@ -2286,6 +2353,11 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						Wait(1000)
 						
 						distanceCheck = true
+						TaskAchieveHeading(playerped, VehHeading, 2000)
+						
+						while GetEntityHeading(playerped) - VehHeading > 5.0 do
+							Wait(100)
+						end
 						
 						target = grabbedTarget
 						DetachEntity(grabbedTarget, 0, true)
@@ -2299,7 +2371,7 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
-							if tonumber(distance) < 0.05 then
+							if tonumber(distance) < 0.2 then
 								distanceCheck = false
 							end
 							Wait(100)
@@ -2313,7 +2385,7 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						
 						if not IsVehicleDoorFullyOpen(targetveh, SeatChosen+1) then
 							TaskOpenVehicleDoor(playerped, targetveh, 10000, SeatChosen, 1.0)
-							Wait(2000)
+							Wait(1500)
 						end
 						
 						local Cx, Cy, Cz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, Ox+(3*corr), Oy+0.3, Oz))
@@ -2323,13 +2395,13 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
-							if tonumber(distance) < 0.05 then
+							if tonumber(distance) < 0.2 then
 								distanceCheck = false
 							end
 							Wait(100)
 						end
 						
-						ClearPedTasks(playerped)
+						TaskAchieveHeading(playerped, VehHeading+(corrSign*75.0), 2000)
 						
 						TaskEnterVehicle(target, targetveh, 10000, SeatChosen, 1.0, 1, 0)
 					else
