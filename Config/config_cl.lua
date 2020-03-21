@@ -28,19 +28,20 @@ CoronerDrivers = {"csb_cop", "csb_prolsec", "s_f_y_cop_01", "s_f_y_ranger_01", "
 CoronerVehicles = {"policet"}
 
 -- PD-Maps
-SLBMissionRow = true --whether the Community Mission Row PD MLO by SLB2k11 is activated
-BamboozledSandyPD = true --whether the Sandy Sheriff Office Extension MLO by Bamboozled is activated
-matusPDPaleto = true --whether the Paleto Bay Sheriff's Office Extended MLO by matus77 is activated
-SmokeyBeaverBushPR = true --whether the Beaver Bush Park Ranger Station MLO by Smokey7 is activated
+SLBMissionRow = false --whether the Community Mission Row PD MLO by SLB2k11 is activated
+BamboozledSandyPD = false --whether the Sandy Sheriff Office Extension MLO by Bamboozled is activated
+matusPDPaleto = false --whether the Paleto Bay Sheriff's Office Extended MLO by matus77 is activated
+SmokeyBeaverBushPR = false --whether the Beaver Bush Park Ranger Station MLO by Smokey7 is activated
 
 -- Hospital-Maps
-beekSandyMC = true -- whether the Sandy Shores Hospital MLO by grzybeek is activated
-BrownPaletoMC = true -- whether the Paleto Bay Medical Center MLO by MrBrown1999 is activated
+beekSandyMC = false -- whether the Sandy Shores Hospital MLO by grzybeek is activated
+BrownPaletoMC = false -- whether the Paleto Bay Medical Center MLO by MrBrown1999 is activated
 
 -- Vehicle-Mods
-LSPDMegaPackT0y = true -- whether the Los Santos Police Department Mega Pack ELS by t0y is activated
-BCSOMegaPackBradM = true -- whether the Blaine County Sheriff Office Mega Pack ELS by BradM is activated
-CHFThehurk = true -- whether the California Highway Patrol Mega Pack ELS by Thehurk is activated
+LSPDMegaPackT0y = false -- whether the Los Santos Police Department Mega Pack ELS by t0y is activated
+BCSOMegaPackBradM = false -- whether the Blaine County Sheriff Office Mega Pack ELS by BradM is activated
+CHFThehurk = false -- whether the California Highway Patrol Mega Pack ELS by Thehurk is activated
+
 
 -- various config data - only edit this if you are comfortable with what you are doing!
 
