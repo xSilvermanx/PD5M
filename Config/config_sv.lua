@@ -7,7 +7,7 @@ PedDrunkChance = 4.00 -- Chance that the ped is drunk (standard: 4.00)
 PedWantedChance = 1.50 -- Chance that the ped is wanted (standard: 1.50)
 PedNoIDChance = 1.00 -- Chance that the ped has no ID (standard: 1.00)
 PedNoDriverLicenceChance = 4.00 -- Chance that the ped has no drivers licence (standard: 4.00)
-PedNoWeaponLicenceChance = 40.00 -- Chance that the ped has no weapon permit (standard: 40.00)
+PedNoWeaponLicenceChance = 60.00 -- Chance that the ped has no weapon permit (standard: 40.00)
 PedIllegalItemDrugChance = 50.00 -- Chance for possession of drugs if the ped is drugged (standard: 50.00)
 
 -- Ped creation weapon /item base variables
@@ -21,7 +21,7 @@ PedIllegalItemBaseChance = 4.00 -- Base chance that the ped has an illegal weapo
 PedMeleeWeaponLicenceModifier = -1.00 -- chance modifier for a melee weapon if the ped has a weapon permit (standard: -1.00)
 PedMeleeWeaponWantedModifier = 2.00 -- chance modifier for a melee weapon if the ped is wanted (standard: +2.00)
 
-PedLegalWeapLicenceModifier = 55.00 -- chance modifier for a legal weapon if the ped has a weapon permit (standard: +48.00)
+PedLegalWeapLicenceModifier = 45.00 -- chance modifier for a legal weapon if the ped has a weapon permit (standard: +48.00)
 PedLegalWeapWantedModifier = 15.00 -- chance modifier for a legal weapon if the ped is wanted (standard: +8.00)
 
 PedIllegalWeapLicenceModifier = -4.00 -- chance modifier for an illegal weapon if the ped has a weapon permit (standard: -1.00)
