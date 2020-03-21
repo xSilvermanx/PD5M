@@ -3460,9 +3460,15 @@ if ActivateArrestMarkers then
 		while true do
 			if IsControlJustPressed(0, 51) and atarrest and flag_grabbed then
 				local target = grabbedTarget
-				DetachEntity(grabbedTarget, 0, true)
+				local TargetNetID = PedToNet(target)
+				TriggerServerEvent('pd5m:syncsv:ungrabped', TargetNetID)
+				
 				flag_grabbed = false
 				grabbedTarget = nil
+				
+				while IsEntityAttachedToAnyPed(target) do
+					Wait(500)
+				end
 				
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 				
