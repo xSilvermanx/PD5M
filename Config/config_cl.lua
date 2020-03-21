@@ -28,26 +28,19 @@ CoronerDrivers = {"csb_cop", "csb_prolsec", "s_f_y_cop_01", "s_f_y_ranger_01", "
 CoronerVehicles = {"policet"}
 
 -- PD-Maps
-SLBMissionRow = false --whether the Community Mission Row PD MLO by SLB2k11 is activated
-BamboozledSandyPD = false --whether the Sandy Sheriff Office Extension MLO by Bamboozled is activated
-matusPDPaleto = false --whether the Paleto Bay Sheriff's Office Extended MLO by matus77 is activated
-SmokeyBeaverBushPR = false --whether the Beaver Bush Park Ranger Station MLO by Smokey7 is activated
+SLBMissionRow = true --whether the Community Mission Row PD MLO by SLB2k11 is activated
+BamboozledSandyPD = true --whether the Sandy Sheriff Office Extension MLO by Bamboozled is activated
+matusPDPaleto = true --whether the Paleto Bay Sheriff's Office Extended MLO by matus77 is activated
+SmokeyBeaverBushPR = true --whether the Beaver Bush Park Ranger Station MLO by Smokey7 is activated
 
 -- Hospital-Maps
-beekSandyMC = false -- whether the Sandy Shores Hospital MLO by grzybeek is activated
-BrownPaletoMC = false -- whether the Paleto Bay Medical Center MLO by MrBrown1999 is activated
+beekSandyMC = true -- whether the Sandy Shores Hospital MLO by grzybeek is activated
+BrownPaletoMC = true -- whether the Paleto Bay Medical Center MLO by MrBrown1999 is activated
 
 -- Vehicle-Mods
-LSPDMegaPackT0y = false -- whether the Los Santos Police Department Mega Pack ELS by t0y is activated
-BCSOMegaPackBradM = false -- whether the Blaine County Sheriff Office Mega Pack ELS by BradM is activated
-CHFThehurk = false -- whether the California Highway Patrol Mega Pack ELS by Thehurk is activated
-
--- Speech text variables
-SpeechLengthShown = 2000 -- how long the text is shown over the ped's heads
-SpeechColor = {r=220, g=220, b=220, alpha=255} -- what color the text over the ped's head has
-SpeechFont = 0 -- the font of the text over the ped's heads
-SpeechBackgroundColor = { r = 35, g = 35, b = 35, alpha = 200 } -- the color of the background rectangles for text told by the player
-
+LSPDMegaPackT0y = true -- whether the Los Santos Police Department Mega Pack ELS by t0y is activated
+BCSOMegaPackBradM = true -- whether the Blaine County Sheriff Office Mega Pack ELS by BradM is activated
+CHFThehurk = true -- whether the California Highway Patrol Mega Pack ELS by Thehurk is activated
 
 -- various config data - only edit this if you are comfortable with what you are doing!
 
