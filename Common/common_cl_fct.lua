@@ -1,6 +1,6 @@
-local color = {r=220, g=220, b=220, alpha=255}
-local font = 0
-local backgroundcolor = { r = 35, g = 35, b = 35, alpha = 200 }
+local color = SpeechColor
+local font = SpeechFont
+local backgroundcolor = SpeechBackgroundColor
 
 --shows text the player's character is saying
 --don't use this, trigger 'pd5m:syncsv:ShowCommunication'
