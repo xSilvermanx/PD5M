@@ -80,3 +80,11 @@ Shoutouts go out to:
 - The above mentioned mod authors
 - Everyone involved in testing the mod prior to this release.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
+
+## Newest Patch Notes:
+- Fix: Pack-function should work on most police vehicles now.
+- Fix: Error messages for the garages are now written in english.
+- Fix: Fixed variable names so the resisting-function is functioning properly for peds in vehicles.
+- Fix: Fixed an error that allowed players in cars to be interacted with.
+- Fix: Disabled controller input for radialmenu.
+- Fix: Grab-function now properly works on peds that have been arrested by other players.
