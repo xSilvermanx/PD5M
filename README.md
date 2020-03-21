@@ -84,3 +84,4 @@ Shoutouts go out to:
 ## Newest Patch Notes: The Config Update
 - Config files were greatly expanded and now feature many variables to tweak the ped-generation of the resource.
 - Probabilities for peds possessing weapons, using drugs, drinking, and fleeing / fighting have been increased.
+- Fixed a bug where imprisoned peds were still stuck to a player for everyone else.
