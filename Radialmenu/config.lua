@@ -3,7 +3,11 @@ menuConfigs = {
     ['emotes'] = {                                  -- Example menu for emotes when player is on foot
         enableMenu = function()                     -- Function to enable/disable menu handling
             local player = GetPlayerPed(-1)
-            return IsPedOnFoot(player)
+			local retval = false
+			if IsPedOnFoot(player) and IsInputDisabled(2) then
+				retval = true
+			end
+            return retval
         end,
         data = {                                    -- Data that is passed to Javascript
             keybind = "x",                         -- Wheel keybind to use (case sensitive, must match entry in keybindControls table)
@@ -45,7 +49,11 @@ menuConfigs = {
     ['vehicles'] = {                                -- Example menu for vehicle controls when player is in a vehicle
         enableMenu = function()                     -- Function to enable/disable menu handling
             local player = GetPlayerPed(-1)
-            return IsPedInAnyVehicle(player, false)
+			local retval = false
+			if IsPedInAnyVehicle(player, false) and IsInputDisabled(2) then
+				retval = true
+			end
+            return retval
         end,
         data = {                                    -- Data that is passed to Javascript
             keybind = "x",                         -- Wheel keybind to use (case sensitive, must match entry in keybindControls table)
@@ -71,7 +79,7 @@ menuConfigs = {
                     navAngle = 315,                 -- Oritentation of wheel
                     minRadiusPercent = 0.4,         -- Minimum radius of wheel in percentage
                     maxRadiusPercent = 0.9,         -- Maximum radius of wheel in percentage
-                    labels = {"RUNID", "RUNPLATE", "TRAFFIC STOP", "PACK"},
+                    labels = {"RUNID", "RUNPLATE", "TRAFFIC STOP", "EJECT"},
                     commands = {"pd5m:int:runid", "pd5m:int:runplate", "pd5m:int:initstopcar", "pd5m:int:packejectped"}
                 }
             }
