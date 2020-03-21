@@ -1,4 +1,31 @@
--- config bools
+-- config variables
+
+-- ped variables
+NormalDrivingBehavior = 786603 -- sets the standard driving style for peds. Refer to https://vespura.com/drivingstyle/ for more info.
+
+-- general variables
+ActivateBlipsOnMap = true -- shows the department-blips, the hospital-blips and the tow-blips set by PD5M.
+ActivateCrosshair = true -- activates the F3-function to display a crosshair in the middle of the screen.
+
+-- marker variables
+ActivateArrestMarkers = true -- activates the arrest markers. Should stay activated.
+ActivateClothMarkers = true -- activates the wardrobes.
+ActivateHealMarkers = true -- activates the heal-markers at the hospitals.
+ActivateLSPDGarage = true -- activates the LSPD-garage.
+ActivateBCSOGarage = true -- activates the BCSO-garage.
+ActivateSAPRGarage = true -- activates the SAPR-garage.
+ActivateSASPGarage = true -- activates the SASP-garage.
+ActivateSWATGarage = true -- activates the SWAT-garage.
+ActivateDPOSGarage = true -- activates the DPOS-garage.
+ActivateHeliPads = true -- activates the Helipads.
+ActivateWeaponMarkers = true -- activates the armory.
+ActivateEvidenceMarkers = true -- activates the evidence markers. Should stay activated.
+ActivateHelpMarkers = true -- activates the help markers.
+
+-- service variables
+TowTruckDrivers = {"cs_floyd", "mp_f_bennymech_01", "mp_m_waremech_01", "s_m_m_autoshop_02", "s_m_m_dockwork_01", "s_m_m_gardener_01", "s_m_y_construct_02", "s_m_y_garbage", "s_m_y_winclean_01", "s_m_y_xmech_01"}
+CoronerDrivers = {"csb_cop", "csb_prolsec", "s_f_y_cop_01", "s_f_y_ranger_01", "s_f_y_sheriff_01", "s_f_y_scrubs_01", "s_m_y_autopsy_01", "s_m_y_cop_01", "s_m_y_hwaycop_01", "s_m_y_ranger_01", "s_m_y_sheriff_01"}
+CoronerVehicles = {"policet"}
 
 -- PD-Maps
 SLBMissionRow = false --whether the Community Mission Row PD MLO by SLB2k11 is activated
@@ -11,12 +38,15 @@ beekSandyMC = false -- whether the Sandy Shores Hospital MLO by grzybeek is acti
 BrownPaletoMC = false -- whether the Paleto Bay Medical Center MLO by MrBrown1999 is activated
 
 -- Vehicle-Mods
-
 LSPDMegaPackT0y = false -- whether the Los Santos Police Department Mega Pack ELS by t0y is activated
 BCSOMegaPackBradM = false -- whether the Blaine County Sheriff Office Mega Pack ELS by BradM is activated
 CHFThehurk = false -- whether the California Highway Patrol Mega Pack ELS by Thehurk is activated
 
-
+-- Speech text variables
+SpeechLengthShown = 2000 -- how long the text is shown over the ped's heads
+SpeechColor = {r=220, g=220, b=220, alpha=255} -- what color the text over the ped's head has
+SpeechFont = 0 -- the font of the text over the ped's heads
+SpeechBackgroundColor = { r = 35, g = 35, b = 35, alpha = 200 } -- the color of the background rectangles for text told by the player
 
 
 -- various config data - only edit this if you are comfortable with what you are doing!
@@ -126,16 +156,6 @@ list_cars_heli_coords = { -- z+0.2
 	{x=-457.64, y=5990.87, z=31.5, handle='PaletoHeli'},
 }
 
-list_cars_coords = {
-	list_cars_city_coords,
-	list_cars_bcso_coords,
-	list_cars_sapr_coords,
-	list_cars_sasp_coords,
-	list_cars_swat_coords,
-	list_cars_dpos_coords,
-	list_cars_heli_coords,
-}
-
 list_weap_coords = { -- z+ 0.2
 	{x=452.17, y=-980.26, z=30.69}, --Mission Row
 	{x=826.67, y=-1290.13, z=28.24}, --La Mesa
@@ -206,16 +226,6 @@ list_cars_heli_spawns = { -- z+1
 	{x=-475.35, y=5988.61, z=31.34, angle=313.99, handle='PaletoHeli'},
 }
 
-list_spawns = {
-	list_cars_city_spawns,
-	list_cars_bcso_spawns,
-	list_cars_sapr_spawns,
-	list_cars_sasp_spawns,
-	list_cars_swat_spawns,
-	list_cars_dpos_spawns,
-	list_cars_heli_spawns,
-}
-
 -- garage handle lists
 list_cars_lspd_handles = {
 	{handle='MissionRowVeh', name='lspd'},
@@ -267,16 +277,6 @@ list_cars_heli_handles = {
 	{handle='VespucciHeli', name='heli'},
 	{handle='VinewoodHeli', name='heli'},
 	{handle='PaletoHeli', name='heli'},
-}
-
-list_handles = {
-	list_cars_lspd_handles,
-	list_cars_bcso_handles,
-	list_cars_sapr_handles,
-	list_cars_sasp_handles,
-	list_cars_swat_handles,
-	list_cars_dpos_handles,
-	list_cars_heli_handles,
 }
 
 -- service spawn-lists
@@ -614,3 +614,101 @@ if BrownPaletoMC then
 else
 	table.insert(list_heal_coords, {x=-247.06, y=6331.06, z=31.93})
 end
+
+-- the following if-clauses add functionality to the variables set at the start of the file. Do not change anything here.
+
+if not ActivateArrestMarkers then
+	list_arrest_coords = {}
+end
+
+if not ActivateClothMarkers then
+	list_cloth_coords = {}
+end
+
+if not ActivateHealMarkers then
+	list_heal_coords = {}
+end
+
+if not ActivateLSPDGarage then
+	list_cars_city_coords = {}
+	list_cars_city_spawns = {}
+	list_cars_lspd_handles = {}
+end
+
+if not ActivateBCSOGarage then
+	list_cars_bcso_coords = {}
+	list_cars_bcso_spawns = {}
+	list_cars_bcso_handles = {}
+end
+
+if not ActivateSAPRGarage then
+	list_cars_sapr_coords = {}
+	list_cars_sapr_spawns = {}
+	list_cars_sapr_handles = {}
+end
+
+if not ActivateSASPGarage then
+	list_cars_sasp_coords = {}
+	list_cars_sasp_spawns = {}
+	list_cars_sasp_handles = {}
+end
+
+if not ActivateSWATGarage then
+	list_cars_swat_coords = {}
+	list_cars_swat_spawns = {}
+	list_cars_swat_handles = {}
+end
+
+if not ActivateDPOSGarage then
+	list_cars_dpos_coords = {}
+	list_cars_dpos_spawns = {}
+	list_cars_dpos_handles = {}
+end
+
+if not ActivateHeliPads then
+	list_cars_heli_coords = {}
+	list_cars_heli_spawns = {}
+	list_cars_heli_handles = {}
+end
+
+if not ActivateWeaponMarkers then
+	list_weap_coords = {}
+end
+
+if not ActivateEvidenceMarkers then
+	list_evidence_coords = {}
+end
+
+if not ActivateHelpMarkers then
+	list_tut_coords = {}
+end
+
+list_cars_coords = {
+	list_cars_city_coords,
+	list_cars_bcso_coords,
+	list_cars_sapr_coords,
+	list_cars_sasp_coords,
+	list_cars_swat_coords,
+	list_cars_dpos_coords,
+	list_cars_heli_coords,
+}
+
+list_spawns = {
+	list_cars_city_spawns,
+	list_cars_bcso_spawns,
+	list_cars_sapr_spawns,
+	list_cars_sasp_spawns,
+	list_cars_swat_spawns,
+	list_cars_dpos_spawns,
+	list_cars_heli_spawns,
+}
+
+list_handles = {
+	list_cars_lspd_handles,
+	list_cars_bcso_handles,
+	list_cars_sapr_handles,
+	list_cars_sasp_handles,
+	list_cars_swat_handles,
+	list_cars_dpos_handles,
+	list_cars_heli_handles,
+}
