@@ -28,8 +28,8 @@ end)
 -- Triggers the event 'pd5m:service:coronerapproach'.
 -- Don't use this, trigger 'pd5m:service:callcoroner'.
 AddEventHandler('pd5m:service:initcoroner', function()
-	local pmodels = {"csb_cop", "csb_prolsec", "s_f_y_cop_01", "s_f_y_ranger_01", "s_f_y_sheriff_01", "s_f_y_scrubs_01", "s_m_y_autopsy_01", "s_m_y_cop_01", "s_m_y_hwaycop_01", "s_m_y_ranger_01", "s_m_y_sheriff_01"}
-	local vehicles = {"policet"}-- models tbd
+	local pmodels = CoronerDrivers
+	local vehicles = CoronerVehicles
 	local playerped = GetPlayerPed(-1)
 	
 	local tarx, tary, tarz = table.unpack(GetEntityCoords(playerped))
@@ -145,7 +145,7 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 	
 		local corx, cory, corz = table.unpack(GetEntityCoords(coroner))		
 		
-		TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 3.0, 0, vehiclehash, 786603, 2.0, true)
+		TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 5.0, 0, vehiclehash, 786603, 2.0, true)
 		
 		local n = 0
 		while distance > 100.0 and flagcalledcoroner and n < 500 do
@@ -274,7 +274,7 @@ AddEventHandler('pd5m:service:coronerdepart', function(coroner, coronerdriver, c
 		Wait(1000)
 	end
 	if DoesEntityExist(coroner) then
-		TaskVehicleDriveWander(coronerdriver, coroner, 30.0, 786603)
+		TaskVehicleDriveWander(coronerdriver, coroner, 30.0, NormalDrivingBehavior)
 		SetVehicleSiren(coroner, false)
 	end
 	
@@ -290,7 +290,7 @@ end)
 RegisterNetEvent('pd5m:service:abortcoroner')
 AddEventHandler('pd5m:service:abortcoroner', function()
 	RemoveBlip(GlobalCoronerBlip)
-	TaskVehicleDriveWander(GlobalCoronerDriver, GlobalCoroner, 30.0, 786603)
+	TaskVehicleDriveWander(GlobalCoronerDriver, GlobalCoroner, 30.0, NormalDrivingBehavior)
 	SetVehicleSiren(GlobalCoroner, false)
 	SetEntityAsNoLongerNeeded(GlobalCoroner)
 	SetEntityAsNoLongerNeeded(GlobalCoronerDriver)

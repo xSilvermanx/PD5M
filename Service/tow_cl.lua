@@ -90,7 +90,7 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 	local availableTrucks = {1} -- remove the 1 when reinstating the below checks
 	local towtruckid = 1
 	local targetveh = NetToVeh(TargetVehNetID)
-	local pmodels = {"cs_floyd", "mp_f_bennymech_01", "mp_m_waremech_01", "s_m_m_autoshop_02", "s_m_m_dockwork_01", "s_m_m_gardener_01", "s_m_y_construct_02", "s_m_y_garbage", "s_m_y_winclean_01", "s_m_y_xmech_01"}
+	local pmodels = TowTruckDrivers
 	local vehicles = {"flatbed", "towtruck", "towtruck2", "packer"}
 	local playerped = GetPlayerPed(-1)
 	
@@ -196,7 +196,7 @@ AddEventHandler('pd5m:tow:towtruckapproach', function(towtruck, towtruckid, towd
 	local tarx, tary, tarz = table.unpack(GetEntityCoords(targetveh))
 	local vehiclehash = GetHashKey(towtruck)
 	
-	TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 17.0, 0, vehiclehash, 786603, 2.0, true)
+	TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 17.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 	
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
@@ -233,7 +233,7 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 	SetVehicleIndicatorLights(towtruck, 2, true)
 	SetVehicleIndicatorLights(towtruck, 1, true)
 	
-	TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 5.0, 0, vehiclehash, 786603, 2.0, true)
+	TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 5.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 	
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
@@ -252,7 +252,7 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 	
 		local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))		
 		
-		TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 3.0, 0, vehiclehash, 786603, 2.0, true)
+		TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 3.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 		
 		local n = 0
 		while distance > 200.0 and n < 500 and GlobalFlagTowCar do
@@ -288,7 +288,7 @@ AddEventHandler('pd5m:tow:towtruckdepart', function(towtruck, towtruckid, towdri
 	TriggerServerEvent('pd5m:syncsv:RemoveVehFlagEntry', TargetVehNetID, 'Towing')
 	local vehiclehash = GetHashKey(towtruck)
 	RemoveBlip(towblip)
-	TaskVehicleDriveToCoord(towdriver, towtruck, station.x, station.y, station.z, 17.0, 0, vehiclehash, 786603, 2.0, true)
+	TaskVehicleDriveToCoord(towdriver, towtruck, station.x, station.y, station.z, 17.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 	SetEntityAsNoLongerNeeded(towtruck)
 	SetEntityAsNoLongerNeeded(towdriver)
 	SetEntityAsNoLongerNeeded(targetveh)
@@ -304,7 +304,7 @@ AddEventHandler('pd5m:tow:towtruckdepart', function(towtruck, towtruckid, towdri
 	end
 	if DoesEntityExist(towtruck) then
 		DeleteEntity(targetveh)
-		TaskVehicleDriveWander(towdriver, towtruck, 30.0, 786603)
+		TaskVehicleDriveWander(towdriver, towtruck, 30.0, NormalDrivingBehavior)
 		SetVehicleIndicatorLights(towtruck, 2, false)
 		SetVehicleIndicatorLights(towtruck, 1, false)
 	end
@@ -333,7 +333,7 @@ AddEventHandler('pd5m:tow:aborttowtruck', function(TargetVehNetID)
 		RemoveBlip(towblip)
 		SetVehicleIndicatorLights(towtruck, 2, false)
 		SetVehicleIndicatorLights(towtruck, 1, false)
-		TaskVehicleDriveWander(towdriver, towtruck, 30.0, 786603)
+		TaskVehicleDriveWander(towdriver, towtruck, 30.0, NormalDrivingBehavior)
 		SetEntityAsNoLongerNeeded(towtruck)
 		SetEntityAsNoLongerNeeded(towdriver)
 	end
