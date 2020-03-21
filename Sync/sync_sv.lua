@@ -292,3 +292,23 @@ RegisterNetEvent('pd5m:syncsv:TaskPlayAnim')
 AddEventHandler('pd5m:syncsv:TaskPlayAnim', function(target, AnimDict, AnimName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ)
 	TriggerClientEvent('pd5m:sync:TaskPlayAnim', -1, target, AnimDict, AnimName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ)
 end)
+
+RegisterNetEvent('pd5m:syncsv:grabped')
+AddEventHandler('pd5m:syncsv:grabped', function(TargetNetID, PlayerpedNetID)
+	TriggerClientEvent('pd5m:int:grabbingevent', -1, TargetNetID, PlayerpedNetID)
+end)
+
+RegisterNetEvent('pd5m:syncsv:ungrabped')
+AddEventHandler('pd5m:syncsv:ungrabped', function(TargetNetID)
+	TriggerClientEvent('pd5m:int:ungrabbingevent', -1, TargetNetID)
+end)
+
+RegisterNetEvent('pd5m:syncsv:handcuffingevent')
+AddEventHandler('pd5m:syncsv:handcuffingevent', function(TargetNetID, PlayerpedNetID)
+	TriggerClientEvent('pd5m:int:handcuffingevent', -1, TargetNetID, PlayerpedNetID)
+end)
+
+RegisterNetEvent('pd5m:syncsv:unhandcuffingevent')
+AddEventHandler('pd5m:syncsv:unhandcuffingevent', function(TargetNetID, PlayerpedNetID)
+	TriggerClientEvent('pd5m:int:unhandcuffingevent', -1, TargetNetID, PlayerpedNetID)
+end)
