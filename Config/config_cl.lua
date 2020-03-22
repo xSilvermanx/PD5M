@@ -181,7 +181,7 @@ list_cars_city_spawns = { -- z + 1
 
 list_cars_bcso_spawns = { -- z + 1
 	{x=-479.37, y=6028.13, z=32.34, angle=225.39, handle='PaletoVeh'},
-	{x=1853.46, y=3675.65, z=34.76, angle=211.65, handle='SandyShoresVeh'},
+	{x=1853.46, y=3675.65, z=33.75, angle=211.65, handle='SandyShoresVeh'},
 }
 
 list_cars_sapr_spawns = { -- z+1
