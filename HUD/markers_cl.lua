@@ -76,7 +76,7 @@ if ActivateClothMarkers then
 	end)
 
 	CreateThread(function()
-			
+
 		WarMenu.CreateMenu('Umkleide', 'Wardrobe')
 		WarMenu.CreateSubMenu('AllgemeinCloth', 'Umkleide', 'General')
 		WarMenu.CreateSubMenu('Gürtel', 'AllgemeinCloth', 'Belts')
@@ -84,39 +84,39 @@ if ActivateClothMarkers then
 		WarMenu.CreateSubMenu('Kopfbedeckungen', 'AllgemeinCloth', 'Headgear')
 		WarMenu.CreateSubMenu('Brillen', 'AllgemeinCloth', 'Glasses')
 		WarMenu.CreateSubMenu('Balaclavas', 'AllgemeinCloth', 'Balaclavas')
-		
+
 		WarMenu.CreateSubMenu('UndressCloth', 'AllgemeinCloth', 'Undress')
-		
+
 		WarMenu.CreateSubMenu('LSPDCloth', 'Umkleide', 'LSPD-Uniform')
 		WarMenu.CreateSubMenu('LSPDTops', 'LSPDCloth', 'LSPD-Tops')
 		WarMenu.CreateSubMenu('LSPDHose', 'LSPDCloth', 'LSPD-Pants')
 		WarMenu.CreateSubMenu('LSPDShoes', 'LSPDCloth', 'LSPD-Shoes')
-			
+
 		WarMenu.CreateSubMenu('BCSOCloth', 'Umkleide', 'BCSO-Uniform')
 		WarMenu.CreateSubMenu('BCSOTops', 'BCSOCloth', 'BCSO-Tops')
 		WarMenu.CreateSubMenu('BCSOHose', 'BCSOCloth', 'BCSO-Pants')
 		WarMenu.CreateSubMenu('BCSOShoes', 'BCSOCloth', 'BCSO-Shoes')
-		
+
 		WarMenu.CreateSubMenu('SAPRCloth', 'Umkleide', 'SAPR-Uniform')
 		WarMenu.CreateSubMenu('SAPRTops', 'SAPRCloth', 'SAPR-Tops')
 		WarMenu.CreateSubMenu('SAPRHose', 'SAPRCloth', 'SAPR-Pants')
 		WarMenu.CreateSubMenu('SAPRShoes', 'SAPRCloth', 'SAPR-Shoes')
-		
+
 		WarMenu.CreateSubMenu('SASPCloth', 'Umkleide', 'SASP-Uniform')
 		WarMenu.CreateSubMenu('SASPTops', 'SASPCloth', 'SASP-Tops')
 		WarMenu.CreateSubMenu('SASPHose', 'SASPCloth', 'SASP-Pants')
 		WarMenu.CreateSubMenu('SASPShoes', 'SASPCloth', 'SASP-Shoes')
-		
+
 		WarMenu.CreateSubMenu('SWATCloth', 'Umkleide', 'SWAT-Uniform')
 		WarMenu.CreateSubMenu('SWATTops', 'SWATCloth', 'SWAT-Tops')
 		WarMenu.CreateSubMenu('SWATHose', 'SWATCloth', 'SWAT-Pants')
 		WarMenu.CreateSubMenu('SWATShoes', 'SWATCloth', 'SWAT-Shoes')
-		
+
 		WarMenu.CreateSubMenu('DPOSCloth', 'Umkleide', 'DPOS-Uniform')
 		WarMenu.CreateSubMenu('DPOSTops', 'DPOSCloth', 'DPOS-Tops')
 		WarMenu.CreateSubMenu('DPOSHose', 'DPOSCloth', 'DPOS-Pants')
 		WarMenu.CreateSubMenu('DPOSShoes', 'DPOSCloth', 'DPOS-Shoes')
-		
+
 		WarMenu.CreateSubMenu('SheriffCloth', 'Umkleide', 'Sheriff-Uniform')
 		WarMenu.CreateSubMenu('SheriffTops', 'SheriffCloth', 'Sheriff-Tops')
 		WarMenu.CreateSubMenu('SheriffHose', 'SheriffCloth', 'Sheriff-Pants')
@@ -125,7 +125,7 @@ if ActivateClothMarkers then
 		WarMenu.CreateSubMenu('SheriffDecals', 'SheriffCloth', 'Sheriff-Decals')
 		WarMenu.CreateSubMenu('SheriffHead', 'SheriffCloth', 'Sheriff-Headgear')
 
-		
+
 		while true do
 			if WarMenu.IsMenuOpened('Umkleide') then
 				if WarMenu.MenuButton('General', 'AllgemeinCloth') then
@@ -133,7 +133,7 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('BCSO', 'BCSOCloth') then
 				elseif WarMenu.MenuButton('SAPR', 'SAPRCloth') then
 				elseif WarMenu.MenuButton('SASP', 'SASPCloth') then
-				elseif WarMenu.MenuButton('SWAT', 'SWATCloth') then	
+				elseif WarMenu.MenuButton('SWAT', 'SWATCloth') then
 				elseif WarMenu.MenuButton('DPOS', 'DPOSCloth') then
 				--elseif WarMenu.MenuButton('Sheriff', 'SheriffCloth') then
 				elseif WarMenu.Button('Exit') then
@@ -142,11 +142,11 @@ if ActivateClothMarkers then
 			WarMenu.Display()
 
 			elseif WarMenu.IsMenuOpened('LSPDCloth') then
-				if WarMenu.MenuButton('Tops', 'LSPDTops') then	
+				if WarMenu.MenuButton('Tops', 'LSPDTops') then
 				elseif WarMenu.MenuButton('Pants', 'LSPDHose') then
 				elseif WarMenu.MenuButton('Shoes', 'LSPDShoes') then
 				elseif WarMenu.MenuButton('Go back', 'Umkleide') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('LSPDTops') then
 				if WarMenu.Button('LSPD-Shirt') then
@@ -176,7 +176,7 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'LSPDCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('LSPDHose') then
 				if WarMenu.Button('Pants PD-Blue') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
@@ -197,7 +197,7 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'LSPDCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('AllgemeinCloth') then
 				if WarMenu.MenuButton('Belts', 'Gürtel') then
 				elseif WarMenu.MenuButton('Rank Insignia', 'Rangabzeichen') then
@@ -215,7 +215,7 @@ if ActivateClothMarkers then
 					else
 						SetPedComponentVariation(GetPlayerPed(-1), 8, 34, 0, 0)
 					end
-				
+
 				elseif WarMenu.Button('Police Belt with Radio') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedComponentVariation(GetPlayerPed(-1), 8, 58, 0, 0)
@@ -303,71 +303,71 @@ if ActivateClothMarkers then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 58, 2, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 58, 2, 0)
-					end	
+					end
 				elseif WarMenu.Button('Cap Beige') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 58, 0, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 58, 0, 0)
-					end	
+					end
 				elseif WarMenu.Button('Helmet LSPD') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 123, 15, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 122, 15, 0)
-					end	
+					end
 				elseif WarMenu.Button('Helmet Black') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 123, 0, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 122, 0, 0)
-					end	
+					end
 				elseif WarMenu.Button('Helmet LSPD Visor Up') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 124, 15, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 123, 15, 0)
-					end	
+					end
 				elseif WarMenu.Button('Helmet Schwarz Visor Up') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 124, 0, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 123, 0, 0)
-					end	
+					end
 				elseif WarMenu.Button('Riot helmet LSPD') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 125, 18, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 124, 18, 0)
-					end	
+					end
 				elseif WarMenu.Button('Riot helmet Black') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 125, 0, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 124, 0, 0)
-					end	
+					end
 				elseif WarMenu.Button('Riot helmet LSPD Visor Up') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 126, 18, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 125, 18, 0)
-					end	
+					end
 				elseif WarMenu.Button('Riot helmet Black Visor Up') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 126, 0, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 125, 0, 0)
-					end	
+					end
 				elseif WarMenu.Button('Helicopter Headphones') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
 						SetPedPropIndex(GetPlayerPed(-1), 0, 19, 0, 0)
 					else
 						SetPedPropIndex(GetPlayerPed(-1), 0, 19, 0, 0)
-					end	
+					end
 				elseif WarMenu.MenuButton('Go back', 'AllgemeinCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('Brillen') then
 				if WarMenu.Button('None') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
@@ -402,7 +402,7 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'AllgemeinCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('Balaclavas') then
 				if WarMenu.Button('None') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
@@ -431,7 +431,7 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'AllgemeinCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('UndressCloth') then
 				if WarMenu.Button('Take off Headgear') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
@@ -519,11 +519,11 @@ if ActivateClothMarkers then
 				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('BCSOCloth') then
-				if WarMenu.MenuButton('Tops', 'BCSOTops') then	
+				if WarMenu.MenuButton('Tops', 'BCSOTops') then
 				elseif WarMenu.MenuButton('Pants', 'BCSOHose') then
 				elseif WarMenu.MenuButton('Shoes', 'BCSOShoes') then
 				elseif WarMenu.MenuButton('Go back', 'Umkleide') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('BCSOTops') then
 				if WarMenu.Button('Pullover') then
@@ -565,13 +565,13 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'BCSOCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('SAPRCloth') then
-				if WarMenu.MenuButton('Tops', 'SAPRTops') then	
+				if WarMenu.MenuButton('Tops', 'SAPRTops') then
 				elseif WarMenu.MenuButton('Pants', 'SAPRHose') then
 				elseif WarMenu.MenuButton('Shoes', 'SAPRShoes') then
 				elseif WarMenu.MenuButton('Go back', 'Umkleide') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('SAPRTops') then
 				if WarMenu.Button('Pullover') then
@@ -588,7 +588,7 @@ if ActivateClothMarkers then
 						SetPedComponentVariation(GetPlayerPed(-1), 11, 26, 1, 0)
 					else
 						SetPedComponentVariation(GetPlayerPed(-1), 3, 9, 0, 0)
-						SetPedComponentVariation(GetPlayerPed(-1), 11, 9, 3, 0) 
+						SetPedComponentVariation(GetPlayerPed(-1), 11, 9, 3, 0)
 					end
 				elseif WarMenu.MenuButton('Go back', 'SAPRCloth') then
 				end
@@ -615,11 +615,11 @@ if ActivateClothMarkers then
 			WarMenu.Display()
 
 			elseif WarMenu.IsMenuOpened('SASPCloth') then
-				if WarMenu.MenuButton('Tops', 'SASPTops') then	
+				if WarMenu.MenuButton('Tops', 'SASPTops') then
 				elseif WarMenu.MenuButton('Pants', 'SASPHose') then
 				elseif WarMenu.MenuButton('Shoes', 'SASPShoes') then
 				elseif WarMenu.MenuButton('Go back', 'Umkleide') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('SASPTops') then
 				if WarMenu.Button('Pullover') then
@@ -628,7 +628,7 @@ if ActivateClothMarkers then
 						SetPedComponentVariation(GetPlayerPed(-1), 11, 50, 0, 0)  -- 9
 					else
 						SetPedComponentVariation(GetPlayerPed(-1), 3, 3, 0, 0)
-						SetPedComponentVariation(GetPlayerPed(-1), 11, 43, 0, 0) 
+						SetPedComponentVariation(GetPlayerPed(-1), 11, 43, 0, 0)
 					end
 				elseif WarMenu.Button('Shirt') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
@@ -636,12 +636,12 @@ if ActivateClothMarkers then
 						SetPedComponentVariation(GetPlayerPed(-1), 11, 13, 0, 0)
 					else
 						SetPedComponentVariation(GetPlayerPed(-1), 3, 9, 0, 0)
-						SetPedComponentVariation(GetPlayerPed(-1), 11, 9, 1, 0) 
+						SetPedComponentVariation(GetPlayerPed(-1), 11, 9, 1, 0)
 					end
 				elseif WarMenu.MenuButton('Go back', 'SASPCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('SASPHose') then
 				if WarMenu.Button('Pants SP-Gray') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
@@ -664,11 +664,11 @@ if ActivateClothMarkers then
 			WarMenu.Display()
 
 			elseif WarMenu.IsMenuOpened('SWATCloth') then
-				if WarMenu.MenuButton('Tops', 'SWATTops') then	
+				if WarMenu.MenuButton('Tops', 'SWATTops') then
 				elseif WarMenu.MenuButton('Pants', 'SWATHose') then
 				elseif WarMenu.MenuButton('Shoes', 'SWATShoes') then
 				elseif WarMenu.MenuButton('Go back', 'Umkleide') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('SWATTops') then
 				if WarMenu.Button('Pullover') then
@@ -682,7 +682,7 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'SWATCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('SWATHose') then
 				if WarMenu.Button('SWAT Pants Armored') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
@@ -703,13 +703,13 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'SWATCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('DPOSCloth') then
-				if WarMenu.MenuButton('Tops', 'DPOSTops') then	
+				if WarMenu.MenuButton('Tops', 'DPOSTops') then
 				elseif WarMenu.MenuButton('Pants', 'DPOSHose') then
 				elseif WarMenu.MenuButton('Shoes', 'DPOSShoes') then
 				elseif WarMenu.MenuButton('Go back', 'Umkleide') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('DPOSTops') then
 				if WarMenu.Button('DPOS-Shirt White') then
@@ -718,7 +718,7 @@ if ActivateClothMarkers then
 						SetPedComponentVariation(GetPlayerPed(-1), 11, 0, 0, 0)
 					else
 						SetPedComponentVariation(GetPlayerPed(-1), 3, 14, 0, 0)
-						SetPedComponentVariation(GetPlayerPed(-1), 11, 68, 16, 0) 
+						SetPedComponentVariation(GetPlayerPed(-1), 11, 68, 16, 0)
 					end
 				elseif WarMenu.Button('DPOS-Shirt Beige') then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
@@ -767,16 +767,16 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'DPOSCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('SheriffCloth') then
-				if WarMenu.MenuButton('Tops', 'SheriffTops') then	
+				if WarMenu.MenuButton('Tops', 'SheriffTops') then
 				elseif WarMenu.MenuButton('Pants', 'SheriffHose') then
 				elseif WarMenu.MenuButton('Shoes', 'SheriffShoes') then
 				elseif WarMenu.MenuButton('Headgear', 'SheriffHead') then
 				elseif WarMenu.MenuButton('Accessoires', 'SheriffAccess') then
 				elseif WarMenu.MenuButton('Rank Insignia', 'SheriffDecals') then
 				elseif WarMenu.MenuButton('Go back', 'Umkleide') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('SheriffTops') then
 				if WarMenu.Button('Sheriff-Shirt') then
@@ -789,13 +789,13 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Go back', 'SheriffCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif WarMenu.IsMenuOpened('SheriffHose') then
 				if WarMenu.Button() then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
-						
+
 					else
-					
+
 					end
 				elseif WarMenu.MenuButton('Go back', 'SheriffCloth') then
 				end
@@ -803,9 +803,9 @@ if ActivateClothMarkers then
 			elseif WarMenu.IsMenuOpened('SheriffShoes') then
 				if WarMenu.Button() then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
-						
+
 					else
-					
+
 					end
 				elseif WarMenu.MenuButton('Go back', 'SheriffCloth') then
 				end
@@ -813,9 +813,9 @@ if ActivateClothMarkers then
 			elseif WarMenu.IsMenuOpened('SheriffAccess') then --Mit Brillen
 				if WarMenu.Button() then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
-						
+
 					else
-					
+
 					end
 				elseif WarMenu.MenuButton('Go back', 'SheriffCloth') then
 				end
@@ -823,9 +823,9 @@ if ActivateClothMarkers then
 			elseif WarMenu.IsMenuOpened('SheriffDecals') then
 				if WarMenu.Button() then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
-						
+
 					else
-					
+
 					end
 				elseif WarMenu.MenuButton('Go back', 'SheriffCloth') then
 				end
@@ -833,18 +833,18 @@ if ActivateClothMarkers then
 			elseif WarMenu.IsMenuOpened('SheriffHead') then
 				if WarMenu.Button() then
 					if GetEntityModel(GetPlayerPed(-1)) == GetHashKey('mp_m_freemode_01') then
-						
+
 					else
-					
+
 					end
 				elseif WarMenu.MenuButton('Go back', 'SheriffCloth') then
 				end
 			WarMenu.Display()
-			
+
 			elseif IsControlJustPressed(0, 51) and atcloth == true then -- e
 				WarMenu.OpenMenu('Umkleide')
 			end
-			
+
 			Wait(0)
 		end
 	end)
@@ -931,9 +931,9 @@ end)
 if ActivateLSPDGarage then
 	if LSPDMegaPackT0y then
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage LSPD') then
 					if WarMenu.Button('Ford Crown Victoria') then
@@ -975,20 +975,20 @@ if ActivateLSPDGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
 					WarMenu.OpenMenu('Garage LSPD')
 				end
-				
+
 				Wait(0)
 			end
 		end)
 	elseif not BCSOMegaPackBradM then
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage LSPD') then
 					if WarMenu.Button('Vapid Stanier') then
@@ -1015,20 +1015,20 @@ if ActivateLSPDGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
 					WarMenu.OpenMenu('Garage LSPD')
 				end
-				
+
 				Wait(0)
 			end
 		end)
 	else
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage LSPD') then
 					if WarMenu.Button('Declasse Burrito') then
@@ -1046,12 +1046,12 @@ if ActivateLSPDGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
 					WarMenu.OpenMenu('Garage LSPD')
 				end
-				
+
 				Wait(0)
 			end
 		end)
@@ -1061,9 +1061,9 @@ end
 if ActivateBCSOGarage then
 	if BCSOMegaPackBradM and LSPDMegaPackT0y then
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage BCSO') then
 					if WarMenu.Button('Ford Crown Victoria') then
@@ -1099,20 +1099,20 @@ if ActivateBCSOGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
 					WarMenu.OpenMenu('Garage BCSO')
 				end
-				
+
 				Wait(0)
 			end
 		end)
 	elseif BCSOMegaPackBradM then
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage BCSO') then
 					if WarMenu.Button('Ford Crown Victoria') then
@@ -1145,20 +1145,20 @@ if ActivateBCSOGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
 					WarMenu.OpenMenu('Garage BCSO')
 				end
-				
+
 				Wait(0)
 			end
 		end)
 	else
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage BCSO') then
 					if WarMenu.Button('Vapid Stanier') then
@@ -1179,12 +1179,12 @@ if ActivateBCSOGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
 					WarMenu.OpenMenu('Garage BCSO')
 				end
-				
+
 				Wait(0)
 			end
 		end)
@@ -1193,9 +1193,9 @@ end
 
 if ActivateSAPRGarage then
 	CreateThread(function()
-		
+
 		WarMenu.CreateMenu('Garage SAPR', 'Garage SAPR')
-		
+
 		while true do
 			if WarMenu.IsMenuOpened('Garage SAPR') then
 				if WarMenu.Button('Declasse Granger') then
@@ -1204,12 +1204,12 @@ if ActivateSAPRGarage then
 				elseif WarMenu.Button('Exit') then
 					WarMenu.CloseMenu()
 				end
-				
+
 				WarMenu.Display()
 			elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sapr' then -- e
 				WarMenu.OpenMenu('Garage SAPR')
 			end
-			
+
 			Wait(0)
 		end
 	end)
@@ -1218,9 +1218,9 @@ end
 if ActivateSASPGarage then
 	if CHFThehurk and LSPDMegaPackT0y then
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage SASP') then
 					if WarMenu.Button('Ford Crown Victoria') then
@@ -1274,20 +1274,20 @@ if ActivateSASPGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
 					WarMenu.OpenMenu('Garage SASP')
 				end
-				
+
 				Wait(0)
 			end
 		end)
 	elseif CHFThehurk then
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage SASP') then
 					if WarMenu.Button('Ford Crown Victoria') then
@@ -1338,20 +1338,20 @@ if ActivateSASPGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
 					WarMenu.OpenMenu('Garage SASP')
 				end
-				
+
 				Wait(0)
 			end
 		end)
 	else
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage SASP') then
 					if WarMenu.Button('Vapid Stanier') then
@@ -1378,12 +1378,12 @@ if ActivateSASPGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
 					WarMenu.OpenMenu('Garage SASP')
 				end
-				
+
 				Wait(0)
 			end
 		end)
@@ -1393,9 +1393,9 @@ end
 if ActivateSWATGarage then
 	if LSPDMegaPackT0y then
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage SWAT', 'Garage SWAT')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage SWAT') then
 					if WarMenu.Button('UC Vapid Stanier') then
@@ -1413,26 +1413,26 @@ if ActivateSWATGarage then
 					elseif WarMenu.Button('Riot Van') then
 						spawnCar('riot')
 						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Wasserwerfer') then
+					elseif WarMenu.Button('Riot Control Van') then
 						spawnCar('riot2')
 						WarMenu.CloseMenu()
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'swat' then -- e
 					WarMenu.OpenMenu('Garage SWAT')
 				end
-				
+
 				Wait(0)
 			end
 		end)
 	else
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage SWAT', 'Garage SWAT')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage SWAT') then
 					if WarMenu.Button('UC Vapid Stanier') then
@@ -1450,18 +1450,18 @@ if ActivateSWATGarage then
 					elseif WarMenu.Button('Riot Van') then
 						spawnCar('riot')
 						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Wasserwerfer') then
+					elseif WarMenu.Button('Riot Control Van') then
 						spawnCar('riot2')
 						WarMenu.CloseMenu()
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'swat' then -- e
 					WarMenu.OpenMenu('Garage SWAT')
 				end
-				
+
 				Wait(0)
 			end
 		end)
@@ -1471,9 +1471,9 @@ end
 if ActivateDPOSGarage then
 	if LSPDMegaPackT0y then
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage DPOS', 'Garage DPOS')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage DPOS') then
 					if WarMenu.Button('Ford Crown Victoria') then
@@ -1499,20 +1499,20 @@ if ActivateDPOSGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'dpos' then -- e
 					WarMenu.OpenMenu('Garage DPOS')
 				end
-				
+
 				Wait(0)
 			end
 		end)
 	else
 		CreateThread(function()
-			
+
 			WarMenu.CreateMenu('Garage DPOS', 'Garage DPOS')
-			
+
 			while true do
 				if WarMenu.IsMenuOpened('Garage DPOS') then
 					if WarMenu.Button('Vapid Slamvan') then
@@ -1529,12 +1529,12 @@ if ActivateDPOSGarage then
 					elseif WarMenu.Button('Exit') then
 						WarMenu.CloseMenu()
 					end
-					
+
 					WarMenu.Display()
 				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'dpos' then -- e
 					WarMenu.OpenMenu('Garage DPOS')
 				end
-				
+
 				Wait(0)
 			end
 		end)
@@ -1543,9 +1543,9 @@ end
 
 if ActivateHeliPads then
 	CreateThread(function()
-		
+
 		WarMenu.CreateMenu('Garage Heli', 'Helipad')
-		
+
 		while true do
 			if WarMenu.IsMenuOpened('Garage Heli') then
 				if WarMenu.Button('WC Maverick') then
@@ -1554,12 +1554,12 @@ if ActivateHeliPads then
 				elseif WarMenu.Button('Exit') then
 					WarMenu.CloseMenu()
 				end
-				
+
 				WarMenu.Display()
 			elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'heli' then -- e
 				WarMenu.OpenMenu('Garage Heli')
 			end
-			
+
 			Wait(0)
 		end
 	end)
@@ -1568,13 +1568,13 @@ end
 function spawnCar(carname)
     local car = GetHashKey(carname)
 	local isspawned = false
-	
+
     RequestModel(car)
     while not HasModelLoaded(car) do
         RequestModel(car)
         Citizen.Wait(50)
     end
-	
+
 	for n,list in ipairs(list_spawns) do
 		for i,coord in ipairs(list) do
 			if location == coord.handle then
@@ -1622,19 +1622,19 @@ function spawnCar(carname)
 					if carname == 'towtruck2' or carname == 'towtruck' or carname == 'flatbed' or carname == 'packer' then
 						SetVehicleColours(vehicle, 38, 0)
 					end
-					
+
 				end
 				isspawned = true
 			end
 		end
 	end
-	
+
 	if not isspawned then
 		Notify("Vehicle couldn't be spawned.")
 	else
 		isspawned = false
 	end
-	
+
 	SetEntityAsNoLongerNeeded(vehicle)
 	SetModelAsNoLongerNeeded(vehicleName)
 end
@@ -1668,9 +1668,9 @@ if ActivateWeaponMarkers then
 	end)
 
 	CreateThread(function()
-		
+
 		local coordx, coordy, coordz = table.unpack(GetEntityCoords(GetPlayerPed(-1), false))
-		
+
 		WarMenu.CreateMenu('Waffenkammer', 'Armory')
 		WarMenu.CreateSubMenu('Standard', 'Waffenkammer', 'Standard Loadout')
 		WarMenu.CreateSubMenu('LSPD', 'Waffenkammer', 'LSPD-Bewaffnung')
@@ -1679,7 +1679,7 @@ if ActivateWeaponMarkers then
 		WarMenu.CreateSubMenu('SASP', 'Waffenkammer', 'SASP-Bewaffnung')
 		WarMenu.CreateSubMenu('SWAT', 'Waffenkammer', 'SWAT-Bewaffnung')
 		WarMenu.CreateSubMenu('Sheriff', 'Waffenkammer', 'Sheriff-Bewaffnung')
-		
+
 		while true do
 			if WarMenu.IsMenuOpened('Waffenkammer') then
 				if WarMenu.MenuButton('Standard', 'Standard') then
@@ -1687,7 +1687,7 @@ if ActivateWeaponMarkers then
 				elseif WarMenu.MenuButton('BCSO', 'BCSO') then
 				elseif WarMenu.MenuButton('SAPR', 'SAPR') then
 				elseif WarMenu.MenuButton('SASP', 'SASP') then
-				elseif WarMenu.MenuButton('SWAT', 'SWAT') then			
+				elseif WarMenu.MenuButton('SWAT', 'SWAT') then
 				--elseif WarMenu.MenuButton('Sheriff', 'Sheriff') then
 				elseif WarMenu.Button('Exit') then
 					WarMenu.CloseMenu()
@@ -1720,7 +1720,7 @@ if ActivateWeaponMarkers then
 					SetPedArmour(GetPlayerPed(-1), 75)
 					SetPedComponentVariation(GetPlayerPed(-1), 9, 0, 0, 0)
 				elseif WarMenu.MenuButton('Go back', 'Waffenkammer') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('LSPD') then
 				if WarMenu.Button('Pistol') then --Mk2 + Licht
@@ -1732,7 +1732,7 @@ if ActivateWeaponMarkers then
 					GiveWeaponToPed(GetPlayerPed(-1), 0x1D073A89, 80, false, true)
 					GiveWeaponComponentToPed(GetPlayerPed(-1), 0x1D073A89, 0x7BC4CDDC)
 				elseif WarMenu.MenuButton('Go back', 'Waffenkammer') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('BCSO') then
 				if WarMenu.Button('Pistol') then --Mk1 + Licht
@@ -1746,7 +1746,7 @@ if ActivateWeaponMarkers then
 				elseif WarMenu.Button('Flare gun') then
 					GiveWeaponToPed(GetPlayerPed(-1), 0x47757124, 20, false, true)
 				elseif WarMenu.MenuButton('Go back', 'Waffenkammer') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('SAPR') then
 				if WarMenu.Button('Pistol') then --Combat Pistol + Licht
@@ -1755,7 +1755,7 @@ if ActivateWeaponMarkers then
 				elseif WarMenu.Button('Flare gun') then
 					GiveWeaponToPed(GetPlayerPed(-1), 0x47757124, 20, false, true)
 				elseif WarMenu.MenuButton('Go back', 'Waffenkammer') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('SASP') then
 				if WarMenu.Button('Pistol') then --Kal.50 + Licht
@@ -1767,7 +1767,7 @@ if ActivateWeaponMarkers then
 					GiveWeaponToPed(GetPlayerPed(-1), 0x1D073A89, 80, false, true)
 					GiveWeaponComponentToPed(GetPlayerPed(-1), 0x1D073A89, 0x7BC4CDDC)
 				elseif WarMenu.MenuButton('Go back', 'Waffenkammer') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('SWAT') then
 				if WarMenu.Button('Pistol') then --Schwere Pistole + Licht
@@ -1799,7 +1799,7 @@ if ActivateWeaponMarkers then
 				elseif WarMenu.Button('Tear gas') then
 					GiveWeaponToPed(GetPlayerPed(-1), 0xFDBC8A50, 5, false, true)
 				elseif WarMenu.MenuButton('Go back', 'Waffenkammer') then
-				end			
+				end
 			WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('Sheriff') then
 				if WarMenu.Button('Precision Pistol') then
@@ -1821,13 +1821,13 @@ if ActivateWeaponMarkers then
 				elseif WarMenu.Button('Molotov Cocktail') then
 					GiveWeaponToPed(GetPlayerPed(-1), 0x24B17070, 3, false, true)
 				elseif WarMenu.MenuButton('Go back', 'Waffenkammer') then
-				end			
-			
+				end
+
 			WarMenu.Display()
 			elseif IsControlJustPressed(0, 51) and atweapon == true then -- e
 				WarMenu.OpenMenu('Waffenkammer')
 			end
-			
+
 			Wait(0)
 		end
 	end)
@@ -1905,22 +1905,22 @@ if ActivateHelpMarkers then
 	CreateThread(function()
 		while true do
 			if IsControlJustPressed(0, 51) and athelp == true then -- e
-				
+
 				if ActivateCrosshair then
 					BeginTextCommandThefeedPost("TWOSTRINGS")
 					AddTextComponentSubstringPlayerName("Press ~b~F3~s~ to display a point. This helps you determine what you are looking at.")
 					EndTextCommandThefeedPostTicker(false, false)
 				end
-				
+
 				BeginTextCommandThefeedPost("TWOSTRINGS")
 				AddTextComponentSubstringPlayerName("Press ~g~E~s~ while looking at a ped to talk to them.")
 				EndTextCommandThefeedPostTicker(false, false)
-				
+
 				BeginTextCommandThefeedPost("TWOSTRINGS")
 				AddTextComponentSubstringPlayerName("Hold ~r~X~s~ to see what actions you can perform. Move your mouse on a tile and release X")
 				AddTextComponentSubstringPlayerName("to carry it out. Make sure you are looking at the right person informed them of your action!")
 				EndTextCommandThefeedPostTicker(false, false)
-				
+
 				BeginTextCommandThefeedPost("TWOSTRINGS")
 				AddTextComponentSubstringPlayerName("Type ~o~/tp~s~ in the chat to open the teleporting menu.")
 				EndTextCommandThefeedPostTicker(false, false)
