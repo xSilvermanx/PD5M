@@ -26,6 +26,7 @@ client_scripts {
 	"Common/global_fct.lua",
 	"Config/config_cl.lua",
 	"Config/speechoptions_cl.lua",
+	"Duty/ESXIntegration_cl.lua",
 	"HUD/blips_cl.lua",
 	"HUD/crosshair_cl.lua",
 	"HUD/help_cl.lua",
