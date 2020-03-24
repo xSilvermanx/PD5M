@@ -20,6 +20,7 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 - Hold `X` to open the radialmenu. You can see every action your officer can possibly take. Hover your mouse over an action and release the key (no click necessary) to perform the action. Has different options on foot and in a car
 
 On Foot: To carry out an action, look at a ped and use E or X as described above.
+
 In a Car: The actions will get carried out for the vehicle directly in front of your vehicle.
 
 Make sure to talk to people before taking an action against them (e.g. arresting them). You wouldn't like that in real life either!
