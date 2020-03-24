@@ -3460,7 +3460,7 @@ if ActivateArrestMarkers then
 					atarrest = false
 				end
 			end
-			Wait(0)
+			Wait(1000)
 		end
 	end)
 

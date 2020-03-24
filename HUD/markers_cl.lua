@@ -10,26 +10,22 @@ CreateThread(function()
 		for i,coord in ipairs(list_heal_coords) do
 			DrawMarker(var_heal_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_heal_scaleX, var_heal_scaleY, var_heal_scaleZ, var_heal_red, var_heal_green, var_heal_blue, var_heal_alpha, var_heal_bob, var_heal_face, var_heal_p19, var_heal_rotate, var_heal_textdict, var_heal_textname, var_heal_drawonent)
 		end
-		for i,coord in ipairs(list_cars_city_coords) do
-			DrawMarker(var_cars_city_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_city_scaleX, var_cars_city_scaleY, var_cars_city_scaleZ, var_cars_city_red, var_cars_city_green, var_cars_city_blue, var_cars_city_alpha, var_cars_city_bob, var_cars_city_face, var_cars_city_p19, var_cars_city_rotate, var_cars_city_textdict, var_cars_city_textname, var_cars_city_drawonent)
-		end
-		for i,coord in ipairs(list_cars_bcso_coords) do
-			DrawMarker(var_cars_bcso_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_bcso_scaleX, var_cars_bcso_scaleY, var_cars_bcso_scaleZ, var_cars_bcso_red, var_cars_bcso_green, var_cars_bcso_blue, var_cars_bcso_alpha, var_cars_bcso_bob, var_cars_bcso_face, var_cars_bcso_p19, var_cars_bcso_rotate, var_cars_bcso_textdict, var_cars_bcso_textname, var_cars_bcso_drawonent)
-		end
-		for i,coord in ipairs(list_cars_sapr_coords) do
-			DrawMarker(var_cars_sapr_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_sapr_scaleX, var_cars_sapr_scaleY, var_cars_sapr_scaleZ, var_cars_sapr_red, var_cars_sapr_green, var_cars_sapr_blue, var_cars_sapr_alpha, var_cars_sapr_bob, var_cars_sapr_face, var_cars_sapr_p19, var_cars_sapr_rotate, var_cars_sapr_textdict, var_cars_sapr_textname, var_cars_sapr_drawonent)
-		end
-		for i,coord in ipairs(list_cars_sasp_coords) do
-			DrawMarker(var_cars_sasp_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_sasp_scaleX, var_cars_sasp_scaleY, var_cars_sasp_scaleZ, var_cars_sasp_red, var_cars_sasp_green, var_cars_sasp_blue, var_cars_sasp_alpha, var_cars_sasp_bob, var_cars_sasp_face, var_cars_sasp_p19, var_cars_sasp_rotate, var_cars_sasp_textdict, var_cars_sasp_textname, var_cars_sasp_drawonent)
-		end
-		for i,coord in ipairs(list_cars_swat_coords) do
-			DrawMarker(var_cars_swat_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_swat_scaleX, var_cars_swat_scaleY, var_cars_swat_scaleZ, var_cars_swat_red, var_cars_swat_green, var_cars_swat_blue, var_cars_swat_alpha, var_cars_swat_bob, var_cars_swat_face, var_cars_swat_p19, var_cars_swat_rotate, var_cars_swat_textdict, var_cars_swat_textname, var_cars_swat_drawonent)
-		end
-		for i,coord in ipairs(list_cars_dpos_coords) do
-			DrawMarker(var_cars_dpos_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_dpos_scaleX, var_cars_dpos_scaleY, var_cars_dpos_scaleZ, var_cars_dpos_red, var_cars_dpos_green, var_cars_dpos_blue, var_cars_dpos_alpha, var_cars_dpos_bob, var_cars_dpos_face, var_cars_dpos_p19, var_cars_dpos_rotate, var_cars_dpos_textdict, var_cars_dpos_textname, var_cars_dpos_drawonent)
-		end
-		for i,coord in ipairs(list_cars_heli_coords) do
-			DrawMarker(var_cars_heli_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_heli_scaleX, var_cars_heli_scaleY, var_cars_heli_scaleZ, var_cars_heli_red, var_cars_heli_green, var_cars_heli_blue, var_cars_heli_alpha, var_cars_heli_bob, var_cars_heli_face, var_cars_heli_p19, var_cars_heli_rotate, var_cars_heli_textdict, var_cars_heli_textname, var_cars_heli_drawonent)
+		for i, coord in ipairs(list_cars_coords) do
+			if list_handles[coord.handle][1].handles[coord.handle].name == 'lspd' then
+				DrawMarker(var_cars_city_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_city_scaleX, var_cars_city_scaleY, var_cars_city_scaleZ, var_cars_city_red, var_cars_city_green, var_cars_city_blue, var_cars_city_alpha, var_cars_city_bob, var_cars_city_face, var_cars_city_p19, var_cars_city_rotate, var_cars_city_textdict, var_cars_city_textname, var_cars_city_drawonent)
+			elseif list_handles[coord.handle][1].handles[coord.handle].name == 'bcso' then
+				DrawMarker(var_cars_bcso_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_bcso_scaleX, var_cars_bcso_scaleY, var_cars_bcso_scaleZ, var_cars_bcso_red, var_cars_bcso_green, var_cars_bcso_blue, var_cars_bcso_alpha, var_cars_bcso_bob, var_cars_bcso_face, var_cars_bcso_p19, var_cars_bcso_rotate, var_cars_bcso_textdict, var_cars_bcso_textname, var_cars_bcso_drawonent)
+			elseif list_handles[coord.handle][1].handles[coord.handle].name == 'sapr' then
+				DrawMarker(var_cars_sapr_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_sapr_scaleX, var_cars_sapr_scaleY, var_cars_sapr_scaleZ, var_cars_sapr_red, var_cars_sapr_green, var_cars_sapr_blue, var_cars_sapr_alpha, var_cars_sapr_bob, var_cars_sapr_face, var_cars_sapr_p19, var_cars_sapr_rotate, var_cars_sapr_textdict, var_cars_sapr_textname, var_cars_sapr_drawonent)
+			elseif list_handles[coord.handle][1].handles[coord.handle].name == 'sasp' then
+				DrawMarker(var_cars_sasp_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_sasp_scaleX, var_cars_sasp_scaleY, var_cars_sasp_scaleZ, var_cars_sasp_red, var_cars_sasp_green, var_cars_sasp_blue, var_cars_sasp_alpha, var_cars_sasp_bob, var_cars_sasp_face, var_cars_sasp_p19, var_cars_sasp_rotate, var_cars_sasp_textdict, var_cars_sasp_textname, var_cars_sasp_drawonent)
+			elseif list_handles[coord.handle][1].handles[coord.handle].name == 'swat' then
+				DrawMarker(var_cars_swat_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_swat_scaleX, var_cars_swat_scaleY, var_cars_swat_scaleZ, var_cars_swat_red, var_cars_swat_green, var_cars_swat_blue, var_cars_swat_alpha, var_cars_swat_bob, var_cars_swat_face, var_cars_swat_p19, var_cars_swat_rotate, var_cars_swat_textdict, var_cars_swat_textname, var_cars_swat_drawonent)
+			elseif list_handles[coord.handle][1].handles[coord.handle].name == 'dpos' then
+				DrawMarker(var_cars_dpos_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_dpos_scaleX, var_cars_dpos_scaleY, var_cars_dpos_scaleZ, var_cars_dpos_red, var_cars_dpos_green, var_cars_dpos_blue, var_cars_dpos_alpha, var_cars_dpos_bob, var_cars_dpos_face, var_cars_dpos_p19, var_cars_dpos_rotate, var_cars_dpos_textdict, var_cars_dpos_textname, var_cars_dpos_drawonent)
+			elseif list_handles[coord.handle][1].handles[coord.handle].name == 'heli' then
+				DrawMarker(var_cars_heli_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_cars_heli_scaleX, var_cars_heli_scaleY, var_cars_heli_scaleZ, var_cars_heli_red, var_cars_heli_green, var_cars_heli_blue, var_cars_heli_alpha, var_cars_heli_bob, var_cars_heli_face, var_cars_heli_p19, var_cars_heli_rotate, var_cars_heli_textdict, var_cars_heli_textname, var_cars_heli_drawonent)
+			end
 		end
 		for i,coord in ipairs(list_weap_coords) do
 			DrawMarker(var_weap_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_weap_scaleX, var_weap_scaleY, var_weap_scaleZ, var_weap_red, var_weap_green, var_weap_blue, var_weap_alpha, var_weap_bob, var_weap_face, var_weap_p19, var_weap_rotate, var_weap_textdict, var_weap_textname, var_weap_drawonent)
@@ -37,7 +33,7 @@ CreateThread(function()
 		for i,coord in ipairs(list_evidence_coords) do
 			DrawMarker(var_evidence_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_evidence_scaleX, var_evidence_scaleY, var_evidence_scaleZ, var_evidence_red, var_evidence_green, var_evidence_blue, var_evidence_alpha, var_evidence_bob, var_evidence_face, var_evidence_p19, var_evidence_rotate, var_evidence_textdict, var_evidence_textname, var_evidence_drawonent)
 		end
-		for i,coord in ipairs(list_tut_coords) do
+		for i,coord in ipairs(list_help_coords) do
 			DrawMarker(var_tut_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_tut_scaleX, var_tut_scaleY, var_tut_scaleZ, var_tut_red, var_tut_green, var_tut_blue, var_tut_alpha, var_tut_bob, var_tut_face, var_tut_p19, var_tut_rotate, var_tut_textdict, var_tut_textname, var_tut_drawonent)
 		end
 		Wait(0)
@@ -71,7 +67,7 @@ if ActivateClothMarkers then
 					atcloth = false
 				end
 			end
-		Wait(0)
+		Wait(1000)
 		end
 	end)
 
@@ -874,7 +870,7 @@ if ActivateHealMarkers then
 					atheal = false
 				end
 			end
-		Wait(0)
+		Wait(1000)
 		end
 	end)
 
@@ -893,22 +889,16 @@ atgarage = false
 location = nil
 police = nil
 
-CreateThread(function()
-	while true do
-		for n,list in ipairs(list_cars_coords) do
-			for i,coord in ipairs(list) do
+if ActivateGarages then
+	CreateThread(function()
+		while true do
+			for i,coord in ipairs(list_cars_coords) do
 				local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
 				local distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
 				if distance < 5 then
 					atgarage = true
 					location = coord.handle
-					for k,handleslist in ipairs(list_handles) do
-						for m,handles in ipairs(handleslist) do
-							if location == handles.handle then
-								police = handles.name
-							end
-						end
-					end
+					police = list_handles[location][1].handles[location].name
 					StartHelpNotify('Press ~INPUT_CONTEXT~ to open the garage.', 500)
 					Wait(40)
 					while distance < 5 do
@@ -923,646 +913,647 @@ CreateThread(function()
 					police = nil
 				end
 			end
-		end
-		Wait(0)
-	end
-end)
-
-if ActivateLSPDGarage then
-	if LSPDMegaPackT0y then
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage LSPD') then
-					if WarMenu.Button('Ford Crown Victoria') then
-						spawnCar('lspd2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Interceptor') then
-						spawnCar('lspd')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger') then
-						spawnCar('lspd3')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Crown Victoria Slicktop') then
-						spawnCar('lspd6')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Explorer') then
-						spawnCar('lspd9')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Tahoe') then
-						spawnCar('lspd8')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Silverado') then
-						spawnCar('lspd11')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Declasse Burrito') then
-						spawnCar('policet')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Ford Crown Victoria') then
-						spawnCar('lspd4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('WMC Sovereign') then
-						spawnCar('policeb')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
-					WarMenu.OpenMenu('Garage LSPD')
-				end
-
-				Wait(0)
-			end
-		end)
-	elseif not BCSOMegaPackBradM then
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage LSPD') then
-					if WarMenu.Button('Vapid Stanier') then
-						spawnCar('police')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Bravado Buffalo') then
-						spawnCar('police2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Interceptor') then
-						spawnCar('police3')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Declasse Burrito') then
-						spawnCar('policet')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('WMC Sovereign') then
-						spawnCar('policeb')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
-					WarMenu.OpenMenu('Garage LSPD')
-				end
-
-				Wait(0)
-			end
-		end)
-	else
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage LSPD') then
-					if WarMenu.Button('Declasse Burrito') then
-						spawnCar('policet')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('WMC Sovereign') then
-						spawnCar('policeb')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
-					WarMenu.OpenMenu('Garage LSPD')
-				end
-
-				Wait(0)
-			end
-		end)
-	end
-end
-
-if ActivateBCSOGarage then
-	if BCSOMegaPackBradM and LSPDMegaPackT0y then
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage BCSO') then
-					if WarMenu.Button('Ford Crown Victoria') then
-						spawnCar('sheriff')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Interceptor') then
-						spawnCar('police3')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Impala') then
-						spawnCar('police')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger') then
-						spawnCar('police2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Explorer') then
-						spawnCar('fbi2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Tahoe') then
-						spawnCar('sheriff2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Ford Crown Victoria') then
-						spawnCar('lspd4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('WMC Sovereign') then
-						spawnCar('policeb')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
-					WarMenu.OpenMenu('Garage BCSO')
-				end
-
-				Wait(0)
-			end
-		end)
-	elseif BCSOMegaPackBradM then
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage BCSO') then
-					if WarMenu.Button('Ford Crown Victoria') then
-						spawnCar('sheriff')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Interceptor') then
-						spawnCar('police3')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Impala') then
-						spawnCar('police')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger') then
-						spawnCar('police2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Explorer') then
-						spawnCar('fbi2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Tahoe') then
-						spawnCar('sheriff2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('WMC Sovereign') then
-						spawnCar('policeb')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
-					WarMenu.OpenMenu('Garage BCSO')
-				end
-
-				Wait(0)
-			end
-		end)
-	else
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage BCSO') then
-					if WarMenu.Button('Vapid Stanier') then
-						spawnCar('sheriff')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Declasse Granger') then
-						spawnCar('sheriff2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('WMC Sovereign') then
-						spawnCar('policeb')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
-					WarMenu.OpenMenu('Garage BCSO')
-				end
-
-				Wait(0)
-			end
-		end)
-	end
-end
-
-if ActivateSAPRGarage then
-	CreateThread(function()
-
-		WarMenu.CreateMenu('Garage SAPR', 'Garage SAPR')
-
-		while true do
-			if WarMenu.IsMenuOpened('Garage SAPR') then
-				if WarMenu.Button('Declasse Granger') then
-					spawnCar('pranger')
-					WarMenu.CloseMenu()
-				elseif WarMenu.Button('Exit') then
-					WarMenu.CloseMenu()
-				end
-
-				WarMenu.Display()
-			elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sapr' then -- e
-				WarMenu.OpenMenu('Garage SAPR')
-			end
-
-			Wait(0)
+			Wait(1000)
 		end
 	end)
-end
 
-if ActivateSASPGarage then
-	if CHFThehurk and LSPDMegaPackT0y then
-		CreateThread(function()
+	if ActivateLSPDGarage then
+		if LSPDMegaPackT0y then
+			CreateThread(function()
 
-			WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
+				WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
 
-			while true do
-				if WarMenu.IsMenuOpened('Garage SASP') then
-					if WarMenu.Button('Ford Crown Victoria') then
-						spawnCar('hwaycar5')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger') then
-						spawnCar('hwaycar13')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Explorer') then
-						spawnCar('hwaycar15')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Tahoe') then
-						spawnCar('hwaycar12')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Crown Victoria Slicktop') then
-						spawnCar('hwaycar3')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger Slicktop') then
-						spawnCar('hwaycar14')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Ford Crown Victoria') then
-						spawnCar('lspd4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('BMW 1200RT') then
-						spawnCar('hwaycar7')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('K9 Ford Crown Victoria') then
-						spawnCar('hwaycar6')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('K9 Ford Crown Victoria Slicktop') then
-						spawnCar('hwaycar4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Expedition') then
-						spawnCar('hwaycar8')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford F350') then
-						spawnCar('hwaycar11')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger White') then
-						spawnCar('hwaycar2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Explorer White') then
-						spawnCar('hwaycar16')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
+				while true do
+					if WarMenu.IsMenuOpened('Garage LSPD') then
+						if WarMenu.Button('Ford Crown Victoria') then
+							spawnCar('lspd2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Interceptor') then
+							spawnCar('lspd')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger') then
+							spawnCar('lspd3')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Crown Victoria Slicktop') then
+							spawnCar('lspd6')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Explorer') then
+							spawnCar('lspd9')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Tahoe') then
+							spawnCar('lspd8')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Silverado') then
+							spawnCar('lspd11')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Declasse Burrito') then
+							spawnCar('policet')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Ford Crown Victoria') then
+							spawnCar('lspd4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('WMC Sovereign') then
+							spawnCar('policeb')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
+						WarMenu.OpenMenu('Garage LSPD')
 					end
 
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
-					WarMenu.OpenMenu('Garage SASP')
+					Wait(0)
 				end
+			end)
+		elseif not BCSOMegaPackBradM then
+			CreateThread(function()
 
-				Wait(0)
-			end
-		end)
-	elseif CHFThehurk then
-		CreateThread(function()
+				WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
 
-			WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
+				while true do
+					if WarMenu.IsMenuOpened('Garage LSPD') then
+						if WarMenu.Button('Vapid Stanier') then
+							spawnCar('police')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Bravado Buffalo') then
+							spawnCar('police2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Interceptor') then
+							spawnCar('police3')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Declasse Burrito') then
+							spawnCar('policet')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('WMC Sovereign') then
+							spawnCar('policeb')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
 
-			while true do
-				if WarMenu.IsMenuOpened('Garage SASP') then
-					if WarMenu.Button('Ford Crown Victoria') then
-						spawnCar('hwaycar5')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger') then
-						spawnCar('hwaycar13')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Explorer') then
-						spawnCar('hwaycar15')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Tahoe') then
-						spawnCar('hwaycar12')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Crown Victoria Slicktop') then
-						spawnCar('hwaycar3')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger Slicktop') then
-						spawnCar('hwaycar14')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('BMW 1200RT') then
-						spawnCar('hwaycar7')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('K9 Ford Crown Victoria') then
-						spawnCar('hwaycar6')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('K9 Ford Crown Victoria Slicktop') then
-						spawnCar('hwaycar4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Expedition') then
-						spawnCar('hwaycar8')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford F350') then
-						spawnCar('hwaycar11')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Dodge Charger White') then
-						spawnCar('hwaycar2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Ford Explorer White') then
-						spawnCar('hwaycar16')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
+						WarMenu.OpenMenu('Garage LSPD')
 					end
 
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
-					WarMenu.OpenMenu('Garage SASP')
+					Wait(0)
 				end
+			end)
+		else
+			CreateThread(function()
 
-				Wait(0)
-			end
-		end)
-	else
-		CreateThread(function()
+				WarMenu.CreateMenu('Garage LSPD', 'Garage LSPD')
 
-			WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
+				while true do
+					if WarMenu.IsMenuOpened('Garage LSPD') then
+						if WarMenu.Button('Declasse Burrito') then
+							spawnCar('policet')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('WMC Sovereign') then
+							spawnCar('policeb')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
 
-			while true do
-				if WarMenu.IsMenuOpened('Garage SASP') then
-					if WarMenu.Button('Vapid Stanier') then
-						spawnCar('police')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Bravado Buffalo') then
-						spawnCar('police2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Interceptor') then
-						spawnCar('police3')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Declasse Burrito') then
-						spawnCar('policet')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('WMC Sovereign') then
-						spawnCar('policeb')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Bus') then
-						spawnCar('pbus')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'lspd' then -- e
+						WarMenu.OpenMenu('Garage LSPD')
 					end
 
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
-					WarMenu.OpenMenu('Garage SASP')
+					Wait(0)
 				end
-
-				Wait(0)
-			end
-		end)
-	end
-end
-
-if ActivateSWATGarage then
-	if LSPDMegaPackT0y then
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage SWAT', 'Garage SWAT')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage SWAT') then
-					if WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Buffalo') then
-						spawnCar('fbi')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Ford Crown Victoria') then
-						spawnCar('lspd4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Declasse Burrito') then
-						spawnCar('policet')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Riot Van') then
-						spawnCar('riot')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Riot Control Van') then
-						spawnCar('riot2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'swat' then -- e
-					WarMenu.OpenMenu('Garage SWAT')
-				end
-
-				Wait(0)
-			end
-		end)
-	else
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage SWAT', 'Garage SWAT')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage SWAT') then
-					if WarMenu.Button('UC Vapid Stanier') then
-						spawnCar('police4')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Vapid Buffalo') then
-						spawnCar('fbi')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('UC Declasse Granger') then
-						spawnCar('fbi2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Declasse Burrito') then
-						spawnCar('policet')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Riot Van') then
-						spawnCar('riot')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Riot Control Van') then
-						spawnCar('riot2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'swat' then -- e
-					WarMenu.OpenMenu('Garage SWAT')
-				end
-
-				Wait(0)
-			end
-		end)
-	end
-end
-
-if ActivateDPOSGarage then
-	if LSPDMegaPackT0y then
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage DPOS', 'Garage DPOS')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage DPOS') then
-					if WarMenu.Button('Ford Crown Victoria') then
-						spawnCar('lspd5')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Silverado Auxiliary') then
-						spawnCar('lspd10')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Chevrolet Silverado Maintenance') then
-						spawnCar('lspd12')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Slamvan') then
-						spawnCar('towtruck2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Yankee') then
-						spawnCar('towtruck')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('MTL Packer Flatbed') then
-						spawnCar('flatbed')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('MTL Packer') then
-						spawnCar('packer')
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'dpos' then -- e
-					WarMenu.OpenMenu('Garage DPOS')
-				end
-
-				Wait(0)
-			end
-		end)
-	else
-		CreateThread(function()
-
-			WarMenu.CreateMenu('Garage DPOS', 'Garage DPOS')
-
-			while true do
-				if WarMenu.IsMenuOpened('Garage DPOS') then
-					if WarMenu.Button('Vapid Slamvan') then
-						spawnCar('towtruck2')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('Vapid Yankee') then
-						spawnCar('towtruck')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('MTL Packer Flatbed') then
-						spawnCar('flatbed')
-						WarMenu.CloseMenu()
-					elseif WarMenu.Button('MTL Packer') then
-						spawnCar('packer')
-					elseif WarMenu.Button('Exit') then
-						WarMenu.CloseMenu()
-					end
-
-					WarMenu.Display()
-				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'dpos' then -- e
-					WarMenu.OpenMenu('Garage DPOS')
-				end
-
-				Wait(0)
-			end
-		end)
-	end
-end
-
-if ActivateHeliPads then
-	CreateThread(function()
-
-		WarMenu.CreateMenu('Garage Heli', 'Helipad')
-
-		while true do
-			if WarMenu.IsMenuOpened('Garage Heli') then
-				if WarMenu.Button('WC Maverick') then
-					spawnCar('polmav')
-					WarMenu.CloseMenu()
-				elseif WarMenu.Button('Exit') then
-					WarMenu.CloseMenu()
-				end
-
-				WarMenu.Display()
-			elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'heli' then -- e
-				WarMenu.OpenMenu('Garage Heli')
-			end
-
-			Wait(0)
+			end)
 		end
-	end)
+	end
+
+	if ActivateBCSOGarage then
+		if BCSOMegaPackBradM and LSPDMegaPackT0y then
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage BCSO') then
+						if WarMenu.Button('Ford Crown Victoria') then
+							spawnCar('sheriff')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Interceptor') then
+							spawnCar('police3')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Impala') then
+							spawnCar('police')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger') then
+							spawnCar('police2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Explorer') then
+							spawnCar('fbi2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Tahoe') then
+							spawnCar('sheriff2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Ford Crown Victoria') then
+							spawnCar('lspd4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('WMC Sovereign') then
+							spawnCar('policeb')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
+						WarMenu.OpenMenu('Garage BCSO')
+					end
+
+					Wait(0)
+				end
+			end)
+		elseif BCSOMegaPackBradM then
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage BCSO') then
+						if WarMenu.Button('Ford Crown Victoria') then
+							spawnCar('sheriff')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Interceptor') then
+							spawnCar('police3')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Impala') then
+							spawnCar('police')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger') then
+							spawnCar('police2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Explorer') then
+							spawnCar('fbi2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Tahoe') then
+							spawnCar('sheriff2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('WMC Sovereign') then
+							spawnCar('policeb')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
+						WarMenu.OpenMenu('Garage BCSO')
+					end
+
+					Wait(0)
+				end
+			end)
+		else
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage BCSO', 'Garage BCSO')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage BCSO') then
+						if WarMenu.Button('Vapid Stanier') then
+							spawnCar('sheriff')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Declasse Granger') then
+							spawnCar('sheriff2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('WMC Sovereign') then
+							spawnCar('policeb')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'bcso' then -- e
+						WarMenu.OpenMenu('Garage BCSO')
+					end
+
+					Wait(0)
+				end
+			end)
+		end
+	end
+
+	if ActivateSAPRGarage then
+		CreateThread(function()
+
+			WarMenu.CreateMenu('Garage SAPR', 'Garage SAPR')
+
+			while true do
+				if WarMenu.IsMenuOpened('Garage SAPR') then
+					if WarMenu.Button('Declasse Granger') then
+						spawnCar('pranger')
+						WarMenu.CloseMenu()
+					elseif WarMenu.Button('Exit') then
+						WarMenu.CloseMenu()
+					end
+
+					WarMenu.Display()
+				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sapr' then -- e
+					WarMenu.OpenMenu('Garage SAPR')
+				end
+
+				Wait(0)
+			end
+		end)
+	end
+
+	if ActivateSASPGarage then
+		if CHFThehurk and LSPDMegaPackT0y then
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage SASP') then
+						if WarMenu.Button('Ford Crown Victoria') then
+							spawnCar('hwaycar5')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger') then
+							spawnCar('hwaycar13')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Explorer') then
+							spawnCar('hwaycar15')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Tahoe') then
+							spawnCar('hwaycar12')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Crown Victoria Slicktop') then
+							spawnCar('hwaycar3')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger Slicktop') then
+							spawnCar('hwaycar14')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Ford Crown Victoria') then
+							spawnCar('lspd4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('BMW 1200RT') then
+							spawnCar('hwaycar7')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('K9 Ford Crown Victoria') then
+							spawnCar('hwaycar6')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('K9 Ford Crown Victoria Slicktop') then
+							spawnCar('hwaycar4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Expedition') then
+							spawnCar('hwaycar8')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford F350') then
+							spawnCar('hwaycar11')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger White') then
+							spawnCar('hwaycar2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Explorer White') then
+							spawnCar('hwaycar16')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
+						WarMenu.OpenMenu('Garage SASP')
+					end
+
+					Wait(0)
+				end
+			end)
+		elseif CHFThehurk then
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage SASP') then
+						if WarMenu.Button('Ford Crown Victoria') then
+							spawnCar('hwaycar5')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger') then
+							spawnCar('hwaycar13')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Explorer') then
+							spawnCar('hwaycar15')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Tahoe') then
+							spawnCar('hwaycar12')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Crown Victoria Slicktop') then
+							spawnCar('hwaycar3')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger Slicktop') then
+							spawnCar('hwaycar14')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('BMW 1200RT') then
+							spawnCar('hwaycar7')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('K9 Ford Crown Victoria') then
+							spawnCar('hwaycar6')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('K9 Ford Crown Victoria Slicktop') then
+							spawnCar('hwaycar4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Expedition') then
+							spawnCar('hwaycar8')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford F350') then
+							spawnCar('hwaycar11')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Dodge Charger White') then
+							spawnCar('hwaycar2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Ford Explorer White') then
+							spawnCar('hwaycar16')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
+						WarMenu.OpenMenu('Garage SASP')
+					end
+
+					Wait(0)
+				end
+			end)
+		else
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage SASP', 'Garage SASP')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage SASP') then
+						if WarMenu.Button('Vapid Stanier') then
+							spawnCar('police')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Bravado Buffalo') then
+							spawnCar('police2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Interceptor') then
+							spawnCar('police3')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Declasse Burrito') then
+							spawnCar('policet')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('WMC Sovereign') then
+							spawnCar('policeb')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Bus') then
+							spawnCar('pbus')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'sasp' then -- e
+						WarMenu.OpenMenu('Garage SASP')
+					end
+
+					Wait(0)
+				end
+			end)
+		end
+	end
+
+	if ActivateSWATGarage then
+		if LSPDMegaPackT0y then
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage SWAT', 'Garage SWAT')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage SWAT') then
+						if WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Buffalo') then
+							spawnCar('fbi')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Ford Crown Victoria') then
+							spawnCar('lspd4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Declasse Burrito') then
+							spawnCar('policet')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Riot Van') then
+							spawnCar('riot')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Riot Control Van') then
+							spawnCar('riot2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'swat' then -- e
+						WarMenu.OpenMenu('Garage SWAT')
+					end
+
+					Wait(0)
+				end
+			end)
+		else
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage SWAT', 'Garage SWAT')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage SWAT') then
+						if WarMenu.Button('UC Vapid Stanier') then
+							spawnCar('police4')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Vapid Buffalo') then
+							spawnCar('fbi')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('UC Declasse Granger') then
+							spawnCar('fbi2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Declasse Burrito') then
+							spawnCar('policet')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Riot Van') then
+							spawnCar('riot')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Riot Control Van') then
+							spawnCar('riot2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'swat' then -- e
+						WarMenu.OpenMenu('Garage SWAT')
+					end
+
+					Wait(0)
+				end
+			end)
+		end
+	end
+
+	if ActivateDPOSGarage then
+		if LSPDMegaPackT0y then
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage DPOS', 'Garage DPOS')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage DPOS') then
+						if WarMenu.Button('Ford Crown Victoria') then
+							spawnCar('lspd5')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Silverado Auxiliary') then
+							spawnCar('lspd10')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Chevrolet Silverado Maintenance') then
+							spawnCar('lspd12')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Slamvan') then
+							spawnCar('towtruck2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Yankee') then
+							spawnCar('towtruck')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('MTL Packer Flatbed') then
+							spawnCar('flatbed')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('MTL Packer') then
+							spawnCar('packer')
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'dpos' then -- e
+						WarMenu.OpenMenu('Garage DPOS')
+					end
+
+					Wait(0)
+				end
+			end)
+		else
+			CreateThread(function()
+
+				WarMenu.CreateMenu('Garage DPOS', 'Garage DPOS')
+
+				while true do
+					if WarMenu.IsMenuOpened('Garage DPOS') then
+						if WarMenu.Button('Vapid Slamvan') then
+							spawnCar('towtruck2')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('Vapid Yankee') then
+							spawnCar('towtruck')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('MTL Packer Flatbed') then
+							spawnCar('flatbed')
+							WarMenu.CloseMenu()
+						elseif WarMenu.Button('MTL Packer') then
+							spawnCar('packer')
+						elseif WarMenu.Button('Exit') then
+							WarMenu.CloseMenu()
+						end
+
+						WarMenu.Display()
+					elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'dpos' then -- e
+						WarMenu.OpenMenu('Garage DPOS')
+					end
+
+					Wait(0)
+				end
+			end)
+		end
+	end
+
+	if ActivateHeliPads then
+		CreateThread(function()
+
+			WarMenu.CreateMenu('Garage Heli', 'Helipad')
+
+			while true do
+				if WarMenu.IsMenuOpened('Garage Heli') then
+					if WarMenu.Button('WC Maverick') then
+						spawnCar('polmav')
+						WarMenu.CloseMenu()
+					elseif WarMenu.Button('Exit') then
+						WarMenu.CloseMenu()
+					end
+
+					WarMenu.Display()
+				elseif IsControlJustPressed(0, 51) and atgarage == true and police == 'heli' then -- e
+					WarMenu.OpenMenu('Garage Heli')
+				end
+
+				Wait(0)
+			end
+		end)
+	end
+
 end
 
 function spawnCar(carname)
@@ -1575,57 +1566,55 @@ function spawnCar(carname)
         Citizen.Wait(50)
     end
 
-	for n,list in ipairs(list_spawns) do
-		for i,coord in ipairs(list) do
-			if location == coord.handle then
-				if IsAnyVehicleNearPoint(coord.x, coord.y, coord.z, 5.0) then
-					Notify('Please remove the vehicle that is blocking the spawn point.')
+	for i,coord in ipairs(list_cars_spawns) do
+		if location == coord.handle then
+			if IsAnyVehicleNearPoint(coord.x, coord.y, coord.z, 5.0) then
+				Notify('Please remove the vehicle that is blocking the spawn point.')
+			else
+				local vehicle = CreateVehicle(car, coord.x, coord.y, coord.z, coord.angle, true, false)
+				SetVehicleNeonLightEnabled(vehicle, 2, true)
+				SetVehicleLivery(vehicle, 0)
+				if LSPDMegaPackT0y and BCSOMegaPackBradM then
+					if carname == 'lspd2' or carname == 'sheriff' or carname == 'police3' or carname == 'police' or carname == 'police2' or carname == 'sheriff2' then
+						number = math.random(1,3) - 1
+						SetVehicleLivery(vehicle, number)
+					elseif carname == 'lspd3' then
+						SetVehicleLivery(vehicle, 1)
+					elseif carname == 'lspd6' or carname == 'lspd11' then
+						SetVehicleLivery(vehicle, math.random(0, 1))
+					end
+				elseif BCSOMegaPackBradM then
+					if carname == 'sheriff' or carname == 'police3' or carname == 'police' or carname == 'police2' or carname == 'sheriff2' then
+						number = math.random(1,3) - 1
+						SetVehicleLivery(vehicle, number)
+					end
+				elseif LSPDMegaPackT0y then
+					if carname == 'lspd2' then
+						number = math.random(1,3) - 1
+						SetVehicleLivery(vehicle, number)
+					elseif carname == 'lspd3' then
+						SetVehicleLivery(vehicle, 1)
+					elseif carname == 'lspd6' or carname == 'lspd11' then
+						SetVehicleLivery(vehicle, math.random(0, 1))
+					end
 				else
-					local vehicle = CreateVehicle(car, coord.x, coord.y, coord.z, coord.angle, true, false)
-					SetVehicleNeonLightEnabled(vehicle, 2, true)
-					SetVehicleLivery(vehicle, 0)
-					if LSPDMegaPackT0y and BCSOMegaPackBradM then
-						if carname == 'lspd2' or carname == 'sheriff' or carname == 'police3' or carname == 'police' or carname == 'police2' or carname == 'sheriff2' then
-							number = math.random(1,3) - 1
-							SetVehicleLivery(vehicle, number)
-						elseif carname == 'lspd3' then
-							SetVehicleLivery(vehicle, 1)
-						elseif carname == 'lspd6' or carname == 'lspd11' then
-							SetVehicleLivery(vehicle, math.random(0, 1))
-						end
-					elseif BCSOMegaPackBradM then
-						if carname == 'sheriff' or carname == 'police3' or carname == 'police' or carname == 'police2' or carname == 'sheriff2' then
-							number = math.random(1,3) - 1
-							SetVehicleLivery(vehicle, number)
-						end
-					elseif LSPDMegaPackT0y then
-						if carname == 'lspd2' then
-							number = math.random(1,3) - 1
-							SetVehicleLivery(vehicle, number)
-						elseif carname == 'lspd3' then
-							SetVehicleLivery(vehicle, 1)
-						elseif carname == 'lspd6' or carname == 'lspd11' then
-							SetVehicleLivery(vehicle, math.random(0, 1))
-						end
-					else
-						if carname == 'police' then
-							number = math.random(1,6) - 1
-							SetVehicleLivery(vehicle, number)
-						elseif carname == 'police2' or carname == 'police3' then
-							number = math.random(1,8) - 1
-							SetVehicleLivery(vehicle, number)
-						elseif carname == 'sheriff' or carname == 'sheriff2' then
-							number = math.random(1,4) - 1
-							SetVehicleLivery(vehicle, number)
-						end
+					if carname == 'police' then
+						number = math.random(1,6) - 1
+						SetVehicleLivery(vehicle, number)
+					elseif carname == 'police2' or carname == 'police3' then
+						number = math.random(1,8) - 1
+						SetVehicleLivery(vehicle, number)
+					elseif carname == 'sheriff' or carname == 'sheriff2' then
+						number = math.random(1,4) - 1
+						SetVehicleLivery(vehicle, number)
 					end
-					if carname == 'towtruck2' or carname == 'towtruck' or carname == 'flatbed' or carname == 'packer' then
-						SetVehicleColours(vehicle, 38, 0)
-					end
-
 				end
-				isspawned = true
+				if carname == 'towtruck2' or carname == 'towtruck' or carname == 'flatbed' or carname == 'packer' then
+					SetVehicleColours(vehicle, 38, 0)
+				end
+
 			end
+			isspawned = true
 		end
 	end
 
@@ -1663,7 +1652,7 @@ if ActivateWeaponMarkers then
 					atweapon = false
 				end
 			end
-		Wait(0)
+		Wait(1000)
 		end
 	end)
 
@@ -1856,7 +1845,7 @@ if ActivateEvidenceMarkers then
 					atevidence = false
 				end
 			end
-		Wait(0)
+		Wait(1000)
 		end
 	end)
 
@@ -1881,7 +1870,7 @@ if ActivateHelpMarkers then
 
 	CreateThread(function()
 		while true do
-			for i,coord in ipairs(list_tut_coords) do
+			for i,coord in ipairs(list_help_coords) do
 				local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
 				local distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
 				if distance < 5 then
@@ -1898,7 +1887,7 @@ if ActivateHelpMarkers then
 					athelp = false
 				end
 			end
-		Wait(0)
+		Wait(1000)
 		end
 	end)
 
