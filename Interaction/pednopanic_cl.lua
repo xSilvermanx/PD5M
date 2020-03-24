@@ -6,7 +6,6 @@ CreateThread(function()
 			if GetRelationshipBetweenPeds(playerped, Ped) == 255 then
 				local PedRelGroup = GetPedRelationshipGroupHash(Ped)
 				SetRelationshipBetweenGroups(0, PedRelGroup, playerRelGroup)
-				SetRelationshipBetweenGroups(0, playerRelGroup, PedRelGroup)
 			end
 		end
 		Wait(1000)

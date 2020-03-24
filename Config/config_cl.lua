@@ -6,6 +6,7 @@ NormalDrivingBehavior = 786603 -- sets the standard driving style for peds. Refe
 -- general variables
 ActivateBlipsOnMap = true -- shows the department-blips, the hospital-blips and the tow-blips set by PD5M.
 ActivateCrosshair = true -- activates the F3-function to display a crosshair in the middle of the screen.
+ESXEnabled = false -- ESX integration thanks to MobTV
 
 -- marker variables
 ActivateArrestMarkers = true -- activates the arrest markers. Should stay activated.

@@ -46,7 +46,7 @@ ensure PD5M
 ```
 
 - Open `PD5M/Radialmenu/` directory. Move the files `config.lua` and `radialmenu.lua` to the `radialmenu/` resource (replace the existing files)
-- Open `PD%M/Radialmenu/html` directory. Move the file `menu.html` to the `radialmenu/html/` resource (replace the existing file)
+- Open `PD5M/Radialmenu/html` directory. Move the file `menu.html` to the `radialmenu/html/` resource (replace the existing file)
 
 ## Recommended Addons
 - [vMenu](https://forum.cfx.re/t/vmenu-v3-1-3/88868) by Vespura, used to create an mp-ped as said functionality hasn't been added to PD5M yet
@@ -78,10 +78,13 @@ Shoutouts go out to:
 - The teams of LSPDFR and PIS for their inspiration and small code-examples
 - IllidanS4 for his [Entity Iterators](https://gist.github.com/IllidanS4/9865ed17f60576425369fc1da70259b2)
 - The above mentioned mod authors
-- Everyone involved in testing the mod prior to this release.
+- DrBlackError for his tremendous work teaching me the basics of github.
+- MobTV for his contribution for the ESX-integration.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
+- Everyone involved in testing the mod prior to this release.
 
-## Newest Patch Notes: The Config Update
-- Config files were greatly expanded and now feature many variables to tweak the ped-generation of the resource.
-- Probabilities for peds possessing weapons, using drugs, drinking, and fleeing / fighting have been increased.
-- Fixed a bug where imprisoned peds were still stuck to a player for everyone else.
+
+## Newest Patch Notes: v0.1.1.1
+- ESX-integration thanks to MobTV.
+- Bugfix: Stealing cars is possible again.
+- Bugfix: Pullover is more reliable on intersections with traffic lights.
