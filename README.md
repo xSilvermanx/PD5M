@@ -79,10 +79,14 @@ Shoutouts go out to:
 - The teams of LSPDFR and PIS for their inspiration and small code-examples
 - IllidanS4 for his [Entity Iterators](https://gist.github.com/IllidanS4/9865ed17f60576425369fc1da70259b2)
 - The above mentioned mod authors
+- DrBlackError for his tremendous help regarding setting up and maintaining the github.
+- MobTV for his contribution to offer ESX-integration.
+- ChieF TroN for his contribution to offer vRP-integration.
 - Everyone involved in testing the mod prior to this release.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
 
 ## Newest Patch Notes: The Config Update
-- Config files were greatly expanded and now feature many variables to tweak the ped-generation of the resource.
-- Probabilities for peds possessing weapons, using drugs, drinking, and fleeing / fighting have been increased.
-- Fixed a bug where imprisoned peds were still stuck to a player for everyone else.
+- Config files were expanded yet again. Features great customability for stations and is now a lot cleaner than before.
+- vRP-integration thanks to ChieF TroN. To activate it uncomment the files in `__resource.lua`.
+- Bugfix: Improved performance by not performing a large amount of distance-checks in while-loops with Wait(0).
+- Bugfix: Coroners and Towtrucks should now more reliably drive away from stations. Please report issues about it stating the exact location that caused the bug.
