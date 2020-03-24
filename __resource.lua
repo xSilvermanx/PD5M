@@ -17,7 +17,8 @@ server_scripts {
 	"Sync/sync_sv.lua",
 }
 
-server_scripts {
+--vRP-integration. Uncomment the following server_scripts and client_scripts.
+--[[server_scripts {
 	"@vrp/lib/utils.lua",
 	"Duty/vRPIntegration_sv.lua",
 }
@@ -26,7 +27,7 @@ client_scripts {
 	"lib/Proxy.lua",
 	"lib/Tunnel.lua",
 	"Duty/vRPIntegration_cl.lua",
-}
+}]]
 
 client_scripts {
 	"Config/Stations/Police/BeaverBushVanilla.lua",
