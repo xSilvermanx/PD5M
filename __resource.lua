@@ -15,6 +15,8 @@ server_scripts {
 	"Service/tow_sv.lua",
 	"Startup/startup_sv.lua",
 	"Sync/sync_sv.lua",
+	"@vrp/lib/utils.lua",
+	"Duty/vRPIntegration_sv.lua",
 }
 
 client_scripts {
@@ -27,6 +29,9 @@ client_scripts {
 	"Config/config_cl.lua",
 	"Config/speechoptions_cl.lua",
 	"Duty/ESXIntegration_cl.lua",
+	"lib/Proxy.lua",
+	"lib/Tunnel.lua",
+	"Duty/vRPIntegration_cl.lua",
 	"HUD/blips_cl.lua",
 	"HUD/crosshair_cl.lua",
 	"HUD/help_cl.lua",
