@@ -31,7 +31,7 @@ AddEventHandler('pd5m:service:initcoroner', function()
 	local pmodels = CoronerDrivers
 	local vehicles = CoronerVehicles
 	local playerped = GetPlayerPed(-1)
-	
+
 	local tarx, tary, tarz = table.unpack(GetEntityCoords(playerped))
 	local station = nil
 	local shortestdistance = 999999999
@@ -42,35 +42,54 @@ AddEventHandler('pd5m:service:initcoroner', function()
 			shortestdistance = distance
 		end
 	end
-	
+
+	local stx = station.x
+	local sty = station.y
+	local stz = station.z
+	local sta = station.angle
+
+	local offx = tarx - station.x
+	local offy = tary - station.y
+
+	local VecAngle = GetHeadingFromVector_2d(offx, offy)-sta
+
+	if VecAngle < 270 and VecAngle > 90 then
+		stx = station.xa
+		sty = station.ya
+		stz = station.za
+		sta = station.aa
+	end
+
+	local stationvec = {x=stx, y=sty, z=stz, angle=sta}
+
 	local vehiclehash = GetHashKey(vehicles[math.random(#vehicles)])
 	local drivermodel = GetHashKey(pmodels[math.random(#pmodels)])
-	
+
 	RequestModel(vehiclehash)
 	while not HasModelLoaded(vehiclehash) do
 		RequestModel(vehiclehash)
 		Wait(50)
 	end
-	
+
 	RequestModel(drivermodel)
 	while not HasModelLoaded(drivermodel) do
 		RequestModel(drivermodel)
 		Wait(50)
 	end
-	
+
 	local traveldistance = CalculateTravelDistanceBetweenPoints(station.x, station.y, station.z, tarx, tary, tarz)
 	local traveltime = math.ceil(traveldistance/1000)/2
-	
+
 	BeginTextCommandThefeedPost("TWOSTRINGS")
-		
-	AddTextComponentSubstringPlayerName("A coroner has been dispatched from ~o~" .. station.name .. "~s~.")
+
+	AddTextComponentSubstringPlayerName("A coroner has been dispatched from ~o~" .. list_handles[station.handle][1].handles[station.handle].stationname .. "~s~.")
 	AddTextComponentSubstringPlayerName("It will arrive in approximately ~o~" .. traveltime .. "~s~ minutes.")
-	
+
 	EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, 'County of Los Santos', 'Department of Coroner')
 	EndTextCommandThefeedPostTicker(false, false)
-	
-	local coroner = CreateVehicle(vehiclehash, station.x, station.y, station.z, station.angle, true, false)
-	local coronerdriver = CreatePed(26, drivermodel, station.x, station.y, station.z+2.0, station.angle, true, true)
+
+	local coroner = CreateVehicle(vehiclehash, stationvec.x, stationvec.y, stationvec.z, stationvec.angle, true, false)
+	local coronerdriver = CreatePed(26, drivermodel, stationvec.x, stationvec.y, stationvec.z+2.0, stationvec.angle, true, true)
 	SetPedIntoVehicle(coronerdriver, coroner, -1)
 	SetVehicleFixed(coroner)
 	SetVehicleOnGroundProperly(coroner)
@@ -79,11 +98,11 @@ AddEventHandler('pd5m:service:initcoroner', function()
 	SetBlipColour(coronerblip, 29)
 	SetBlockingOfNonTemporaryEvents(coronerdriver, true)
 	SetVehicleSiren(coroner, true)
-	
+
 	GlobalCoroner = coroner
 	GlobalCoronerDriver = coronerdriver
 	GlobalCoronerBlip = coronerblip
-	
+
 	TriggerEvent('pd5m:service:coronerapproach', coroner, coronerdriver, coronerblip, station)
 end)
 
@@ -95,12 +114,12 @@ AddEventHandler('pd5m:service:coronerapproach', function(coroner, coronerdriver,
 	local _, tarpos = GetClosestVehicleNode(px, py, pz, 1, 3.0, 0)
 	local tarx, tary, tarz = table.unpack(tarpos)
 	local vehiclehash = GetHashKey(coroner)
-	
-	TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 40.0, 0, vehiclehash, 525116, 2.0, true)
-	
+
+	TaskVehicleDriveToCoordLongrange(coronerdriver, coroner, tarx, tary, tarz, 40.0, PoliceDrivingBehavior, 2.0)
+
 	local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
 	local distance = Vdist2(corx, cory, corz, tarx, tary, tarz)
-	
+
 	local n = 0
 	while distance > 2000.0 and flagcalledcoroner and n < 50000 do
 		print('Arriving')
@@ -110,7 +129,7 @@ AddEventHandler('pd5m:service:coronerapproach', function(coroner, coronerdriver,
 		n = n + 1
 		Wait(100)
 	end
-	
+
 	if flagcalledcoroner then
 		TriggerEvent('pd5m:service:coroneratscene', coroner, coronerdriver, coronerblip, station)
 	end
@@ -125,12 +144,12 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 	local _, tarpos = GetClosestVehicleNode(px, py, pz, 1, 3.0, 0)
 	local tarx, tary, tarz = table.unpack(tarpos)
 	local vehiclehash = GetHashKey(coroner)
-	
-	TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 15.0, 0, vehiclehash, 786603, 2.0, true)
-	
+
+	TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 15.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
+
 	local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
 	local distance = Vdist2(corx, cory, corz, tarx, tary, tarz)
-	
+
 	local n = 0
 	while distance > 800.0 and flagcalledcoroner and n < 500 do
 		print('At scene start')
@@ -139,14 +158,14 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 		distance = Vdist2(corx, cory, corz, tarx, tary, tarz)
 		n = n + 1
 		Wait(100)
-	end	
-	
+	end
+
 	if flagcalledcoroner then
-	
-		local corx, cory, corz = table.unpack(GetEntityCoords(coroner))		
-		
-		TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 5.0, 0, vehiclehash, 786603, 2.0, true)
-		
+
+		local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
+
+		TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 5.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
+
 		local n = 0
 		while distance > 100.0 and flagcalledcoroner and n < 500 do
 			print('At scene closing in')
@@ -155,15 +174,15 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 			distance = Vdist2(corx, cory, corz, tarx, tary, tarz)
 			n = n + 1
 			Wait(100)
-		end	
-		
+		end
+
 		if flagcalledcoroner then
-		
+
 			TaskVehicleTempAction(coronerdriver, coroner, 27, 10000)
-			
+
 			local DeadPedList = {}
 			local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
-			
+
 			for ped in EnumeratePeds() do
 				if IsEntityDead(ped) then
 					local tarx, tary, tarz = table.unpack(GetEntityCoords(ped))
@@ -172,26 +191,26 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 					end
 				end
 			end
-			
+
 			Wait(3000)
-			
+
 			if #DeadPedList > 0 then
 				TaskLeaveVehicle(coronerdriver, coroner, 0)
-				
+
 				local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
-				
+
 				GlobalSpeedZone = AddSpeedZoneForCoord(corx, cory, corz, 10.0, 0.0, false)
-				
+
 				Wait(1000)
 
 				local DimMin, DimMax = GetModelDimensions(vehiclehash)
 				local VehSize = DimMax - DimMin
-				
+
 				local offx, offy, offz = table.unpack(GetOffsetFromEntityInWorldCoords(coroner, 0, -VehSize.y/2 - 1.0, 0))
 				local Heading = GetEntityHeading(coroner)
-				
+
 				TaskGoStraightToCoord(coronerdriver, offx, offy, offz, 1.0, -1, Heading, 1.0)
-				
+
 				local n = 0
 				while distance > 3.0 and n < 500 do
 					local corx, cory, corz = table.unpack(GetEntityCoords(coronerdriver))
@@ -199,14 +218,14 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 					n = n + 1
 					Wait(100)
 				end
-				
-				
-				
+
+
+
 				for i, target in ipairs(DeadPedList) do
 					if DoesEntityExist(target) then
 						local tarx, tary, tarz = table.unpack(GetEntityCoords(target))
 						TaskGoToEntity(coronerdriver, target, -1, 1.0, 1.0, 1073741824, 0)
-						
+
 						local distance = 9999999
 						local n = 0
 						while distance > 8.0 and n < 500 do
@@ -215,14 +234,14 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 							n = n + 1
 							Wait(100)
 						end
-						
+
 						if DoesEntityExist(target) then
 							TriggerServerEvent('pd5m:syncsv:TaskPlayAnim', target, 'anim@heists@narcotics@trash', 'pickup', 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 							Wait(500)
 							DeleteEntity(target)
 							-- put it into a bag, despawn person, pick up bag, put it into the vehicle, remove last coordinates
 							Wait(2500)
-							
+
 							TaskGoToEntity(coronerdriver, coroner, -1, 1.0, 1.0, 1073741824, 0)
 							local distance = 9999999
 							local tarx, tary, tarz = table.unpack(GetEntityCoords(coroner))
@@ -233,18 +252,18 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 								n = n + 1
 								Wait(100)
 							end
-							
-						end		
-					end			
+
+						end
+					end
 				end
-				
+
 				DeadPedList = {}
-				
+
 				Wait(1000)
-				
+
 				TaskEnterVehicle(coronerdriver, coroner, -1, -1, 1.0, 1, 0)
 			end
-			
+
 			TriggerEvent('pd5m:service:coronerdepart', coroner, coronerdriver, coronerblip, station)
 		end
 	end
@@ -257,15 +276,15 @@ AddEventHandler('pd5m:service:coronerdepart', function(coroner, coronerdriver, c
 	local vehiclehash = GetHashKey(coroner)
 	local tarx, tary, tarz = station.x, station.y, station.z
 	RemoveBlip(coronerblip)
-	TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 50.0, 0, vehiclehash, 524860, 2.0, true)
+	TaskVehicleDriveToCoordLongrange(coronerdriver, coroner, tarx, tary, tarz, 50.0, PoliceDrivingBehavior, 2.0)
 	if GlobalSpeedZone ~= nil then
 		RemoveSpeedZone(GlobalSpeedZone)
-	end	
+	end
 	SetEntityAsNoLongerNeeded(coroner)
 	SetEntityAsNoLongerNeeded(coronerdriver)
 	local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
 	local distance = Vdist2(corx, cory, corz, tarx, tary, tarz)
-	
+
 	local n = 0
 	while distance > 50.0 and DoesEntityExist(coroner) and n < 500 do
 		corx, cory, corz = table.unpack(GetEntityCoords(coroner))
@@ -277,7 +296,7 @@ AddEventHandler('pd5m:service:coronerdepart', function(coroner, coronerdriver, c
 		TaskVehicleDriveWander(coronerdriver, coroner, 30.0, NormalDrivingBehavior)
 		SetVehicleSiren(coroner, false)
 	end
-	
+
 	GlobalCoronerBlip = nil
 	GlobalCoroner = nil
 	GlobalCoronerDriver = nil

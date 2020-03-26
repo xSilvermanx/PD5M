@@ -22,28 +22,28 @@ AddEventHandler('pd5m:tow:calltowtruck', function()
 	local TargetFlagListIndex = nil
 	local flagtowcar = false
 	local flagtowing = false
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, targetveh = GetVehInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(targetveh) == 2 then
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 			if distanceToTarget <= 4.0 then
 				if GetVehicleNumberOfPassengers(targetveh) == 0 and (IsVehicleSeatFree(targetveh, -1) or (GetPedInVehicleSeat(targetveh, -1) == 0)) then
-					
+
 					TargetVehNetID = VehToNet(targetveh)
-					
+
 					_, TargetVehFlagListIndex = SyncPedAndVeh(0, targetveh)
-					
+
 					flagtowing = CheckVehFlag(TargetVehNetID, 'Towing')
-					
+
 					if flagtowing then
 						Notify('Towtruck aborted')
 						GlobalFlagTowCar = false
 						TriggerServerEvent('pd5m:towsv:aborttowtruck', TargetVehNetID)
 						TriggerServerEvent('pd5m:syncsv:RemoveVehFlagEntry', TargetVehNetID, 'Towing')
-					else					
+					else
 						TargetNetID = ClientVehConfigList[TargetVehFlagListIndex].PedNetID
-						
+
 						if TargetNetID ~= 0 and TargetNetID ~= nil then
 							target = NetToPed(TargetNetID)
 							if DoesEntityExist(target) and not IsEntityDead(target) then
@@ -60,13 +60,13 @@ AddEventHandler('pd5m:tow:calltowtruck', function()
 						else
 							flagtowcar = true
 						end
-						
+
 						if flagtowcar then
 							TriggerServerEvent('pd5m:syncsv:AddVehFlagEntry', TargetVehNetID, 'Towing')
 							TriggerEvent('pd5m:tow:inittowtruck', TargetVehNetID)
 						else
 							Notify('You cannot have this car towed.')
-						end					
+						end
 					end
 				else
 					Notify('Car is not empty.')
@@ -93,7 +93,7 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 	local pmodels = TowTruckDrivers
 	local vehicles = {"flatbed", "towtruck", "towtruck2", "packer"}
 	local playerped = GetPlayerPed(-1)
-	
+
 	local tarx, tary, tarz = table.unpack(GetEntityCoords(targetveh))
 	local station = nil
 	local shortestdistance = 999999999
@@ -104,7 +104,26 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 			shortestdistance = distance
 		end
 	end
-	
+
+	local stx = station.x
+	local sty = station.y
+	local stz = station.z
+	local sta = station.angle
+
+	local offx = tarx - station.x
+	local offy = tary - station.y
+
+	local VecAngle = GetHeadingFromVector_2d(offx, offy)-sta
+
+	if VecAngle < 270 and VecAngle > 90 then
+		stx = station.xa
+		sty = station.ya
+		stz = station.za
+		sta = station.aa
+	end
+
+	local stationvec = {x=stx, y=sty, z=stz, angle=sta}
+
 	-- -- -- ToDo: After getting the fancy way of getting to cars done, fix targetvehhash-checks
 	--[[local targetvehClass = GetVehicleClass(targetveh)
 	local targetvehhash = GetEntityModel(targetveh)
@@ -121,14 +140,14 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 	elseif targetvehhash == 0x82CAC433 or targetvehhash == 0x9DAE1398 or targetvehhash == 0x7074F39D or targetvehhash == 0xC3FBA120 or targetvehhash == 0x810369E2 or targetvehhash == 0x1A7FCEFA or targetvehhash == 0x27D79225 or targetvehhash == 0x9B076C93 or targetvehhash == 0x8644331A or targetvehhash == 0x49863E9C or targetvehhash == 0xCD93A7DB or targetvehhash == 0x669EB40A or targetvehhash == 0xe2174AFC or targetvehhash == 0xD556917C or targetvehhash == 0x4C8DBA51 or targetvehhash == 0xD577C962 or targetvehhash == 0x4C80EB0E or targetvehhash == 0xEDC6F847 or targetvehhash == 0x8E08EC82 then --tug, phantom2, bulldozer, cutter, dump, handler, bruiser, bruiser2, bruiser3, marshall, monster, monster3, monster4, monster5, zhaba, airport bus, bus, brickade, wastelander
 		availableTrucks = {} -- no towing possible
 		print('car none')
-	elseif targetvehClass == 14 or targetvehClass == 13 or targetvehClass == 15 or targetvehClass == 8 then -- boats, cycles, 
+	elseif targetvehClass == 14 or targetvehClass == 13 or targetvehClass == 15 or targetvehClass == 8 then -- boats, cycles,
 		availableTrucks = {1} -- flatbed only
 		print('class flatbed')
 	elseif targetvehClass == 20 or targetvehClass == 10 or targetvehClass == 9 or targetvehClass == 17 or targetvehClass == 12 then -- commercials, industrial, off-road, service, vans
 		availableTrucks = {2, 3} -- towtrucks with hook only
 		print('class hook')
 	elseif targetvehClass == 19 or targetvehClass == 16 or targetvehClass == 21 then -- military, planes, trains
-		availableTrucks = {} -- no towing possible 
+		availableTrucks = {} -- no towing possible
 		print('class none')
 	elseif targetvehClass == 11 then
 		availableTrucks = {4} -- truck
@@ -140,41 +159,41 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 		availableTrucks = {1} -- flatbed if nothing else is hit
 		print('else')
 	end]]
-	
+
 	if #availableTrucks == 0 then
 		Notify('This vehicle cannot be towed.')
 		TriggerServerEvent('pd5m:syncsv:RemoveVehFlagEntry', TargetVehNetID, 'Towing')
 	else
-		local traveldistance = CalculateTravelDistanceBetweenPoints(station.x, station.y, station.z, tarx, tary, tarz)
+		local traveldistance = CalculateTravelDistanceBetweenPoints(stationvec.x, stationvec.y, stationvec.z, tarx, tary, tarz)
 		local traveltime = 2*math.ceil(traveldistance/1000)
-		
+
 		BeginTextCommandThefeedPost("TWOSTRINGS")
-			
-		AddTextComponentSubstringPlayerName("A towtruck has been dispatched from ~o~" .. station.name .. "~s~.")
+
+		AddTextComponentSubstringPlayerName("A towtruck has been dispatched from ~o~" .. list_handles[station.handle][1].handles[station.handle].stationname .. "~s~.")
 		AddTextComponentSubstringPlayerName("It will arrive in approximately ~o~" .. traveltime .. "~s~ minutes.")
-		
+
 		EndTextCommandThefeedPostMessagetext("CHAR_PROPERTY_TOWING_IMPOUND", "CHAR_PROPERTY_TOWING_IMPOUND", false, 4, 'Department of', 'Public Order and Safety')
 		EndTextCommandThefeedPostTicker(false, false)
-		
+
 		towtruckid = availableTrucks[math.random(#availableTrucks)]
 		local vehiclehash = GetHashKey(vehicles[towtruckid])
 		local drivermodel = GetHashKey(pmodels[math.random(#pmodels)])
-		
+
 		RequestModel(vehiclehash)
 		while not HasModelLoaded(vehiclehash) do
 			RequestModel(vehiclehash)
 			Wait(50)
 		end
-		
+
 		RequestModel(drivermodel)
 		while not HasModelLoaded(drivermodel) do
 			RequestModel(drivermodel)
 			Wait(50)
 		end
-		
-		local towtruck = CreateVehicle(vehiclehash, station.x, station.y, station.z, station.angle, true, false)
+
+		local towtruck = CreateVehicle(vehiclehash, stationvec.x, stationvec.y, stationvec.z, stationvec.angle, true, false)
 		SetVehicleColours(towtruck, 38, 0)
-		local towdriver = CreatePed(26, drivermodel, station.x, station.y, station.z+2.0, station.angle, true, true)
+		local towdriver = CreatePed(26, drivermodel, stationvec.x, stationvec.y, stationvec.z+2.0, stationvec.angle, true, true)
 		SetPedIntoVehicle(towdriver, towtruck, -1)
 		SetVehicleFixed(towtruck)
 		SetVehicleOnGroundProperly(towtruck)
@@ -182,7 +201,7 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 		local towblip = AddBlipForEntity(towtruck)
 		SetBlipColour(towblip, 9)
 		SetBlockingOfNonTemporaryEvents(towdriver, true)
-		
+
 		TowTruckNetID = VehToNet(towtruck)
 		table.insert(ClientSelfVehTowingList, TargetVehNetID)
 		table.insert(ClientSelfTowTruckList, TowTruckNetID)
@@ -195,12 +214,12 @@ end)
 AddEventHandler('pd5m:tow:towtruckapproach', function(towtruck, towtruckid, towdriver, towblip, station, targetveh)
 	local tarx, tary, tarz = table.unpack(GetEntityCoords(targetveh))
 	local vehiclehash = GetHashKey(towtruck)
-	
-	TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 17.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
-	
+
+	TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
+
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-	
+
 	local n = 0
 	while distance > 1500.0 and n < 50000 and GlobalFlagTowCar do
 		print('Arriving')
@@ -210,7 +229,7 @@ AddEventHandler('pd5m:tow:towtruckapproach', function(towtruck, towtruckid, towd
 		n = n + 1
 		Wait(100)
 	end
-	
+
 	if GlobalFlagTowCar then
 		TriggerEvent('pd5m:tow:towtruckatscene', towtruck, towtruckid, towdriver, towblip, station, targetveh)
 	else
@@ -225,19 +244,19 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 	local tarx, tary, tarz = table.unpack(GetEntityCoords(targetveh))
 	local tardimensionMin, tardimensionMax = GetModelDimensions(GetEntityModel(targetveh))
 	local tarsize = tardimensionMax - tardimensionMin
-	
+
 	local towdimensionMin, towdimensionMax = GetModelDimensions(GetEntityModel(towtruck))
 	local towsize = towdimensionMax - towdimensionMin
-		
+
 	local vehiclehash = GetHashKey(towtruck)
 	SetVehicleIndicatorLights(towtruck, 2, true)
 	SetVehicleIndicatorLights(towtruck, 1, true)
-	
+
 	TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 5.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
-	
+
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-	
+
 	local n = 0
 	while distance > 800.0 and n < 500 and GlobalFlagTowCar do
 		print('At scene start')
@@ -246,14 +265,14 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 		distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
 		n = n + 1
 		Wait(100)
-	end	
-	
+	end
+
 	if GlobalFlagTowCar then
-	
-		local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))		
-		
+
+		local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
+
 		TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 3.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
-		
+
 		local n = 0
 		while distance > 200.0 and n < 500 and GlobalFlagTowCar do
 			print('At scene closing in')
@@ -262,13 +281,13 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 			distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
 			n = n + 1
 			Wait(100)
-		end	
-		
+		end
+
 		if GlobalFlagTowCar then
 			TaskVehicleTempAction(towdriver, towtruck, 27, 10000)
-		
+
 			TriggerEvent('pd5m:tow:flatbedpickup', towtruck, targetveh)
-		
+
 			Wait(3000)
 
 			TriggerEvent('pd5m:tow:towtruckdepart', towtruck, towtruckid, towdriver, towblip, station, targetveh)
@@ -288,13 +307,13 @@ AddEventHandler('pd5m:tow:towtruckdepart', function(towtruck, towtruckid, towdri
 	TriggerServerEvent('pd5m:syncsv:RemoveVehFlagEntry', TargetVehNetID, 'Towing')
 	local vehiclehash = GetHashKey(towtruck)
 	RemoveBlip(towblip)
-	TaskVehicleDriveToCoord(towdriver, towtruck, station.x, station.y, station.z, 17.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
+	TaskVehicleDriveToCoordLongrange(towdriver, towtruck, station.x, station.y, station.z, 17.0, NormalDrivingBehavior, 2.0)
 	SetEntityAsNoLongerNeeded(towtruck)
 	SetEntityAsNoLongerNeeded(towdriver)
 	SetEntityAsNoLongerNeeded(targetveh)
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-	
+
 	local n = 0
 	while distance > 50.0 and DoesEntityExist(towtruck) and n < 500 do
 		local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
@@ -308,7 +327,7 @@ AddEventHandler('pd5m:tow:towtruckdepart', function(towtruck, towtruckid, towdri
 		SetVehicleIndicatorLights(towtruck, 2, false)
 		SetVehicleIndicatorLights(towtruck, 1, false)
 	end
-	
+
 end)
 
 -- Event to abort a dispatched towtruck.

@@ -20,6 +20,7 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 - Hold `X` to open the radialmenu. You can see every action your officer can possibly take. Hover your mouse over an action and release the key (no click necessary) to perform the action. Has different options on foot and in a car
 
 On Foot: To carry out an action, look at a ped and use E or X as described above.
+
 In a Car: The actions will get carried out for the vehicle directly in front of your vehicle.
 
 Make sure to talk to people before taking an action against them (e.g. arresting them). You wouldn't like that in real life either!
@@ -78,13 +79,14 @@ Shoutouts go out to:
 - The teams of LSPDFR and PIS for their inspiration and small code-examples
 - IllidanS4 for his [Entity Iterators](https://gist.github.com/IllidanS4/9865ed17f60576425369fc1da70259b2)
 - The above mentioned mod authors
-- DrBlackError for his tremendous work teaching me the basics of github.
-- MobTV for his contribution for the ESX-integration.
-- DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
+- DrBlackError for his tremendous help regarding setting up and maintaining the github.
+- MobTV for his contribution to offer ESX-integration.
+- ChieF TroN for his contribution to offer vRP-integration.
 - Everyone involved in testing the mod prior to this release.
+- DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
 
-
-## Newest Patch Notes: v0.1.1.1
-- ESX-integration thanks to MobTV.
-- Bugfix: Stealing cars is possible again.
-- Bugfix: Pullover is more reliable on intersections with traffic lights.
+## Newest Patch Notes: The Config Update
+- Config files were expanded yet again. Features great customability for stations and is now a lot cleaner than before.
+- vRP-integration thanks to ChieF TroN. To activate it uncomment the files in `__resource.lua`.
+- Bugfix: Improved performance by not performing a large amount of distance-checks in while-loops with Wait(0).
+- Bugfix: Coroners and Towtrucks should now more reliably drive away from stations. Please report issues about it stating the exact location that caused the bug.
