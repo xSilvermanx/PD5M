@@ -100,11 +100,7 @@ client_scripts {
 
 	-- The Bay Care Center
 	"Config/Stations/Med/PaletoBayVanilla.lua",
-<<<<<<< HEAD
 --	"Config/Stations/Med/PaletoBayBrown.lua",
-=======
-	"Config/Stations/Med/PaletoBayBrown.lua",
->>>>>>> fd890ea5b3b134ee181b606c6236f8f1715e4439
 
 	-- Pillbox Hill Medical Center
 	"Config/Stations/Med/PillboxHillVanilla.lua",
@@ -116,11 +112,7 @@ client_scripts {
 
 	-- Sandy Shores Medical Center
 	"Config/Stations/Med/SandyShoresVanilla.lua",
-<<<<<<< HEAD
 --	"Config/Stations/Med/SandyShoresBeek.lua",
-=======
-	"Config/Stations/Med/SandyShoresBeek.lua",
->>>>>>> fd890ea5b3b134ee181b606c6236f8f1715e4439
 
 
 -- Configuration for towservices
@@ -134,11 +126,7 @@ client_scripts {
 	"Config/Stations/Tow/LSCLaMesaVanilla.lua",
 
 
-<<<<<<< HEAD
 -- Configuration for other stations
-=======
-	-- Configuration for other stations
->>>>>>> fd890ea5b3b134ee181b606c6236f8f1715e4439
 	"Config/Stations/Other/BolingbrokeVanilla.lua",
 	"Config/Stations/Other/CoronerOfficeVanilla.lua",
 
