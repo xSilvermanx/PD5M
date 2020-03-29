@@ -21,3 +21,18 @@ EnableDispatchService(14, false)
 EnableDispatchService(15, true) --BikerBackup
 
 TriggerServerEvent('pd5m:syncsv:SyncFlagLists')
+
+CreateThread(function()
+  while true do
+    if WarMenu.IsAnyMenuOpened() then
+      DisableControlAction(0, 19, true)
+      DisableControlAction(1, 19, true)
+      DisableControlAction(0, 48, true)
+      DisableControlAction(1, 48, true)
+      DisableControlAction(0, 73, true)
+      DisableControlAction(1, 73, true)
+      SetBigmapActive(false, false)
+    end
+    Wait(0)
+  end
+end)

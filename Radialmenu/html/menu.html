@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
     <script type="text/javascript" src="raphael.min.js"></script>
     <script type="text/javascript" src="wheelnav.min.js"></script>
     <script type="text/javascript" src="nui://game/ui/jquery.js"></script>
@@ -31,6 +31,8 @@
                 if (event.data.type == 'init') {
                     // Set global keybind and resource name
                     menuKeybind = event.data.data.keybind;
+                    menuPadKeybind = event.data.data.padkeybind;
+                    menuOpen = true;
                     resourceName = event.data.resourceName
 
                     // Get number of wheels and create array to hold them
@@ -79,7 +81,7 @@
                         wheels[i].titleHoverAttr = wheelStyle.titles.hover;
                         wheels[i].titleSelectedAttr = wheelStyle.titles.selected;
                         wheels[i].createWheel(wheelData.labels);
-                        
+
                         // Clear selected items and add mouse functions
                         for (var j = 0; j < wheels[i].navItems.length; j++) {
                             // Clear selected
@@ -88,23 +90,23 @@
                             // Add events for both navSlice and navTitle
                             const execCmd = wheelData.commands[j];
                             wheels[i].navItems[j].navSlice.mouseover(function () {
-								window.RessourcenName = resourceName;
-								window.Kommandoausfuehren = execCmd;
-                            });
-                            wheels[i].navItems[j].navTitle.mouseover(function () {
-								window.RessourcenName = resourceName;
-								window.Kommandoausfuehren = execCmd;
-                            });
-							wheels[i].navItems[j].navSlice.mouseout(function () {
-								window.RessourcenName = null;
-								window.Kommandoausfuehren = null;
-							});
-							wheels[i].navItems[j].navTitle.mouseout(function () {
-								window.RessourcenName = null;
-								window.Kommandoausfuehren = null;
-							});
+              								window.RessourcenName = resourceName;
+              								window.Kommandoausfuehren = execCmd;
+                                          });
+                                          wheels[i].navItems[j].navTitle.mouseover(function () {
+              								window.RessourcenName = resourceName;
+              								window.Kommandoausfuehren = execCmd;
+                                          });
+              							wheels[i].navItems[j].navSlice.mouseout(function () {
+              								window.RessourcenName = null;
+              								window.Kommandoausfuehren = null;
+              							});
+              							wheels[i].navItems[j].navTitle.mouseout(function () {
+              								window.RessourcenName = null;
+              								window.Kommandoausfuehren = null;
+              							});
                         }
-						
+
                         // Refresh menu
                         wheels[i].refreshWheel();
                     }
@@ -120,14 +122,22 @@
                         delete numWheels;
                     }
                 }
+                else if (event.data.type == 'padclose') {
+                  if (window.RessourcenName !== null) {
+                    $.post('http://'+window.RessourcenName+'/sliceclicked', JSON.stringify({command: window.Kommandoausfuehren}));
+                  }
+                  $.post('http://'+resourceName+'/closemenu', JSON.stringify({}));
+        					window.RessourcenName = null;
+        					window.Kommandoausfuehren = null;
+                }
             });
             window.addEventListener("keyup", function onEvent(event) {
                 // Close menu when key is released
                 if (event.key === menuKeybind) {
-					$.post('http://'+window.RessourcenName+'/sliceclicked', JSON.stringify({command: window.Kommandoausfuehren}));
-                    $.post('http://'+resourceName+'/closemenu', JSON.stringify({}));
-					window.RessourcenName = null;
-					window.Kommandoausfuehren = null;
+        					$.post('http://'+window.RessourcenName+'/sliceclicked', JSON.stringify({command: window.Kommandoausfuehren}));
+                  $.post('http://'+resourceName+'/closemenu', JSON.stringify({}));
+        					window.RessourcenName = null;
+        					window.Kommandoausfuehren = null;
                 }
             });
         });

@@ -8,7 +8,7 @@ CreateThread(function()
 		local playerpedcoords = GetEntityCoords(playerped, false)
 		local camcoords = GetGameplayCamCoord()
 		local player = PlayerId()
-		if IsControlJustPressed(0,51) and not (atarrest or atevidence or atcloth or atheal or atgarage or atweapon or athelp) then
+		if IsControlJustPressed(0,51) and not (atarrest or atevidence or atcloth or atheal or atgarage or atweapon or athelp) and (PlayerData.job.name == 'police') then
 			if IsPlayerFreeAiming(player) and IsPedArmed(playerped, 5) then
 				local flag_hasTarget, SelectTarget = GetEntityPlayerIsFreeAimingAt(player)
 				if flag_hasTarget and GetEntityType(SelectTarget) == 1 and GetPedType(SelectTarget) ~=28 and not IsPedAPlayer(SelectTarget) then
@@ -17,7 +17,7 @@ CreateThread(function()
 						local FlagFollowing = false
 						local index = 0
 						local TargetNetID = PedToNet(SelectTarget)
-						
+
 						for i, NetID in ipairs(ClientFollowingList) do
 							if TargetNetID == NetID then
 								FlagFollowing = true
@@ -25,12 +25,12 @@ CreateThread(function()
 								break
 							end
 						end
-						
+
 						if FlagFollowing then
 							table.remove(ClientFollowingList, index)
 							TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 						end
-						
+
 						TriggerEvent('pd5m:int:HavePedSurrender', SelectTarget)
 						Wait(2000)
 					else
@@ -68,7 +68,7 @@ CreateThread(function()
 							local FlagFollowing = false
 							local index = 0
 							local TargetNetID = PedToNet(SelectTarget)
-							
+
 							for i, NetID in ipairs(ClientFollowingList) do
 								if TargetNetID == NetID then
 									FlagFollowing = true
@@ -76,7 +76,7 @@ CreateThread(function()
 									break
 								end
 							end
-							
+
 							if FlagFollowing then
 								table.remove(ClientFollowingList, index)
 								TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
@@ -89,6 +89,17 @@ CreateThread(function()
 					else
 						local flag_hasTarget, targetcoords, targetVeh = GetVehInDirection(camcoords, lookingvector)
 						if flag_hasTarget and GetEntityType(targetVeh) == 2 then
+							if GetVehicleMaxNumberOfPassengers(targetVeh) == -1 then
+								local tarvehx, tarvehy, tarvehz = table.unpack(GetEntityCoords(targetVeh))
+								local pullx, pully, pullz = table.unpack(GetOffsetFromEntityInWorldCoords(targetVeh, 0.0, 10.0, 0.0))
+								local rayHandle = StartShapeTestRay(tarvehx, tarvehy, tarvehz, pullx, pully, pullz, 2, targetVeh, 0)
+								local _,flag_NewVehHit,NewVehCoords,_,NewVehHit = GetShapeTestResult(rayHandle)
+								print(flag_NewVehHit)
+								if flag_NewVehHit then
+									vehcoords = NewVehCoords
+									targetVeh = NewVehHit
+								end
+							end
 							local TargetInVeh = nil
 							for i = -1, 2, 1 do
 								if not IsVehicleSeatFree(targetVeh, i) then
@@ -107,7 +118,7 @@ CreateThread(function()
 									end
 								else
 									local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
-									if distanceToTarget <= 20 then
+									if distanceToTarget <= 25 then
 										TriggerEvent('pd5m:int:initstopcar', targetVeh, true)
 										Wait(2000)
 									else
@@ -125,7 +136,7 @@ CreateThread(function()
 					--Notify('Please get out of your vehicle.')
 				end
 			end
-		end		
+		end
 		flag_hasTarget = false
 		targetcoords = nil
 		distanceToTarget = nil
@@ -154,8 +165,20 @@ AddEventHandler('pd5m:int:initstopcar', function(targetveh)
 	if IsPedInAnyVehicle(playerped, false) and IsPedInAnyPoliceVehicle(playerped) then
 		playerveh = GetVehiclePedIsIn(playerped, false)
 		local pvpos = GetEntityCoords(playerveh)
-		local infrontofplayerveh = GetOffsetFromEntityInWorldCoords(playerveh, 0.0, 15.0, 0.0)
+		local infrontofplayerveh = GetOffsetFromEntityInWorldCoords(playerveh, 0.0, 25.0, 0.0)
 		flag_VehicleSelected, vehcoords, targetveh = GetVehInDirection(pvpos, infrontofplayerveh)
+
+		if GetVehicleMaxNumberOfPassengers(targetveh) == -1 then
+			local tarvehx, tarvehy, tarvehz = table.unpack(GetEntityCoords(targetveh))
+			local pullx, pully, pullz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, 0.0, 10.0, 0.0))
+			local rayHandle = StartShapeTestRay(tarvehx, tarvehy, tarvehz, pullx, pully, pullz, 2, targetveh, 0)
+			local _,flag_NewVehHit,NewVehCoords,_,NewVehHit = GetShapeTestResult(rayHandle)
+			print(flag_NewVehHit)
+			if flag_NewVehHit then
+				vehcoords = NewVehCoords
+				targetveh = NewVehHit
+			end
+		end
 	elseif not IsPedInAnyVehicle(playerped, true) then
 		if GetEntityType(targetveh) == 2 then
 			flag_VehicleSelected = 1
@@ -164,7 +187,7 @@ AddEventHandler('pd5m:int:initstopcar', function(targetveh)
 	end
 	if flag_VehicleSelected == 1 then
 		local TargetVehNetID = VehToNet(targetveh)
-		
+
 		local TargetInVeh = nil
 		for i = -1, 2, 1 do
 			if not IsVehicleSeatFree(targetveh, i) then
@@ -181,13 +204,13 @@ AddEventHandler('pd5m:int:initstopcar', function(targetveh)
 			else
 				local TargetNetID = PedToNet(TargetInVeh)
 				local TargetVehNetID = VehToNet(targetveh)
-				
+
 				local TargetFlagListIndex, TargetVehFlagListIndex = SyncPedAndVeh(TargetInVeh, targetveh)
-				
+
 				InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', TargetInVeh)
-				
+
 				for i, NetID in ipairs(ClientPedNoTalkList) do
 					if NetID == TargetNetID then
 						flagnotalk = true
@@ -248,24 +271,24 @@ AddEventHandler('pd5m:int:inittalk', function(target, flaginveh)
 	local TargetNetID = PedToNet(target)
 	local targetveh = 0
 	local TargetVehNetID = 0
-	
+
 	if flaginveh then
 		targetveh = GetVehiclePedIsIn(target, false)
 		TargetVehNetID = VehToNet(targetveh)
 	end
-	
+
 	TargetFlagListIndex, TargetVehFlagListIndex = SyncPedAndVeh(target, targetveh)
-	
+
 	if flaginveh then
 		InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
 	end
-	
+
 	TriggerEvent('pd5m:int:weaponizeped', target)
-	
+
 	local flagstopped = CheckFlag(TargetNetID, 'Stopped')
 	local flagnotalk = CheckFlag(TargetNetID, 'NoTalk')
 	local flagiscurrentlytalking = CheckFlag(TargetNetID, 'Talking')
-	
+
 	if not flagstopped then
 		if flagnotalk then
 			Notify("The Ped doesn't respond.")
@@ -273,7 +296,7 @@ AddEventHandler('pd5m:int:inittalk', function(target, flaginveh)
 			TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'Stopped')
 			TriggerEvent('pd5m:int:starttalk', target, flaginveh)
 		end
-	else	
+	else
 		if flagiscurrentlytalking then
 			Notify('Ped is currently talking to another officer!')
 		elseif flagnotalk then
@@ -289,10 +312,10 @@ end)
 -- Otherwise it executes the event responsible for the interaction itself.
 -- Do not use this, trigger 'pd5m:int:inittalk'
 AddEventHandler('pd5m:int:starttalk', function(target, flaginveh)
-	
+
 	local playerped = GetPlayerPed(-1)
 	local TargetNetID = PedToNet(target)
-	
+
 	TriggerServerEvent('pd5m:syncsv:ShowCommunication', PedToNet(playerped), TargetNetID, 'One moment please!', 2000)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 
@@ -304,7 +327,7 @@ AddEventHandler('pd5m:int:starttalk', function(target, flaginveh)
 			TriggerEvent('pd5m:int:pedhostile', target, playerped)
 		else
 			TriggerEvent('pd5m:int:pedflee', target, playerped)
-		end	
+		end
 	else
 
 		local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
@@ -314,7 +337,7 @@ AddEventHandler('pd5m:int:starttalk', function(target, flaginveh)
 			SetPedCombatAttributes(target, 46, true)
 			TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 		end
-		
+
 		TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PedToNet(playerped), NormalAddress[math.random(1, #NormalAddress)], 2000)
 		TriggerEvent('pd5m:int:activetalk', target, flaginveh)
 	end
@@ -547,7 +570,7 @@ AddEventHandler('pd5m:int:InformPedInvestigation', function(target, LicenceIndex
 			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowbreathalyzer', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
 		end
 	elseif LicenceIndex == 2 then
 		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformDrugtest[math.random(1, #OFCInformDrugtest)], 2000)
@@ -555,7 +578,7 @@ AddEventHandler('pd5m:int:InformPedInvestigation', function(target, LicenceIndex
 			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowdrugtest', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
 		end
 	elseif LicenceIndex == 3 then
 		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformPersonSearch[math.random(1, #OFCInformPersonSearch)], 2000)
@@ -563,7 +586,7 @@ AddEventHandler('pd5m:int:InformPedInvestigation', function(target, LicenceIndex
 			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowpersonsearch', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
 		end
 	elseif LicenceIndex == 4 then
 		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformCarSearch[math.random(1, #OFCInformCarSearch)], 2000)
@@ -573,7 +596,7 @@ AddEventHandler('pd5m:int:InformPedInvestigation', function(target, LicenceIndex
 			local VehicleNetID = ClientPedConfigList[TargetFlagListIndex].VehicleNetID
 			if VehicleNetID ~= nil and DoesEntityExist(NetToEnt(VehicleNetID)) and GetEntityType(NetToEnt(VehicleNetID)) == 2 then
 				TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowcarsearch', true)
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
 			else
 				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalNoVehicleResponse[math.random(1, #NormalNoVehicleResponse)], 2000)
 			end
@@ -606,7 +629,7 @@ AddEventHandler('pd5m:int:InformPedActions', function(target, LicenceIndex)
 			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowitemconfiscation', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
 		end
 	elseif LicenceIndex == 3 then
 		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformArrest[math.random(1, #OFCInformArrest)], 2000)
@@ -614,7 +637,7 @@ AddEventHandler('pd5m:int:InformPedActions', function(target, LicenceIndex)
 			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowarrest', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
 		end
 	elseif LicenceIndex == 4 then
 		TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, OFCInformFine[math.random(1, #OFCInformFine)], 2000)
@@ -622,7 +645,7 @@ AddEventHandler('pd5m:int:InformPedActions', function(target, LicenceIndex)
 			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
 		else
 			TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowfine', true)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerpedNetID, NormalAcceptOrderResponse[math.random(1, #NormalAcceptOrderResponse)], 2000)
 		end
 	end
 end)
@@ -637,29 +660,29 @@ RegisterNetEvent('pd5m:int:ShowCommunication')
 AddEventHandler('pd5m:int:ShowCommunication', function(NetID, PartnerNetID, text, displaytime)
 	CreateThread(function()
 	-- Cut text into pieces of max 99 chars
-	
+
 	local TalkingPed = NetToPed(NetID)
-	
+
 	if IsPedAPlayer(TalkingPed) or GetPedType(TalkingPed) == 6 or GetPedType(TalkingPed) == 27 then
 		StringTalking = 'Officer: '
 	else
 		StringTalking = 'Ped: '
 	end
-	
+
 	local DisplayText = StringTalking .. text
 	local DisplayTextLength = string.len(DisplayText)
 	DisplayTextMainList = {}
 	DisplayTextSubList = {}
 	local breakloop = false
-	
+
 	if DisplayTextLength > 99 then
 		local n = 1
 		for word in string.gmatch(DisplayText, "%S+") do
 			table.insert(DisplayTextSubList, word)
 			n = n + 1
 		end
-		
-		
+
+
 		local DisplayTextHelpNew = DisplayTextSubList[1]
 		local i = 1
 		while i < n do
@@ -688,16 +711,16 @@ AddEventHandler('pd5m:int:ShowCommunication', function(NetID, PartnerNetID, text
 	else
 		table.insert(DisplayTextMainList, DisplayText)
 	end
-	
+
 	-- check if target or partner is already displaying a message. Wait if yes and print if no
-	
+
 	-- -- note that this is not working properly and needs a revamp.
 	local FlagWaitForTalkingEnd = false
-	
+
 	if DisplayingList["" .. NetID] == true or DisplayingList["" .. PartnerNetID] == true then
 			FlagWaitForTalkingEnd = true
 	end
-	
+
 	while FlagWaitForTalkingEnd do
 		FlagWaitForTalkingEnd = false
 		if DisplayingList["" .. NetID] == true or DisplayingList["" .. PartnerNetID] == true then
@@ -705,9 +728,9 @@ AddEventHandler('pd5m:int:ShowCommunication', function(NetID, PartnerNetID, text
 		end
 		Wait(100)
 	end
-	
+
 	-- Print Messages
-	
+
 	DisplayingList["" .. NetID] = true
 
 	if TalkingPed == GetPlayerPed(-1) then
@@ -753,10 +776,10 @@ AddEventHandler('pd5m:int:activetalk', function(target, flaginveh)
 				Wait(2000)
 			end
 		end)
-		
+
 		--Create if-clause to select the correct Talking-Menu: normal, incar, custom (for missions), (possible additions later on)
 		--Sync using additional ped-flags
-		
+
 		MenuTarget = target
 		MenuTargetNetID = PedToNet(target)
 		MenuPlayerPed = GetPlayerPed(-1)
@@ -766,7 +789,7 @@ AddEventHandler('pd5m:int:activetalk', function(target, flaginveh)
 		while WarMenu.IsMenuOpened('pd5m:int:talkmenu') do
 			Wait(200)
 		end
-		
+
 		TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Talking')
 
 		MenuTarget = nil
@@ -784,15 +807,15 @@ end)
 AddEventHandler('pd5m:int:showid', function(target)
 	local TargetNetID = PedToNet(target)
 	table.insert(ClientPlayerGotPedIDList, TargetNetID)
-	
+
 	local PedHeadHandle = RegisterPedheadshot(target)
-	
+
 	while not IsPedheadshotReady(PedHeadHandle) or not IsPedheadshotValid(PedHeadHandle) do
 		Wait(1000)
 	end
-	
+
 	local PedHeadString = GetPedheadshotTxdString(PedHeadHandle)
-	
+
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local FirstName = ClientPedConfigList[TargetFlagListIndex].FirstName
 	local Surname =  ClientPedConfigList[TargetFlagListIndex].LastName
@@ -801,32 +824,32 @@ AddEventHandler('pd5m:int:showid', function(target)
 	local BirthMonth = tostring(ClientPedConfigList[TargetFlagListIndex].BirthMonth)
 	local BirthDay = tostring(ClientPedConfigList[TargetFlagListIndex].BirthDay)
 	local RandomID = ClientPedConfigList[TargetFlagListIndex].RandomID
-	
+
 	local DateOfBirth = BirthYear .. "/" .. BirthMonth .. "/" .. BirthDay
-	
+
 	BeginTextCommandThefeedPost("TWOSTRINGS")
-	
+
 	AddTextComponentSubstringPlayerName("~y~Surname:			~s~" .. Surname .. "~n~ ~y~First Name:		~s~" .. FirstName .. "~n~ ~y~Gender:			~s~" .. PedGender .. "~n~ ~y~Date of")
 	AddTextComponentSubstringPlayerName("Birth:		~s~" .. DateOfBirth)
-	
+
 	EndTextCommandThefeedPostMessagetext(PedHeadString, PedHeadString, false, 4, 'Identification Card', "~g~" .. RandomID)
 	EndTextCommandThefeedPostTicker(false, false)
-	
+
 	UnregisterPedheadshot(PedHeadHandle)
 end)
 
 AddEventHandler('pd5m:int:showdriverlicence', function(target)
 	local TargetNetID = PedToNet(target)
 	table.insert(ClientPlayerGotPedDriverLicenceList, TargetNetID)
-	
+
 	local PedHeadHandle = RegisterPedheadshot(target)
-	
+
 	while not IsPedheadshotReady(PedHeadHandle) or not IsPedheadshotValid(PedHeadHandle) do
 		Wait(500)
 	end
-	
+
 	local PedHeadString = GetPedheadshotTxdString(PedHeadHandle)
-	
+
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local FirstName = ClientPedConfigList[TargetFlagListIndex].FirstName
 	local Surname =  ClientPedConfigList[TargetFlagListIndex].LastName
@@ -835,32 +858,32 @@ AddEventHandler('pd5m:int:showdriverlicence', function(target)
 	local BirthMonth = tostring(ClientPedConfigList[TargetFlagListIndex].BirthMonth)
 	local BirthDay = tostring(ClientPedConfigList[TargetFlagListIndex].BirthDay)
 	local RandomLicenceID = ClientPedConfigList[TargetFlagListIndex].RandomLicenceID
-	
+
 	local DateOfBirth = BirthYear .. "/" .. BirthMonth .. "/" .. BirthDay
-	
+
 	BeginTextCommandThefeedPost("TWOSTRINGS")
-	
+
 	AddTextComponentSubstringPlayerName("~y~Surname:			~s~" .. Surname .. "~n~ ~y~First Name:		~s~" .. FirstName .. "~n~ ~y~Gender:			~s~" .. PedGender .. "~n~ ~y~Date of")
 	AddTextComponentSubstringPlayerName("Birth:		~s~" .. DateOfBirth)
-	
+
 	EndTextCommandThefeedPostMessagetext(PedHeadString, PedHeadString, false, 4, "Driver's Licence", "~g~" .. RandomLicenceID)
 	EndTextCommandThefeedPostTicker(false, false)
-	
+
 	UnregisterPedheadshot(PedHeadHandle)
 end)
 
 AddEventHandler('pd5m:int:showweaponpermit', function(target)
 	local TargetNetID = PedToNet(target)
 	table.insert(ClientPlayerGotPedWeaponPermitList, TargetNetID)
-	
+
 	local PedHeadHandle = RegisterPedheadshot(target)
-	
+
 	while not IsPedheadshotReady(PedHeadHandle) or not IsPedheadshotValid(PedHeadHandle) do
 		Wait(500)
 	end
-	
+
 	local PedHeadString = GetPedheadshotTxdString(PedHeadHandle)
-	
+
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local FirstName = ClientPedConfigList[TargetFlagListIndex].FirstName
 	local Surname =  ClientPedConfigList[TargetFlagListIndex].LastName
@@ -869,17 +892,17 @@ AddEventHandler('pd5m:int:showweaponpermit', function(target)
 	local BirthMonth = tostring(ClientPedConfigList[TargetFlagListIndex].BirthMonth)
 	local BirthDay = tostring(ClientPedConfigList[TargetFlagListIndex].BirthDay)
 	local RandomWeaponID = ClientPedConfigList[TargetFlagListIndex].RandomWeaponID
-	
+
 	local DateOfBirth = BirthYear .. "/" .. BirthMonth .. "/" .. BirthDay
-	
+
 	BeginTextCommandThefeedPost("TWOSTRINGS")
-	
+
 	AddTextComponentSubstringPlayerName("~y~Surname:			~s~" .. Surname .. "~n~ ~y~First Name:		~s~" .. FirstName .. "~n~ ~y~Gender:			~s~" .. PedGender .. "~n~ ~y~Date of")
 	AddTextComponentSubstringPlayerName("Birth:		~s~" .. DateOfBirth)
-	
+
 	EndTextCommandThefeedPostMessagetext(PedHeadString, PedHeadString, false, 4, "Weapon Permit", "~g~" .. RandomWeaponID)
 	EndTextCommandThefeedPostTicker(false, false)
-	
+
 	UnregisterPedheadshot(PedHeadHandle)
 end)
 
@@ -899,8 +922,16 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 	local playerveh = nil
 	local vehiclehash = GetEntityModel(targetveh)
 	local CutoffInteger = 0
+
+	local TrafficLight = IsVehicleStoppedAtTrafficLights(targetveh)
+	while TrafficLight do
+		print('Stopped at traffic lights.')
+		TrafficLight = IsVehicleStoppedAtTrafficLights(targetveh)
+		Wait(5000)
+	end
+
 	SetBlockingOfNonTemporaryEvents(TargetInVeh, true)
-	
+
 	while GetEntitySpeed(targetveh) > 6.0 and CutoffInteger < 500 do
 		print('Breaking')
 		CutoffInteger = CutoffInteger + 1
@@ -921,11 +952,11 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 		local coordx, coordy, coordz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, 0.0, 100.0, 0.0))
 		TaskVehicleDriveToCoord(TargetInVeh, targetveh, coordx, coordy, coordz, 6.0, 2.0, vehiclehash, 171, 2.0, true)
 		Wait(50)
-		
+
 		local NumberOfTriesPullingOff = 0
 		local NumberOfTries = 0
 		local BreakWhileLoops = false
-		
+
 		while IsPointOnRoad(GetEntityCoords(targetveh)) and not BreakWhileLoops and CutoffInteger < 500 do
 			CutoffInteger = CutoffInteger + 1
 			print(CutoffInteger)
@@ -952,7 +983,7 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 				local coordx, coordy, coordz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, 11.0, 30.0, 0.0))
 				TaskVehicleDriveToCoord(TargetInVeh, targetveh, coordx, coordy, coordz, 6.0, 2.0, vehiclehash, 21758123, 2.0, true)
 				Wait(800)
-			
+
 				local AngleTurned = GetEntityHeading(targetveh) - TargetVehHeading
 				while AngleTurned < - 180 do
 					AngleTurned = AngleTurned + 360
@@ -966,9 +997,9 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 				if AngleTurned < 7 and AngleTurned > -7 and GetEntitySpeed(targetveh) > 1.0 then
 					BreakWhileLoops = true
 				end
-				
+
 				local OffsetX = 4.0
-				
+
 				while IsPointOnRoad(GetEntityCoords(targetveh)) and NumberOfTries < 61 and not BreakWhileLoops and CutoffInteger < 500 do
 					CutoffInteger = CutoffInteger + 1
 					print(CutoffInteger)
@@ -978,7 +1009,7 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 					print('Driving forward')
 					local coordx, coordy, coordz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, OffsetX, 30.0, 0.0))
 					TaskVehicleDriveToCoord(TargetInVeh, targetveh, coordx, coordy, coordz, 6.0, 2.0, vehiclehash, 21758123, 2.0, true)
-					
+
 					local AngleTurnedInside = GetEntityHeading(targetveh) - TargetVehHeading
 					while AngleTurnedInside < - 180 do
 						AngleTurnedInside = AngleTurnedInside + 360
@@ -1009,9 +1040,9 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 					end
 				end
 			end
-			
+
 			Wait(100)
-			
+
 			if BreakWhileLoops then
 				while GetEntitySpeed(targetveh) > 0.2 and CutoffInteger < 500 do
 					CutoffInteger = CutoffInteger + 1
@@ -1031,9 +1062,9 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 				TaskVehicleTempAction(TargetInVeh, targetvesh, 20, 15)
 				Wait(15)
 			end
-			
+
 			ClearPedTasks(TargetInVeh)
-			
+
 			while GetEntitySpeed(targetveh) > 0.2 and CutoffInteger < 500 do
 				CutoffInteger = CutoffInteger + 1
 				print(CutoffInteger)
@@ -1103,14 +1134,14 @@ AddEventHandler('pd5m:int:search', function()
 	local TargetFlagListIndex = nil
 	local flagallowpersonsearch = false
 	local flagallowcarsearch = false
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, target = GetPedInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(target) == 1 and GetPedType(target) ~=28 and not IsPedAPlayer(target) then
 			local FlagFollowing = false
 			local index = 0
 			TargetNetID = PedToNet(target)
-			
+
 			for i, NetID in ipairs(ClientFollowingList) do
 				if TargetNetID == NetID then
 					FlagFollowing = true
@@ -1118,55 +1149,55 @@ AddEventHandler('pd5m:int:search', function()
 					break
 				end
 			end
-			
+
 			if FlagFollowing then
 				table.remove(ClientFollowingList, index)
 				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 			end
-			
+
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 			if distanceToTarget <= 2.0 then
 				makeEntityFaceEntity(playerped, target)
 				Wait(1000)
-				
+
 				TargetNetID = PedToNet(target)
-				
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', target)
-				
+
 				local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-				
+
 				if not FlagNoFear then
 					SetBlockingOfNonTemporaryEvents(target, true)
 					SetPedCombatAttributes(target, 46, true)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 				end
-				
+
 				flagallowpersonsearch = ClientPedConfigList[TargetFlagListIndex].flagallowpersonsearch
 				if flagallowpersonsearch then
 					local newtargetheading = GetEntityHeading(playerped)
 					TaskAchieveHeading(target, newtargetheading, 1000)
 					Wait(1000)
-					
+
 					TaskStartScenarioInPlace(playerped, "PROP_HUMAN_BUM_BIN", 0, 1)
-					
+
 					Wait(3500)
-					
+
 					local savepeditems = ClientPedConfigList[TargetFlagListIndex].savepeditems
-					
+
 					local PedHeadHandle = RegisterPedheadshot(target)
-	
+
 					while not IsPedheadshotReady(PedHeadHandle) or not IsPedheadshotValid(PedHeadHandle) do
 						Wait(1000)
 					end
-					
+
 					local PedHeadString = GetPedheadshotTxdString(PedHeadHandle)
 
 					local founditems = nil
 					local founditems2 = nil
 					local secondpost = false
-					
+
 					if #savepeditems == 0 then
 						founditems = "No items found."
 					else
@@ -1187,31 +1218,31 @@ AddEventHandler('pd5m:int:search', function()
 							end
 						end
 					end
-					
+
 					BeginTextCommandThefeedPost("TWOSTRINGS")
 					AddTextComponentSubstringPlayerName(founditems)
 					EndTextCommandThefeedPostMessagetext(PedHeadString, PedHeadString, false, 4, "Search results", "")
 					EndTextCommandThefeedPostTicker(false, false)
-					
+
 					if secondpost then
 						BeginTextCommandThefeedPost("TWOSTRINGS")
 						AddTextComponentSubstringPlayerName(founditems2)
 						EndTextCommandThefeedPostTicker(false, false)
 					end
-					
+
 					UnregisterPedheadshot(PedHeadHandle)
-					
+
 					Wait(1000)
-					
+
 					ClearPedTasks(playerped)
-					
+
 					Wait(500)
-					
+
 					makeEntityFaceEntity(target, playerped)
-					
+
 				else
 					TriggerEvent('pd5m:int:PedResistAction', target, 1)
-				end				
+				end
 			else
 				Notify('Too far away.')
 			end
@@ -1221,49 +1252,49 @@ AddEventHandler('pd5m:int:search', function()
 				local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 				if distanceToTarget <= 4.0 then
 					if GetVehicleNumberOfPassengers(targetveh) == 0 and IsVehicleSeatFree(targetveh, -1) then
-						
+
 						TargetVehNetID = PedToNet(targetveh)
-				
+
 						_, TargetVehFlagListIndex = SyncPedAndVeh(0, targetveh)
-						
+
 						TargetNetID = ClientVehConfigList[TargetVehFlagListIndex].PedNetID
-						
+
 						if TargetNetID == 0 or TargetNetID == nil then
 							flagallowcarsearch = true
 						else
 							target = NetToEnt(TargetNetID)
 							if DoesEntityExist(target) and not IsEntityDead(target) then
 								TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-								
+
 								InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
-								
+
 								TriggerEvent('pd5m:int:weaponizeped', target)
-								
+
 								local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-								
+
 								if not FlagNoFear then
 									SetBlockingOfNonTemporaryEvents(target, true)
 									SetPedCombatAttributes(target, 46, true)
 									TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 								end
-								
+
 								flagallowcarsearch = ClientPedConfigList[TargetFlagListIndex].flagallowcarsearch
 							else
 								flagallowcarsearch = true
 							end
 						end
-						
+
 						if flagallowcarsearch then
 							TaskStartScenarioInPlace(playerped, "PROP_HUMAN_BUM_BIN", 0, 1)
-					
+
 							Wait(3500)
-							
+
 							local savevehitems = ClientVehConfigList[TargetVehFlagListIndex].savevehitems
 
 							local founditems = nil
 							local founditems2 = nil
 							local secondpost = false
-							
+
 							if #savevehitems == 0 then
 								founditems = "No items found."
 							else
@@ -1284,24 +1315,24 @@ AddEventHandler('pd5m:int:search', function()
 									end
 								end
 							end
-							
+
 							BeginTextCommandThefeedPost("TWOSTRINGS")
 							AddTextComponentSubstringPlayerName(founditems)
 							EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Search results", "")
 							EndTextCommandThefeedPostTicker(false, false)
-							
+
 							if secondpost then
 								BeginTextCommandThefeedPost("TWOSTRINGS")
 								AddTextComponentSubstringPlayerName(founditems2)
 								EndTextCommandThefeedPostTicker(false, false)
 							end
-							
+
 							Wait(1000)
-							
+
 							ClearPedTasks(playerped)
 						else
 							Notify('Car cannot be searched.')
-						end						
+						end
 					else
 						Notify('Car is not empty.')
 					end
@@ -1325,7 +1356,7 @@ AddEventHandler('pd5m:int:breathalyzer', function()
 	local FlagTargetInClientPedList = false
 	local TargetFlagListIndex = nil
 	local flagallowbreathalyzer = false
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, target = GetPedInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(target) == 1 and GetPedType(target) ~=28 and not IsPedAPlayer(target) then
@@ -1333,12 +1364,12 @@ AddEventHandler('pd5m:int:breathalyzer', function()
 			if distanceToTarget <= 2.0 then
 				makeEntityFaceEntity(playerped, target)
 				Wait(1000)
-			
+
 				TargetNetID = PedToNet(target)
-				
+
 				local FlagFollowing = false
 				local index = 0
-				
+
 				for i, NetID in ipairs(ClientFollowingList) do
 					if TargetNetID == NetID then
 						FlagFollowing = true
@@ -1346,66 +1377,66 @@ AddEventHandler('pd5m:int:breathalyzer', function()
 						break
 					end
 				end
-				
+
 				if FlagFollowing then
 					table.remove(ClientFollowingList, index)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 				end
-				
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', target)
-				
+
 				local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-				
+
 				if not FlagNoFear then
 					SetBlockingOfNonTemporaryEvents(target, true)
 					SetPedCombatAttributes(target, 46, true)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 				end
-				
+
 				flagallowbreathalyzer = ClientPedConfigList[TargetFlagListIndex].flagallowbreathalyzer
-				if flagallowbreathalyzer then					
+				if flagallowbreathalyzer then
 					makeEntityFaceEntity(target, playerped)
 
 					Wait(1000)
-					
+
 					local oldheading = GetEntityHeading(playerped)
 					local newheading = oldheading + 40
 					TaskAchieveHeading(playerped, newheading, 1000)
-					
+
 					Wait(1000)
-					
+
 					loadAnimDict("missmic4premiere")
-					
+
 					TaskPlayAnim(playerped, "missmic4premiere", "interview_short_lazlow", 4.0, 4.0, -1, 0, 0.0, 0, 0, 0)
-					
+
 					Wait(2000)
-					
+
 					local savedrunklevel = ClientPedConfigList[TargetFlagListIndex].savedrunklevel
-					
+
 					local savedrunklevelBAC = savedrunklevel / 10
-					
+
 					local PedHeadHandle = RegisterPedheadshot(target)
 					while not IsPedheadshotReady(PedHeadHandle) or not IsPedheadshotValid(PedHeadHandle) do
 						Wait(1000)
 					end
-					
+
 					local PedHeadString = GetPedheadshotTxdString(PedHeadHandle)
 					BeginTextCommandThefeedPost("TWOSTRINGS")
 					AddTextComponentSubstringPlayerName("The breathalyzer shows a breath alcohol level of ~y~")
 					AddTextComponentSubstringPlayerName(savedrunklevel .. " ‰ ~s~or ~y~" .. savedrunklevelBAC .. " BAC~s~.")
 					EndTextCommandThefeedPostMessagetext(PedHeadString, PedHeadString, false, 4, "Breathalyzer", "Test results")
 					EndTextCommandThefeedPostTicker(false, false)
-					
+
 					UnregisterPedheadshot(PedHeadHandle)
 					Wait(1000)
-					
-					ClearPedTasks(playerped)					
+
+					ClearPedTasks(playerped)
 					SetEntityHeading(playerped, oldheading)
 				else
 					TriggerEvent('pd5m:int:PedResistAction', target, 1)
-				end				
+				end
 			else
 				Notify('Too far away.')
 			end
@@ -1425,7 +1456,7 @@ AddEventHandler('pd5m:int:drugtest', function()
 	local FlagTargetInClientPedList = false
 	local TargetFlagListIndex = nil
 	local flagallowdrugtest = false
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, target = GetPedInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(target) == 1 and GetPedType(target) ~=28 and not IsPedAPlayer(target) then
@@ -1434,12 +1465,12 @@ AddEventHandler('pd5m:int:drugtest', function()
 
 				makeEntityFaceEntity(playerped, target)
 				Wait(1000)
-				
+
 				TargetNetID = PedToNet(target)
-				
+
 				local FlagFollowing = false
 				local index = 0
-				
+
 				for i, NetID in ipairs(ClientFollowingList) do
 					if TargetNetID == NetID then
 						FlagFollowing = true
@@ -1447,53 +1478,53 @@ AddEventHandler('pd5m:int:drugtest', function()
 						break
 					end
 				end
-				
+
 				if FlagFollowing then
 					table.remove(ClientFollowingList, index)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 				end
-				
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', target)
-				
+
 				local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-				
+
 				if not FlagNoFear then
 					SetBlockingOfNonTemporaryEvents(target, true)
 					SetPedCombatAttributes(target, 46, true)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 				end
-				
+
 				flagallowdrugtest = ClientPedConfigList[TargetFlagListIndex].flagallowdrugtest
 				if flagallowdrugtest then
 					makeEntityFaceEntity(target, playerped)
 
 					Wait(1000)
-					
+
 					local oldheading = GetEntityHeading(playerped)
 					local newheading = oldheading + 40
 					TaskAchieveHeading(playerped, newheading, 1000)
-					
+
 					Wait(1000)
-					
+
 					loadAnimDict("missmic4premiere")
-					
+
 					TriggerServerEvent('pd5m:syncsv:TaskPlayAnim', playerped, "missmic4premiere", "interview_short_lazlow", 4.0, 4.0, -1, 0, 0.0, 0, 0, 0)
-					
+
 					Wait(2000)
-					
+
 					local flagdrug = ClientPedConfigList[TargetFlagListIndex].flagdrug
 					local savedrug = ClientPedConfigList[TargetFlagListIndex].savedrug
 					local savedruglevel = ClientPedConfigList[TargetFlagListIndex].savedruglevel
-					
+
 					local PedHeadHandle = RegisterPedheadshot(target)
 					while not IsPedheadshotReady(PedHeadHandle) or not IsPedheadshotValid(PedHeadHandle) do
 						Wait(1000)
 					end
-					
+
 					local PedHeadString = GetPedheadshotTxdString(PedHeadHandle)
-					
+
 					if flagdrug then
 						BeginTextCommandThefeedPost("TWOSTRINGS")
 						AddTextComponentSubstringPlayerName("The quick drug test shows traces of ~y~" .. savedrug .. "~s~ in the suspect's saliva.")
@@ -1506,11 +1537,11 @@ AddEventHandler('pd5m:int:drugtest', function()
 						EndTextCommandThefeedPostMessagetext(PedHeadString, PedHeadString, false, 4, "Drug test", "Test results")
 						EndTextCommandThefeedPostTicker(false, false)
 					end
-					
+
 					UnregisterPedheadshot(PedHeadHandle)
 					Wait(1000)
-					
-					ClearPedTasks(playerped)					
+
+					ClearPedTasks(playerped)
 					SetEntityHeading(playerped, oldheading)
 				else
 					TriggerEvent('pd5m:int:PedResistAction', target, 1)
@@ -1536,20 +1567,20 @@ AddEventHandler('pd5m:int:seizecar', function()
 	local TargetVehFlagListIndex = nil
 	local TargetFlagListIndex = nil
 	local flagseizecar = false
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, targetveh = GetVehInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(targetveh) == 2 then
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 			if distanceToTarget <= 4.0 then
 				if GetVehicleNumberOfPassengers(targetveh) == 0 and IsVehicleSeatFree(targetveh, -1) then
-					
+
 					TargetVehNetID = VehToNet(targetveh)
-					
+
 					_, TargetVehFlagListIndex = SyncPedAndVeh(0, targetveh)
-					
+
 					TargetNetID = ClientVehConfigList[TargetVehFlagListIndex].PedNetID
-					
+
 					if TargetNetID ~= 0 and TargetNetID ~= nil then
 						target = NetToPed(TargetNetID)
 						if DoesEntityExist(target) and not IsEntityDead(target) then
@@ -1566,19 +1597,19 @@ AddEventHandler('pd5m:int:seizecar', function()
 					else
 						flagseizecar = true
 					end
-					
+
 					if flagseizecar then
 						SetVehicleCanBeUsedByFleeingPeds(targetveh, false)
 						SetVehicleDoorsShut(targetveh, false)
 						SetVehicleDoorsLocked(targetveh, 2)
-						
+
 						BeginTextCommandThefeedPost("TWOSTRINGS")
 						AddTextComponentSubstringPlayerName("You seized and locked the car. Call a towtruck to remove the vehicle.")
 						EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Police measure", "")
 						EndTextCommandThefeedPostTicker(false, false)
 					else
 						Notify('You cannot seize this car.')
-					end					
+					end
 				else
 					Notify('Car is not empty.')
 				end
@@ -1602,7 +1633,7 @@ AddEventHandler('pd5m:int:confiscateitems', function()
 	local FlagTargetInClientPedList = false
 	local TargetFlagListIndex = nil
 	local flagallowitemconfiscation = false
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, target = GetPedInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(target) == 1 and GetPedType(target) ~=28 and not IsPedAPlayer(target) then
@@ -1610,12 +1641,12 @@ AddEventHandler('pd5m:int:confiscateitems', function()
 			if distanceToTarget <= 2.0 then
 				makeEntityFaceEntity(playerped, target)
 				Wait(1000)
-				
+
 				TargetNetID = PedToNet(target)
-				
+
 				local FlagFollowing = false
 				local index = 0
-				
+
 				for i, NetID in ipairs(ClientFollowingList) do
 					if TargetNetID == NetID then
 						FlagFollowing = true
@@ -1623,66 +1654,66 @@ AddEventHandler('pd5m:int:confiscateitems', function()
 						break
 					end
 				end
-				
+
 				if FlagFollowing then
 					table.remove(ClientFollowingList, index)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 				end
-				
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', target)
-				
+
 				local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-				
+
 				if not FlagNoFear then
 					SetBlockingOfNonTemporaryEvents(target, true)
 					SetPedCombatAttributes(target, 46, true)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 				end
-				
+
 				flagallowitemconfiscation = ClientPedConfigList[TargetFlagListIndex].flagallowitemconfiscation
 				if flagallowitemconfiscation then
 					local newtargetheading = GetEntityHeading(playerped)
 					TaskAchieveHeading(target, newtargetheading, 1000)
 					Wait(1000)
-					
+
 					TaskStartScenarioInPlace(playerped, "PROP_HUMAN_BUM_BIN", 0, 1)
-					
+
 					Wait(3500)
-					
+
 					local savepeditems = ClientPedConfigList[TargetFlagListIndex].savepeditems
-					
+
 					for i, item in ipairs(savepeditems) do
 						table.insert(ClientItemsList, item)
 					end
-					
+
 					TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'savepeditems', {})
-					
+
 					local PedHeadHandle = RegisterPedheadshot(target)
-	
+
 					while not IsPedheadshotReady(PedHeadHandle) or not IsPedheadshotValid(PedHeadHandle) do
 						Wait(1000)
 					end
-					
+
 					local PedHeadString = GetPedheadshotTxdString(PedHeadHandle)
-					
+
 					BeginTextCommandThefeedPost("TWOSTRINGS")
-					
+
 					AddTextComponentSubstringPlayerName("You confiscated the items of the suspect.")
 					EndTextCommandThefeedPostMessagetext(PedHeadString, PedHeadString, false, 4, "Police measure", "")
 					EndTextCommandThefeedPostTicker(false, false)
-					
+
 					UnregisterPedheadshot(PedHeadHandle)
-					
+
 					Wait(1000)
-					
+
 					ClearPedTasks(playerped)
-					
+
 					Wait(500)
-					
+
 					makeEntityFaceEntity(target, playerped)
-					
+
 				else
 					TriggerEvent('pd5m:int:PedResistAction', target, 2)
 				end
@@ -1696,61 +1727,61 @@ AddEventHandler('pd5m:int:confiscateitems', function()
 				if distanceToTarget <= 4.0 then
 					if GetVehicleNumberOfPassengers(targetveh) == 0 and IsVehicleSeatFree(targetveh, -1) then
 						TargetVehNetID = PedToNet(targetveh)
-				
+
 						_, TargetVehFlagListIndex = SyncPedAndVeh(0, targetveh)
-						
+
 						TargetNetID = ClientVehConfigList[TargetVehFlagListIndex].PedNetID
-						
+
 						if TargetNetID == 0 or TargetNetID == nil then
 							flagallowitemconfiscation = true
 						else
 							target = NetToEnt(TargetNetID)
 							if DoesEntityExist(target) then
 								TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-								
+
 								InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
-								
+
 								TriggerEvent('pd5m:int:weaponizeped', target)
-								
+
 								local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-								
+
 								if not FlagNoFear then
 									SetBlockingOfNonTemporaryEvents(target, true)
 									SetPedCombatAttributes(target, 46, true)
 									TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 								end
-								
+
 								flagallowitemconfiscation = ClientPedConfigList[TargetFlagListIndex].flagallowitemconfiscation
-								
+
 							else
 								flagallowitemconfiscation = true
 							end
 						end
-						
+
 						if flagallowitemconfiscation then
 							TaskStartScenarioInPlace(playerped, "PROP_HUMAN_BUM_BIN", 0, 1)
-					
+
 							Wait(3500)
-							
+
 							local savevehitems = ClientVehConfigList[TargetVehFlagListIndex].savevehitems
 
 							for i, item in ipairs(savevehitems) do
 								table.insert(ClientItemsList, item)
 							end
-							
+
 							TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'savevehitems', {})
-							
+
 							BeginTextCommandThefeedPost("TWOSTRINGS")
 							AddTextComponentSubstringPlayerName("You confiscated the items in the car.")
 							EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Police measure", "")
 							EndTextCommandThefeedPostTicker(false, false)
-							
+
 							Wait(1000)
-							
+
 							ClearPedTasks(playerped)
 						else
 							Notify('You cannot confiscate items from this car.')
-						end	
+						end
 					else
 						Notify('Car is not empty.')
 					end
@@ -1775,7 +1806,7 @@ AddEventHandler('pd5m:int:fineped', function()
 	local FlagTargetInClientPedList = false
 	local TargetFlagListIndex = nil
 	local flagallowfine = false
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, target = GetPedInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(target) == 1 and GetPedType(target) ~=28 and not IsPedAPlayer(target) then
@@ -1783,12 +1814,12 @@ AddEventHandler('pd5m:int:fineped', function()
 			if distanceToTarget <= 2.0 then
 				makeEntityFaceEntity(playerped, target)
 				Wait(1000)
-				
+
 				TargetNetID = PedToNet(target)
-				
+
 				local FlagFollowing = false
 				local index = 0
-				
+
 				for i, NetID in ipairs(ClientFollowingList) do
 					if TargetNetID == NetID then
 						FlagFollowing = true
@@ -1796,42 +1827,46 @@ AddEventHandler('pd5m:int:fineped', function()
 						break
 					end
 				end
-				
+
 				if FlagFollowing then
 					table.remove(ClientFollowingList, index)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 				end
-					
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', target)
-				
+
 				local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-				
+
 				if not FlagNoFear then
 					SetBlockingOfNonTemporaryEvents(target, true)
 					SetPedCombatAttributes(target, 46, true)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 				end
-				
+
 				flagallowfine = ClientPedConfigList[TargetFlagListIndex].flagallowfine
 				if flagallowfine then
 					FineHeight = "Amount to fine in $."
 					FineText = ""
-					
-					AddTextEntry('RunIDLabel', FineText)
-					DisplayOnscreenKeyboard(6, "RunIDLabel", "", FineHeight, "", "", "", 30)
+
+					AddTextEntry('RunIDLabel', FineHeight)
+					DisplayOnscreenKeyboard(6, "RunIDLabel", "", FineText, "", "", "", 30)
 					while (UpdateOnscreenKeyboard() == 0) do
 						DisableAllControlActions(0)
 						Wait(0)
 					end
 					if (GetOnscreenKeyboardResult()) then
 						local result = tonumber(GetOnscreenKeyboardResult())
-						if IsInt(result) then
-							BeginTextCommandThefeedPost("TWOSTRINGS")
-							AddTextComponentSubstringPlayerName("You fined the suspect for a total of ~y~" .. result .. " $~s~.")
-							EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Police measure", "")
-							EndTextCommandThefeedPostTicker(false, false)
+						if result ~= nil then
+							if IsInt(result) then
+								BeginTextCommandThefeedPost("TWOSTRINGS")
+								AddTextComponentSubstringPlayerName("You fined the suspect for a total of ~y~" .. result .. " $~s~.")
+								EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Police measure", "")
+								EndTextCommandThefeedPostTicker(false, false)
+							else
+								Notify('Please enter a valid amount.')
+							end
 						else
 							Notify('Please enter a valid amount.')
 						end
@@ -1839,7 +1874,7 @@ AddEventHandler('pd5m:int:fineped', function()
 				else
 					TriggerEvent('pd5m:int:PedResistAction', target, 2)
 				end
-				
+
 			else
 				Notify('Too far away.')
 			end
@@ -1856,24 +1891,24 @@ AddEventHandler('pd5m:int:fineped', function()
 					end
 					if TargetInVeh ~= 0 and TargetInVeh ~= nil and not IsPedAPlayer(TargetInVeh) then
 						TargetNetID = PedToNet(TargetInVeh)
-				
+
 						TargetFlagListIndex, _ = SyncPedAndVeh(TargetInVeh, 0)
-						
+
 						TriggerEvent('pd5m:int:weaponizeped', TargetInVeh)
-						
+
 						local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-						
+
 						if not FlagNoFear then
 							SetBlockingOfNonTemporaryEvents(TargetInVeh, true)
 							SetPedCombatAttributes(TargetInVeh, 46, true)
 							TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 						end
-						
+
 						flagallowfine = ClientPedConfigList[TargetFlagListIndex].flagallowfine
 						if flagallowfine then
 							FineHeight = "Amount to fine in $."
 							FineText = "Enter the amount you want to fine the suspect."
-							
+
 							AddTextEntry('RunIDLabel', FineText)
 							DisplayOnscreenKeyboard(6, "RunIDLabel", "", FineHeight, "", "", "", 30)
 							while (UpdateOnscreenKeyboard() == 0) do
@@ -1921,18 +1956,18 @@ AddEventHandler('pd5m:int:arrestped', function()
 	local FlagTargetInClientPedList = false
 	local TargetFlagListIndex = nil
 	local flagallowarrest = false
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, target = GetPedInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(target) == 1 and GetPedType(target) ~=28 and not IsPedAPlayer(target) then
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 			if distanceToTarget <= 2.0 then
-			
+
 				TargetNetID = PedToNet(target)
-				
+
 				local FlagFollowing = false
 				local index = 0
-				
+
 				for i, NetID in ipairs(ClientFollowingList) do
 					if TargetNetID == NetID then
 						FlagFollowing = true
@@ -1940,24 +1975,24 @@ AddEventHandler('pd5m:int:arrestped', function()
 						break
 					end
 				end
-				
+
 				if FlagFollowing then
 					table.remove(ClientFollowingList, index)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 				end
-				
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', target)
-				
+
 				local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-				
+
 				if not FlagNoFear then
 					SetBlockingOfNonTemporaryEvents(target, true)
 					SetPedCombatAttributes(target, 46, true)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 				end
-				
+
 				flagallowarrest = ClientPedConfigList[TargetFlagListIndex].flagallowarrest
 				if CheckFlag(TargetNetID, 'Arrested') then
 					SetEnableHandcuffs(target, false)
@@ -1967,19 +2002,19 @@ AddEventHandler('pd5m:int:arrestped', function()
 					local PlayerpedNetID = PedToNet(playerped)
 
 					TriggerServerEvent('pd5m:syncsv:unhandcuffingevent', TargetNetID, PlayerpedNetID)
-					
+
 				elseif flagallowarrest then
 					TriggerEvent('pd5m:sync:PedSetAllAllowConfigFlags', target, true)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'Stopped')
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'Arrested')
-					
+
 					local PlayerpedNetID = PedToNet(playerped)
-					
+
 					--TriggerEvent('pd5m:int:handcuffingevent', TargetNetID, PlayerpedNetID)
-					
+
 					TriggerServerEvent('pd5m:syncsv:handcuffingevent', TargetNetID, PlayerpedNetID)
-					
+
 					--[[CreateThread(function()
 						local FlagContinue = true
 						local ThreadTarget = target
@@ -1991,7 +2026,7 @@ AddEventHandler('pd5m:int:arrestped', function()
 								FlagContinue = true
 								loadAnimDict("mp_arresting")
 								if IsEntityPlayingAnim(target, "mp_arresting", "idle", 3) then
-								
+
 								else
 									TriggerServerEvent('pd5m:syncsv:TaskPlayAnim', target, "mp_arresting", "idle", 8.0, -8, -1, 50, 0.0, 0, 0, 0)
 									SetPedCanPlayGestureAnims(target, false)
@@ -2000,7 +2035,7 @@ AddEventHandler('pd5m:int:arrestped', function()
 							Wait(500)
 						end
 					end)]]
-					
+
 				else
 					TriggerEvent('pd5m:int:PedResistAction', target, 3)
 				end
@@ -2017,14 +2052,14 @@ RegisterNetEvent('pd5m:int:handcuffingevent')
 AddEventHandler('pd5m:int:handcuffingevent', function(TargetNetID, PlayerpedNetID)
 	local playerped = NetToPed(PlayerpedNetID)
 	local target = NetToPed(TargetNetID)
-	
+
 	makeEntityFaceEntity(playerped, target)
 	local newtargetheading = GetEntityHeading(playerped)
 	TaskAchieveHeading(target, newtargetheading, 1000)
-	
+
 	loadAnimDict("mp_arresting")
-	
-	Wait(1000)	
+
+	Wait(1000)
 
 	TaskPlayAnim(playerped, "mp_arresting", "a_uncuff", 8.0, -8, -1, 0, 0.0, 0, 0, 0)
 	TaskPlayAnim(target, "mp_arresting", "idle", 8.0, 8.0, -1, 51, 1.0, 0, 0, 0)
@@ -2043,11 +2078,11 @@ CreateThread(function()
 	while true do
 		for i, TargetNetID in ipairs(ClientPedArrestedList) do
 			local target = NetToPed(TargetNetID)
-			
+
 			loadAnimDict("mp_arresting")
-			
+
 			if IsEntityPlayingAnim(target, "mp_arresting", "idle", 3) then
-			
+
 			else
 				TaskPlayAnim(target, "mp_arresting", "idle", 8.0, 8.0, -1, 51, 1.0, 0, 0, 0)
 			end
@@ -2060,26 +2095,26 @@ RegisterNetEvent('pd5m:int:unhandcuffingevent')
 AddEventHandler('pd5m:int:unhandcuffingevent', function(TargetNetID, PlayerpedNetID)
 	local playerped = NetToPed(PlayerpedNetID)
 	local target = NetToPed(TargetNetID)
-	
+
 	makeEntityFaceEntity(playerped, target)
 	local newtargetheading = GetEntityHeading(playerped)
 	TaskAchieveHeading(target, newtargetheading, 1000)
-	
+
 	Wait(1000)
-	
+
 	loadAnimDict("mp_arresting")
-	
+
 	TaskPlayAnim(playerped, "mp_arresting", "a_uncuff", 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 	Wait(2000)
 	TaskPlayAnim(target, "mp_arresting", "idle", 99999.0, 8.0, -1, 0, 0.0, 0, 0, 0)
-	
+
 	ClearPedTasks(target)
 	SetPedCanPlayGestureAnims(target, true)
 	SetPedCanPlayAmbientAnims(target, true)
 	SetPedCanPlayAmbientBaseAnims(target, true)
 	SetPedCanPlayInjuredAnims(target, true)
 	SetPedCanPlayVisemeAnims(target, true, 0)
-	
+
 end)
 
 RegisterNetEvent('pd5m:int:letpedfollow')
@@ -2091,29 +2126,29 @@ AddEventHandler('pd5m:int:letpedfollow', function()
 	local lookingvector = GetPlayerLookingVector(playerped, 30)
 	local TargetNetID = nil
 	local TargetFlagListIndex = nil
-	
+
 	if not IsPedInAnyVehicle(playerped, true) then
 		local flag_hasTarget, targetcoords, target = GetPedInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(target) == 1 and GetPedType(target) ~=28 and not IsPedAPlayer(target) then
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 			if distanceToTarget <= 5.0 then
 				TargetNetID = PedToNet(target)
-				
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', target)
-				
+
 				local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-				
+
 				if not FlagNoFear then
 					SetBlockingOfNonTemporaryEvents(target, true)
 					SetPedCombatAttributes(target, 46, true)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 				end
-				
+
 				local FlagFollowing = false
 				local index = 0
-				
+
 				for i, NetID in ipairs(ClientFollowingList) do
 					if TargetNetID == NetID then
 						FlagFollowing = true
@@ -2121,7 +2156,7 @@ AddEventHandler('pd5m:int:letpedfollow', function()
 						break
 					end
 				end
-				
+
 				if FlagFollowing then
 					table.remove(ClientFollowingList, index)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
@@ -2168,7 +2203,7 @@ AddEventHandler('pd5m:int:grabped', function()
 	local lookingvector = GetPlayerLookingVector(playerped, 30)
 	local TargetNetID = nil
 	local TargetFlagListIndex = nil
-	
+
 	if flag_grabbed then
 		local OwnerNetID = NetworkGetEntityOwner(grabbedTarget)
 		local TargetNetID = PedToNet(grabbedTarget)
@@ -2181,10 +2216,10 @@ AddEventHandler('pd5m:int:grabped', function()
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 			if distanceToTarget <= 2.0 then
 				TargetNetID = PedToNet(target)
-				
+
 				local FlagFollowing = false
 				local index = 0
-				
+
 				for i, NetID in ipairs(ClientFollowingList) do
 					if TargetNetID == NetID then
 						FlagFollowing = true
@@ -2192,26 +2227,26 @@ AddEventHandler('pd5m:int:grabped', function()
 						break
 					end
 				end
-				
+
 				if FlagFollowing then
 					table.remove(ClientFollowingList, index)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 				end
-				
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				TriggerEvent('pd5m:int:weaponizeped', target)
-				
+
 				local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-				
+
 				if not FlagNoFear then
 					SetBlockingOfNonTemporaryEvents(target, true)
 					SetPedCombatAttributes(target, 46, true)
 					TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 				end
-				
+
 				local FlagArrested = CheckFlag(TargetNetID, 'Arrested')
-				
+
 				if FlagArrested then
 					local OwnerNetID = NetworkGetEntityOwner(target)
 					local PlayerpedNetID = PedToNet(playerped)
@@ -2220,7 +2255,7 @@ AddEventHandler('pd5m:int:grabped', function()
 					TriggerServerEvent('pd5m:syncsv:grabped', TargetNetID, PlayerpedNetID)
 				else
 					Notify('Arrest the ped to grab it.')
-				end				
+				end
 			else
 				Notify('Too far away.')
 			end
@@ -2234,7 +2269,7 @@ RegisterNetEvent('pd5m:int:grabbingevent')
 AddEventHandler('pd5m:int:grabbingevent', function(TargetNetID, PlayerpedNetID)
 	local target = NetToPed(TargetNetID)
 	local playerped = NetToPed(PlayerpedNetID)
-	
+
 	local targetElbow = GetEntityBoneIndexByName(target, "MH_L_Elbow")
 	local playerElbow = GetEntityBoneIndexByName(playerped, "MH_R_Elbow")
 	AttachEntityToEntity(target, playerped, 11816, 0.3, 0.4, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
@@ -2257,38 +2292,38 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 	local TargetFlagListIndex = nil
 	local flagBothFree = false
 	local seatChosen = 1
-	
+
 	if IsPedInAnyVehicle(playerped, false) and IsPedInAnyPoliceVehicle(playerped) then
 		local playerveh = GetVehiclePedIsIn(playerped, false)
 		if GetEntitySpeed(playerveh) < 0.2 then
 			for i = 0, 2, 1 do
 				if not IsVehicleSeatFree(playerveh, i) then
 					target = GetPedInVehicleSeat(playerveh, i)
-					
+
 					TargetNetID = PedToNet(target)
-					
+
 					TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-					
+
 					TriggerEvent('pd5m:int:weaponizeped', target)
-					
+
 					local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-					
+
 					if not FlagNoFear then
 						SetBlockingOfNonTemporaryEvents(target, true)
 						SetPedCombatAttributes(target, 46, true)
 						TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 					end
-					
+
 					local FlagArrested = CheckFlag(TargetNetID, 'Arrested')
-					
+
 					local Seat = "front right"
-					
+
 					if i == 1 then
 						Seat = "back left"
 					elseif i == 2 then
 						Seat = "back right"
 					end
-					
+
 					if FlagArrested then
 						TaskLeaveVehicle(target, playerveh, 256)
 					else
@@ -2299,7 +2334,7 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 							Notify("You can't kick the ped in the " .. Seat .. " seat.")
 						end
 					end
-					
+
 				end
 			end
 		else
@@ -2310,7 +2345,7 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 		if flag_hasTarget and GetEntityType(targetveh) == 2 then
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
 			if distanceToTarget <= 4.0 then
-				
+
 				if flag_grabbed then
 					local FlagBackLeft = IsVehicleSeatFree(targetveh, 1)
 					local FlagBackRight = IsVehicleSeatFree(targetveh, 2)
@@ -2320,14 +2355,14 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						else
 							SeatChosen = 1
 						end
-						
+
 						local VehHeading = GetEntityHeading(targetveh)
 						local Dx, Dy, Dz = table.unpack(GetEntryPositionOfDoor(targetveh, SeatChosen+1))
 						local Ox, Oy, Oz = table.unpack(GetOffsetFromEntityGivenWorldCoords(targetveh, Dx, Dy, Dz))
-						
+
 						local corr = 0
 						local corrSign = 0
-						
+
 						if SeatChosen == 1 then
 							corr = -0.2
 							corrSign = -1
@@ -2335,12 +2370,12 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 							corr = 0.2
 							corrSign = 1
 						end
-						
+
 						local Cx, Cy, Cz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, Ox+corr, Oy-2.0, Oz))
-						
+
 						TaskGoStraightToCoord(playerped, Cx, Cy, Cz, 1.0, 10000, VehHeading, 0.1)
 						local distanceCheck = true
-						
+
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
@@ -2349,25 +2384,25 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 							end
 							Wait(100)
 						end
-						
+
 						Wait(1000)
-						
+
 						distanceCheck = true
 						TaskAchieveHeading(playerped, VehHeading, 2000)
-						
+
 						while GetEntityHeading(playerped) - VehHeading > 5.0 do
 							Wait(100)
 						end
-						
+
 						target = grabbedTarget
 						DetachEntity(grabbedTarget, 0, true)
 						flag_grabbed = false
 						grabbedTarget = nil
-						
+
 						local Cx, Cy, Cz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, Ox+(6*corr), Oy-2.2, Oz))
-						
+
 						TaskGoStraightToCoord(playerped, Cx, Cy, Cz, 1.0, 10000, VehHeading, 0.1)
-						
+
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
@@ -2376,22 +2411,22 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 							end
 							Wait(100)
 						end
-						
+
 						distanceCheck = true
-						
+
 						TaskGoStraightToCoord(playerped, Dx, Dy, Dz, 1.0, 10000, VehHeading, 0.1)
-						
+
 						Wait(2000)
-						
+
 						if not IsVehicleDoorFullyOpen(targetveh, SeatChosen+1) then
 							TaskOpenVehicleDoor(playerped, targetveh, 10000, SeatChosen, 1.0)
 							Wait(1500)
 						end
-						
+
 						local Cx, Cy, Cz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, Ox+(3*corr), Oy+0.3, Oz))
-						
+
 						TaskGoStraightToCoord(playerped, Cx, Cy, Cz, 1.0, 10000, VehHeading+(corrSign*75.0), 0.1)
-						
+
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
@@ -2400,9 +2435,9 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 							end
 							Wait(100)
 						end
-						
+
 						TaskAchieveHeading(playerped, VehHeading+(corrSign*75.0), 2000)
-						
+
 						TaskEnterVehicle(target, targetveh, 10000, SeatChosen, 1.0, 1, 0)
 					else
 						Notify('The car is full.')
@@ -2426,14 +2461,14 @@ AddEventHandler('pd5m:int:runid', function()
 	local TargetSearchNetID = nil
 	local targetSearch = nil
 	local TargetSearchFlagListIndex = nil
-	
+
 	local NumberOfTakenIDs = 0
 	local RunIDText = 'Enter name of suspect:'
 	local foundresult = false
 	local ResultWordList = {}
 	local FirstnameList = nil
 	local SurnameList = nil
-	
+
 	local TargetNetID = nil
 	local target = nil
 	local TargetFlagListIndex = nil
@@ -2450,7 +2485,7 @@ AddEventHandler('pd5m:int:runid', function()
 	local flagpedillegalweapon = false
 	local flagfight = false
 	local flagpedhasweapons = false
-	
+
 	if ClientPlayerGotPedIDList[1] ~= nil then
 		NumberOfTakenIDs = #ClientPlayerGotPedIDList
 		TargetSearchNetID = ClientPlayerGotPedIDList[#ClientPlayerGotPedIDList]
@@ -2460,7 +2495,7 @@ AddEventHandler('pd5m:int:runid', function()
 		SurnameSearch = ClientPedConfigList[TargetSearchFlagListIndex].LastName
 		RunIDText = 'Enter name of suspect or a number between 1 and ' .. NumberOfTakenIDs .. ':'
 	end
-	
+
 	AddTextEntry('RunIDLabel', RunIDText)
 	DisplayOnscreenKeyboard(6, "RunIDLabel", "", FirstnameSearch, SurnameSearch, "", "", 30)
 	while (UpdateOnscreenKeyboard() == 0) do
@@ -2564,18 +2599,18 @@ AddEventHandler('pd5m:int:runid', function()
 				Notify('Input is not valid.')
 			end
 		end
-		
+
 		if foundresult then
 			local PedHeadHandle = RegisterPedheadshot(target)
-	
+
 			while not IsPedheadshotReady(PedHeadHandle) or not IsPedheadshotValid(PedHeadHandle) do
 				Wait(1000)
 			end
-			
+
 			local PedHeadString = GetPedheadshotTxdString(PedHeadHandle)
-		
+
 			local DateOfBirth = BirthYear .. "/" .. BirthMonth .. "/" .. BirthDay
-			
+
 			local ArrestPed = nil
 			if flagwanted then
 				flagwanted = "True"
@@ -2584,14 +2619,14 @@ AddEventHandler('pd5m:int:runid', function()
 				flagwanted = "False"
 				ArrestPed = '~g~ No Flags'
 			end
-			
+
 			local DangerNotice = nil
 			if flagpedillegalweapon or flagfight or flagpedhasweapons then
 				DangerNotice = '~y~ Proceed with caution!'
 			else
 				DangerNotice = '~b~ No known problems.'
 			end
-			
+
 			local Color = "~g~"
 			if IDValid == "Valid" then
 				Color = "~g~"
@@ -2599,23 +2634,23 @@ AddEventHandler('pd5m:int:runid', function()
 				Color = "~y~"
 			elseif IDValid == "Fake" then
 				Color = "~r~"
-			end			
-			
+			end
+
 			BeginTextCommandThefeedPost("TWOSTRINGS")
-			
+
 			AddTextComponentSubstringPlayerName("~y~Surname:			~s~" .. Surname .. "~n~ ~y~First Name:		~s~" .. Firstname .. "~n~ ~y~Gender:			~s~" .. PedGender .. "~n~ ~y~Date of")
 			AddTextComponentSubstringPlayerName("Birth:		~s~" .. DateOfBirth)
-			
+
 			EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, 'ID Database Result', Color .. RandomID)
 			EndTextCommandThefeedPostTicker(false, false)
-			
+
 			BeginTextCommandThefeedPost("TWOSTRINGS")
-			
+
 			AddTextComponentSubstringPlayerName("~y~Wanted:			~s~" .. flagwanted)
 			AddTextComponentSubstringPlayerName("~n~ ~y~Offense:			~s~" .. saveoffense)
 			EndTextCommandThefeedPostMessagetext(PedHeadString, PedHeadString, false, 4, ArrestPed, DangerNotice)
 			EndTextCommandThefeedPostTicker(false, false)
-			
+
 			UnregisterPedheadshot(PedHeadHandle)
 		end
 	end
@@ -2629,7 +2664,7 @@ AddEventHandler('pd5m:int:runplate', function()
 	local targetcoords = nil
 	local targetveh = nil
 	local foundveh = false
-	
+
 	local TargetVehFlagListIndex = nil
 	local LicencePlate = nil
 	local Registration = nil
@@ -2637,7 +2672,7 @@ AddEventHandler('pd5m:int:runplate', function()
 	local OwnerSurname = nil
 	local OwnerWanted = nil
 	local OwnerOffense = 'None'
-	
+
 	if IsPedInAnyVehicle(playerped, false) and IsPedInAnyPoliceVehicle(playerped) then
 		local playerveh = GetVehiclePedIsIn(playerped, false)
 		local pvpos = GetEntityCoords(playerveh)
@@ -2668,24 +2703,24 @@ AddEventHandler('pd5m:int:runplate', function()
 			Notify('No car found.')
 		end
 	end
-	
+
 	if foundveh then
 		Notify('Checking database...')
 		local TargetInVeh = 0
 		local TargetVehNetID = VehToNet(targetveh)
-		
+
 		for i = -1, 2, 1 do
 			if not IsVehicleSeatFree(targetveh, i) then
 				TargetInVeh = GetPedInVehicleSeat(targetveh, i)
 				break
 			end
 		end
-		
+
 		local TargetFlagListIndex, TargetVehFlagListIndex = SyncPedAndVeh(TargetInVeh, targetveh)
-		
+
 		if TargetInVeh ~= 0 and TargetInVeh ~= nil then
 			local flagsyncdata = false
-			
+
 			if ClientVehConfigList[TargetVehFlagListIndex].FirstName ~= ClientPedConfigList[TargetFlagListIndex].FirstName then
 				flagsyncdata = true
 			elseif ClientVehConfigList[TargetVehFlagListIndex].LastName ~= ClientPedConfigList[TargetFlagListIndex].LastName then
@@ -2695,14 +2730,14 @@ AddEventHandler('pd5m:int:runplate', function()
 			elseif ClientVehConfigList[TargetVehFlagListIndex].saveoffense ~= ClientPedConfigList[TargetFlagListIndex].saveoffense then
 				flagsyncdata = true
 			end
-			
+
 			if flagsyncdata then
 				local TargetNetID = PedToNet(TargetInVeh)
 				InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
 				Wait(1000)
 			end
 		end
-		
+
 		LicencePlate = GetVehicleNumberPlateText(targetveh)
 		Registration = ClientVehConfigList[TargetVehFlagListIndex].Registration
 		OwnerFirstName = ClientVehConfigList[TargetVehFlagListIndex].FirstName
@@ -2710,32 +2745,32 @@ AddEventHandler('pd5m:int:runplate', function()
 		OwnerWanted = ClientVehConfigList[TargetVehFlagListIndex].flagwanted
 		OwnerOffense = ClientVehConfigList[TargetVehFlagListIndex].saveoffense
 	end
-	
+
 	if foundveh then
-		
+
 		local Color = "~g~"
 		local RegColor = "~g~"
-		
+
 		if Registration == 'Uninsured' or Registration == 'Unregistered' then
 			RegColor = "~y~"
 		elseif Registration == 'Stolen' then
 			RegColor = "~r~"
 		end
-		
+
 		if OwnerWanted then
 			OwnerWanted = "True"
 			Color = "~r~"
 		else
 			OwnerWanted = "False"
 		end
-		
+
 		BeginTextCommandThefeedPost("TWOSTRINGS")
-			
+
 		AddTextComponentSubstringPlayerName("~y~Registration:			~s~" .. RegColor .. Registration .. "~n~ ~y~Owner Surname:		~s~" .. OwnerSurname .. "~n~ ~y~Owner First name:		~s~" .. OwnerFirstName)
 		AddTextComponentSubstringPlayerName("~n~ ~y~Owner wanted:		~s~" .. Color .. OwnerWanted .. "~n~ ~y~Owner Offense:		~s~" .. OwnerOffense)
-		
+
 		EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, 'Vehicle Database Result', Color .. LicencePlate)
-		EndTextCommandThefeedPostTicker(false, false)		
+		EndTextCommandThefeedPostTicker(false, false)
 	end
 end)
 
@@ -2752,37 +2787,37 @@ AddEventHandler('pd5m:int:HavePedSurrender', function(target)
 	local flaginveh = IsPedInAnyVehicle(target, true)
 	local targetveh = 0
 	local TargetVehFlagListIndex = nil
-	
+
 	if IsPedInAnyVehicle(playerped, true) then
 		Notify('Exit the vehicle to threaten the ped.')
 	else
 		if flaginveh then
 			targetveh = GetVehiclePedIsIn(target, false)
 		end
-		
+
 		local TargetFlagListIndex, TargetVehFlagListIndex = SyncPedAndVeh(target, targetveh)
-		
+
 		if flaginveh then
 			local TargetVehNetID = VehToNet(targetveh)
 			InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
 		end
-		
+
 		TriggerEvent('pd5m:int:weaponizeped', target)
-		
+
 		local FlagNoFear = CheckFlag(TargetNetID, 'NoFear')
-		
+
 		if not FlagNoFear then
 			SetBlockingOfNonTemporaryEvents(target, true)
 			SetPedCombatAttributes(target, 46, true)
 			TriggerServerEvent('pd5m:syncsv:AddPedFlagEntry', TargetNetID, 'NoFear')
 		end
-		
+
 		if flaginveh then
 			TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, 'Police, stop the vehicle and surrender!', 2000)
 		else
 			TriggerServerEvent('pd5m:syncsv:ShowCommunication', PlayerpedNetID, TargetNetID, 'Police, take your hands up!', 2000)
 		end
-		
+
 		TriggerEvent('pd5m:int:PedThreatenedWeapon', target)
 	end
 end)
@@ -2790,7 +2825,7 @@ end)
 -- Used to have the ped equip the weapons it should have according to its config.
 -- Mostly used during initialization and creation of the ped's config.
 -- Should not be necessary to use.
--- 
+--
 -- Variables: EntityId
 AddEventHandler('pd5m:int:weaponizeped', function(target)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
@@ -2834,12 +2869,12 @@ AddEventHandler('pd5m:int:pedflee', function(target, chaser)
 			end
 		end
 	end
-	
+
 	local playerRelGroup = GetPedRelationshipGroupHash(chaser)
 	local PedRelGroup = GetPedRelationshipGroupHash(target)
 	SetRelationshipBetweenGroups(3, PedRelGroup, playerRelGroup)
 	SetRelationshipBetweenGroups(3, playerRelGroup, PedRelGroup)
-	
+
 	SetPedPathAvoidFire(target, true)
 	SetPedPathCanUseClimbovers(target, true)
 	SetPedPathCanUseLadders(target, true)
@@ -2858,7 +2893,7 @@ AddEventHandler('pd5m:int:pedflee', function(target, chaser)
 	end
 	local TargetBlip = AddBlipForEntity(target)
 	table.insert(ClientPedBlipList, TargetBlip)
-	
+
 	CreateThread(function()
 		local AreaHasCops = true
 		TaskSmartFleePed(target, chaser, 10000.0, -1, false, false)
@@ -2894,7 +2929,7 @@ AddEventHandler('pd5m:int:pedflee', function(target, chaser)
 		elseif IsEntityDead(target) then
 			RemoveBlip(TargetBlip)
 			SetEntityAsNoLongerNeeded(target)
-		
+
 		else
 			ClearPedTasksImmediately(target)
 			TaskWanderStandard(target, 10.0, 10)
@@ -2934,16 +2969,16 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 	SetPedCanEvasiveDive(target, true)
 	SetPedCanPeekInCover(target, true)
 	SetPedCombatRange(target, 2)
-	
+
 	local playerRelGroup = GetPedRelationshipGroupHash(enemy)
 	local PedRelGroup = GetPedRelationshipGroupHash(target)
 	SetRelationshipBetweenGroups(5, PedRelGroup, playerRelGroup)
 	SetRelationshipBetweenGroups(5, playerRelGroup, PedRelGroup)
-	
-	-- random combat stats	
+
+	-- random combat stats
 	local ChooseMovement = 1
 	local ChooseShootrate = 100
-	
+
 	if IsPedArmed(target, 4) then
 		local RandomMovement = math.random(1, 100)
 		if RandomMovement <= 5 then
@@ -2958,9 +2993,9 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 	else
 		ChooseMovement = 3
 	end
-	
+
 	local ChooseAccuracy = math.random(1, 101) - 1
-	
+
 	local RandomShootrate = math.random(1, 100)
 	if RandomShootrate <= 10 then
 		ChooseShootrate = math.random(5, 50)
@@ -2973,7 +3008,7 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 	else
 		ChooseShootrate = math.random(650, 1000)
 	end
-	
+
 	SetPedCombatMovement(target, ChooseMovement) -- 0: Stationary, 1: Defensive, 2: Offensive, 3: Suicidal
 	SetPedAccuracy(target, ChooseAccuracy) -- 0 - 100 % accuracy
 	SetPedShootRate(target, ChooseShootrate) -- 0 - 1000 Schussrate
@@ -2982,7 +3017,7 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 	TargetBlip = AddBlipForEntity(target)
 	table.insert(ClientPedBlipList, TargetBlip)
 	SetPedAsEnemy(target, true)
-	
+
 	CreateThread( function()
 		local AreaHasEnemies = false
 		TaskCombatPed(target, enemy, 0, 16)
@@ -3008,7 +3043,7 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 			Wait(3000)
 		end
 		TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
-		
+
 		if flagarrested then
 			ClearPedTasksImmediately(target)
 			RemoveBlip(TargetBlip)
@@ -3032,7 +3067,7 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 			local PedRelGroup = GetPedRelationshipGroupHash(target)
 			SetRelationshipBetweenGroups(3, PedRelGroup, playerRelGroup)
 			SetRelationshipBetweenGroups(3, playerRelGroup, PedRelGroup)
-		end		
+		end
 	end)
 end)
 
@@ -3057,17 +3092,17 @@ AddEventHandler('pd5m:int:PedResistAction', function(target, strength)
 		local targetveh = GetVehiclePedIsIn(target, false)
 		if strength == 2 then
 			ClearPedTasks(target)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalStopInteractionResponse[math.random(1, #NormalStopInteractionResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalStopInteractionResponse[math.random(1, #NormalStopInteractionResponse)], 2000)
 			TriggerEvent('pd5m:int:stoptalk', target, true)
 		elseif strength == 3 then
 			ClearPedTasks(target)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalFleeResponse[math.random(1, #NormalFleeResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalFleeResponse[math.random(1, #NormalFleeResponse)], 2000)
 			SetVehicleHandbrake(targetveh, false)
 			SetVehicleFuelLevel(targetveh, 1000.0)
 			TriggerEvent('pd5m:int:pedflee', target, playerped)
 		else
 			ClearPedTasks(target)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalRefuseOrderResponse[math.random(1, #NormalRefuseOrderResponse)], 2000)
 		end
 	else
 		if strength == 2 then
@@ -3083,7 +3118,7 @@ AddEventHandler('pd5m:int:PedResistAction', function(target, strength)
 			Wait(1300)
 			TriggerEvent('pd5m:int:stoptalk', target, false)
 			Wait(500)
-			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalStopInteractionResponse[math.random(1, #NormalStopInteractionResponse)], 2000)	
+			TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalStopInteractionResponse[math.random(1, #NormalStopInteractionResponse)], 2000)
 		elseif strength == 3 then
 			ClearPedTasks(target)
 			makeEntityFaceEntity(target, playerped)
@@ -3138,16 +3173,16 @@ AddEventHandler('pd5m:int:PedResistAction', function(target, strength)
 					direction = "-90"
 				end
 			end
-			
+
 			if PedGender == 'Female' then
 				loadAnimDict("reaction@back_away@f")
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], 2000)	
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], 2000)
 				TaskPlayAnim(target, "reaction@back_away@f", direction, 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 				Wait(1500)
 				ClearPedTasks(target)
 			else
 				loadAnimDict("reaction@back_away@m")
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], 2000)	
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', TargetNetID, PlayerPedNetID, NormalResistActionResponse[math.random(1, #NormalResistActionResponse)], 2000)
 				TaskPlayAnim(target, "reaction@back_away@m", direction, 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 				Wait(1500)
 				ClearPedTasks(target)
@@ -3173,7 +3208,7 @@ AddEventHandler('pd5m:int:PedThreatenedWeapon', function(target)
 	local flagpedweapon = false
 	local copsmodifier = 0
 	local alliesmodifier = 1
-	
+
 	if ClientPedConfigList[TargetFlagListIndex].savepedweapons[1] ~= nil then
 		flagpedweapon = true
 	end
@@ -3208,12 +3243,12 @@ AddEventHandler('pd5m:int:PedThreatenedWeapon', function(target)
 		pedfleeflag = pedfleeflag + 30
 		pedfightflag = pedfightflag - 5
 	end
-	
+
 	if GetSelectedPedWeapon(target) ~= 0xA2719263 and IsPedArmed(target, 4) then
 		pedfleeflag = pedfleeflag + 70
 		pedfightflag = pedfightflag + 70
 	end
-	
+
 	if HasEntityClearLosToEntityInFront(target, playerped) then
 		if HasEntityClearLosToEntityInFront(playerped, target) then
 			pedfleeflag = pedfleeflag + 20
@@ -3231,30 +3266,30 @@ AddEventHandler('pd5m:int:PedThreatenedWeapon', function(target)
 			pedfightflag = pedfightflag
 		end
 	end
-	
+
 	local pedx, pedy, pedz = table.unpack(GetEntityCoords(target, false))
-	
+
 	for i, ID in ipairs(GetActivePlayers()) do
 		local playerpeds = GetPlayerPed(ID)
 		if IsEntityInArea(playerpeds, pedx-50, pedy-50, pedz-50, pedx+50, pedy+50, pedz+50, true, true, 0) then
 			copsmodifier = copsmodifier + 1
-		end	
+		end
 	end
-	
+
 	for i, ID in ipairs(ClientPedConfigList[TargetFlagListIndex].AlliesList) do
 		local alliedpeds = NetToPed(ID)
 		if IsEntityInArea(alliedpeds, pedx-50, pedy-50, pedz-50, pedx+50, pedy+50, pedz+50, true, true, 0) then
 			alliesmodifier = alliesmodifier + 1
-		end	
+		end
 	end
-	
+
 	if copsmodifier == 0 then
 		copsmodifier = 1
 	end
-	
+
 	pedfleeflag = pedfleeflag * (alliesmodifier/copsmodifier)
 	pedfightflag = pedfightflag * (alliesmodifier/copsmodifier)
-	
+
 	if math.random(1, 100) <= pedfleeflag then
 		if math.random(1, 100) <= pedfightflag then
 			TriggerEvent('pd5m:int:pedhostile', target, playerped)
@@ -3263,7 +3298,7 @@ AddEventHandler('pd5m:int:PedThreatenedWeapon', function(target)
 		end
 	else
 		TriggerEvent('pd5m:int:PedSurrender', target)
-	end	
+	end
 end)
 
 -- This event makes the ped surrender and has it allow every action the player can use against the ped.
@@ -3276,7 +3311,7 @@ AddEventHandler('pd5m:int:PedSurrender', function(target)
 	local playerped = GetPlayerPed(-1)
 
 	flaginveh = IsPedInAnyVehicle(target, true)
-	
+
 	if flaginveh then
 		targetveh = GetVehiclePedIsIn(target, false)
 		ClearPedTasks()
@@ -3289,12 +3324,12 @@ AddEventHandler('pd5m:int:PedSurrender', function(target)
 	else
 		ClearPedTasks()
 	end
-	
+
 	local playerRelGroup = GetPedRelationshipGroupHash(playerped)
 	local PedRelGroup = GetPedRelationshipGroupHash(target)
 	SetRelationshipBetweenGroups(0, PedRelGroup, playerRelGroup)
 	SetRelationshipBetweenGroups(0, playerRelGroup, PedRelGroup)
-	
+
 	TaskHandsUp(target, -1, 0, -1, true)
 	TriggerEvent('pd5m:sync:PedSetAllAllowConfigFlags', target, 'true')
 	TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
@@ -3302,50 +3337,50 @@ end)
 
 -- The thread that defines every warmenu option related to "normal" talking.
 CreateThread(function()
-	
+
 	-- Numbers behind the list note the binary numbers for the resistmodifier.
 	-- Use the following code to make the "target" resist certain questions / actions in addition to already existing flags.
 	-- In this example the ped will resist every question for weapons and actions that would result in a check for weapons.
 	-- To make target comply, use negative numbers (in the example below the ped will allow an ID-check).
 	-- Please use only the true powers of 2 and not sums of multiple items.
-	
+
 	-- TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	-- resistvalue = ClientPedConfigList[TargetFlagListIndex].resistmodifier
 	-- newvalues = {-1, 4, 64, 32768, 65536, 131072, 262144, 524288}
 	-- TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'resistmodifierList', newvalues)
-	
+
 	-- In order to replace the current flags with your own, simply do the following. Non mentioned flags will be false, meaning the target won't resist.
 	-- newresistvalue = 4 + 64 + 32768 + 65536 + 131072 + 262144 + 524288
 	-- TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'resistmodifier', newresistvalue
-	
+
 	local LicenceList = {'ID', "driver's licence", 'weapon permit'} -- ID = 1, Licence = 2, Weapon = 4
 	local CurrentLicenceIndex = 1
 	local SelectedLicenceIndex = 1
-	
+
 	local IllegalQList = {'drugs', 'alcohol', 'illegal items', 'weapons'} -- Drugs = 8, Alcohol = 16, Illegal Items = 32, Weapons = 64
 	local CurrentIllegalQIndex = 1
 	local SelectedIllegalQIndex = 1
-	
+
 	local QuestionList = {'starting point', 'destination', 'activity', 'suspicious activities'} -- Starting = 128, Destination = 256, Activity = 512, Suspicious Activities = 1024
 	local CurrentQuestionIndex = 1
 	local SelectedQuestionIndex = 1
-	
+
 	local VehicleOList = {'out of vehicle', 'into vehicle'} -- Out of vehicle = 2048, Into vehicle = 4096
 	local CurrentVehicleOIndex = 1
 	local SelectedVehicleOIndex = 1
-	
+
 	local InvestigationList = {'breathalyzer', 'drug test', 'people search', 'car search'} -- Breathalyzer = 8192, Drug test = 16384, people search = 32768, car search = 65536
 	local CurrentInvestigationIndex = 1
 	local SelectedInvestigationIndex = 1
-	
+
 	local ActionsList = {'vehicle seizure', 'object confiscation', 'arrest', 'fine'} -- vehicle seizure = 131072, object confiscation = 262144, arrest = 524288, fine = 1048576
 	local CurrentActionsIndex = 1
 	local SelectedActionsIndex = 1
-	
+
 	WarMenu.CreateMenu('pd5m:int:talkmenu', 'Talk')
 	--WarMenu.CreateMenu('pd5m:int:missionmenu', 'Talk')
 	--WarMenu.CreateMenu('pd5m:int:arrestedmenu', 'Verhör')
-	
+
 	while true do
 		if WarMenu.IsMenuOpened('pd5m:int:talkmenu') then
 			if WarMenu.Button('Greet') then
@@ -3370,7 +3405,7 @@ CreateThread(function()
 					TriggerEvent('pd5m:int:AskForItems', MenuTarget, SelectedIllegalQIndex)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', MenuTargetNetID, 'Talking')
 					Wait(100)
-					WarMenu.CloseMenu()			
+					WarMenu.CloseMenu()
 			elseif WarMenu.ComboBox('Question Ped', QuestionList, CurrentQuestionIndex, SelectedQuestionIndex, function(currentIndex, selectedIndex)
 					CurrentQuestionIndex = currentIndex
 					SelectedQuestionIndex = selectedIndex
@@ -3378,7 +3413,7 @@ CreateThread(function()
 					TriggerEvent('pd5m:int:QuestionPed', MenuTarget, SelectedQuestionIndex)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', MenuTargetNetID, 'Talking')
 					Wait(100)
-					WarMenu.CloseMenu()			
+					WarMenu.CloseMenu()
 			elseif WarMenu.ComboBox('Vehicle Orders', VehicleOList, CurrentVehicleOIndex, SelectedVehicleOIndex, function(currentIndex, selectedIndex)
 					CurrentVehicleOIndex = currentIndex
 					SelectedVehicleOIndex = selectedIndex
@@ -3386,7 +3421,7 @@ CreateThread(function()
 					TriggerEvent('pd5m:int:VehiclePedOrder', MenuTarget, SelectedVehicleOIndex)
 					TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', MenuTargetNetID, 'Talking')
 					Wait(100)
-					WarMenu.CloseMenu()			
+					WarMenu.CloseMenu()
 			elseif WarMenu.ComboBox('Investigation', InvestigationList, CurrentInvestigationIndex, SelectedInvestigationIndex, function(currentIndex, selectedIndex)
 					CurrentInvestigationIndex = currentIndex
 					SelectedInvestigationIndex = selectedIndex
@@ -3413,7 +3448,7 @@ CreateThread(function()
 			elseif WarMenu.Button('Release Ped') then
 				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuPlayerPedNetID, MenuTargetNetID, OFCBye[math.random(1, #OFCBye)], 2000)
 				Wait(2000)
-				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuTargetNetID, MenuPlayerPedNetID, NormalGoodbye[math.random(1, #NormalGoodbye)], 2000)	
+				TriggerServerEvent('pd5m:syncsv:ShowCommunication', MenuTargetNetID, MenuPlayerPedNetID, NormalGoodbye[math.random(1, #NormalGoodbye)], 2000)
 				TriggerEvent('pd5m:int:stoptalk', MenuTarget, MenuFlagInVeh)
 				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', MenuTargetNetID, 'Talking')
 				Wait(100)
@@ -3452,7 +3487,7 @@ if ActivateArrestMarkers then
 					atarrest = false
 				end
 			end
-			Wait(0)
+			Wait(1000)
 		end
 	end)
 
@@ -3462,23 +3497,23 @@ if ActivateArrestMarkers then
 				local target = grabbedTarget
 				local TargetNetID = PedToNet(target)
 				TriggerServerEvent('pd5m:syncsv:ungrabped', TargetNetID)
-				
+
 				flag_grabbed = false
 				grabbedTarget = nil
-				
+
 				while IsEntityAttachedToAnyPed(target) do
 					Wait(500)
 				end
-				
+
 				TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-				
+
 				local FirstName = ClientPedConfigList[TargetFlagListIndex].FirstName
 				local LastName = ClientPedConfigList[TargetFlagListIndex].LastName
-				
+
 				local TargetName = FirstName .. " " .. LastName
-				
+
 				DeleteEntity(target)
-				
+
 				BeginTextCommandThefeedPost("TWOSTRINGS")
 				AddTextComponentSubstringPlayerName("The suspect was brought into the prison and serves their sentence.")
 				EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Imprisonment report", TargetName)
@@ -3506,16 +3541,16 @@ AddEventHandler('pd5m:int:stoptalk', function(target, flaginveh)
 
 	TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Stopped')
 	SetEntityAsNoLongerNeeded(target)
-	
+
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetVehicleNetID = ClientPedConfigList[TargetFlagListIndex].VehicleNetID
-	
+
 	if TargetVehicleNetID ~= nil and TargetVehicleNetID ~= 0 then
 		targetveh = NetToEnt(TargetVehicleNetID)
 	else
 		targetveh = 0
 	end
-	
+
 	if GetEntityType(targetveh) == 2 and not flaginveh then
 		TaskEnterVehicle(target, targetveh, 10000, -1, 1.0, 1, 0)
 		local CutoffEnterVehicleInteger = 0

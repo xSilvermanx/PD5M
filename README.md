@@ -16,10 +16,17 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 ## Controls
 - Use `F3` to enable a crosshair that will help you determine what you are looking at
 - Type `/tp` to open the teleport menu that can send you to every police- and DPOS-station
+
+### Keyboard:
 - Use `E` to interact with an npc you are looking at. Is also used to interact with every marker on the map
 - Hold `X` to open the radialmenu. You can see every action your officer can possibly take. Hover your mouse over an action and release the key (no click necessary) to perform the action. Has different options on foot and in a car
 
+### Controller:
+- Use `DPad Right` to interact with an npc you are looking at. Is also used to interact with every marker on the map
+- Press `DPad Down` to open the radialmenu. You can see every action your officer can possibly take. Use the right analog stick to move the cursor over an action and press DPad Down again to perform the action. Has different options on foot and in a car
+
 On Foot: To carry out an action, look at a ped and use E or X as described above.
+
 In a Car: The actions will get carried out for the vehicle directly in front of your vehicle.
 
 Make sure to talk to people before taking an action against them (e.g. arresting them). You wouldn't like that in real life either!
@@ -28,25 +35,20 @@ Make sure to talk to people before taking an action against them (e.g. arresting
 
 Join our [Discord](https://discord.gg/3DNTHeT) for the latest announcements, patchnotes and more. Support is offered for this resource over there as well.
 
-## Requirements
+## Base (included in PD5M, you don't need to download the resources)
 - [radialmenu](https://forum.cfx.re/t/release-radialmenu-configurable-menu-for-chat-commands-using-wheelnav-js/543690) by Brent_Peterson
 - [warmenu](https://forum.cfx.re/t/release-0-9-8-final-warmenu-lua-menu-framework/41249) by Warxander
 
 ## Installation Instructions
-- Download radialmenu and warmenu
-- Download the latest master-branch of PD5M
-- Move radialmenu, warmenu and PD5M to `resource/` directory (or any category)
-- Make sure that the warmenu-resource is called `warmenu`, or you'll need to edit the PD5M-`__resource.lua`
+- Download the latest release of PD5M
+- Move PD5M to `resource/` directory (or any category)
+- Rename the resource folder to `pd5m`
+- Make sure the folder name is all lowercase
 - Edit your server.cfg to include:
 
 ```
-ensure warmenu
-ensure radialmenu
-ensure PD5M
+ensure pd5m
 ```
-
-- Open `PD5M/Radialmenu/` directory. Move the files `config.lua` and `radialmenu.lua` to the `radialmenu/` resource (replace the existing files)
-- Open `PD%M/Radialmenu/html` directory. Move the file `menu.html` to the `radialmenu/html/` resource (replace the existing file)
 
 ## Recommended Addons
 - [vMenu](https://forum.cfx.re/t/vmenu-v3-1-3/88868) by Vespura, used to create an mp-ped as said functionality hasn't been added to PD5M yet
@@ -55,10 +57,11 @@ ensure PD5M
 ## Optional Addons
 The addons listed below can be used to enhance your playing experience. They are fully supported by PD5M. If you want to use them, simply install them as per their installation instructions. Afterwards open `PD5M/Config/config_cl.lua` and set the respective bool at the top of the file to true.
 - [ELS](https://forum.cfx.re/t/release-els-fivem-server-sync-lights-sirens-custom-patterns/64048) by MrDaGree
+- [VisualSettings](https://forum.cfx.re/t/release-serverside-visualsettings/201448) by Jarrrk
 - [LSPD-Mega-Pack](https://www.lcpdfr.com/downloads/gta5mods/vehiclemodels/17911-los-santos-police-department-mega-pack-els/) by T0y
 - [BCSO-Mega-Pack](https://forum.cfx.re/t/els-bcso-mega-pack-fixed-again/81604) by BradM (FiveM-ready version by Kipz)
 - [California Highway Patrol](https://forum.cfx.re/t/release-2017-california-highway-patrol-mega-pack-els/64875) by Thehurk (FiveM-ready version by Broderick)
-- [traffic-changer](https://github.com/xSilvermanx/traffic-changer) by xSilvermanx 
+- [traffic-changer](https://github.com/xSilvermanx/traffic-changer) by xSilvermanx
 -
 - [Community Mission Row PD](https://de.gta5-mods.com/maps/community-mission-row-pd) by SLB2k11
 - [Sandy Sheriff Office Extension](https://de.gta5-mods.com/maps/sandy-sheriff-office-extension-mlo-interior) by Bamboozled
@@ -78,10 +81,22 @@ Shoutouts go out to:
 - The teams of LSPDFR and PIS for their inspiration and small code-examples
 - IllidanS4 for his [Entity Iterators](https://gist.github.com/IllidanS4/9865ed17f60576425369fc1da70259b2)
 - The above mentioned mod authors
+- DrBlackError for his tremendous help regarding setting up and maintaining the github.
+- MobTV for his contribution to offer ESX-integration.
+- ChieF TroN for his contribution to offer vRP-integration.
 - Everyone involved in testing the mod prior to this release.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
 
-## Newest Patch Notes: The Config Update
-- Config files were greatly expanded and now feature many variables to tweak the ped-generation of the resource.
-- Probabilities for peds possessing weapons, using drugs, drinking, and fleeing / fighting have been increased.
-- Fixed a bug where imprisoned peds were still stuck to a player for everyone else.
+## Newest Patch Notes: The Console Peasant Update
+
+- Added controller support for radialmenu and warmenu
+- Integrated Warmenu and Radialmenu into PD5M
+- Finished ESX- and vRP-permissions. Every menu should be permission-guarded now
+- fixed a bug in radialmenu that could mess up the controls of other 
+menus
+- Completely rewrote armories and garages
+- Added large config sections so you can customize most aspects of 
+armories and garages
+- Changed the crosshair-function not to use the SniperScope but a sprite
+- Changed the help-function to also display controller-buttons
+- Fixed a bug that made it impossible to pull over cars with trailers
