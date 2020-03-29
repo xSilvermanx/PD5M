@@ -16,8 +16,14 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 ## Controls
 - Use `F3` to enable a crosshair that will help you determine what you are looking at
 - Type `/tp` to open the teleport menu that can send you to every police- and DPOS-station
+
+### Keyboard:
 - Use `E` to interact with an npc you are looking at. Is also used to interact with every marker on the map
 - Hold `X` to open the radialmenu. You can see every action your officer can possibly take. Hover your mouse over an action and release the key (no click necessary) to perform the action. Has different options on foot and in a car
+
+### Controller:
+- Use `DPad Right` to interact with an npc you are looking at. Is also used to interact with every marker on the map
+- Press `DPad Down` to open the radialmenu. You can see every action your officer can possibly take. Use the right analog stick to move the cursor over an action and press DPad Down again to perform the action. Has different options on foot and in a car
 
 On Foot: To carry out an action, look at a ped and use E or X as described above.
 
@@ -81,8 +87,14 @@ Shoutouts go out to:
 - Everyone involved in testing the mod prior to this release.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
 
-## Newest Patch Notes: The Config Update
-- Config files were expanded yet again. Features great customability for stations and is now a lot cleaner than before.
-- vRP-integration thanks to ChieF TroN. To activate it uncomment the files in `__resource.lua`.
-- Bugfix: Improved performance by not performing a large amount of distance-checks in while-loops with Wait(0).
-- Bugfix: Coroners and Towtrucks should now more reliably drive away from stations. Please report issues about it stating the exact location that caused the bug.
+## Newest Patch Notes: The Console Peasant Update
+
+- Added controller support for radialmenu and warmenu
+- fixed a bug in radialmenu that could mess up the controls of other 
+menus
+- Completely rewrote armories and garages
+- Added large config sections so you can customize most aspects of 
+armories and garages
+- Changed the crosshair-function not to use the SniperScope but a sprite
+- Changed the help-function to also display controller-buttons
+- Fixed a bug that made it impossible to pull over cars with trailers
