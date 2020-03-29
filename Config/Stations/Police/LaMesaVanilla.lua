@@ -44,6 +44,8 @@ PolLaMesa = {
     },
     weap = {
       {x=826.67, y=-1290.13, z=28.24, handle='LaMesaLSPD'},
+      {x=837.17, y=-1374.39, z=26.31, handle='LaMesaSASP'},
+      {x=847.22, y=-1276.27, z=26.47, handle='LaMesaSWAT'},
     },
   },
   corspawn = {

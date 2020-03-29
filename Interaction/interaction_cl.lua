@@ -89,6 +89,17 @@ CreateThread(function()
 					else
 						local flag_hasTarget, targetcoords, targetVeh = GetVehInDirection(camcoords, lookingvector)
 						if flag_hasTarget and GetEntityType(targetVeh) == 2 then
+							if GetVehicleMaxNumberOfPassengers(targetVeh) == -1 then
+								local tarvehx, tarvehy, tarvehz = table.unpack(GetEntityCoords(targetVeh))
+								local pullx, pully, pullz = table.unpack(GetOffsetFromEntityInWorldCoords(targetVeh, 0.0, 10.0, 0.0))
+								local rayHandle = StartShapeTestRay(tarvehx, tarvehy, tarvehz, pullx, pully, pullz, 2, targetVeh, 0)
+								local _,flag_NewVehHit,NewVehCoords,_,NewVehHit = GetShapeTestResult(rayHandle)
+								print(flag_NewVehHit)
+								if flag_NewVehHit then
+									vehcoords = NewVehCoords
+									targetVeh = NewVehHit
+								end
+							end
 							local TargetInVeh = nil
 							for i = -1, 2, 1 do
 								if not IsVehicleSeatFree(targetVeh, i) then
@@ -107,7 +118,7 @@ CreateThread(function()
 									end
 								else
 									local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
-									if distanceToTarget <= 20 then
+									if distanceToTarget <= 25 then
 										TriggerEvent('pd5m:int:initstopcar', targetVeh, true)
 										Wait(2000)
 									else
@@ -154,8 +165,20 @@ AddEventHandler('pd5m:int:initstopcar', function(targetveh)
 	if IsPedInAnyVehicle(playerped, false) and IsPedInAnyPoliceVehicle(playerped) then
 		playerveh = GetVehiclePedIsIn(playerped, false)
 		local pvpos = GetEntityCoords(playerveh)
-		local infrontofplayerveh = GetOffsetFromEntityInWorldCoords(playerveh, 0.0, 15.0, 0.0)
+		local infrontofplayerveh = GetOffsetFromEntityInWorldCoords(playerveh, 0.0, 25.0, 0.0)
 		flag_VehicleSelected, vehcoords, targetveh = GetVehInDirection(pvpos, infrontofplayerveh)
+
+		if GetVehicleMaxNumberOfPassengers(targetveh) == -1 then
+			local tarvehx, tarvehy, tarvehz = table.unpack(GetEntityCoords(targetveh))
+			local pullx, pully, pullz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, 0.0, 10.0, 0.0))
+			local rayHandle = StartShapeTestRay(tarvehx, tarvehy, tarvehz, pullx, pully, pullz, 2, targetveh, 0)
+			local _,flag_NewVehHit,NewVehCoords,_,NewVehHit = GetShapeTestResult(rayHandle)
+			print(flag_NewVehHit)
+			if flag_NewVehHit then
+				vehcoords = NewVehCoords
+				targetveh = NewVehHit
+			end
+		end
 	elseif not IsPedInAnyVehicle(playerped, true) then
 		if GetEntityType(targetveh) == 2 then
 			flag_VehicleSelected = 1
@@ -1827,19 +1850,23 @@ AddEventHandler('pd5m:int:fineped', function()
 					FineHeight = "Amount to fine in $."
 					FineText = ""
 
-					AddTextEntry('RunIDLabel', FineText)
-					DisplayOnscreenKeyboard(6, "RunIDLabel", "", FineHeight, "", "", "", 30)
+					AddTextEntry('RunIDLabel', FineHeight)
+					DisplayOnscreenKeyboard(6, "RunIDLabel", "", FineText, "", "", "", 30)
 					while (UpdateOnscreenKeyboard() == 0) do
 						DisableAllControlActions(0)
 						Wait(0)
 					end
 					if (GetOnscreenKeyboardResult()) then
 						local result = tonumber(GetOnscreenKeyboardResult())
-						if IsInt(result) then
-							BeginTextCommandThefeedPost("TWOSTRINGS")
-							AddTextComponentSubstringPlayerName("You fined the suspect for a total of ~y~" .. result .. " $~s~.")
-							EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Police measure", "")
-							EndTextCommandThefeedPostTicker(false, false)
+						if result ~= nil then
+							if IsInt(result) then
+								BeginTextCommandThefeedPost("TWOSTRINGS")
+								AddTextComponentSubstringPlayerName("You fined the suspect for a total of ~y~" .. result .. " $~s~.")
+								EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Police measure", "")
+								EndTextCommandThefeedPostTicker(false, false)
+							else
+								Notify('Please enter a valid amount.')
+							end
 						else
 							Notify('Please enter a valid amount.')
 						end

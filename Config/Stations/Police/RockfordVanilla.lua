@@ -39,6 +39,7 @@ PolRockford = {
     },
     weap = {
       {x=-561.31, y=-132.54, z=38.03, handle='RockfordLSPD'},
+      {x=-578.7, y=-133.71, z=35.82, handle='RockfordSWAT'},
     },
   },
   corspawn = {

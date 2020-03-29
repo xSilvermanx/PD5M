@@ -41,7 +41,8 @@ PolVespucci = {
 
     },
     weap = {
-      {x=-1108.69, y=-845.55, z=19.32, handle='VespucciLSPD'}
+      {x=-1108.69, y=-845.55, z=19.32, handle='VespucciLSPD'},
+      {x=-1109.7, y=-853.8, z=13.53, handle='VespucciSWAT'},
     },
   },
   corspawn = {

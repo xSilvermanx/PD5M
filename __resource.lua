@@ -1,5 +1,6 @@
 resource_manifest_version "44febabe-d386-4d18-afbe-5e627f4af937"
 
+-- PD5M server scripts
 server_scripts {
 	"Cleanupthreads/cleanupthreads_sv.lua",
 	"Common/common_sv_fct.lua",
@@ -29,6 +30,7 @@ client_scripts {
 	"Duty/vRPIntegration_cl.lua",
 }]]
 
+-- config files for PD5M
 client_scripts {
 	"Config/Stations/Police/BeaverBushVanilla.lua",
 	"Config/Stations/Police/DavisVanilla.lua",
@@ -62,10 +64,26 @@ client_scripts {
 	"Config/Stations/Med/PillboxHillVanilla.lua",
 	"Config/Stations/Med/PortolaVanilla.lua",
 	"Config/Stations/Med/SandyShoresVanilla.lua",
+
+	"Config/Garages/Files/lspdgaragesvanilla.lua",
+	"Config/Garages/Files/bcsogaragesvanilla.lua",
+	"Config/Garages/Files/saspgaragesvanilla.lua",
+	"Config/Garages/Files/saprgaragesvanilla.lua",
+	"Config/Garages/Files/swatgaragesvanilla.lua",
+	"Config/Garages/Files/dposgaragesvanilla.lua",
+	"Config/Garages/Files/heligaragesvanilla.lua",
+
+	"Config/Armories/Files/GeneralArmoryVanilla.lua",
+	"Config/Armories/Files/LSPDArmoryVanilla.lua",
+	"Config/Armories/Files/BCSOArmoryVanilla.lua",
+	"Config/Armories/Files/SASPArmoryVanilla.lua",
+	"Config/Armories/Files/SAPRArmoryVanilla.lua",
+	"Config/Armories/Files/SWATArmoryVanilla.lua",
 }
 
+-- PD5M client scripts
 client_scripts {
-	"@warmenu/warmenu.lua",
+	"Warmenu/warmenu.lua",
 	"Cleanupthreads/cleanupthreads_cl.lua",
 	"Common/common_cl_fct.lua",
 	"Common/def_cl.lua",
@@ -73,6 +91,8 @@ client_scripts {
 	"Common/global_fct.lua",
 	"Config/config_cl.lua",
 	"Config/speechoptions_cl.lua",
+	"Config/Armories/armory_cl.lua",
+	"Config/Garages/garages_cl.lua",
 	"Config/Stations/stations_cl.lua",
 	"Duty/ESXIntegration_cl.lua",
 	"HUD/blips_cl.lua",
@@ -87,4 +107,18 @@ client_scripts {
 	"Service/tow_cl.lua",
 	"Startup/startup_cl.lua",
 	"Sync/sync_cl.lua",
+}
+
+-- Radialmenu integration
+client_script {
+  "Radialmenu/config.lua",
+  "Radialmenu/radialmenu.lua"
+}
+
+ui_page "Radialmenu/html/menu.html"
+
+files {
+	"Radialmenu/html/menu.html",
+	"Radialmenu/html/raphael.min.js",
+  "Radialmenu/html/wheelnav.min.js",
 }

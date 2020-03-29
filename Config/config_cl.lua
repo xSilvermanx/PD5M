@@ -14,12 +14,6 @@ ActivateArrestMarkers = true -- activates the arrest markers. Should stay activa
 ActivateClothMarkers = true -- activates the wardrobes.
 ActivateHealMarkers = true -- activates the heal-markers at the hospitals.
 ActivateGarages = true -- activates garages in general. If set to false no garage will be displayed independently of the rest of the settings.
-ActivateLSPDGarage = true -- activates the LSPD-garage.
-ActivateBCSOGarage = true -- activates the BCSO-garage.
-ActivateSAPRGarage = true -- activates the SAPR-garage.
-ActivateSASPGarage = true -- activates the SASP-garage.
-ActivateSWATGarage = true -- activates the SWAT-garage.
-ActivateDPOSGarage = true -- activates the DPOS-garage.
 ActivateHeliPads = true -- activates the Helipads.
 ActivateWeaponMarkers = true -- activates the armory.
 ActivateEvidenceMarkers = true -- activates the evidence markers. Should stay activated.
@@ -29,11 +23,6 @@ ActivateHelpMarkers = true -- activates the help markers.
 TowTruckDrivers = {"cs_floyd", "mp_f_bennymech_01", "mp_m_waremech_01", "s_m_m_autoshop_02", "s_m_m_dockwork_01", "s_m_m_gardener_01", "s_m_y_construct_02", "s_m_y_garbage", "s_m_y_winclean_01", "s_m_y_xmech_01"}
 CoronerDrivers = {"csb_cop", "csb_prolsec", "s_f_y_cop_01", "s_f_y_ranger_01", "s_f_y_sheriff_01", "s_f_y_scrubs_01", "s_m_y_autopsy_01", "s_m_y_cop_01", "s_m_y_hwaycop_01", "s_m_y_ranger_01", "s_m_y_sheriff_01"}
 CoronerVehicles = {"policet"}
-
--- Vehicle-Mods
-LSPDMegaPackT0y = false -- whether the Los Santos Police Department Mega Pack ELS by t0y is activated
-BCSOMegaPackBradM = false -- whether the Blaine County Sheriff Office Mega Pack ELS by BradM is activated
-CHFThehurk = false -- whether the California Highway Patrol Mega Pack ELS by Thehurk is activated
 
 -- Marker-variables
 -- -- Arrest
@@ -201,21 +190,85 @@ var_cars_heli_textname = nil
 var_cars_heli_drawonent = false
 
 -- -- Weapons
-var_weap_symbol = 21
-var_weap_scaleX = 1.0
-var_weap_scaleY = 1.0
-var_weap_scaleZ = 1.0
-var_weap_red = 0
-var_weap_green = 0
-var_weap_blue = 180
-var_weap_alpha = 200
-var_weap_bob = false
-var_weap_face = false
-var_weap_p19 = 2
-var_weap_rotate = true
-var_weap_textdict = nil
-var_weap_textname = nil
-var_weap_drawonent = false
+var_weap_lspd_symbol = 21
+var_weap_lspd_scaleY = 1.0
+var_weap_lspd_scaleX = 1.0
+var_weap_lspd_scaleZ = 1.0
+var_weap_lspd_red = 0
+var_weap_lspd_green = 0
+var_weap_lspd_blue = 180
+var_weap_lspd_alpha = 200
+var_weap_lspd_bob = false
+var_weap_lspd_face = false
+var_weap_lspd_p19 = 2
+var_weap_lspd_rotate = true
+var_weap_lspd_textdict = nil
+var_weap_lspd_textname = nil
+var_weap_lspd_drawonent = false
+
+var_weap_bcso_symbol = 21
+var_weap_bcso_scaleY = 1.0
+var_weap_bcso_scaleX = 1.0
+var_weap_bcso_scaleZ = 1.0
+var_weap_bcso_red = 225
+var_weap_bcso_green = 213
+var_weap_bcso_blue = 5
+var_weap_bcso_alpha = 200
+var_weap_bcso_bob = false
+var_weap_bcso_face = false
+var_weap_bcso_p19 = 2
+var_weap_bcso_rotate = true
+var_weap_bcso_textdict = nil
+var_weap_bcso_textname = nil
+var_weap_bcso_drawonent = false
+
+var_weap_sapr_symbol = 21
+var_weap_sapr_scaleY = 1.0
+var_weap_sapr_scaleX = 1.0
+var_weap_sapr_scaleZ = 1.0
+var_weap_sapr_red = 0
+var_weap_sapr_green = 100
+var_weap_sapr_blue = 0
+var_weap_sapr_alpha = 200
+var_weap_sapr_bob = false
+var_weap_sapr_face = false
+var_weap_sapr_p19 = 2
+var_weap_sapr_rotate = true
+var_weap_sapr_textdict = nil
+var_weap_sapr_textname = nil
+var_weap_sapr_drawonent = false
+
+var_weap_sasp_symbol = 21
+var_weap_sasp_scaleY = 1.0
+var_weap_sasp_scaleX = 1.0
+var_weap_sasp_scaleZ = 1.0
+var_weap_sasp_red = 230
+var_weap_sasp_green = 230
+var_weap_sasp_blue = 230
+var_weap_sasp_alpha = 200
+var_weap_sasp_bob = false
+var_weap_sasp_face = false
+var_weap_sasp_p19 = 2
+var_weap_sasp_rotate = true
+var_weap_sasp_textdict = nil
+var_weap_sasp_textname = nil
+var_weap_sasp_drawonent = false
+
+var_weap_swat_symbol = 21
+var_weap_swat_scaleY = 1.0
+var_weap_swat_scaleX = 1.0
+var_weap_swat_scaleZ = 1.0
+var_weap_swat_red = 0
+var_weap_swat_green = 0
+var_weap_swat_blue = 0
+var_weap_swat_alpha = 200
+var_weap_swat_bob = false
+var_weap_swat_face = false
+var_weap_swat_p19 = 2
+var_weap_swat_rotate = true
+var_weap_swat_textdict = nil
+var_weap_swat_textname = nil
+var_weap_swat_drawonent = false
 
 -- -- Evidence
 var_evidence_symbol = 29
@@ -250,73 +303,3 @@ var_tut_rotate = true
 var_tut_textdict = nil
 var_tut_textname = nil
 var_tut_drawonent = false
-
--- functions
-
--- the following if-clauses add functionality to the variables set at the start of the file. Do not change anything here.
-
-if not ActivateArrestMarkers then
-	list_arrest_coords = {}
-end
-
-if not ActivateClothMarkers then
-	list_cloth_coords = {}
-end
-
-if not ActivateHealMarkers then
-	list_heal_coords = {}
-end
-
-if not ActivateLSPDGarage then
-	list_cars_city_coords = {}
-	list_cars_city_spawns = {}
-	list_cars_lspd_handles = {}
-end
-
-if not ActivateBCSOGarage then
-	list_cars_bcso_coords = {}
-	list_cars_bcso_spawns = {}
-	list_cars_bcso_handles = {}
-end
-
-if not ActivateSAPRGarage then
-	list_cars_sapr_coords = {}
-	list_cars_sapr_spawns = {}
-	list_cars_sapr_handles = {}
-end
-
-if not ActivateSASPGarage then
-	list_cars_sasp_coords = {}
-	list_cars_sasp_spawns = {}
-	list_cars_sasp_handles = {}
-end
-
-if not ActivateSWATGarage then
-	list_cars_swat_coords = {}
-	list_cars_swat_spawns = {}
-	list_cars_swat_handles = {}
-end
-
-if not ActivateDPOSGarage then
-	list_cars_dpos_coords = {}
-	list_cars_dpos_spawns = {}
-	list_cars_dpos_handles = {}
-end
-
-if not ActivateHeliPads then
-	list_cars_heli_coords = {}
-	list_cars_heli_spawns = {}
-	list_cars_heli_handles = {}
-end
-
-if not ActivateWeaponMarkers then
-	list_weap_coords = {}
-end
-
-if not ActivateEvidenceMarkers then
-	list_evidence_coords = {}
-end
-
-if not ActivateHelpMarkers then
-	list_help_coords = {}
-end
