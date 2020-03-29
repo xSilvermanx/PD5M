@@ -89,6 +89,17 @@ CreateThread(function()
 					else
 						local flag_hasTarget, targetcoords, targetVeh = GetVehInDirection(camcoords, lookingvector)
 						if flag_hasTarget and GetEntityType(targetVeh) == 2 then
+							if GetVehicleMaxNumberOfPassengers(targetVeh) == -1 then
+								local tarvehx, tarvehy, tarvehz = table.unpack(GetEntityCoords(targetVeh))
+								local pullx, pully, pullz = table.unpack(GetOffsetFromEntityInWorldCoords(targetVeh, 0.0, 10.0, 0.0))
+								local rayHandle = StartShapeTestRay(tarvehx, tarvehy, tarvehz, pullx, pully, pullz, 2, targetVeh, 0)
+								local _,flag_NewVehHit,NewVehCoords,_,NewVehHit = GetShapeTestResult(rayHandle)
+								print(flag_NewVehHit)
+								if flag_NewVehHit then
+									vehcoords = NewVehCoords
+									targetVeh = NewVehHit
+								end
+							end
 							local TargetInVeh = nil
 							for i = -1, 2, 1 do
 								if not IsVehicleSeatFree(targetVeh, i) then
