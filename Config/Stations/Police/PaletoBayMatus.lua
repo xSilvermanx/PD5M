@@ -47,6 +47,8 @@ PolPaleto = {
     },
     weap = {
       {x=-437.64, y=5989.05, z=31.72, handle='PaletoBCSO'},
+      {x=-436.09, y=6005.58, z=31.72, handle='PaletoSASP'},
+      {x=-438.62, y=6002.82, z=31.72, handle='PaletoSWAT'},
     },
   },
   corspawn = {

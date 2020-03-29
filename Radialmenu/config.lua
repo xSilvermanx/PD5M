@@ -3,14 +3,15 @@ menuConfigs = {
     ['emotes'] = {                                  -- Example menu for emotes when player is on foot
         enableMenu = function()                     -- Function to enable/disable menu handling
             local player = GetPlayerPed(-1)
-			local retval = false
-			if IsPedOnFoot(player) and IsInputDisabled(2) then
-				retval = true
-			end
+      			local retval = false
+      			if IsPedOnFoot(player) and PlayerData.job.name == 'police' then
+      				retval = true
+      			end
             return retval
         end,
         data = {                                    -- Data that is passed to Javascript
             keybind = "x",                         -- Wheel keybind to use (case sensitive, must match entry in keybindControls table)
+            padkeybind = "DPadDown",
             style = {                               -- Wheel style settings
                 sizePx = 600,                       -- Wheel size in pixels
                 slices = {                          -- Slice style settings
@@ -49,14 +50,15 @@ menuConfigs = {
     ['vehicles'] = {                                -- Example menu for vehicle controls when player is in a vehicle
         enableMenu = function()                     -- Function to enable/disable menu handling
             local player = GetPlayerPed(-1)
-			local retval = false
-			if IsPedInAnyVehicle(player, false) and IsInputDisabled(2) then
-				retval = true
-			end
+      			local retval = false
+      			if IsPedInAnyVehicle(player, false) and PlayerData.job.name == 'police' then
+      				retval = true
+      			end
             return retval
         end,
         data = {                                    -- Data that is passed to Javascript
             keybind = "x",                         -- Wheel keybind to use (case sensitive, must match entry in keybindControls table)
+            padkeybind = "DPadDown",
             style = {                               -- Wheel style settings
                 sizePx = 400,                       -- Wheel size in pixels
                 slices = {                          -- Slice style settings

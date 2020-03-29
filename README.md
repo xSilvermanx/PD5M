@@ -29,25 +29,20 @@ Make sure to talk to people before taking an action against them (e.g. arresting
 
 Join our [Discord](https://discord.gg/3DNTHeT) for the latest announcements, patchnotes and more. Support is offered for this resource over there as well.
 
-## Requirements
+## Base (included in the download)
 - [radialmenu](https://forum.cfx.re/t/release-radialmenu-configurable-menu-for-chat-commands-using-wheelnav-js/543690) by Brent_Peterson
 - [warmenu](https://forum.cfx.re/t/release-0-9-8-final-warmenu-lua-menu-framework/41249) by Warxander
 
 ## Installation Instructions
-- Download radialmenu and warmenu
-- Download the latest master-branch of PD5M
-- Move radialmenu, warmenu and PD5M to `resource/` directory (or any category)
-- Make sure that the warmenu-resource is called `warmenu`, or you'll need to edit the PD5M-`__resource.lua`
+- Download the latest release of PD5M
+- Move PD5M to `resource/` directory (or any category)
+- Rename the resource folder to `pd5m`
+- Make sure the folder name is all lowercase
 - Edit your server.cfg to include:
 
 ```
-ensure warmenu
-ensure radialmenu
-ensure PD5M
+ensure pd5m
 ```
-
-- Open `PD5M/Radialmenu/` directory. Move the files `config.lua` and `radialmenu.lua` to the `radialmenu/` resource (replace the existing files)
-- Open `PD5M/Radialmenu/html` directory. Move the file `menu.html` to the `radialmenu/html/` resource (replace the existing file)
 
 ## Recommended Addons
 - [vMenu](https://forum.cfx.re/t/vmenu-v3-1-3/88868) by Vespura, used to create an mp-ped as said functionality hasn't been added to PD5M yet
@@ -56,10 +51,11 @@ ensure PD5M
 ## Optional Addons
 The addons listed below can be used to enhance your playing experience. They are fully supported by PD5M. If you want to use them, simply install them as per their installation instructions. Afterwards open `PD5M/Config/config_cl.lua` and set the respective bool at the top of the file to true.
 - [ELS](https://forum.cfx.re/t/release-els-fivem-server-sync-lights-sirens-custom-patterns/64048) by MrDaGree
+- [VisualSettings](https://forum.cfx.re/t/release-serverside-visualsettings/201448) by Jarrrk
 - [LSPD-Mega-Pack](https://www.lcpdfr.com/downloads/gta5mods/vehiclemodels/17911-los-santos-police-department-mega-pack-els/) by T0y
 - [BCSO-Mega-Pack](https://forum.cfx.re/t/els-bcso-mega-pack-fixed-again/81604) by BradM (FiveM-ready version by Kipz)
 - [California Highway Patrol](https://forum.cfx.re/t/release-2017-california-highway-patrol-mega-pack-els/64875) by Thehurk (FiveM-ready version by Broderick)
-- [traffic-changer](https://github.com/xSilvermanx/traffic-changer) by xSilvermanx 
+- [traffic-changer](https://github.com/xSilvermanx/traffic-changer) by xSilvermanx
 -
 - [Community Mission Row PD](https://de.gta5-mods.com/maps/community-mission-row-pd) by SLB2k11
 - [Sandy Sheriff Office Extension](https://de.gta5-mods.com/maps/sandy-sheriff-office-extension-mlo-interior) by Bamboozled

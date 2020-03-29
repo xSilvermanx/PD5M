@@ -42,6 +42,7 @@ PolDavis = {
     },
     weap = {
       {x=360.53, y=-1584.36, z=29.29, handle='DavisLSPD'},
+      {x=371.83, y=-1626.21, z=29.29, handle='DavisSWAT'},
     },
   },
   corspawn = {
