@@ -32,21 +32,90 @@ client_scripts {
 
 -- config files for PD5M
 client_scripts {
+
+-- Configuration for police related stations and their recommendations
+
+	-- Beaver Bush Ranger Station | Park Ranger
 	"Config/Stations/Police/BeaverBushVanilla.lua",
+--	"Config/Stations/Police/BeaverBushSmokey.lua",
+
+	-- Davis Sheriff's Station
 	"Config/Stations/Police/DavisVanilla.lua",
+
+
+	-- Del Perro Police Station
 	"Config/Stations/Police/DelPerroVanilla.lua",
+
+
+	-- La Mesa Police Station
 	"Config/Stations/Police/LaMesaVanilla.lua",
+
+
+	-- Mission Row Police Station
 	"Config/Stations/Police/MissionRowVanilla.lua",
+--	"Config/Stations/Police/MissionRowSLB.lua",
+
+	-- Paleto Bay Sheriff's Office
 	"Config/Stations/Police/PaletoBayVanilla.lua",
+--	"Config/Stations/Police/PaletoBayMatus.lua",
+
+	-- Rockford Hills Police Station
 	"Config/Stations/Police/RockfordVanilla.lua",
+
+
+	-- Sandy Shores Sheriff's Station
 	"Config/Stations/Police/SandyShoresVanilla.lua",
+--	"Config/Stations/Police/SandyShoresBamboozled.lua",
+
+	-- Vespucci Beach Police Station
 	"Config/Stations/Police/VespucciBeachVanilla.lua",
+
+
+	-- Vespucci Police Station
 	"Config/Stations/Police/VespucciVanilla.lua",
+
+
+	-- Vinewood Police Station
 	"Config/Stations/Police/VinewoodVanilla.lua",
 
-	"Config/Stations/Other/BolingbrokeVanilla.lua",
-	"Config/Stations/Other/CoronerOfficeVanilla.lua",
 
+
+-- Configuration for medical related stations and their recommendations
+
+	-- Central Los Santos Medical Center
+	"Config/Stations/Med/CentralLSVanilla.lua",
+
+
+	-- Eclipse Medical Tower
+	"Config/Stations/Med/EclipseVanilla.lua",
+
+
+	-- St. Fiacre Hospital
+	"Config/Stations/Med/FiacreVanilla.lua",
+
+
+	-- Mount Zonah Medical Center
+	"Config/Stations/Med/MountZonahVanilla.lua",
+
+
+	-- The Bay Care Center
+	"Config/Stations/Med/PaletoBayVanilla.lua",
+	"Config/Stations/Med/PaletoBayBrown.lua",
+
+	-- Pillbox Hill Medical Center
+	"Config/Stations/Med/PillboxHillVanilla.lua",
+
+
+	-- Portola Trinity Medical Center
+	"Config/Stations/Med/PortolaVanilla.lua",
+
+
+	-- Sandy Shores Medical Center
+	"Config/Stations/Med/SandyShoresVanilla.lua",
+	"Config/Stations/Med/SandyShoresBeek.lua",
+
+
+-- Configuration for towservices
 	"Config/Stations/Tow/BeekersGarageVanilla.lua",
 	"Config/Stations/Tow/BennysVanilla.lua",
 	"Config/Stations/Tow/DPOSDavisVanilla.lua",
@@ -56,15 +125,13 @@ client_scripts {
 	"Config/Stations/Tow/LSCHarmonyVanilla.lua",
 	"Config/Stations/Tow/LSCLaMesaVanilla.lua",
 
-	"Config/Stations/Med/CentralLSVanilla.lua",
-	"Config/Stations/Med/EclipseVanilla.lua",
-	"Config/Stations/Med/FiacreVanilla.lua",
-	"Config/Stations/Med/MountZonahVanilla.lua",
-	"Config/Stations/Med/PaletoBayVanilla.lua",
-	"Config/Stations/Med/PillboxHillVanilla.lua",
-	"Config/Stations/Med/PortolaVanilla.lua",
-	"Config/Stations/Med/SandyShoresVanilla.lua",
 
+	-- Configuration for other stations
+	"Config/Stations/Other/BolingbrokeVanilla.lua",
+	"Config/Stations/Other/CoronerOfficeVanilla.lua",
+
+
+-- Configuration for garages
 	"Config/Garages/Files/lspdgaragesvanilla.lua",
 	"Config/Garages/Files/bcsogaragesvanilla.lua",
 	"Config/Garages/Files/saspgaragesvanilla.lua",
@@ -73,6 +140,8 @@ client_scripts {
 	"Config/Garages/Files/dposgaragesvanilla.lua",
 	"Config/Garages/Files/heligaragesvanilla.lua",
 
+
+-- Configuration for armorys
 	"Config/Armories/Files/GeneralArmoryVanilla.lua",
 	"Config/Armories/Files/LSPDArmoryVanilla.lua",
 	"Config/Armories/Files/BCSOArmoryVanilla.lua",
