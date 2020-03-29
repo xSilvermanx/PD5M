@@ -35,7 +35,7 @@ Make sure to talk to people before taking an action against them (e.g. arresting
 
 Join our [Discord](https://discord.gg/3DNTHeT) for the latest announcements, patchnotes and more. Support is offered for this resource over there as well.
 
-## Base (included in PD5M, you don't need to download it)
+## Base (included in PD5M, you don't need to download the resources)
 - [radialmenu](https://forum.cfx.re/t/release-radialmenu-configurable-menu-for-chat-commands-using-wheelnav-js/543690) by Brent_Peterson
 - [warmenu](https://forum.cfx.re/t/release-0-9-8-final-warmenu-lua-menu-framework/41249) by Warxander
 
@@ -90,6 +90,7 @@ Shoutouts go out to:
 ## Newest Patch Notes: The Console Peasant Update
 
 - Added controller support for radialmenu and warmenu
+- Integrated Warmenu and Radialmenu into PD5M
 - fixed a bug in radialmenu that could mess up the controls of other 
 menus
 - Completely rewrote armories and garages
