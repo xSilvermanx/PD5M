@@ -91,6 +91,7 @@ Shoutouts go out to:
 
 - Added controller support for radialmenu and warmenu
 - Integrated Warmenu and Radialmenu into PD5M
+- Finished ESX- and vRP-permissions. Every menu should be permission-guarded now
 - fixed a bug in radialmenu that could mess up the controls of other 
 menus
 - Completely rewrote armories and garages
