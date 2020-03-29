@@ -100,3 +100,6 @@ armories and garages
 - Changed the crosshair-function not to use the SniperScope but a sprite
 - Changed the help-function to also display controller-buttons
 - Fixed a bug that made it impossible to pull over cars with trailers
+
+v0.1.3.1
+- Fixed a bug related to multicharacter-scripts in ESX / vRP that caused a crash of radialmenu.
