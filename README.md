@@ -1,4 +1,7 @@
 # PD5M
+
+## Make sure that your resource is written completely lowercase: `pd5m`!
+
 PD5M is a resource for FiveM aiming to provide a functional police-multiplayer to the game. Inspired by LSPDFR and PIS you can take on the role of an officer of the Police Departments to protect and to serve the citizens of San Andreas.
 
 ## Features
