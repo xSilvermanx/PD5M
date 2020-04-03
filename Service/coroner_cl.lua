@@ -36,7 +36,7 @@ AddEventHandler('pd5m:service:initcoroner', function()
 	local station = nil
 	local shortestdistance = 999999999
 	for i, location in ipairs(list_coroner_spawns) do
-		local distance = Vdist2(location.x, location.y, location.z, tarx, tary, tarz)
+		local distance = CalculateTravelDistanceBetweenPoints(location.x, location.y, location.z, tarx, tary, tarz)
 		if distance < shortestdistance then
 			station = location
 			shortestdistance = distance
@@ -125,6 +125,8 @@ AddEventHandler('pd5m:service:coronerapproach', function(coroner, coronerdriver,
 		print(distance)
 		corx, cory, corz = table.unpack(GetEntityCoords(coroner))
 		distance = Vdist2(corx, cory, corz, tarx, tary, tarz)
+
+		ArePathNodesLoadedInArea(corx-100.0, cory-100.0, corx+100.0, cory+100.0)
 
 		if IsVehicleStopped(coroner) and not IsVehicleStoppedAtTrafficLights(coroner) then
 			print('I have stopped')
@@ -258,22 +260,6 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 				GlobalSpeedZone = AddSpeedZoneForCoord(corx, cory, corz, 10.0, 0.0, false)
 
 				Wait(1000)
-
-				local DimMin, DimMax = GetModelDimensions(vehiclehash)
-				local VehSize = DimMax - DimMin
-
-				local offx, offy, offz = table.unpack(GetOffsetFromEntityInWorldCoords(coroner, 0, -VehSize.y/2 - 1.0, 0))
-				local Heading = GetEntityHeading(coroner)
-
-				TaskGoStraightToCoord(coronerdriver, offx, offy, offz, 2.0, -1, Heading, 1.0)
-
-				while distance > 3.0 do
-					local corx, cory, corz = table.unpack(GetEntityCoords(coronerdriver))
-					distance = Vdist2(corx, cory, corz, offx, offy, offz)
-					Wait(100)
-				end
-
-
 
 				for i, target in ipairs(DeadPedList) do
 					if DoesEntityExist(target) then
