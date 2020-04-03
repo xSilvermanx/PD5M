@@ -149,7 +149,7 @@ client_scripts {
 
 -- San Andreas State Patrol
 	"Config/Garages/Files/saspgaragesvanilla.lua",
-	"Config/Garages/Files/saspgaragesthehurk.lua",
+--	"Config/Garages/Files/saspgaragesthehurk.lua",
 
 -- San Andreas Park Rangers
 	"Config/Garages/Files/saprgaragesvanilla.lua",
