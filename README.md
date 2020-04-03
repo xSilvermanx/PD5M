@@ -108,8 +108,9 @@ v0.1.3.1
 - Fixed a bug related to multicharacter-scripts in ESX / vRP that caused a crash of radialmenu.
 
 v0.1.3.2
+- Rewrote coroner and tow stuck check. They will hopefully do their duty way more reliable.
 
 v0.1.3.3
-Fixed a bug that had LaMesa-coroners spawn under a bridge on Los Santos Freeway.
-Fixed a bug that caused radialmenu to be stuck open when opening chat
-Changes to tow and coroner-scripts to hopefully improve their behavior.
+- Fixed a bug that had LaMesa-coroners spawn under a bridge on Los Santos Freeway.
+- Fixed a bug that caused radialmenu to be stuck open when opening chat
+- Changes to tow and coroner-scripts to hopefully improve their behavior.
