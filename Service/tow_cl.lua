@@ -98,7 +98,7 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 	local station = nil
 	local shortestdistance = 999999999
 	for i, location in ipairs(list_towtruck_spawns) do
-		local distance = Vdist2(location.x, location.y, location.z, tarx, tary, tarz)
+		local distance = CalculateTravelDistanceBetweenPoints(location.x, location.y, location.z, tarx, tary, tarz)
 		if distance < shortestdistance then
 			station = location
 			shortestdistance = distance
@@ -220,6 +220,8 @@ AddEventHandler('pd5m:tow:towtruckapproach', function(towtruck, towtruckid, towd
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
 
+	ArePathNodesLoadedInArea(towx-100.0, towy-100.0, towx+100.0, towy+100.0)
+
 	while distance > 1500.0 and GlobalFlagTowCar do
 		print('Arriving')
 		print(distance)
@@ -312,7 +314,7 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 	SetVehicleIndicatorLights(towtruck, 2, true)
 	SetVehicleIndicatorLights(towtruck, 1, true)
 
-	TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 10.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
+	TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 5.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
@@ -390,9 +392,9 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 
 		local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 
-		TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 5.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
+		TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 3.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 
-		while distance > 200.0 and GlobalFlagTowCar do
+		while distance > 300.0 and GlobalFlagTowCar do
 			print('At scene closing in')
 			print(distance)
 			towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
@@ -464,9 +466,13 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 		if GlobalFlagTowCar then
 			TaskVehicleTempAction(towdriver, towtruck, 27, 10000)
 
-			TriggerEvent('pd5m:tow:flatbedpickup', towtruck, targetveh)
+			Wait(3000)
 
-			Wait(2000)
+			local TargetVehNetID = VehToNet(targetveh)
+			local TowNetID = VehToNet(towtruck)
+			TriggerServerEvent('pd5m:towsv:flatbedpickup', TargetVehNetID, TowNetID)
+
+			Wait(1000)
 
 			TriggerEvent('pd5m:tow:towtruckdepart', towtruck, towtruckid, towdriver, towblip, station, targetveh)
 		else
@@ -539,11 +545,13 @@ end)
 RegisterNetEvent('pd5m:tow:playerflatbedpickup')
 AddEventHandler('pd5m:tow:playerflatbedpickup', function()
 
-	TriggerEvent('pd5m:tow:flatbedpickup')
 end)
 
 -- handler to have flatbed pick up cars that are beside it.
-AddEventHandler('pd5m:tow:flatbedpickup', function(towtruck, targetveh)
+RegisterNetEvent('pd5m:tow:flatbedpickup')
+AddEventHandler('pd5m:tow:flatbedpickup', function(TargetVehNetID, TowNetID)
+	local targetveh = NetToVeh(TargetVehNetID)
+	local towtruck = NetToVeh(TowNetID)
 	AttachEntityToEntity(targetveh, towtruck, GetEntityBoneIndexByName(targetveh, "chassis"), 0.0, -2.0, 1.0, 0.0, 0.0, 0.0, false, false, true, false, 0, true)
 end)
 

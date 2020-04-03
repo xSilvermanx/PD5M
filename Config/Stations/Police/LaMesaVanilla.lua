@@ -49,6 +49,6 @@ PolLaMesa = {
     },
   },
   corspawn = {
-    {x=805.91, y=-131.60, z=26.24, angle=0.0, xa=791.14, ya=-1296.48, za=26.26, aa=175.88, handle='LaMesaLSPD', name='LSPD Station La Mesa'},
+    {x=805.91, y=-1341.60, z=26.24, angle=0.0, xa=791.14, ya=-1296.48, za=26.26, aa=175.88, handle='LaMesaLSPD', name='LSPD Station La Mesa'},
   },
 }
