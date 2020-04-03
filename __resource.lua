@@ -1,3 +1,4 @@
+-- Do not delete this line
 resource_manifest_version "44febabe-d386-4d18-afbe-5e627f4af937"
 
 -- PD5M server scripts
@@ -32,21 +33,91 @@ client_scripts {
 
 -- config files for PD5M
 client_scripts {
+
+-- Configuration for police related stations and their recommendations.
+--If you uncomment any station be sure to install the associated resource and comment out the vanilla version.
+
+	-- Beaver Bush Ranger Station | Park Ranger
 	"Config/Stations/Police/BeaverBushVanilla.lua",
+--	"Config/Stations/Police/BeaverBushSmokey.lua",
+
+	-- Davis Sheriff's Station
 	"Config/Stations/Police/DavisVanilla.lua",
+
+
+	-- Del Perro Police Station
 	"Config/Stations/Police/DelPerroVanilla.lua",
+
+
+	-- La Mesa Police Station
 	"Config/Stations/Police/LaMesaVanilla.lua",
+
+
+	-- Mission Row Police Station
 	"Config/Stations/Police/MissionRowVanilla.lua",
+--	"Config/Stations/Police/MissionRowSLB.lua",
+
+	-- Paleto Bay Sheriff's Office
 	"Config/Stations/Police/PaletoBayVanilla.lua",
+--	"Config/Stations/Police/PaletoBayMatus.lua",
+
+	-- Rockford Hills Police Station
 	"Config/Stations/Police/RockfordVanilla.lua",
-	"Config/Stations/Police/SandyShoresVanilla.lua",
+
+
+	-- Sandy Shores Sheriff's Station
+  "Config/Stations/Police/SandyShoresVanilla.lua",
+--	"Config/Stations/Police/SandyShoresBamboozled.lua",
+
+	-- Vespucci Beach Police Station
 	"Config/Stations/Police/VespucciBeachVanilla.lua",
+
+
+	-- Vespucci Police Station
 	"Config/Stations/Police/VespucciVanilla.lua",
+
+
+	-- Vinewood Police Station
 	"Config/Stations/Police/VinewoodVanilla.lua",
 
-	"Config/Stations/Other/BolingbrokeVanilla.lua",
-	"Config/Stations/Other/CoronerOfficeVanilla.lua",
 
+-- Configuration for medical related stations and their recommendations
+--If you uncomment any station be sure to install the associated resource and comment out the vanilla version.
+
+	-- Central Los Santos Medical Center
+	"Config/Stations/Med/CentralLSVanilla.lua",
+
+
+	-- Eclipse Medical Tower
+	"Config/Stations/Med/EclipseVanilla.lua",
+
+
+	-- St. Fiacre Hospital
+	"Config/Stations/Med/FiacreVanilla.lua",
+
+
+	-- Mount Zonah Medical Center
+	"Config/Stations/Med/MountZonahVanilla.lua",
+
+
+	-- The Bay Care Center
+	"Config/Stations/Med/PaletoBayVanilla.lua",
+--	"Config/Stations/Med/PaletoBayBrown.lua",
+
+	-- Pillbox Hill Medical Center
+	"Config/Stations/Med/PillboxHillVanilla.lua",
+
+
+	-- Portola Trinity Medical Center
+	"Config/Stations/Med/PortolaVanilla.lua",
+
+
+	-- Sandy Shores Medical Center
+	"Config/Stations/Med/SandyShoresVanilla.lua",
+--	"Config/Stations/Med/SandyShoresBeek.lua",
+
+
+-- Configuration for towservices
 	"Config/Stations/Tow/BeekersGarageVanilla.lua",
 	"Config/Stations/Tow/BennysVanilla.lua",
 	"Config/Stations/Tow/DPOSDavisVanilla.lua",
@@ -55,24 +126,47 @@ client_scripts {
 	"Config/Stations/Tow/LSCBurtonVanilla.lua",
 	"Config/Stations/Tow/LSCHarmonyVanilla.lua",
 	"Config/Stations/Tow/LSCLaMesaVanilla.lua",
+	"Config/Stations/Tow/AutoRepairsSandy.lua",
+	"Config/Stations/Tow/AutoRepairsMirrorPark.lua",
+	"Config/Stations/Tow/AutoExoticVinewood.lua",
 
-	"Config/Stations/Med/CentralLSVanilla.lua",
-	"Config/Stations/Med/EclipseVanilla.lua",
-	"Config/Stations/Med/FiacreVanilla.lua",
-	"Config/Stations/Med/MountZonahVanilla.lua",
-	"Config/Stations/Med/PaletoBayVanilla.lua",
-	"Config/Stations/Med/PillboxHillVanilla.lua",
-	"Config/Stations/Med/PortolaVanilla.lua",
-	"Config/Stations/Med/SandyShoresVanilla.lua",
 
+-- Configuration for other stations
+	"Config/Stations/Other/BolingbrokeVanilla.lua",
+	"Config/Stations/Other/CoronerOfficeVanilla.lua",
+
+
+-- Configuration for garages and their recommendations.
+-- If you uncomment any station be sure to install the associated resource and comment out the vanilla version.
+
+-- Los Santos Police Department
 	"Config/Garages/Files/lspdgaragesvanilla.lua",
+--	"Config/Garages/Files/lspdgaragest0y.lua",
+
+-- Blaine County Sherrif Office
 	"Config/Garages/Files/bcsogaragesvanilla.lua",
+--	"Config/Garages/Files/bcsogaragesbradm.lua",
+
+-- San Andreas State Patrol
 	"Config/Garages/Files/saspgaragesvanilla.lua",
+	"Config/Garages/Files/saspgaragesthehurk.lua",
+
+-- San Andreas Park Rangers
 	"Config/Garages/Files/saprgaragesvanilla.lua",
+
+
+-- Special weapons and tactics
 	"Config/Garages/Files/swatgaragesvanilla.lua",
+
+
+-- Department of Public Order and Safety
 	"Config/Garages/Files/dposgaragesvanilla.lua",
+
+-- Police Helicopter Garages -- Ambulance/Firefighter will be added later maybe :)
 	"Config/Garages/Files/heligaragesvanilla.lua",
 
+
+-- Configuration for armorys
 	"Config/Armories/Files/GeneralArmoryVanilla.lua",
 	"Config/Armories/Files/LSPDArmoryVanilla.lua",
 	"Config/Armories/Files/BCSOArmoryVanilla.lua",
