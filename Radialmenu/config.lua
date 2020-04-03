@@ -2,12 +2,18 @@
 menuConfigs = {
     ['emotes'] = {                                  -- Example menu for emotes when player is on foot
         enableMenu = function()                     -- Function to enable/disable menu handling
-            local player = GetPlayerPed(-1)
-      			local retval = false
-      			if IsPedOnFoot(player) and PlayerData.job.name == 'police' then
-      				retval = true
-      			end
-            return retval
+          local player = GetPlayerPed(-1)
+    			local retval = false
+          if PlayerData ~= nil then
+            if PlayerData.job ~= nil then
+              if PlayerData.job.name ~= nil then
+          			if IsPedOnFoot(player) and PlayerData.job.name == 'police' then
+          				retval = true
+          			end
+              end
+            end
+          end
+          return retval
         end,
         data = {                                    -- Data that is passed to Javascript
             keybind = "x",                         -- Wheel keybind to use (case sensitive, must match entry in keybindControls table)
@@ -49,12 +55,18 @@ menuConfigs = {
     },
     ['vehicles'] = {                                -- Example menu for vehicle controls when player is in a vehicle
         enableMenu = function()                     -- Function to enable/disable menu handling
-            local player = GetPlayerPed(-1)
-      			local retval = false
-      			if IsPedInAnyVehicle(player, false) and PlayerData.job.name == 'police' then
-      				retval = true
-      			end
-            return retval
+          local player = GetPlayerPed(-1)
+    			local retval = false
+          if PlayerData ~= nil then
+            if PlayerData.job ~= nil then
+              if PlayerData.job.name ~= nil then
+                if IsPedInAnyVehicle(player, false) and PlayerData.job.name == 'police' then
+                  retval = true
+                end
+              end
+            end
+          end
+          return retval
         end,
         data = {                                    -- Data that is passed to Javascript
             keybind = "x",                         -- Wheel keybind to use (case sensitive, must match entry in keybindControls table)

@@ -1,4 +1,7 @@
 # PD5M
+
+## Make sure that your resource is written completely lowercase: `pd5m`!
+
 PD5M is a resource for FiveM aiming to provide a functional police-multiplayer to the game. Inspired by LSPDFR and PIS you can take on the role of an officer of the Police Departments to protect and to serve the citizens of San Andreas.
 
 ## Features
@@ -100,3 +103,16 @@ armories and garages
 - Changed the crosshair-function not to use the SniperScope but a sprite
 - Changed the help-function to also display controller-buttons
 - Fixed a bug that made it impossible to pull over cars with trailers
+
+v0.1.3.1
+- Fixed a bug related to multicharacter-scripts in ESX / vRP that caused a crash of radialmenu.
+
+v0.1.3.2
+- Rewrote coroner and tow stuck check. They will hopefully do their duty way more reliable.
+
+v0.1.3.3
+- Fixed a bug that had LaMesa-coroners spawn under a bridge on Los Santos Freeway
+- Fixed a bug that caused radialmenu to be stuck open when opening chat
+- Changes to tow and coroner-scripts to hopefully improve their behavior
+- Sorted `__resource.lua`-config options
+- Added three tow truck-stations

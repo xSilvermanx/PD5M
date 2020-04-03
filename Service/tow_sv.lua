@@ -9,3 +9,8 @@ RegisterNetEvent('pd5m:towsv:aborttowtruck')
 AddEventHandler('pd5m:towsv:aborttowtruck', function(TargetVehNetID)
 	TriggerClientEvent('pd5m:tow:aborttowtruck', -1, TargetVehNetID)
 end)
+
+RegisterNetEvent('pd5m:towsv:flatbedpickup')
+AddEventHandler('pd5m:towsv:flatbedpickup', function(TargetVehNetID, TowNetID)
+	TriggerClientEvent('pd5m:tow:flatbedpickup', -1, TargetVehNetID, TowNetID)
+end)

@@ -98,7 +98,7 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 	local station = nil
 	local shortestdistance = 999999999
 	for i, location in ipairs(list_towtruck_spawns) do
-		local distance = Vdist2(location.x, location.y, location.z, tarx, tary, tarz)
+		local distance = CalculateTravelDistanceBetweenPoints(location.x, location.y, location.z, tarx, tary, tarz)
 		if distance < shortestdistance then
 			station = location
 			shortestdistance = distance
@@ -220,14 +220,76 @@ AddEventHandler('pd5m:tow:towtruckapproach', function(towtruck, towtruckid, towd
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
 
-	local n = 0
-	while distance > 1500.0 and n < 50000 and GlobalFlagTowCar do
+	ArePathNodesLoadedInArea(towx-100.0, towy-100.0, towx+100.0, towy+100.0)
+
+	while distance > 1500.0 and GlobalFlagTowCar do
 		print('Arriving')
 		print(distance)
 		towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 		distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-		n = n + 1
-		Wait(100)
+
+		if IsVehicleStopped(towtruck) and not IsVehicleStoppedAtTrafficLights(towtruck) then
+			print('I have stopped')
+			if IsPointOnRoad(towx, towy, towz, towtruck) then
+				print("I'm on the road")
+				local n = 0
+				while IsVehicleStopped(towtruck) and n < 500 do
+					print(n)
+					n = n + 1
+					Wait(10)
+				end
+				print('While ended')
+				if n > 400 then
+					print('Changing position')
+					local towpos = GetOffsetFromEntityInWorldCoords(towtruck, 0.0, 100.0, 0.0)
+					local _, pos, heading = GetClosestVehicleNodeWithHeading(towpos.x, towpos.y, towpos.z, 0, 3.0, 0)
+
+					local offx = tarx - pos.x
+					local offy = tary - pos.y
+					local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
+
+					if VecAngle < 270 and VecAngle > 90 then
+						heading = heading + 180.00
+					end
+					SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
+					SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
+					SetEntityHeading(towtruck, heading)
+					SetPedIntoVehicle(towdriver, towtruck, -1)
+					SetVehicleFixed(towtruck)
+					SetVehicleOnGroundProperly(towtruck)
+					TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
+				end
+			else
+				print("I'm off the road.")
+				local n = 0
+				while IsVehicleStopped(towtruck) and n < 500 do
+					print(n)
+					n = n + 1
+					Wait(10)
+				end
+				print('While ended')
+				if n > 400 then
+					print('Changing position')
+					local _, pos, heading = GetClosestVehicleNodeWithHeading(towx, towy, towz, 0, 3.0, 0)
+
+					local offx = tarx - pos.x
+					local offy = tary - pos.y
+					local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
+
+					if VecAngle < 270 and VecAngle > 90 then
+						heading = heading + 180.00
+					end
+					SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
+					SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
+					SetEntityHeading(towtruck, heading)
+					SetPedIntoVehicle(towdriver, towtruck, -1)
+					SetVehicleFixed(towtruck)
+					SetVehicleOnGroundProperly(towtruck)
+					TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
+				end
+			end
+		end
+		Wait(1000)
 	end
 
 	if GlobalFlagTowCar then
@@ -257,13 +319,72 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
 
-	local n = 0
-	while distance > 800.0 and n < 500 and GlobalFlagTowCar do
+	while distance > 800.0 and GlobalFlagTowCar do
 		print('At scene start')
 		print(distance)
 		towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 		distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-		n = n + 1
+		if IsVehicleStopped(towtruck) and not IsVehicleStoppedAtTrafficLights(towtruck) then
+			print('I have stopped')
+			if IsPointOnRoad(towx, towy, towz, towtruck) then
+				print("I'm on the road")
+				local n = 0
+				while IsVehicleStopped(towtruck) and n < 500 do
+					print(n)
+					n = n + 1
+					Wait(10)
+				end
+				print('While ended')
+				if n > 400 then
+					print('Changing position')
+					local towpos = GetOffsetFromEntityInWorldCoords(towtruck, 0.0, 100.0, 0.0)
+					local _, pos, heading = GetClosestVehicleNodeWithHeading(towpos.x, towpos.y, towpos.z, 0, 3.0, 0)
+
+					local offx = tarx - pos.x
+					local offy = tary - pos.y
+					local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
+
+					if VecAngle < 270 and VecAngle > 90 then
+						heading = heading + 180.00
+					end
+					SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
+					SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
+					SetEntityHeading(towtruck, heading)
+					SetPedIntoVehicle(towdriver, towtruck, -1)
+					SetVehicleFixed(towtruck)
+					SetVehicleOnGroundProperly(towtruck)
+					TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
+				end
+			else
+				print("I'm off the road.")
+				local n = 0
+				while IsVehicleStopped(towtruck) and n < 500 do
+					print(n)
+					n = n + 1
+					Wait(10)
+				end
+				print('While ended')
+				if n > 400 then
+					print('Changing position')
+					local _, pos, heading = GetClosestVehicleNodeWithHeading(towx, towy, towz, 0, 3.0, 0)
+
+					local offx = tarx - pos.x
+					local offy = tary - pos.y
+					local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
+
+					if VecAngle < 270 and VecAngle > 90 then
+						heading = heading + 180.00
+					end
+					SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
+					SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
+					SetEntityHeading(towtruck, heading)
+					SetPedIntoVehicle(towdriver, towtruck, -1)
+					SetVehicleFixed(towtruck)
+					SetVehicleOnGroundProperly(towtruck)
+					TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
+				end
+			end
+		end
 		Wait(100)
 	end
 
@@ -273,22 +394,85 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 
 		TaskVehicleDriveToCoord(towdriver, towtruck, tarx, tary, tarz, 3.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 
-		local n = 0
-		while distance > 200.0 and n < 500 and GlobalFlagTowCar do
+		while distance > 300.0 and GlobalFlagTowCar do
 			print('At scene closing in')
 			print(distance)
 			towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 			distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-			n = n + 1
+			if IsVehicleStopped(towtruck) and not IsVehicleStoppedAtTrafficLights(towtruck) then
+				print('I have stopped')
+				if IsPointOnRoad(towx, towy, towz, towtruck) then
+					print("I'm on the road")
+					local n = 0
+					while IsVehicleStopped(towtruck) and n < 500 do
+						print(n)
+						n = n + 1
+						Wait(10)
+					end
+					print('While ended')
+					if n > 400 then
+						print('Changing position')
+						local towpos = GetOffsetFromEntityInWorldCoords(towtruck, 0.0, 100.0, 0.0)
+						local _, pos, heading = GetClosestVehicleNodeWithHeading(towpos.x, towpos.y, towpos.z, 0, 3.0, 0)
+
+						local offx = tarx - pos.x
+						local offy = tary - pos.y
+						local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
+
+						if VecAngle < 270 and VecAngle > 90 then
+							heading = heading + 180.00
+						end
+						SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
+						SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
+						SetEntityHeading(towtruck, heading)
+						SetPedIntoVehicle(towdriver, towtruck, -1)
+						SetVehicleFixed(towtruck)
+						SetVehicleOnGroundProperly(towtruck)
+						TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
+					end
+				else
+					print("I'm off the road.")
+					local n = 0
+					while IsVehicleStopped(towtruck) and n < 500 do
+						print(n)
+						n = n + 1
+						Wait(10)
+					end
+					print('While ended')
+					if n > 400 then
+						print('Changing position')
+						local _, pos, heading = GetClosestVehicleNodeWithHeading(towx, towy, towz, 0, 3.0, 0)
+
+						local offx = tarx - pos.x
+						local offy = tary - pos.y
+						local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
+
+						if VecAngle < 270 and VecAngle > 90 then
+							heading = heading + 180.00
+						end
+						SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
+						SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
+						SetEntityHeading(towtruck, heading)
+						SetPedIntoVehicle(towdriver, towtruck, -1)
+						SetVehicleFixed(towtruck)
+						SetVehicleOnGroundProperly(towtruck)
+						TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
+					end
+				end
+			end
 			Wait(100)
 		end
 
 		if GlobalFlagTowCar then
 			TaskVehicleTempAction(towdriver, towtruck, 27, 10000)
 
-			TriggerEvent('pd5m:tow:flatbedpickup', towtruck, targetveh)
-
 			Wait(3000)
+
+			local TargetVehNetID = VehToNet(targetveh)
+			local TowNetID = VehToNet(towtruck)
+			TriggerServerEvent('pd5m:towsv:flatbedpickup', TargetVehNetID, TowNetID)
+
+			Wait(1000)
 
 			TriggerEvent('pd5m:tow:towtruckdepart', towtruck, towtruckid, towdriver, towblip, station, targetveh)
 		else
@@ -314,13 +498,12 @@ AddEventHandler('pd5m:tow:towtruckdepart', function(towtruck, towtruckid, towdri
 	local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 	local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
 
-	local n = 0
-	while distance > 50.0 and DoesEntityExist(towtruck) and n < 500 do
+	while distance > 50.0 and DoesEntityExist(towtruck) do
 		local towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 		local distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-		n = n + 1
 		Wait(1000)
 	end
+
 	if DoesEntityExist(towtruck) then
 		DeleteEntity(targetveh)
 		TaskVehicleDriveWander(towdriver, towtruck, 30.0, NormalDrivingBehavior)
@@ -362,11 +545,13 @@ end)
 RegisterNetEvent('pd5m:tow:playerflatbedpickup')
 AddEventHandler('pd5m:tow:playerflatbedpickup', function()
 
-	TriggerEvent('pd5m:tow:flatbedpickup')
 end)
 
 -- handler to have flatbed pick up cars that are beside it.
-AddEventHandler('pd5m:tow:flatbedpickup', function(towtruck, targetveh)
+RegisterNetEvent('pd5m:tow:flatbedpickup')
+AddEventHandler('pd5m:tow:flatbedpickup', function(TargetVehNetID, TowNetID)
+	local targetveh = NetToVeh(TargetVehNetID)
+	local towtruck = NetToVeh(TowNetID)
 	AttachEntityToEntity(targetveh, towtruck, GetEntityBoneIndexByName(targetveh, "chassis"), 0.0, -2.0, 1.0, 0.0, 0.0, 0.0, false, false, true, false, 0, true)
 end)
 
