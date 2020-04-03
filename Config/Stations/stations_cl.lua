@@ -37,6 +37,9 @@ TowStations = {
   TowLaMesa,
   TowBeekers,
   TowVespucci,
+  TowSandy,
+  TowMirrorPark,
+  TowVinewood,
 }
 
 OthStations = {

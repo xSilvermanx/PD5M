@@ -1,3 +1,4 @@
+-- Do not delete this line
 resource_manifest_version "44febabe-d386-4d18-afbe-5e627f4af937"
 
 -- PD5M server scripts
@@ -33,11 +34,12 @@ client_scripts {
 -- config files for PD5M
 client_scripts {
 
--- Configuration for police related stations and their recommendations
+-- Configuration for police related stations and their recommendations.
+--If you uncomment any station be sure to install the associated resource and comment out the vanilla version.
 
 	-- Beaver Bush Ranger Station | Park Ranger
-	"Config/Stations/Police/BeaverBushVanilla.lua",
---	"Config/Stations/Police/BeaverBushSmokey.lua",
+--	"Config/Stations/Police/BeaverBushVanilla.lua",
+	"Config/Stations/Police/BeaverBushSmokey.lua",
 
 	-- Davis Sheriff's Station
 	"Config/Stations/Police/DavisVanilla.lua",
@@ -52,20 +54,20 @@ client_scripts {
 
 
 	-- Mission Row Police Station
-	"Config/Stations/Police/MissionRowVanilla.lua",
---	"Config/Stations/Police/MissionRowSLB.lua",
+--	"Config/Stations/Police/MissionRowVanilla.lua",
+	"Config/Stations/Police/MissionRowSLB.lua",
 
 	-- Paleto Bay Sheriff's Office
-	"Config/Stations/Police/PaletoBayVanilla.lua",
---	"Config/Stations/Police/PaletoBayMatus.lua",
+--	"Config/Stations/Police/PaletoBayVanilla.lua",
+	"Config/Stations/Police/PaletoBayMatus.lua",
 
 	-- Rockford Hills Police Station
 	"Config/Stations/Police/RockfordVanilla.lua",
 
 
 	-- Sandy Shores Sheriff's Station
-	"Config/Stations/Police/SandyShoresVanilla.lua",
---	"Config/Stations/Police/SandyShoresBamboozled.lua",
+--	"Config/Stations/Police/SandyShoresVanilla.lua",
+	"Config/Stations/Police/SandyShoresBamboozled.lua",
 
 	-- Vespucci Beach Police Station
 	"Config/Stations/Police/VespucciBeachVanilla.lua",
@@ -79,8 +81,8 @@ client_scripts {
 	"Config/Stations/Police/VinewoodVanilla.lua",
 
 
-
 -- Configuration for medical related stations and their recommendations
+--If you uncomment any station be sure to install the associated resource and comment out the vanilla version.
 
 	-- Central Los Santos Medical Center
 	"Config/Stations/Med/CentralLSVanilla.lua",
@@ -99,8 +101,8 @@ client_scripts {
 
 
 	-- The Bay Care Center
-	"Config/Stations/Med/PaletoBayVanilla.lua",
---	"Config/Stations/Med/PaletoBayBrown.lua",
+--	"Config/Stations/Med/PaletoBayVanilla.lua",
+	"Config/Stations/Med/PaletoBayBrown.lua",
 
 	-- Pillbox Hill Medical Center
 	"Config/Stations/Med/PillboxHillVanilla.lua",
@@ -111,8 +113,8 @@ client_scripts {
 
 
 	-- Sandy Shores Medical Center
-	"Config/Stations/Med/SandyShoresVanilla.lua",
---	"Config/Stations/Med/SandyShoresBeek.lua",
+--	"Config/Stations/Med/SandyShoresVanilla.lua",
+	"Config/Stations/Med/SandyShoresBeek.lua",
 
 
 -- Configuration for towservices
@@ -124,6 +126,9 @@ client_scripts {
 	"Config/Stations/Tow/LSCBurtonVanilla.lua",
 	"Config/Stations/Tow/LSCHarmonyVanilla.lua",
 	"Config/Stations/Tow/LSCLaMesaVanilla.lua",
+	"Config/Stations/Tow/AutoRepairsSandy.lua",
+	"Config/Stations/Tow/AutoRepairsMirrorPark.lua",
+	"Config/Stations/Tow/AutoExoticVinewood.lua",
 
 
 -- Configuration for other stations
@@ -131,13 +136,33 @@ client_scripts {
 	"Config/Stations/Other/CoronerOfficeVanilla.lua",
 
 
--- Configuration for garages
+-- Configuration for garages and their recommendations.
+-- If you uncomment any station be sure to install the associated resource and comment out the vanilla version.
+
+-- Los Santos Police Department
 	"Config/Garages/Files/lspdgaragesvanilla.lua",
+	"Config/Garages/Files/lspdgaragest0y.lua",
+
+-- Blaine County Sherrif Office
 	"Config/Garages/Files/bcsogaragesvanilla.lua",
+	"Config/Garages/Files/bcsogaragesbradm.lua",
+
+-- San Andreas State Patrol
 	"Config/Garages/Files/saspgaragesvanilla.lua",
+	"Config/Garages/Files/saspgaragesthehurk.lua",
+
+-- San Andreas Park Rangers
 	"Config/Garages/Files/saprgaragesvanilla.lua",
+
+
+-- Special weapons and tactics
 	"Config/Garages/Files/swatgaragesvanilla.lua",
+
+
+-- Department of Public Order and Safety
 	"Config/Garages/Files/dposgaragesvanilla.lua",
+
+-- Police Helicopter Garages -- Ambulance/Firefighter will be added later maybe :)
 	"Config/Garages/Files/heligaragesvanilla.lua",
 
 
