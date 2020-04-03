@@ -38,8 +38,8 @@ client_scripts {
 --If you uncomment any station be sure to install the associated resource and comment out the vanilla version.
 
 	-- Beaver Bush Ranger Station | Park Ranger
---	"Config/Stations/Police/BeaverBushVanilla.lua",
-	"Config/Stations/Police/BeaverBushSmokey.lua",
+	"Config/Stations/Police/BeaverBushVanilla.lua",
+--	"Config/Stations/Police/BeaverBushSmokey.lua",
 
 	-- Davis Sheriff's Station
 	"Config/Stations/Police/DavisVanilla.lua",
@@ -54,20 +54,20 @@ client_scripts {
 
 
 	-- Mission Row Police Station
---	"Config/Stations/Police/MissionRowVanilla.lua",
-	"Config/Stations/Police/MissionRowSLB.lua",
+	"Config/Stations/Police/MissionRowVanilla.lua",
+--	"Config/Stations/Police/MissionRowSLB.lua",
 
 	-- Paleto Bay Sheriff's Office
---	"Config/Stations/Police/PaletoBayVanilla.lua",
-	"Config/Stations/Police/PaletoBayMatus.lua",
+	"Config/Stations/Police/PaletoBayVanilla.lua",
+--	"Config/Stations/Police/PaletoBayMatus.lua",
 
 	-- Rockford Hills Police Station
 	"Config/Stations/Police/RockfordVanilla.lua",
 
 
 	-- Sandy Shores Sheriff's Station
---	"Config/Stations/Police/SandyShoresVanilla.lua",
-	"Config/Stations/Police/SandyShoresBamboozled.lua",
+  "Config/Stations/Police/SandyShoresVanilla.lua",
+--	"Config/Stations/Police/SandyShoresBamboozled.lua",
 
 	-- Vespucci Beach Police Station
 	"Config/Stations/Police/VespucciBeachVanilla.lua",
@@ -101,8 +101,8 @@ client_scripts {
 
 
 	-- The Bay Care Center
---	"Config/Stations/Med/PaletoBayVanilla.lua",
-	"Config/Stations/Med/PaletoBayBrown.lua",
+	"Config/Stations/Med/PaletoBayVanilla.lua",
+--	"Config/Stations/Med/PaletoBayBrown.lua",
 
 	-- Pillbox Hill Medical Center
 	"Config/Stations/Med/PillboxHillVanilla.lua",
@@ -113,8 +113,8 @@ client_scripts {
 
 
 	-- Sandy Shores Medical Center
---	"Config/Stations/Med/SandyShoresVanilla.lua",
-	"Config/Stations/Med/SandyShoresBeek.lua",
+	"Config/Stations/Med/SandyShoresVanilla.lua",
+--	"Config/Stations/Med/SandyShoresBeek.lua",
 
 
 -- Configuration for towservices
@@ -141,11 +141,11 @@ client_scripts {
 
 -- Los Santos Police Department
 	"Config/Garages/Files/lspdgaragesvanilla.lua",
-	"Config/Garages/Files/lspdgaragest0y.lua",
+--	"Config/Garages/Files/lspdgaragest0y.lua",
 
 -- Blaine County Sherrif Office
 	"Config/Garages/Files/bcsogaragesvanilla.lua",
-	"Config/Garages/Files/bcsogaragesbradm.lua",
+--	"Config/Garages/Files/bcsogaragesbradm.lua",
 
 -- San Andreas State Patrol
 	"Config/Garages/Files/saspgaragesvanilla.lua",
