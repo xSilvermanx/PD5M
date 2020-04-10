@@ -2829,7 +2829,7 @@ end)
 -- Variables: EntityId
 AddEventHandler('pd5m:int:weaponizeped', function(target)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-	if ClientPedConfigList[TargetFlagListIndex].savepedweapons[1] ~= nil then
+	if ClientPedConfigList[TargetFlagListIndex].savepedweapons ~= nil then
 		for i, weapon in ipairs(ClientPedConfigList[TargetFlagListIndex].savepedweapons) do
 			GiveWeaponToPed(target, weapon, 500, false, false)
 		end
