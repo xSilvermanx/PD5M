@@ -33,7 +33,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	else
 		PedFirstName = ffemalenamesar[math.random(#ffemalenamesar)]
 	end
-	
+
 	local PedInfosListInit = {
 	NetID = PedNetID,
 	PedGender = Gender,
@@ -48,7 +48,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	VehicleNetID = nil,
 	PedUnusualActivity = {},
 	AlliesList = {}, --input NetIDs of allied peds. Useful for gang activity and missions
-	
+
 	flagfleeinstant = false,
 	flagfight = false,
 	flagdrug = false,
@@ -67,19 +67,19 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	flaglicence = true,
 	flagweaponlicence = true,
 	resistmodifier = 0,
-	
+
 	flagallowbreathalyzer = false,
 	flagallowdrugtest = false,
 	flagallowpersonsearch = false,
 	flagallowcarsearch = false,
-	
+
 	flagallowcarseizure = false,
 	flagallowitemconfiscation = false,
 	flagallowarrest = false,
 	flagallowfine = false,
 	}
-	
-	-- Random ID Generation	
+
+	-- Random ID Generation
 	local RandomIDPre = math.random(1, 999999999999)
 	local RandomIDPreDigits = 11 - math.floor(math.log10(RandomIDPre))
 	local RandomIDDigits = ""
@@ -89,7 +89,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	local RandomID = RandomIDDigits .. RandomIDPre
 	PedInfosListInit.RandomID = RandomID
 	RandomIDDigits = "0"
-	
+
 	local RandomLicenceIDPre = math.random(1, 999999999)
 	local RandomLicenceIDPreDigits = 8 - math.floor(math.log10(RandomLicenceIDPre))
 	local RandomLicenceIDDigits = ""
@@ -99,7 +99,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	local RandomLicenceID = RandomLicenceIDDigits .. RandomLicenceIDPre
 	PedInfosListInit.RandomLicenceID = RandomLicenceID
 	RandomLicenceIDDigits = "0"
-	
+
 	local RandomWeaponIDPre = math.random(1, 999999999)
 	local RandomWeaponIDPreDigits = 8 - math.floor(math.log10(RandomWeaponIDPre))
 	local RandomWeaponIDDigits = ""
@@ -109,7 +109,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	local RandomWeaponID = RandomWeaponIDDigits .. RandomWeaponIDPre
 	PedInfosListInit.RandomWeaponID = RandomWeaponID
 	RandomIDDigits = "0"
-	
+
 	-- Chance for certain flags
 	if math.random(1, 10000) <= PedDruggedChance*100 then
 		PedInfosListInit.flagdrug = true
@@ -133,7 +133,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	if math.random(1, 10000) < PedNoWeaponLicenceChance*100 then
 		PedInfosListInit.flagweaponlicence = false
 	end
-	
+
 	-- Chance to carry a weapon
 	local meleechance = PedMeleeBaseChance*100
 	local weaponchance = PedLegalWeapBaseChance*100
@@ -163,14 +163,14 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	end
 	if math.random(1, 10000) < illegalweaponchance then
 		for i=1,math.random(1,4),1 do
-			table.insert(PedInfosListInit.savepedweapons, WeaponList[math.random(1, #IllegalWeaponList)])
+			table.insert(PedInfosListInit.savepedweapons, IllegalWeaponList[math.random(1, #IllegalWeaponList)])
 		end
 		PedInfosListInit.flagpedillegalweapon = true
 	end
-	
+
 	-- Chance to carry an illegal item
 	local illegalitemchance = PedIllegalItemBaseChance*100
-	
+
 	if PedInfosListInit.flagwanted then
 		illegalitemchance = illegalitemchance + PedIllegalItemWantedModifier*100
 	end
@@ -193,7 +193,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 			table.insert(PedInfosListInit.savepeditems, ItemList[math.random(1, #ItemList)])
 		end
 	end
-	
+
 	-- Chance to hide id
 	-- Chance to flee instant
 	-- Flag Resist Modifier
@@ -202,7 +202,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	local fleeinstantchance = PedFleeInstantBaseChance*100
 	local resistmodifier = 0
 	local fightchance = PedFightBaseChance*100
-	
+
 	if PedInfosListInit.flagwanted then
 		hideidchance = hideidchance + PedHideIDWantedModifier*100
 		fleeinstantchance = fleeinstantchance + PedFleeInstantWantedModifier*100
@@ -239,21 +239,21 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	if not PedInfosListInit.flagid then
 		hideidchance = 10000
 	end
-	
+
 	PedInfosListInit.resistmodifier = resistmodifier
-	
+
 	--todo: randomize resistmodifier - only do this after implementing the "threaten-ped"-talk-option.
-	
+
 	if math.random(1, 10000) < fleeinstantchance then
 		PedInfosListInit.flagfleeinstant = true
 	end
 	if math.random(1, 10000) < fightchance then
 		PedInfosListInit.flagfight = true
 	end
-	if math.random(1, 10000) < hideidchance then	
+	if math.random(1, 10000) < hideidchance then
 		PedInfosListInit.flaghideid = true
 	end
-	
+
 	table.insert(PedConfigList, PedInfosListInit)
 
 end)
@@ -284,10 +284,10 @@ end)
 -- Creates config information for a specific vehicle
 -- don't use this, trigger Event 'pd5m:intsv:AddVehToList'
 AddEventHandler('pd5m:intsv:InitVehConfigList', function(VehNetID)
-	
+
 	local PedFirstName = nil
 	local Gender = nil
-	
+
 	if math.random(1, 10) <= 5 then
 		Gender = 'Male'
 		PedFirstName = fmalenamesar[math.random(#fmalenamesar)]
@@ -295,7 +295,7 @@ AddEventHandler('pd5m:intsv:InitVehConfigList', function(VehNetID)
 		Gender = 'Female'
 		PedFirstName = ffemalenamesar[math.random(#ffemalenamesar)]
 	end
-	
+
 	local VehInfosListInit = {
 	NetID = VehNetID,
 	Registration = "Valid", -- Valid, Uninsured, Unregistered, Stolen
@@ -311,14 +311,14 @@ AddEventHandler('pd5m:intsv:InitVehConfigList', function(VehNetID)
 	flagwanted = false,
 	saveoffense = 'None',
 	}
-	
+
 	if math.random(1, 10000) < (VehOwnerWantedChance*100) then
 		VehInfosListInit.flagwanted = true
 		VehInfosListInit.saveoffense = OffenseList[math.random(1, #OffenseList)]
 	end
-	
+
 	local illegalitemchance = VehIllegalItemChance*100
-	
+
 	if math.random(1, 10000) < illegalitemchance then
 		for i=1, math.random(1,4),1 do
 			table.insert(VehInfosListInit.savevehitems, IllegalItemList[math.random(1, #IllegalItemList)])
@@ -334,7 +334,7 @@ AddEventHandler('pd5m:intsv:InitVehConfigList', function(VehNetID)
 			table.insert(VehInfosListInit.savevehitems, ItemList[math.random(1, #ItemList)])
 		end
 	end
-	
+
 	table.insert(VehConfigList, VehInfosListInit)
-	
+
 end)

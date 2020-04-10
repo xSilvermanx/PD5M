@@ -12,8 +12,8 @@ EnableDispatchService(5, false) --AmbulanceDepartment
 EnableDispatchService(6, false)
 EnableDispatchService(7, false)
 EnableDispatchService(8, false)
-EnableDispatchService(9, true) --PulledOverPD
-EnableDispatchService(10, true) --CruisingPD
+EnableDispatchService(9, false) --PulledOverPD
+EnableDispatchService(10, false) --CruisingPD
 EnableDispatchService(11, true) --Gangs
 EnableDispatchService(12, false)
 EnableDispatchService(13, false)
