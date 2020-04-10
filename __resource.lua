@@ -203,6 +203,22 @@ client_scripts {
 	"Sync/sync_cl.lua",
 }
 
+-- PD5M callout scripts
+server_scripts {
+	"Callouts/MissionData/AmbientEvents/**/*.lua",
+	"Callouts/MissionData/Callouts/**/*.lua",
+	"Callouts/MissionData/MissionLoader_gl.lua",
+	"Callouts/MissionHandler_sv.lua",
+	"Callouts/MissionData/MissionInterpreter_sv.lua",
+}
+
+client_scripts {
+	"Callouts/MissionData/AmbientEvents/**/*.lua",
+	"Callouts/MissionData/Callouts/**/*.lua",
+	"Callouts/MissionData/MissionLoader_gl.lua",
+	"Callouts/MissionHandler_cl.lua",
+}
+
 -- Radialmenu integration
 client_script {
   "Radialmenu/config.lua",
