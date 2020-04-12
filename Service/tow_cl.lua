@@ -115,6 +115,15 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 
 	local VecAngle = GetHeadingFromVector_2d(offx, offy)-sta
 
+	while VecAngle < 0 or VecAngle > 360 do
+		if VecAngle < 0 then
+			VecAngle = VecAngle + 360
+		elseif VecAngle > 360 then
+			VecAngle = VecAngle - 360
+		end
+		Wait(200)
+	end
+
 	if VecAngle < 270 and VecAngle > 90 then
 		stx = station.xa
 		sty = station.ya

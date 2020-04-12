@@ -190,7 +190,7 @@ CreateThread(function()
         end
       else
         for i, EntityData in ipairs(AmbientEvent.Entities) do
-          if CurrTime - EntityData.Time > 900 or DoesEntityExist(NetworkGetEntityFromNetworkId(EntityData.Entity)) then
+          if CurrTime - EntityData.Time > 900 or not DoesEntityExist(NetworkGetEntityFromNetworkId(EntityData.Entity)) then
             TriggerClientEvent('pd5m:mss:SetEntityAsNoLongerNeeded', -1, EntityData.Entity)
             CurrentlyRunningAmbientEventsList[Client].Entities[i] = nil
             AmbientEvent.CreationTime = CurrTime

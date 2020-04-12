@@ -673,7 +673,6 @@ AddEventHandler('pd5m:int:ShowCommunication', function(NetID, PartnerNetID, text
 	local DisplayTextLength = string.len(DisplayText)
 	DisplayTextMainList = {}
 	DisplayTextSubList = {}
-	local breakloop = false
 
 	if DisplayTextLength > 99 then
 		local n = 1
@@ -686,12 +685,14 @@ AddEventHandler('pd5m:int:ShowCommunication', function(NetID, PartnerNetID, text
 		local DisplayTextHelpNew = DisplayTextSubList[1]
 		local i = 1
 		while i < n do
+			local breakloop = false
 			local DisplayTextHelpLength = 0
+			local DisplayTextHelp = nil
 			while DisplayTextHelpLength < 90 do
 				i = i + 1
-				local DisplayTextHelp = DisplayTextHelpNew
+				DisplayTextHelp = DisplayTextHelpNew
 				if DisplayTextSubList[i] == nil then
-					local breakloop = true
+					breakloop = true
 					break
 				end
 				DisplayTextHelpNew = DisplayTextHelp .. ' ' .. DisplayTextSubList[i]

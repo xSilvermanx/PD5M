@@ -14,3 +14,11 @@ for i, Callout in ipairs(ListOfCallouts) do
   table.insert(CalloutWeightList, Callout.Weight*ClassWeight+CalloutTotalWeight)
   CalloutTotalWeight = CalloutTotalWeight + ClassWeight*Callout.Weight
 end
+
+-- Mission specific server events
+
+RegisterNetEvent('pd5m:msssv:api:TriggerDispatchCall')
+AddEventHandler('pd5m:msssv:api:TriggerDispatchCall', function(string, MissionPos)
+  local CalloutNumber = source
+  TriggerClientEvent('pd5m:mss:api:TriggerDispatchCall', -1, CalloutNumber, string, MissionPos)
+end)

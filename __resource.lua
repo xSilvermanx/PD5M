@@ -217,6 +217,7 @@ client_scripts {
 	"Callouts/MissionData/Callouts/**/*.lua",
 	"Callouts/MissionData/MissionLoader_gl.lua",
 	"Callouts/MissionHandler_cl.lua",
+	"Callouts/MissionData/MissionInterpreter_cl.lua",
 }
 
 -- Radialmenu integration
