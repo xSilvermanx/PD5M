@@ -65,10 +65,10 @@ CreateThread(function()
 end)
 
 AddEventHandler('playerDropped', function(reason)
-  if PlayerRunsAmbientEvent ~= nil then
+  if PlayerRunsAmbientEvent[source] ~= 'None' then
 
   end
-  if PlayerRunsCallout ~= nil then
+  if PlayerRunsCallout[source] ~= 'None' then
     TriggerEvent('pd5m:msssv:EndCallout', source)
   end
   PlayerCanTriggerCallouts[source] = nil
