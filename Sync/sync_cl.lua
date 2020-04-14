@@ -3,7 +3,7 @@
 RegisterNetEvent('pd5m:sync:PedDatabaseResult')
 AddEventHandler('pd5m:sync:PedDatabaseResult', function(NetID, List)
 	if NetID == nil then
-	
+
 	else
 		local flagduplicate = false
 		for i, ID in ipairs(ClientPedList) do
@@ -24,11 +24,11 @@ end)
 RegisterNetEvent('pd5m:sync:SearchPedEntryResult')
 AddEventHandler('pd5m:sync:SearchPedEntryResult', function(entryname, entryvalue, ReturnList)
 	local ResultList = {}
-	
+
 	table.insert(ResultList, entryname)
 	table.insert(ResultList, entryvalue)
 	table.insert(ResultList, ReturnList)
-	
+
 	table.insert(ClientPedSearchList, ResultList)
 end)
 
@@ -123,7 +123,7 @@ end)
 RegisterNetEvent('pd5m:sync:VehDatabaseResult')
 AddEventHandler('pd5m:sync:VehDatabaseResult', function(NetID, List)
 	if NetID == nil then
-	
+
 	else
 		local flagduplicate = false
 		for i, ID in ipairs(ClientVehList) do
@@ -156,11 +156,11 @@ end)
 -- variables: EntityId, bool
 AddEventHandler('pd5m:sync:PedSetAllAllowConfigFlags', function(target, boolvalue)
 	local TargetNetID = PedToNet(target)
-	
+
 	if boolvalue then
 		TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'resistmodifier', 0)
 	end
-	
+
 	TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowbreathalyzer', boolvalue)
 	TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowdrugtest', boolvalue)
 	TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagallowpersonsearch', boolvalue)
@@ -214,6 +214,14 @@ end)
 RegisterNetEvent('pd5m:sync:TaskPlayAnim')
 AddEventHandler('pd5m:sync:TaskPlayAnim', function(target, AnimDict, AnimName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ)
 	loadAnimDict(AnimDict)
-	
+
 	TaskPlayAnim(target, AnimDict, AnimName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ)
+end)
+
+RegisterNetEvent('pd5m:sync:SetEntityAsMissionEntity')
+AddEventHandler('pd5m:sync:SetEntityAsMissionEntity', function(TargetNetID)
+	target = NetToPed(TargetNetID)
+	if DoesEntityExist(target) then
+		SetEntityAsMissionEntity(target, true, true)
+	end
 end)

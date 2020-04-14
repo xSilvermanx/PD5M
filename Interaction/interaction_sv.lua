@@ -47,6 +47,7 @@ AddEventHandler('pd5m:intsv:InitPedConfigList', function(PedNetID, Gender)
 	RandomWeaponID = nil,
 	VehicleNetID = nil,
 	PedUnusualActivity = {},
+	flagismissionped = false,
 	AlliesList = {}, --input NetIDs of allied peds. Useful for gang activity and missions
 
 	flagfleeinstant = false,

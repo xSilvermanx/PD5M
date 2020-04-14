@@ -22,15 +22,18 @@ Mss_Amb_TrafficOffense_Silverman = {
 
     SetEntityAsMissionEntity(targetveh, true, true)
     local TargetVehNetID = VehToNet(targetveh)
+    TriggerServerEvent('pd5m:syncsv:SetEntityAsMissionEntity', TargetVehNetID)
 
     local target = GetPedInVehicleSeat(targetveh, -1)
     SetEntityAsMissionEntity(target, true, true)
     local TargetNetID = PedToNet(target)
+    TriggerServerEvent('pd5m:syncsv:SetEntityAsMissionEntity', TargetNetID)
 
     local TargetFlagListIndex, TargetVehFlagListIndex = SyncPedAndVeh(target, targetveh)
 
     TriggerServerEvent('pd5m:msssv:AddAmbientEventTimer', TargetVehNetID)
     TriggerServerEvent('pd5m:msssv:AddAmbientEventTimer', TargetNetID)
+    TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'flagismissionped', true)
 
     local OffenseList = {
       {

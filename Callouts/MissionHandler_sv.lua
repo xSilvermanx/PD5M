@@ -12,13 +12,24 @@ CreateThread(function()
       end
       if PlayerRunsAmbientEvent[PlayerNetID] == nil then
         PlayerRunsAmbientEvent[PlayerNetID] = 'None'
+        TriggerEvent('pd5m:msssv:UpdateMissionInformation', PlayerNetID)
       end
       if PlayerRunsCallout[PlayerNetID] == nil then
         PlayerRunsCallout[PlayerNetID] = 'None'
+        TriggerEvent('pd5m:msssv:UpdateMissionInformation', PlayerNetID)
       end
     end
     Wait(60000)
   end
+end)
+
+RegisterNetEvent('pd5m:msssv:InitMssTables')
+AddEventHandler('pd5m:msssv:InitMssTables', function()
+  local Client = tonumber(source)
+  PlayerCanTriggerCallouts[Client] = false
+  PlayerCanTriggerAmbientEvents[Client] = true
+  PlayerRunsAmbientEvent[Client] = 'None'
+  PlayerRunsCallout[Client] = 'None'
 end)
 
 CreateThread(function()
@@ -39,7 +50,7 @@ CreateThread(function()
     local NoActiveCalloutPlayers = GetNoActiveCalloutPlayers()
     local CalloutChance = CalloutTriggerChance * math.sqrt(NoActiveCalloutPlayers)
     local CalloutRandomIntTrigger = math.random(1, 100)
-    if true then --CalloutChance >= CalloutRandomIntTrigger then
+    if CalloutChance >= CalloutRandomIntTrigger then
       if #PlayerCanTriggerCalloutsIPairsList > 0 then
         local PlayerNetID = PlayerCanTriggerCalloutsIPairsList[math.random(1, #PlayerCanTriggerCalloutsIPairsList)]
         PlayerNetID = tonumber(PlayerNetID)
@@ -58,7 +69,7 @@ AddEventHandler('playerDropped', function(reason)
 
   end
   if PlayerRunsCallout ~= nil then
-
+    TriggerEvent('pd5m:msssv:EndCallout', source)
   end
   PlayerCanTriggerCallouts[source] = nil
   PlayerCanTriggerAmbientEvents[source] = nil
@@ -93,14 +104,18 @@ end
 AddEventHandler('chatMessage', function(s, n, m)
   local message = string.lower(m)
   local client = tonumber(s)
-  if message == "/10-8" then
+  if message == "/pd5m:hudsv:showplayeravailable" then
     CancelEvent()
-    PlayerCanTriggerCallouts[client] = true
-    print('Officer ' .. n .. ' is now on duty.')
-  elseif message == "/10-7" then
+    TriggerClientEvent('pd5m:hud:ShowPlayerAvailable', -1, s, n)
+    if PlayerRunsCallout[client] == 'None' then
+      PlayerCanTriggerCallouts[client] = true
+    end
+    TriggerClientEvent('pd5m:hud:UpdateAvailability', s, true)
+  elseif message == "/pd5m:hudsv:showplayerunavailable" then
     CancelEvent()
+    TriggerClientEvent('pd5m:hud:ShowPlayerUnavailable', -1, s, n)
     PlayerCanTriggerCallouts[client] = false
-    print('Officer ' .. n .. ' is now off duty.')
+    TriggerClientEvent('pd5m:hud:UpdateAvailability', s, false)
   end
 end)
 
@@ -112,6 +127,7 @@ AddEventHandler('pd5m:msssv:TriggerCallout', function(PlayerNetID)
   end
   PlayerRunsCallout[PlayerNetID] = CalloutID
   TriggerClientEvent('pd5m:mss:TriggerCallout', PlayerNetID, CalloutID)
+  TriggerEvent('pd5m:msssv:UpdateMissionInformation', PlayerNetID)
 end)
 
 RegisterNetEvent('pd5m:msssv:RegisterCallout')
@@ -133,8 +149,23 @@ AddEventHandler('pd5m:msssv:RegisterCalloutEntity', function(TargetNetID)
 end)
 
 RegisterNetEvent('pd5m:msssv:EndCallout')
-AddEventHandler('pd5m:msssv:EndCallout', function()
+AddEventHandler('pd5m:msssv:EndCallout', function(Serversource)
+  local Client = nil
+  if Serversource ~= 0 and Serversource ~= nil then
+    Client = tonumber(Serversource)
+  else
+    Client = tonumber(source)
+  end
 
+  for i, Entity in ipairs(CurrentlyRunningCalloutsList[Client].Entities) do
+    if DoesEntityExist(NetworkGetEntityFromNetworkId(Entity)) then
+      TriggerEvent('pd5m:cleanupsv:SetEntityWander', Entity)
+      TriggerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', Entity)
+    end
+  end
+  CurrentlyRunningCalloutsList[Client] = nil
+  PlayerRunsCallout[Client] = 'None'
+  TriggerEvent('pd5m:msssv:UpdateMissionInformation', PlayerNetID)
 end)
 
 AddEventHandler('pd5m:msssv:TriggerAmbientEvent', function(PlayerNetID)
@@ -144,6 +175,7 @@ AddEventHandler('pd5m:msssv:TriggerAmbientEvent', function(PlayerNetID)
     AmbientEventID = AmbientEventID + 1
   end
   PlayerRunsAmbientEvent[PlayerNetID] = AmbientEventID
+  TriggerEvent('pd5m:msssv:UpdateMissionInformation', PlayerNetID)
   TriggerClientEvent('pd5m:mss:TriggerAmbientEvent', PlayerNetID, AmbientEventID)
 end)
 
@@ -176,6 +208,7 @@ end)
 
 AddEventHandler('pd5m:msssv:EndAmbientEvent', function(PlayerNetID)
   PlayerRunsAmbientEvent[PlayerNetID] = 'None'
+  TriggerEvent('pd5m:msssv:UpdateMissionInformation', PlayerNetID)
   PlayerCanTriggerAmbientEvents[PlayerNetID] = true
 end)
 
@@ -191,7 +224,9 @@ CreateThread(function()
       else
         for i, EntityData in ipairs(AmbientEvent.Entities) do
           if CurrTime - EntityData.Time > 900 or not DoesEntityExist(NetworkGetEntityFromNetworkId(EntityData.Entity)) then
-            TriggerClientEvent('pd5m:mss:SetEntityAsNoLongerNeeded', -1, EntityData.Entity)
+            if DoesEntityExist(NetworkGetEntityFromNetworkId(EntityData.Entity)) then
+              TriggerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', EntityData.Entity)
+            end
             CurrentlyRunningAmbientEventsList[Client].Entities[i] = nil
             AmbientEvent.CreationTime = CurrTime
           elseif EntityData.Interacted then
@@ -217,4 +252,19 @@ AddEventHandler('pd5m:msssv:EntityInteracted', function(NetID)
       end
     end
   end
+end)
+
+AddEventHandler('pd5m:msssv:UpdateMissionInformation', function(ClientNetID)
+  local CalloutInfo = false
+  if PlayerRunsCallout[ClientNetID] == 'None' then
+  else
+    CalloutInfo = true
+  end
+  local AmbientInfo = false
+  if PlayerRunsAmbientEvent[ClientNetID] == 'None' then
+  else
+    AmbientInfo = true
+  end
+
+  TriggerClientEvent('pd5m:hud:UpdateMissionInformation', ClientNetID, CalloutInfo, AmbientInfo)
 end)

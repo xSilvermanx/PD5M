@@ -1,7 +1,8 @@
 -- config variables
 
 -- ped variables
-NormalDrivingBehavior = 786623 -- sets the standard driving style for peds. Refer to https://vespura.com/drivingstyle/ for more info.
+NormalDrivingBehavior = 524479 -- sets the standard driving style for peds. Refer to https://vespura.com/drivingstyle/ for more info.
+PedDrivingBehavior = 191
 PoliceDrivingBehavior = 525116 -- sets the driving style for AI-Code 3-response. Refer to https://vespura.com/drivingstyle/ for more info.
 
 -- general variables

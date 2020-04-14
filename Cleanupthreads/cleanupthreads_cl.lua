@@ -10,11 +10,14 @@ CreateThread( function()
 				DisplayingList["" .. NetID] = nil
 				TriggerServerEvent('pd5m:syncsv:RemovePedEntry', NetID)
 			elseif IsEntityDead(NetToPed(NetID)) then
+				if not ClientPedConfigList[i].flagismissionped then
+					SetEntityAsNoLongerNeeded(NetToPed(NetID))
+					TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', NetID)
+				end
 				table.remove(ClientPedList, i)
 				table.remove(ClientPedConfigList, i)
 				DisplayingList["" .. NetID] = nil
 				TriggerServerEvent('pd5m:syncsv:RemovePedEntry', NetID)
-				SetEntityAsNoLongerNeeded(NetToPed(NetID))
 			end
 		end
 		Wait(10000)
@@ -134,3 +137,24 @@ end)
 -- ToDo: Create a Thread that cleans up MissionEntities from players
 -- needs to be synced to server and every client in some way
 -- needs a way to determine if mission npcs are needed
+
+RegisterNetEvent('pd5m:cleanup:SetEntityAsNoLongerNeeded')
+AddEventHandler('pd5m:cleanup:SetEntityAsNoLongerNeeded', function(EntityNetID)
+	if DoesEntityExist(NetToEnt(EntityNetID)) then
+		local entity = NetToEnt(EntityNetID)
+  	SetEntityAsNoLongerNeeded(entity)
+	end
+end)
+
+RegisterNetEvent('pd5m:cleanup:SetEntityWander')
+AddEventHandler('pd5m:cleanup:SetEntityWander', function(TargetNetID)
+	local target = NetToPed(TargetNetID)
+	if DoesEntityExist(target) and not IsEntityDead(target) then
+		if IsPedInAnyVehicle(target, false) then
+			local vehicle = GetVehiclePedIsIn(target, false)
+			TaskVehicleDriveWander(target, vehicle, 17.0, PedDrivingBehavior)
+		else
+			TaskWanderStandard(target, 10.0, 10)
+		end
+	end
+end)

@@ -22,3 +22,9 @@ AddEventHandler('pd5m:msssv:api:TriggerDispatchCall', function(string, MissionPo
   local CalloutNumber = source
   TriggerClientEvent('pd5m:mss:api:TriggerDispatchCall', -1, CalloutNumber, string, MissionPos)
 end)
+
+RegisterNetEvent('pd5m:msssv:api:DispatchUpdate')
+AddEventHandler('pd5m:msssv:api:DispatchUpdate', function(string)
+  local CalloutNumber = source
+  TriggerClientEvent('pd5m:mss:api:DispatchUpdate', -1, CalloutNumber, string)
+end)

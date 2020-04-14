@@ -36,3 +36,5 @@ CreateThread(function()
     Wait(0)
   end
 end)
+
+TriggerServerEvent('pd5m:msssv:InitMssTables')

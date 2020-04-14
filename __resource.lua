@@ -193,6 +193,7 @@ client_scripts {
 	"HUD/crosshair_cl.lua",
 	"HUD/help_cl.lua",
 	"HUD/markers_cl.lua",
+	"HUD/MissionTemp_cl.lua",
 	"HUD/notes_cl.lua",
 	"HUD/tp_cl.lua",
 	"Interaction/interaction_cl.lua",

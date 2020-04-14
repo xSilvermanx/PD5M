@@ -261,6 +261,7 @@ function SyncPedAndVeh(target, targetveh)
 		else
 			if not IsEntityAMissionEntity(target) then
 				SetEntityAsMissionEntity(target, true, true)
+				TriggerServerEvent('pd5m:syncsv:SetEntityAsMissionEntity', TargetNetID)
 			end
 		end
 	end
@@ -291,6 +292,7 @@ function SyncPedAndVeh(target, targetveh)
 		else
 			if not IsEntityAMissionEntity(targetveh) then
 				SetEntityAsMissionEntity(targetveh, true, true)
+				TriggerServerEvent('pd5m:syncsv:SetEntityAsMissionEntity', TargetVehNetID)
 			end
 		end
 	end

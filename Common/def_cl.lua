@@ -27,3 +27,8 @@ ClientFollowingList = {} -- lists every ped which is following the officer (clie
 -- globals needed to check for grabbed targets
 flag_grabbed = false
 grabbedTarget = nil
+
+-- globals needed for HUD-functionality in the missionsystem
+MssCalloutTriggered = false
+MssAmbientEventTriggered = false
+MssAvailable = false

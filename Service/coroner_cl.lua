@@ -272,8 +272,6 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 				Wait(1000)
 
 				for i, target in ipairs(DeadPedList) do
-					print(target)
-					print(DoesEntityExist(target))
 					if DoesEntityExist(target) then
 						local tarx, tary, tarz = table.unpack(GetEntityCoords(target))
 						TaskGoToEntity(coronerdriver, target, -1, 1.0, 2.0, 1073741824, 0)
@@ -285,11 +283,9 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 							Wait(100)
 						end
 
-						print(DoesEntityExist(target))
 						if DoesEntityExist(target) then
 							TriggerServerEvent('pd5m:syncsv:TaskPlayAnim', target, 'anim@heists@narcotics@trash', 'pickup', 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 							Wait(500)
-							print('Deleting target')
 							SetBlockingOfNonTemporaryEvents(target, false)
 							SetEntityAsNoLongerNeeded(target)
 

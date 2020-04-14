@@ -6,5 +6,5 @@ ListOfAmbientEvents = {
 ListOfCallouts = {
   MissionCllExample1,
   MissionCllExample2,
-  Mss_Cll_GrandTheftAuto1_Silverman,
+  Mss_Cll_Carjacking1_Silverman,
 }
