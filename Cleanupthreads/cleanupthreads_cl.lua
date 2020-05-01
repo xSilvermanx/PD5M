@@ -5,16 +5,21 @@ CreateThread( function()
 	while true do
 		for i, NetID in ipairs(ClientPedList) do
 			if not DoesEntityExist(NetToPed(NetID)) then
+				TriggerServerEvent('pd5m:msssv:EntityInteracted', NetID)
 				table.remove(ClientPedList, i)
 				table.remove(ClientPedConfigList, i)
 				DisplayingList["" .. NetID] = nil
 				TriggerServerEvent('pd5m:syncsv:RemovePedEntry', NetID)
 			elseif IsEntityDead(NetToPed(NetID)) then
+				if not ClientPedConfigList[i].flagismissionped then
+					TriggerServerEvent('pd5m:msssv:EntityInteracted', NetID)
+					SetEntityAsNoLongerNeeded(NetToPed(NetID))
+					TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', NetID)
+				end
 				table.remove(ClientPedList, i)
 				table.remove(ClientPedConfigList, i)
 				DisplayingList["" .. NetID] = nil
 				TriggerServerEvent('pd5m:syncsv:RemovePedEntry', NetID)
-				SetEntityAsNoLongerNeeded(NetToPed(NetID))
 			end
 		end
 		Wait(10000)
@@ -28,6 +33,7 @@ CreateThread( function()
 	while true do
 		for i, NetID in ipairs(ClientVehList) do
 			if not DoesEntityExist(NetToVeh(NetID)) then
+				TriggerServerEvent('pd5m:msssv:EntityInteracted', NetID)
 				table.remove(ClientVehList, i)
 				table.remove(ClientVehConfigList, i)
 				TriggerServerEvent('pd5m:syncsv:RemoveVehEntry', NetID)
@@ -134,3 +140,24 @@ end)
 -- ToDo: Create a Thread that cleans up MissionEntities from players
 -- needs to be synced to server and every client in some way
 -- needs a way to determine if mission npcs are needed
+
+RegisterNetEvent('pd5m:cleanup:SetEntityAsNoLongerNeeded')
+AddEventHandler('pd5m:cleanup:SetEntityAsNoLongerNeeded', function(EntityNetID)
+	if DoesEntityExist(NetToEnt(EntityNetID)) then
+		local entity = NetToEnt(EntityNetID)
+  	SetEntityAsNoLongerNeeded(entity)
+	end
+end)
+
+RegisterNetEvent('pd5m:cleanup:SetEntityWander')
+AddEventHandler('pd5m:cleanup:SetEntityWander', function(TargetNetID)
+	local target = NetToPed(TargetNetID)
+	if DoesEntityExist(target) and not IsEntityDead(target) and GetEntityType(target) == 1 then
+		if IsPedInAnyVehicle(target, false) then
+			local vehicle = GetVehiclePedIsIn(target, false)
+			TaskVehicleDriveWander(target, vehicle, 17.0, PedDrivingBehavior)
+		else
+			TaskWanderStandard(target, 10.0, 10)
+		end
+	end
+end)

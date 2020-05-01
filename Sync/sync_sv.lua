@@ -20,13 +20,13 @@ end)
 RegisterNetEvent('pd5m:syncsv:SearchPedEntry')
 AddEventHandler('pd5m:syncsv:SearchPedEntry', function(entryname, entryvalue)
 	local ReturnList = {}
-	
+
 	for i, List in ipairs(PedConfigList) do
 		if List[entryname] == entryvalue then
 			table.insert(ReturnList, List.NetID)
 		end
 	end
-	
+
 	TriggerClientEvent('pd5m:sync:SearchPedEntryResult', source, entryname, entryvalue, ReturnList)
 end)
 
@@ -41,7 +41,7 @@ AddEventHandler('pd5m:syncsv:ChangePedEntry', function(NetID, entryname, entryva
 	local newresistmodifier = 0
 	local resistindex = 1
 	local FlagSetFlag = false
-	
+
 	for i, ID in ipairs(PedList) do
 		if ID == NetID then
 			index = i
@@ -311,4 +311,9 @@ end)
 RegisterNetEvent('pd5m:syncsv:unhandcuffingevent')
 AddEventHandler('pd5m:syncsv:unhandcuffingevent', function(TargetNetID, PlayerpedNetID)
 	TriggerClientEvent('pd5m:int:unhandcuffingevent', -1, TargetNetID, PlayerpedNetID)
+end)
+
+RegisterNetEvent('pd5m:syncsv:SetEntityAsMissionEntity')
+AddEventHandler('pd5m:syncsv:SetEntityAsMissionEntity', function(TargetNetID)
+	TriggerClientEvent('pd5m:sync:SetEntityAsMissionEntity', -1, TargetNetID)
 end)

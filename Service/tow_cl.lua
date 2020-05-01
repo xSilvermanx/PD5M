@@ -115,6 +115,15 @@ AddEventHandler('pd5m:tow:inittowtruck', function(TargetVehNetID)
 
 	local VecAngle = GetHeadingFromVector_2d(offx, offy)-sta
 
+	while VecAngle < 0 or VecAngle > 360 do
+		if VecAngle < 0 then
+			VecAngle = VecAngle + 360
+		elseif VecAngle > 360 then
+			VecAngle = VecAngle - 360
+		end
+		Wait(200)
+	end
+
 	if VecAngle < 270 and VecAngle > 90 then
 		stx = station.xa
 		sty = station.ya
@@ -324,67 +333,6 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 		print(distance)
 		towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 		distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-		if IsVehicleStopped(towtruck) and not IsVehicleStoppedAtTrafficLights(towtruck) then
-			print('I have stopped')
-			if IsPointOnRoad(towx, towy, towz, towtruck) then
-				print("I'm on the road")
-				local n = 0
-				while IsVehicleStopped(towtruck) and n < 500 do
-					print(n)
-					n = n + 1
-					Wait(10)
-				end
-				print('While ended')
-				if n > 400 then
-					print('Changing position')
-					local towpos = GetOffsetFromEntityInWorldCoords(towtruck, 0.0, 100.0, 0.0)
-					local _, pos, heading = GetClosestVehicleNodeWithHeading(towpos.x, towpos.y, towpos.z, 0, 3.0, 0)
-
-					local offx = tarx - pos.x
-					local offy = tary - pos.y
-					local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
-
-					if VecAngle < 270 and VecAngle > 90 then
-						heading = heading + 180.00
-					end
-					SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
-					SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
-					SetEntityHeading(towtruck, heading)
-					SetPedIntoVehicle(towdriver, towtruck, -1)
-					SetVehicleFixed(towtruck)
-					SetVehicleOnGroundProperly(towtruck)
-					TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
-				end
-			else
-				print("I'm off the road.")
-				local n = 0
-				while IsVehicleStopped(towtruck) and n < 500 do
-					print(n)
-					n = n + 1
-					Wait(10)
-				end
-				print('While ended')
-				if n > 400 then
-					print('Changing position')
-					local _, pos, heading = GetClosestVehicleNodeWithHeading(towx, towy, towz, 0, 3.0, 0)
-
-					local offx = tarx - pos.x
-					local offy = tary - pos.y
-					local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
-
-					if VecAngle < 270 and VecAngle > 90 then
-						heading = heading + 180.00
-					end
-					SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
-					SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
-					SetEntityHeading(towtruck, heading)
-					SetPedIntoVehicle(towdriver, towtruck, -1)
-					SetVehicleFixed(towtruck)
-					SetVehicleOnGroundProperly(towtruck)
-					TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
-				end
-			end
-		end
 		Wait(100)
 	end
 
@@ -399,67 +347,6 @@ AddEventHandler('pd5m:tow:towtruckatscene', function(towtruck, towtruckid, towdr
 			print(distance)
 			towx, towy, towz = table.unpack(GetEntityCoords(towtruck))
 			distance = Vdist2(towx, towy, towz, tarx, tary, tarz)
-			if IsVehicleStopped(towtruck) and not IsVehicleStoppedAtTrafficLights(towtruck) then
-				print('I have stopped')
-				if IsPointOnRoad(towx, towy, towz, towtruck) then
-					print("I'm on the road")
-					local n = 0
-					while IsVehicleStopped(towtruck) and n < 500 do
-						print(n)
-						n = n + 1
-						Wait(10)
-					end
-					print('While ended')
-					if n > 400 then
-						print('Changing position')
-						local towpos = GetOffsetFromEntityInWorldCoords(towtruck, 0.0, 100.0, 0.0)
-						local _, pos, heading = GetClosestVehicleNodeWithHeading(towpos.x, towpos.y, towpos.z, 0, 3.0, 0)
-
-						local offx = tarx - pos.x
-						local offy = tary - pos.y
-						local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
-
-						if VecAngle < 270 and VecAngle > 90 then
-							heading = heading + 180.00
-						end
-						SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
-						SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
-						SetEntityHeading(towtruck, heading)
-						SetPedIntoVehicle(towdriver, towtruck, -1)
-						SetVehicleFixed(towtruck)
-						SetVehicleOnGroundProperly(towtruck)
-						TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
-					end
-				else
-					print("I'm off the road.")
-					local n = 0
-					while IsVehicleStopped(towtruck) and n < 500 do
-						print(n)
-						n = n + 1
-						Wait(10)
-					end
-					print('While ended')
-					if n > 400 then
-						print('Changing position')
-						local _, pos, heading = GetClosestVehicleNodeWithHeading(towx, towy, towz, 0, 3.0, 0)
-
-						local offx = tarx - pos.x
-						local offy = tary - pos.y
-						local VecAngle = GetHeadingFromVector_2d(offx, offy)-heading
-
-						if VecAngle < 270 and VecAngle > 90 then
-							heading = heading + 180.00
-						end
-						SetEntityCoords(towtruck, pos.x, pos.y, pos.z, 1, 0, 0, 1)
-						SetEntityCoords(towdriver, pos.x, pos.y, pos.z+2.0, 1, 0, 0, 0)
-						SetEntityHeading(towtruck, heading)
-						SetPedIntoVehicle(towdriver, towtruck, -1)
-						SetVehicleFixed(towtruck)
-						SetVehicleOnGroundProperly(towtruck)
-						TaskVehicleDriveToCoordLongrange(towdriver, towtruck, tarx, tary, tarz, 17.0, NormalDrivingBehavior, 2.0)
-					end
-				end
-			end
 			Wait(100)
 		end
 

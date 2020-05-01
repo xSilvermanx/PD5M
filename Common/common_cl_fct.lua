@@ -10,41 +10,41 @@ function PrintTextAtBottom(text, displaytime)
 		Wait(displaytime)
 		displaying = false
 	end)
-	
+
 	CreateThread(function()
-	while displaying do
-		SetTextColour(color.r, color.g, color.b, color.alpha)
-		SetTextFont(font)
-		SetTextProportional(1)
-		SetTextScale(0.0, 0.4)
-		SetTextWrap(0.25, 0.75)
-		SetTextJustification(0)
-		
-		BeginTextCommandWidth("STRING")
-		AddTextComponentString(text)
-		local height = GetTextScaleHeight(0.4, font)
-		local width = EndTextCommandGetWidth(font)
-		
-		BeginTextCommandLineCount("STRING")
-		AddTextComponentString(text)
-		local linecount = EndTextCommandGetLineCount(0.5, 0.85)
-		
-		BeginTextCommandDisplayText("STRING")
-		AddTextComponentString(text)
-		EndTextCommandDisplayText(0.5, 0.85)
-		DrawRect(0.5, 0.85+0.7/45, width, height + 0.0051, backgroundcolor.r, backgroundcolor.g, backgroundcolor.b, backgroundcolor.alpha)
-		if linecount > 1 then
-			DrawRect(0.5, 0.8775+0.7/45, width, height + 0.0051, backgroundcolor.r, backgroundcolor.g, backgroundcolor.b, backgroundcolor.alpha)
+		while displaying do
+			SetTextColour(color.r, color.g, color.b, color.alpha)
+			SetTextFont(font)
+			SetTextProportional(1)
+			SetTextScale(0.0, 0.4)
+			SetTextWrap(0.25, 0.75)
+			SetTextJustification(0)
+
+			BeginTextCommandWidth("STRING")
+			AddTextComponentString(text)
+			local height = GetTextScaleHeight(0.4, font)
+			local width = EndTextCommandGetWidth(font)
+
+			BeginTextCommandLineCount("STRING")
+			AddTextComponentString(text)
+			local linecount = EndTextCommandGetLineCount(0.5, 0.85)
+
+			BeginTextCommandDisplayText("STRING")
+			AddTextComponentString(text)
+			EndTextCommandDisplayText(0.5, 0.85)
+			DrawRect(0.5, 0.85+0.7/45, width, height + 0.0051, backgroundcolor.r, backgroundcolor.g, backgroundcolor.b, backgroundcolor.alpha)
+			if linecount > 1 then
+				DrawRect(0.5, 0.8775+0.7/45, width, height + 0.0051, backgroundcolor.r, backgroundcolor.g, backgroundcolor.b, backgroundcolor.alpha)
+			end
+			if linecount > 2 then
+				DrawRect(0.5, 0.905+0.7/45, width, height + 0.0051, backgroundcolor.r, backgroundcolor.g, backgroundcolor.b, backgroundcolor.alpha)
+			end
+			if linecount > 3 then
+				DrawRect(0.5, 0.9325+0.7/45, width, height + 0.0051, backgroundcolor.r, backgroundcolor.g, backgroundcolor.b, backgroundcolor.alpha)
+			end
+
+			Wait(0)
 		end
-		if linecount > 2 then
-			DrawRect(0.5, 0.905+0.7/45, width, height + 0.0051, backgroundcolor.r, backgroundcolor.g, backgroundcolor.b, backgroundcolor.alpha)
-		end
-		if linecount > 3 then
-			DrawRect(0.5, 0.9325+0.7/45, width, height + 0.0051, backgroundcolor.r, backgroundcolor.g, backgroundcolor.b, backgroundcolor.alpha)
-		end
-		
-		Wait(0)
-	end
 	end)
 end
 
@@ -53,17 +53,17 @@ end
 function PrintTextOverPedHead(TalkingPed, text, displaytime)
 	local tx,ty,tz = table.unpack(GetEntityCoords(TalkingPed, false))
 	local px,py,pz = table.unpack(GetEntityCoords(GetPlayerPed(-1), false))
-	
+
 	local PedNetID = PedToNet(TalkingPed)
-	
+
 	if Vdist2(tx,ty,tz,px,py,pz) < 2500 and HasEntityClearLosToEntity(GetPlayerPed(-1), TalkingPed, 17) then
-		
+
 		CurrentlyDisplayingList["" .. PedNetID] = true
 		CreateThread(function()
 			Wait(displaytime)
 			CurrentlyDisplayingList["" .. PedNetID] = false
 		end)
-		
+
 		CreateThread(function()
 		while CurrentlyDisplayingList["" .. PedNetID] == true do
 			local tx,ty,tz = table.unpack(GetEntityCoords(TalkingPed, false))
@@ -79,7 +79,7 @@ function PrintTextOverPedHead(TalkingPed, text, displaytime)
 				SetTextProportional(1)
 				SetTextWrap(0.25, 0.75)
 				SetTextCentre(true)
-				
+
 				BeginTextCommandDisplayText("STRING")
 				AddTextComponentString(text)
 				EndTextCommandDisplayText(_x, _y)
@@ -145,12 +145,12 @@ function GetPlayerLookingVector(playerped, radius)
 	local camyaw = GetGameplayCamRelativeHeading()
 	local pitch = 90.0-GetGameplayCamRelativePitch()
 	local yaw = pedyaw + camyaw
-	
+
 	if yaw > 180 then
 		yaw = yaw - 360
 	elseif yaw < -180 then
 		yaw = yaw + 360
-	end	
+	end
 	local pitch = pitch * math.pi / 180
 	local yaw = yaw * math.pi / 180
 	local x = radius * math.sin(pitch) * math.sin(yaw)
@@ -198,17 +198,25 @@ function SyncPedAndVeh(target, targetveh)
 	local TargetVehFlagListIndex = 0
 	local TargetNetID = 0
 	local TargetVehNetID = 0
-	
+
+	if target ~= 0 and targetveh == 0 and IsPedInAnyVehicle(target, false) then
+		targetveh = GetVehiclePedIsIn(target, false)
+	end
+
+	if targetveh ~= 0 and target == 0 and not IsVehicleSeatFree(targetveh, -1) then
+		target = GetPedInVehicleSeat(targetveh, -1)
+	end
+
 	if target == 0 then
 	else
 		TargetNetID = PedToNet(target)
 	end
-	
+
 	if targetveh == 0 then
 	else
 		TargetVehNetID = VehToNet(targetveh)
 	end
-	
+
 	if target ~= 0 and (TargetNetID == 0 or TargetNetID == nil) then
 		NetworkRegisterEntityAsNetworked(target)
 		TargetNetID = PedToNet(target)
@@ -216,6 +224,14 @@ function SyncPedAndVeh(target, targetveh)
 	if targetveh ~= 0 and (TargetVehNetID == 0 or TargetVehNetID == nil) then
 		NetworkRegisterEntityAsNetworked(targetveh)
 		TargetVehNetID = VehToNet(targetveh)
+	end
+
+	if TargetNetID ~= 0 then
+		TriggerServerEvent('pd5m:msssv:EntityInteracted', TargetNetID)
+	end
+
+	if TargetVehNetID ~= 0 then
+		TriggerServerEvent('pd5m:msssv:EntityInteracted', TargetVehNetID)
 	end
 
 	if target ~= 0 then
@@ -245,10 +261,11 @@ function SyncPedAndVeh(target, targetveh)
 		else
 			if not IsEntityAMissionEntity(target) then
 				SetEntityAsMissionEntity(target, true, true)
+				TriggerServerEvent('pd5m:syncsv:SetEntityAsMissionEntity', TargetNetID)
 			end
-		end			
+		end
 	end
-	
+
 	if targetveh ~= 0 then
 		for i, ID in ipairs(ClientVehList) do
 			if ID == TargetVehNetID then
@@ -268,17 +285,36 @@ function SyncPedAndVeh(target, targetveh)
 					end
 				end
 				Wait(10)
-			end				
+			end
 		end
 		if TargetVehFlagListIndex == 0 then
 			print("Error, didn't find TargetVehFlagListIndex.")
 		else
 			if not IsEntityAMissionEntity(targetveh) then
 				SetEntityAsMissionEntity(targetveh, true, true)
+				TriggerServerEvent('pd5m:syncsv:SetEntityAsMissionEntity', TargetVehNetID)
 			end
 		end
 	end
-	
+
+	if TargetNetID ~= 0 and TargetVehNetID ~= 0 then
+		local PedGender = ClientPedConfigList[TargetFlagListIndex].PedGender
+		local FirstName = ClientPedConfigList[TargetFlagListIndex].FirstName
+		local LastName = ClientPedConfigList[TargetFlagListIndex].LastName
+		local BirthYear = ClientPedConfigList[TargetFlagListIndex].BirthYear
+		local BirthMonth = ClientPedConfigList[TargetFlagListIndex].BirthMonth
+		local BirthDay = ClientPedConfigList[TargetFlagListIndex].BirthDay
+
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'PedNetID', TargetNetID)
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'PedGender', PedGender)
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'FirstName', FirstName)
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'LastName', LastName)
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthYear', BirthYear)
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthMonth', BirthMonth)
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthDay', BirthDay)
+		TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'VehicleNetID', TargetVehNetID)
+	end
+
 	return TargetFlagListIndex, TargetVehFlagListIndex
 end
 
@@ -336,7 +372,7 @@ function CheckFlag(NetID, flagname)
 			end
 		end
 	end
-	
+
 	return boolflag
 end
 
@@ -347,7 +383,7 @@ function SearchPedEntry(entryname, entryvalue)
 	local resultfound = false
 	local ResultList = {}
 	local index = nil
-	
+
 	TriggerServerEvent('pd5m:syncsv:SearchPedEntry', entryname, entryvalue)
 	Wait(200)
 	while not resultfound do
@@ -356,14 +392,14 @@ function SearchPedEntry(entryname, entryvalue)
 				index = i
 				ResultList = List[3]
 				resultfound = true
-				break		
+				break
 			end
 		end
 		Wait(100)
 	end
-		
+
 	table.remove(ClientPedSearchList, index)
-	
+
 	return(ResultList)
 end
 
@@ -380,7 +416,7 @@ function InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
 	local BirthYear = ClientPedConfigList[TargetFlagListIndex].BirthYear
 	local BirthMonth = ClientPedConfigList[TargetFlagListIndex].BirthMonth
 	local BirthDay = ClientPedConfigList[TargetFlagListIndex].BirthDay
-	
+
 	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'PedNetID', TargetNetID)
 	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'PedGender', PedGender)
 	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'FirstName', FirstName)
@@ -404,7 +440,7 @@ function CheckVehFlag(NetID, flagname)
 			end
 		end
 	end
-	
+
 	return boolflag
 end
 
@@ -427,16 +463,16 @@ local function EnumerateEntities(initFunc, moveFunc, disposeFunc)
       disposeFunc(iter)
       return
     end
-    
+
     local enum = {handle = iter, destructor = disposeFunc}
     setmetatable(enum, entityEnumerator)
-    
+
     local next = true
     repeat
       coroutine.yield(id)
       next, id = moveFunc(iter)
     until not next
-    
+
     enum.destructor, enum.handle = nil, nil
     disposeFunc(iter)
   end)

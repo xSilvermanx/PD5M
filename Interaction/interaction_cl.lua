@@ -198,7 +198,7 @@ AddEventHandler('pd5m:int:initstopcar', function(targetveh)
 		if TargetInVeh ~= 0 and TargetInVeh ~= nil then
 			if GetVehicleFuelLevel(targetveh) == 0.0 then
 				SetVehicleFuelLevel(targetveh, 1000.0)
-				TaskVehicleDriveWander(TargetInVeh, targetveh, 30.0, NormalDrivingBehavior)
+				TaskVehicleDriveWander(TargetInVeh, targetveh, 17.0, PedDrivingBehavior)
 				flag_VehicleSelected = 0
 				Notify('Vehicle released.')
 			else
@@ -223,7 +223,7 @@ AddEventHandler('pd5m:int:initstopcar', function(targetveh)
 				else
 					if releasecar then
 						SetVehicleFuelLevel(targetveh, 1000.0)
-						TaskVehicleDriveWander(TargetInVeh, targetveh, 30.0, NormalDrivingBehavior)
+						TaskVehicleDriveWander(TargetInVeh, targetveh, 17.0, PedDrivingBehavior)
 						flag_VehicleSelected = 0
 						Notify('Vehicle released.')
 					else
@@ -277,7 +277,7 @@ AddEventHandler('pd5m:int:inittalk', function(target, flaginveh)
 		TargetVehNetID = VehToNet(targetveh)
 	end
 
-	TargetFlagListIndex, TargetVehFlagListIndex = SyncPedAndVeh(target, targetveh)
+	local TargetFlagListIndex, TargetVehFlagListIndex = SyncPedAndVeh(target, targetveh)
 
 	if flaginveh then
 		InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
@@ -673,7 +673,6 @@ AddEventHandler('pd5m:int:ShowCommunication', function(NetID, PartnerNetID, text
 	local DisplayTextLength = string.len(DisplayText)
 	DisplayTextMainList = {}
 	DisplayTextSubList = {}
-	local breakloop = false
 
 	if DisplayTextLength > 99 then
 		local n = 1
@@ -686,12 +685,14 @@ AddEventHandler('pd5m:int:ShowCommunication', function(NetID, PartnerNetID, text
 		local DisplayTextHelpNew = DisplayTextSubList[1]
 		local i = 1
 		while i < n do
+			local breakloop = false
 			local DisplayTextHelpLength = 0
+			local DisplayTextHelp = nil
 			while DisplayTextHelpLength < 90 do
 				i = i + 1
-				local DisplayTextHelp = DisplayTextHelpNew
+				DisplayTextHelp = DisplayTextHelpNew
 				if DisplayTextSubList[i] == nil then
-					local breakloop = true
+					breakloop = true
 					break
 				end
 				DisplayTextHelpNew = DisplayTextHelp .. ' ' .. DisplayTextSubList[i]
@@ -785,9 +786,9 @@ AddEventHandler('pd5m:int:activetalk', function(target, flaginveh)
 		MenuPlayerPed = GetPlayerPed(-1)
 		MenuPlayerPedNetID = PedToNet(MenuPlayerPed)
 		MenuFlagInVeh = flaginveh
-		Wait(200)
+		Wait(1000)
 		while WarMenu.IsMenuOpened('pd5m:int:talkmenu') do
-			Wait(200)
+			Wait(1000)
 		end
 
 		TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Talking')
@@ -1086,7 +1087,7 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 	end
 	Notify('Car has stopped.')
 	SetBlockingOfNonTemporaryEvents(TargetInVeh, false)
-	TaskVehicleDriveWander(target, targetveh, 30.0, NormalDrivingBehavior)
+	TaskVehicleDriveWander(target, targetveh, 17.0, PedDrivingBehavior)
 end)
 
 -- This event makes the ped leave or enter its personal vehicle.
@@ -1907,10 +1908,10 @@ AddEventHandler('pd5m:int:fineped', function()
 						flagallowfine = ClientPedConfigList[TargetFlagListIndex].flagallowfine
 						if flagallowfine then
 							FineHeight = "Amount to fine in $."
-							FineText = "Enter the amount you want to fine the suspect."
+							FineText = ""
 
-							AddTextEntry('RunIDLabel', FineText)
-							DisplayOnscreenKeyboard(6, "RunIDLabel", "", FineHeight, "", "", "", 30)
+							AddTextEntry('RunIDLabel', FineHeight)
+							DisplayOnscreenKeyboard(6, "RunIDLabel", "", FineText, "", "", "", 30)
 							while (UpdateOnscreenKeyboard() == 0) do
 								DisableAllControlActions(0)
 								Wait(0)
@@ -2214,7 +2215,7 @@ AddEventHandler('pd5m:int:grabped', function()
 		local flag_hasTarget, targetcoords, target = GetPedInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(target) == 1 and GetPedType(target) ~=28 and not IsPedAPlayer(target) then
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
-			if distanceToTarget <= 2.0 then
+			if distanceToTarget <= 5.0 then
 				TargetNetID = PedToNet(target)
 
 				local FlagFollowing = false
@@ -2680,7 +2681,7 @@ AddEventHandler('pd5m:int:runplate', function()
 		flag_hasTarget, targetcoords, targetveh = GetVehInDirection(pvpos, infrontofplayerveh)
 		if flag_hasTarget and GetEntityType(targetveh) == 2 then
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
-			if distanceToTarget <= 10.0 then
+			if distanceToTarget <= 25.0 then
 				foundveh = true
 			else
 				Notify('Too far away.')
@@ -2694,7 +2695,7 @@ AddEventHandler('pd5m:int:runplate', function()
 		flag_hasTarget, targetcoords, targetveh = GetVehInDirection(camcoords, lookingvector)
 		if flag_hasTarget and GetEntityType(targetveh) == 2 then
 			local distanceToTarget = GetDistanceBetweenCoords(playerpedcoords, targetcoords)
-			if distanceToTarget <= 10.0 then
+			if distanceToTarget <= 15.0 then
 				foundveh = true
 			else
 				Notify('Too far away.')
@@ -2829,7 +2830,7 @@ end)
 -- Variables: EntityId
 AddEventHandler('pd5m:int:weaponizeped', function(target)
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
-	if ClientPedConfigList[TargetFlagListIndex].savepedweapons[1] ~= nil then
+	if ClientPedConfigList[TargetFlagListIndex].savepedweapons ~= nil then
 		for i, weapon in ipairs(ClientPedConfigList[TargetFlagListIndex].savepedweapons) do
 			GiveWeaponToPed(target, weapon, 500, false, false)
 		end
@@ -2882,7 +2883,9 @@ AddEventHandler('pd5m:int:pedflee', function(target, chaser)
 	SetPedPathPreferToAvoidWater(target, true)
 	SetPedCanEvasiveDive(target, true)
 	SetPedFleeAttributes(target, 2, true)
-	SetDriveTaskDrivingStyle(target, 786944) --do this randomly for different driving styles, also slow down PD vehicles
+	SetDriveTaskDrivingStyle(target, 524860) --do this randomly for different driving styles, also slow down PD vehicles
+	SetDriveTaskMaxCruiseSpeed(target, 130.0)
+	SetDriveTaskCruiseSpeed(target, 75.0)
 	SetDriverAbility(target, 1.0)
 	SetDriverAggressiveness(target, 1.0)
 	SetDriverRacingModifier(target, 1.0)
@@ -2891,12 +2894,11 @@ AddEventHandler('pd5m:int:pedflee', function(target, chaser)
 	else
 		ClearPedTasks(target)
 	end
-	local TargetBlip = AddBlipForEntity(target)
-	table.insert(ClientPedBlipList, TargetBlip)
 
 	CreateThread(function()
 		local AreaHasCops = true
-		TaskSmartFleePed(target, chaser, 10000.0, -1, false, false)
+		local targetveh = nil
+		TaskSmartFleePed(target, chaser, 1000000.0, -1, false, false)
 		while AreaHasCops do
 			AreaHasCops = false
 			local targetx, targety, targetz = table.unpack(GetEntityCoords(target, false))
@@ -2913,7 +2915,7 @@ AddEventHandler('pd5m:int:pedflee', function(target, chaser)
 				break
 			end
 			if IsPedInAnyVehicle(target, true) then
-				local targetveh = GetVehiclePedIsIn(target, false)
+				targetveh = GetVehiclePedIsIn(target, false)
 				SetVehicleIsRacing(targetveh, true)
 			end
 			Wait(3000)
@@ -2921,24 +2923,26 @@ AddEventHandler('pd5m:int:pedflee', function(target, chaser)
 		TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
 		if flagarrested then
 			ClearPedTasksImmediately(target)
-			RemoveBlip(TargetBlip)
 			local playerRelGroup = GetPedRelationshipGroupHash(chaser)
 			local PedRelGroup = GetPedRelationshipGroupHash(target)
 			SetRelationshipBetweenGroups(0, PedRelGroup, playerRelGroup)
 			SetRelationshipBetweenGroups(0, playerRelGroup, PedRelGroup)
 		elseif IsEntityDead(target) then
-			RemoveBlip(TargetBlip)
 			SetEntityAsNoLongerNeeded(target)
-
+			TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', TargetNetID)
 		else
 			ClearPedTasksImmediately(target)
 			TaskWanderStandard(target, 10.0, 10)
-			RemoveBlip(TargetBlip)
 			SetEntityAsNoLongerNeeded(target)
+			TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', TargetNetID)
 			local playerRelGroup = GetPedRelationshipGroupHash(chaser)
 			local PedRelGroup = GetPedRelationshipGroupHash(target)
 			SetRelationshipBetweenGroups(3, PedRelGroup, playerRelGroup)
 			SetRelationshipBetweenGroups(3, playerRelGroup, PedRelGroup)
+		end
+		if targetveh ~= nil then
+			SetEntityAsNoLongerNeeded(targetveh)
+			TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', VehToNet(targetveh))
 		end
 	end)
 end)
@@ -3014,8 +3018,6 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 	SetPedShootRate(target, ChooseShootrate) -- 0 - 1000 Schussrate
 
 	ClearPedTasksImmediately(target)
-	TargetBlip = AddBlipForEntity(target)
-	table.insert(ClientPedBlipList, TargetBlip)
 	SetPedAsEnemy(target, true)
 
 	CreateThread( function()
@@ -3046,7 +3048,6 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 
 		if flagarrested then
 			ClearPedTasksImmediately(target)
-			RemoveBlip(TargetBlip)
 			SetCanAttackFriendly(target, false, false)
 			SetPedAsEnemy(target, false)
 			local playerRelGroup = GetPedRelationshipGroupHash(enemy)
@@ -3054,15 +3055,15 @@ AddEventHandler('pd5m:int:pedhostile', function(target, enemy)
 			SetRelationshipBetweenGroups(0, PedRelGroup, playerRelGroup)
 			SetRelationshipBetweenGroups(0, playerRelGroup, PedRelGroup)
 		elseif IsEntityDead(target) then
-			RemoveBlip(TargetBlip)
 			SetEntityAsNoLongerNeeded(target)
+			TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', TargetNetID)
 		else
 			ClearPedTasksImmediately(target)
 			TaskWanderStandard(target, 10.0, 10)
-			RemoveBlip(TargetBlip)
 			SetCanAttackFriendly(target, false, false)
 			SetPedAsEnemy(target, false)
 			SetEntityAsNoLongerNeeded(target)
+			TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', TargetNetID)
 			local playerRelGroup = GetPedRelationshipGroupHash(enemy)
 			local PedRelGroup = GetPedRelationshipGroupHash(target)
 			SetRelationshipBetweenGroups(3, PedRelGroup, playerRelGroup)
@@ -3540,7 +3541,6 @@ AddEventHandler('pd5m:int:stoptalk', function(target, flaginveh)
 	TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoFear')
 
 	TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Stopped')
-	SetEntityAsNoLongerNeeded(target)
 
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetVehicleNetID = ClientPedConfigList[TargetFlagListIndex].VehicleNetID
@@ -3570,6 +3570,8 @@ AddEventHandler('pd5m:int:stoptalk', function(target, flaginveh)
 		SetVehicleHandbrake(targetveh, false)
 		SetVehicleFuelLevel(targetveh, 1000.0)
 		SetEntityAsNoLongerNeeded(targetveh)
-		TaskVehicleDriveWander(target, targetveh, 30.0, NormalDrivingBehavior)
+		TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', VehToNet(targetveh))
+		TaskVehicleDriveWander(target, targetveh, 17.0, PedDrivingBehavior)
 	end
+	TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', TargetNetID)
 end)
