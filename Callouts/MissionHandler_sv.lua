@@ -28,7 +28,7 @@ CreateThread(function()
     local NoActiveAmbientEventPlayers = GetNoActiveAmbientEventPlayers()
     local AmbientEventChance = AmbientEventTriggerChance * math.sqrt(NoActiveAmbientEventPlayers)
     local AmbientEventRandomIntTrigger = math.random(1, 100)
-    if false then --AmbientEventChance >= AmbientEventRandomIntTrigger then
+    if AmbientEventChance >= AmbientEventRandomIntTrigger then
       if #PlayerCanTriggerAmbientEventsIPairsList > 0 then
         local PlayerNetID = PlayerCanTriggerAmbientEventsIPairsList[math.random(1, #PlayerCanTriggerAmbientEventsIPairsList)]
         PlayerNetID = tonumber(PlayerNetID)
