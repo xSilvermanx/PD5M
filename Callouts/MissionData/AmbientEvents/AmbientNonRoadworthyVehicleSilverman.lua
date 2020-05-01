@@ -312,7 +312,5 @@ Mss_Amb_NonRoadWorthyVehicle_Silverman = {
         Issue:Result()
       end
     end
-
-    local blip = AddBlipForEntity(targetveh)
   end,
 }
