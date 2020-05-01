@@ -21,12 +21,12 @@ MedPillbox = {
       },
     },
     heal = {
-
-    },
-    help = {
       {x=356.03, y=-596.58, z=28.28, handle = 'PillboxMed'},
       {x=360.81, y=-585.23, z=28.33, handle = 'PillboxMed'},
       {x=298.0, y=-584.36, z=42.76, handle = 'PillboxMed'},
+    },
+    help = {
+
     },
   },
 }

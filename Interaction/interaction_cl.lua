@@ -3541,8 +3541,6 @@ AddEventHandler('pd5m:int:stoptalk', function(target, flaginveh)
 	TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoFear')
 
 	TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Stopped')
-	SetEntityAsNoLongerNeeded(target)
-	TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', TargetNetID)
 
 	local TargetFlagListIndex, _ = SyncPedAndVeh(target, 0)
 	local TargetVehicleNetID = ClientPedConfigList[TargetFlagListIndex].VehicleNetID
@@ -3575,4 +3573,5 @@ AddEventHandler('pd5m:int:stoptalk', function(target, flaginveh)
 		TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', VehToNet(targetveh))
 		TaskVehicleDriveWander(target, targetveh, 17.0, PedDrivingBehavior)
 	end
+	TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', TargetNetID)
 end)

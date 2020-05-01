@@ -5,12 +5,14 @@ CreateThread( function()
 	while true do
 		for i, NetID in ipairs(ClientPedList) do
 			if not DoesEntityExist(NetToPed(NetID)) then
+				TriggerServerEvent('pd5m:msssv:EntityInteracted', NetID)
 				table.remove(ClientPedList, i)
 				table.remove(ClientPedConfigList, i)
 				DisplayingList["" .. NetID] = nil
 				TriggerServerEvent('pd5m:syncsv:RemovePedEntry', NetID)
 			elseif IsEntityDead(NetToPed(NetID)) then
 				if not ClientPedConfigList[i].flagismissionped then
+					TriggerServerEvent('pd5m:msssv:EntityInteracted', NetID)
 					SetEntityAsNoLongerNeeded(NetToPed(NetID))
 					TriggerServerEvent('pd5m:cleanupsv:SetEntityAsNoLongerNeeded', NetID)
 				end
@@ -31,6 +33,7 @@ CreateThread( function()
 	while true do
 		for i, NetID in ipairs(ClientVehList) do
 			if not DoesEntityExist(NetToVeh(NetID)) then
+				TriggerServerEvent('pd5m:msssv:EntityInteracted', NetID)
 				table.remove(ClientVehList, i)
 				table.remove(ClientVehConfigList, i)
 				TriggerServerEvent('pd5m:syncsv:RemoveVehEntry', NetID)
@@ -149,7 +152,7 @@ end)
 RegisterNetEvent('pd5m:cleanup:SetEntityWander')
 AddEventHandler('pd5m:cleanup:SetEntityWander', function(TargetNetID)
 	local target = NetToPed(TargetNetID)
-	if DoesEntityExist(target) and not IsEntityDead(target) then
+	if DoesEntityExist(target) and not IsEntityDead(target) and GetEntityType(target) == 1 then
 		if IsPedInAnyVehicle(target, false) then
 			local vehicle = GetVehiclePedIsIn(target, false)
 			TaskVehicleDriveWander(target, vehicle, 17.0, PedDrivingBehavior)

@@ -17,6 +17,7 @@ server_scripts {
 	"Service/tow_sv.lua",
 	"Startup/startup_sv.lua",
 	"Sync/sync_sv.lua",
+	"Sync/NativeSync_sv.lua",
 }
 
 --vRP-integration. Uncomment the following server_scripts and client_scripts.
@@ -202,12 +203,12 @@ client_scripts {
 	"Service/tow_cl.lua",
 	"Startup/startup_cl.lua",
 	"Sync/sync_cl.lua",
+	"Sync/NativeSync_cl.lua",
 }
 
 -- PD5M callout scripts
 server_scripts {
 	"Callouts/MissionData/AmbientEvents/**/*.lua",
-	"Callouts/MissionData/Callouts/**/*.lua",
 	"Callouts/MissionData/MissionLoader_gl.lua",
 	"Callouts/MissionHandler_sv.lua",
 	"Callouts/MissionData/MissionInterpreter_sv.lua",
@@ -215,10 +216,8 @@ server_scripts {
 
 client_scripts {
 	"Callouts/MissionData/AmbientEvents/**/*.lua",
-	"Callouts/MissionData/Callouts/**/*.lua",
 	"Callouts/MissionData/MissionLoader_gl.lua",
 	"Callouts/MissionHandler_cl.lua",
-	"Callouts/MissionData/MissionInterpreter_cl.lua",
 }
 
 -- Radialmenu integration

@@ -29,6 +29,4 @@ flag_grabbed = false
 grabbedTarget = nil
 
 -- globals needed for HUD-functionality in the missionsystem
-MssCalloutTriggered = false
 MssAmbientEventTriggered = false
-MssAvailable = false
