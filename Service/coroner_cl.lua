@@ -53,6 +53,15 @@ AddEventHandler('pd5m:service:initcoroner', function()
 
 	local VecAngle = GetHeadingFromVector_2d(offx, offy)-sta
 
+	while VecAngle < 0 or VecAngle > 360 do
+		if VecAngle < 0 then
+			VecAngle = VecAngle + 360
+		elseif VecAngle > 360 then
+			VecAngle = VecAngle - 360
+		end
+		Wait(200)
+	end
+
 	if VecAngle < 270 and VecAngle > 90 then
 		stx = station.xa
 		sty = station.ya
@@ -120,7 +129,7 @@ AddEventHandler('pd5m:service:coronerapproach', function(coroner, coronerdriver,
 	local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
 	local distance = Vdist2(corx, cory, corz, tarx, tary, tarz)
 
-	while distance > 2000.0 and flagcalledcoroner do
+	while distance > 3000.0 and flagcalledcoroner do
 		print('Arriving')
 		print(distance)
 		corx, cory, corz = table.unpack(GetEntityCoords(coroner))
@@ -207,12 +216,12 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 	local tarx, tary, tarz = table.unpack(tarpos)
 	local vehiclehash = GetHashKey(coroner)
 
-	TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 15.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
+	TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 10.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 
 	local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
 	local distance = Vdist2(corx, cory, corz, tarx, tary, tarz)
 
-	while distance > 800.0 and flagcalledcoroner do
+	while distance > 1000.0 and flagcalledcoroner do
 		print('At scene start')
 		print(distance)
 		corx, cory, corz = table.unpack(GetEntityCoords(coroner))
@@ -224,9 +233,9 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 
 		local corx, cory, corz = table.unpack(GetEntityCoords(coroner))
 
-		TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 5.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
+		TaskVehicleDriveToCoord(coronerdriver, coroner, tarx, tary, tarz, 3.0, 0, vehiclehash, NormalDrivingBehavior, 2.0, true)
 
-		while distance > 100.0 and flagcalledcoroner do
+		while distance > 300.0 and flagcalledcoroner do
 			print('At scene closing in')
 			print(distance)
 			corx, cory, corz = table.unpack(GetEntityCoords(coroner))
@@ -246,6 +255,7 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 					local tarx, tary, tarz = table.unpack(GetEntityCoords(ped))
 					if Vdist2(tarx, tary, tarz, corx, cory, corz) < 2500.0 then
 						table.insert(DeadPedList, ped)
+						print(ped)
 					end
 				end
 			end
@@ -276,7 +286,10 @@ AddEventHandler('pd5m:service:coroneratscene', function(coroner, coronerdriver, 
 						if DoesEntityExist(target) then
 							TriggerServerEvent('pd5m:syncsv:TaskPlayAnim', target, 'anim@heists@narcotics@trash', 'pickup', 8.0, 8.0, -1, 0, 0.0, 0, 0, 0)
 							Wait(500)
-							DeleteEntity(target)
+							SetBlockingOfNonTemporaryEvents(target, false)
+							SetEntityAsNoLongerNeeded(target)
+
+							TriggerServerEvent('pd5m:syncsv:deleteEntity', target)
 							-- put it into a bag, despawn person, pick up bag, put it into the vehicle, remove last coordinates
 							Wait(2500)
 
@@ -357,4 +370,9 @@ AddEventHandler('pd5m:service:abortcoroner', function()
 	GlobalCoronerDriver = nil
 	flagcalledcoroner = false
 	GlobalSpeedZone = nil
+end)
+
+RegisterNetEvent('pd5m:sync:deleteEntity')
+AddEventHandler('pd5m:sync:deleteEntity', function(target)
+	DeleteEntity(target)
 end)

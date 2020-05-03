@@ -47,7 +47,7 @@ menuConfigs = {
                     navAngle = 288,                 -- Oritentation of wheel
                     minRadiusPercent = 0.6,         -- Minimum radius of wheel in percentage
                     maxRadiusPercent = 0.9,         -- Maximum radius of wheel in percentage
-                    labels = {"DRUGTEST", "RUN PLATE", "RUN ID", "CORONER", "TOW", "GRAB", "PACK", "SEIZE CAR", "SEIZE ITEMS", "SEARCH"},
+                    labels = {"DRUGTEST", "RUN PLATE", "RUN ID", "CORONER", "TOW",  "GRAB", "PACK", "SEIZE CAR", "SEIZE ITEMS", "SEARCH"},
                     commands = {"pd5m:int:drugtest", "pd5m:int:runplate", "pd5m:int:runid", "pd5m:service:callcoroner", "pd5m:tow:calltowtruck", "pd5m:int:grabped", "pd5m:int:packejectped", "pd5m:int:seizecar", "pd5m:int:confiscateitems", "pd5m:int:search"}
                 }
             }
@@ -93,8 +93,8 @@ menuConfigs = {
                     navAngle = 315,                 -- Oritentation of wheel
                     minRadiusPercent = 0.4,         -- Minimum radius of wheel in percentage
                     maxRadiusPercent = 0.9,         -- Maximum radius of wheel in percentage
-                    labels = {"RUNID", "RUNPLATE", "TRAFFIC STOP", "EJECT"},
-                    commands = {"pd5m:int:runid", "pd5m:int:runplate", "pd5m:int:initstopcar", "pd5m:int:packejectped"}
+                    labels = {"RUNPLATE", "RUNID", "TRAFFIC STOP" , "EJECT"},
+                    commands = {"pd5m:int:runplate", "pd5m:int:runid", "pd5m:int:initstopcar", "pd5m:int:packejectped"}
                 }
             }
         }
