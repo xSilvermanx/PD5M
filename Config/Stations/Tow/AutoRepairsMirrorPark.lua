@@ -10,7 +10,7 @@ TowMirrorPark = {
   },
   markers = {
     cloth = {
-      {x=1135.32, y=-785.11, z=56.60, handle='MirrorParkDPOS'},
+      {x=1135.32, y=-785.11, z=57.60, handle='MirrorParkDPOS'},
     },
     garage = {
       marker = {

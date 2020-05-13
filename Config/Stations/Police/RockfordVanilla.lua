@@ -16,7 +16,8 @@ PolRockford = {
 
     },
     cloth = {
-      {x=-556.78, y=-130.51, z=37.04, handle='RockfordLSPD'},
+      {x=-556.78, y=-130.51, z=38.04, handle='RockfordLSPD'},
+      {x=-581.27, y=-127.7, z=34.31, handle='RockfordSWAT'},
     },
     evidence = {
 

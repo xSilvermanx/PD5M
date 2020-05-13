@@ -19,7 +19,9 @@ PolLaMesa = {
 
     },
     cloth = {
-      {x=823.98, y=-1300.09, z=26.11, handle='LaMesaLSPD'},
+      {x=823.98, y=-1300.09, z=27.11, handle='LaMesaLSPD'},
+      {x=842.42, y=-1374.58, z=26.31, handle='LaMesaSASP'},
+      {x=849.76, y=-1284.08, z=28.00, handle='LaMesaSWAT'},
     },
     evidence = {
 
@@ -28,7 +30,7 @@ PolLaMesa = {
       marker = {
         {x=830.42, y=-1311.42, z=28.34, handle='LaMesaLSPD'},
         {x=818.09, y=-1374.61, z=26.51, handle='LaMesaSASP'},
-        {x=849.76, y=-1284.08, z=28.2, handle='LaMesaSWAT'},
+        {x=861.15, y=-1284.87, z=26.84, handle='LaMesaSWAT'},
       },
       spawnpoint = {
         {x=824.32, y=-1312.97, z=27.12, angle=110.61, handle='LaMesaLSPD'},

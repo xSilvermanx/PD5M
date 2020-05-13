@@ -10,7 +10,7 @@ TowDavis = {
   },
   markers = {
     cloth = {
-      {x=403.76, y=-1624.84, z=28.29, handle='DavisDPOS'},
+      {x=403.76, y=-1624.84, z=29.29, handle='DavisDPOS'},
     },
     garage = {
       marker = {

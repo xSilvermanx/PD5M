@@ -24,6 +24,8 @@ CreateThread(function()
 	local SWATSelected = 1
 	local DPOSCurrent = 1
 	local DPOSSelected = 1
+	local FIRECurrent = 1
+	local FIRESelected = 1
 
 	WarMenu.CreateMenu('TPMenu', 'Station-Teleporter')
 
@@ -77,6 +79,15 @@ CreateThread(function()
 					SetEntityCoords(GetPlayerPed(-1), list_dpos_coords[DPOSCurrent].x, list_dpos_coords[DPOSCurrent].y, list_dpos_coords[DPOSCurrent].z, 1, 0, 0, 1)
 					TPMenuOpen = false
 					WarMenu.CloseMenu()
+				elseif WarMenu.ComboBox('FD Stations', FIREStations, FIRECurrent, FIRESelected, function(currentIndex, selectedIndex)
+						FIRECurrent = currentIndex
+						FIRESelected = selectedIndex
+					end) then
+						TriggerEvent('chatMessage', '', {255,150, 0}, 'Teleported to ' .. list_fire_coords[FIRECurrent].stationname .. '!')
+						SetEntityCoords(GetPlayerPed(-1), list_fire_coords[FIRECurrent].x, list_fire_coords[FIRECurrent].y, list_fire_coords[FIRECurrent].z, 1, 0, 0, 1)
+						TPMenuOpen = false
+						WarMenu.CloseMenu()
+
 			elseif WarMenu.Button('Exit') then
 				TPMenuOpen = false
 				WarMenu.CloseMenu()

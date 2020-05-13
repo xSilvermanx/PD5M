@@ -10,7 +10,7 @@ TowBurton = {
   },
   markers = {
     cloth = {
-      {x=-346.63, y=-133.47, z=38.01, handle='LSCCentral'},
+      {x=-346.63, y=-133.47, z=39.01, handle='LSCCentral'},
     },
     garage = {
       marker = {

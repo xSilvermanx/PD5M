@@ -10,7 +10,7 @@ TowVespucci = {
   },
   markers = {
     cloth = {
-      {x=-1047.57, y=-841.53, z=4.04, handle='VespucciDPOS'},
+      {x=-1047.57, y=-841.53, z=5.04, handle='VespucciDPOS'},
     },
     garage = {
       marker = {

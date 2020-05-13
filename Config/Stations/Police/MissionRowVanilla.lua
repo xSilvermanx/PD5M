@@ -14,7 +14,7 @@ PolMissionRow = {
       {x=464.10, y=-998.42, z=24.91, handle='MissionRowLSPD'},
     },
     cloth = {
-      {x=450.72, y=-992.65, z=29.69, handle='MissionRowLSPD'},
+      {x=450.72, y=-992.65, z=30.69, handle='MissionRowLSPD'},
     },
     evidence = {
       {x=460.51, y=-991.27, z=24.91, handle='MissionRowLSPD'},

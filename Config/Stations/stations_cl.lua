@@ -18,14 +18,18 @@ PolStations = {
 }
 
 MedStations = {
-  MedCentralLS,
-  MedEclipse,
-  MedFiacre,
   MedMountZonah,
+  MedCentralLS,
+  FireDavis,
+  MedFiacre,
   MedPaleto,
+  FirePaleto,
   MedPillbox,
   MedPortola,
+  FireRockford,
   MedSandy,
+  FireSandy,
+  MedEclipse,
 }
 
 TowStations = {
@@ -35,10 +39,10 @@ TowStations = {
   TowDavis,
   TowHarmony,
   TowLaMesa,
-  TowBeekers,
-  TowVespucci,
-  TowSandy,
   TowMirrorPark,
+  TowBeekers,
+  TowSandy,
+  TowVespucci,
   TowVinewood,
 }
 
@@ -246,6 +250,7 @@ list_sasp_coords = {}
 list_sapr_coords = {}
 list_swat_coords = {}
 list_dpos_coords = {}
+list_fire_coords = {}
 
 LSPDStations = {}
 BCSOStations = {}
@@ -253,6 +258,7 @@ SASPStations = {}
 SAPRStations = {}
 SWATStations = {}
 DPOSStations = {}
+FIREStations = {}
 
 for i, tppoint in ipairs(list_tp_coords) do
   if list_handles[tppoint.handle][1].handles[tppoint.handle].name == 'lspd' then
@@ -279,5 +285,13 @@ for i, tppoint in ipairs(list_tp_coords) do
     table.insert(DPOSStations, list_handles[tppoint.handle][1].handles[tppoint.handle].shortname)
     tppoint.stationname = list_handles[tppoint.handle][1].handles[tppoint.handle].stationname
     table.insert(list_dpos_coords, tppoint)
+  elseif list_handles[tppoint.handle][1].handles[tppoint.handle].name == 'lsfd' then
+    table.insert(FIREStations, list_handles[tppoint.handle][1].handles[tppoint.handle].shortname)
+    tppoint.stationname = list_handles[tppoint.handle][1].handles[tppoint.handle].stationname
+    table.insert(list_fire_coords, tppoint)
+  elseif list_handles[tppoint.handle][1].handles[tppoint.handle].name == 'bcfd' then
+    table.insert(FIREStations, list_handles[tppoint.handle][1].handles[tppoint.handle].shortname)
+    tppoint.stationname = list_handles[tppoint.handle][1].handles[tppoint.handle].stationname
+    table.insert(list_fire_coords, tppoint)
   end
 end
