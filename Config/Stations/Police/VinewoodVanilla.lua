@@ -14,7 +14,7 @@ PolVinewood = {
 
     },
     cloth = {
-      {x=641.09, y=6.89, z=81.79, handle='VinewoodLSPD'},
+      {x=641.09, y=6.89, z=82.79, handle='VinewoodLSPD'},
     },
     evidence = {
 

@@ -13,7 +13,7 @@ PolSandy = {
       {x=1843.15, y=3690.42, z=34.2, handle='SandyShoresBCSO'},
     },
     cloth = {
-      {x=1857.41, y=3694.39, z=33.33, handle='SandyShoresBCSO'},
+      {x=1857.41, y=3694.39, z=34.33, handle='SandyShoresBCSO'},
     },
     evidence = {
       {x=1855.48, y=3697.83, z=34.21, handle='SandyShoresBCSO'},

@@ -13,7 +13,7 @@ PolDelPerro = {
 
     },
     cloth = {
-      {x=-1636.35, y=-1014.65, z=12.13, handle='DelPerroLSPD'},
+      {x=-1636.35, y=-1014.65, z=13.13, handle='DelPerroLSPD'},
     },
     evidence = {
 

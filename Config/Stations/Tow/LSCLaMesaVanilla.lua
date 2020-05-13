@@ -10,7 +10,7 @@ TowLaMesa = {
   },
   markers = {
     cloth = {
-      {x=726.51, y=-1067.12, z=27.31, handle='LSCLaMesa'},
+      {x=726.51, y=-1067.12, z=28.31, handle='LSCLaMesa'},
     },
     garage = {
       marker = {

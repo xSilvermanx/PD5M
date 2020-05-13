@@ -10,7 +10,7 @@ TowBennys = {
   },
   markers = {
     cloth = {
-      {x=-207.67, y=-1339.65, z=33.89, handle='Bennys'},
+      {x=-207.67, y=-1339.65, z=34.89, handle='Bennys'},
     },
     garage = {
       marker = {

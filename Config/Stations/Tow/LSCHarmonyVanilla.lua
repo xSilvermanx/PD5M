@@ -10,7 +10,7 @@ TowHarmony = {
   },
   markers = {
     cloth = {
-      {x=1187.34, y=2639.68, z=37.44, handle='LSCHarmony'},
+      {x=1187.34, y=2639.68, z=38.44, handle='LSCHarmony'},
     },
     garage = {
       marker = {

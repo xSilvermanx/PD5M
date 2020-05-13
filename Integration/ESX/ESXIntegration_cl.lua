@@ -16,8 +16,4 @@ if ESXEnabled then
       Wait(5000)
     end
   end)
-else
-  PlayerData = {}
-  PlayerData.job = {}
-  PlayerData.job.name = 'police'
 end

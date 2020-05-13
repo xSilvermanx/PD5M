@@ -17,7 +17,8 @@ PolDavis = {
 
     },
     cloth = {
-      {x=354.75, y=-1589.48, z=28.29, handle='DavisLSPD'},
+      {x=354.75, y=-1589.48, z=29.29, handle='DavisLSPD'},
+      {x=367.23, y=-1622.61, z=29.29, handle='DavisSWAT'},
     },
     evidence = {
 

@@ -1,23 +1,23 @@
 MedMountZonah = {
   handles = {
-    MountZonahMed = {handle = 'MountZonahMed', name = 'lsmc', stationname = 'Mount Zonah Medical Center', shortname = 'Mount Zonah'},
+    MountZonahMed = {handle = 'MountZonahMed', name = 'lsfd', stationname = 'Mount Zonah Medical Center', shortname = 'Burton'},
   },
   blips = {
     {x=-473.01, y=-339.17, z=35.2, sprite=61, colour=1, alpha=255, name='Hospital'},
   },
   tps = {
-
+    {x=-478.88, y=-277.69, z=35.61, handle='MountZonahMed'},
   },
   markers = {
     cloth = {
-
+      {x=-469.71, y=-278.65, z=35.82, handle='MountZonahMed'},
     },
     garage = {
       marker = {
-
+        {x=-466.29, y=-276.41, z=35.92, handle='MountZonahMed'},
       },
       spawnpoint = {
-
+        {x=-461.06, y=-271.54, z=35.78, angle=22.75, handle='MountZonahMed'},
       },
     },
     heal = {

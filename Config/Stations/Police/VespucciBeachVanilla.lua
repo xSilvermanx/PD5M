@@ -13,7 +13,7 @@ PolVespucciBeach = {
 
     },
     cloth = {
-      {x=-1311.36, y=-1522.9, z=3.42, handle='VespucciBeachLSPD'},
+      {x=-1311.36, y=-1522.9, z=4.42, handle='VespucciBeachLSPD'},
     },
     evidence = {
 
