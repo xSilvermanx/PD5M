@@ -9,10 +9,12 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 - Talk to civilians, search them, use a drugtest or a breathalyzer
 - Seize cars or items, fine peds or arrest them
 - Call Coroner and Towtrucks to get rid of dead bodies resp. seized cars
-- Departments: LSPD, BCSO, SASP (State Patrol), SAPR (Park Ranger), SWAT
-- Basic working armory, wardrobe, garage
+- Departments: LSPD, BCSO, SAHP (Highway Patrol), SAPR (Park Ranger), SWAT
+- Advanced and fully customizable armory, wardrobe and garage - systems
+- Full EUP wardrobe support
 - Work as a towtruck driver for the DPOS (Department of Public Order and Safety; very limited script-support)
-- Custom TP-script to quickly get you to each police-station
+- Wardrobe and Garage support for Fire Department and EMS (no script-support currently)
+- Custom TP-script to quickly get you to each station
 - Config file pre-set to work with a few mods (listed below)
 - Backend: Sync-structure so every client gets the same information of the peds
 
@@ -59,6 +61,9 @@ ensure pd5m
 
 ## Optional Addons
 The addons listed below can be used to enhance your playing experience. They are fully supported by PD5M. If you want to use them, simply install them as per their installation instructions. Afterwards open `PD5M/Config/config_cl.lua` and set the respective bool at the top of the file to true.
+
+- [EUP Serve & Rescue](https://forum.cfx.re/t/release-eup-serve-and-rescue-law-order-7-5-server-side-update-1-2-now-with-esx-permissions/210892), uploaded by scarefacesg. You only need to install the `eup-stream` part of the download. Remember to activate the correct configurations in pd5m `__resource.lua`.
+
 - [ELS](https://forum.cfx.re/t/release-els-fivem-server-sync-lights-sirens-custom-patterns/64048) by MrDaGree
 - [VisualSettings](https://forum.cfx.re/t/release-serverside-visualsettings/201448) by Jarrrk
 - [LSPD-Mega-Pack](https://www.lcpdfr.com/downloads/gta5mods/vehiclemodels/17911-los-santos-police-department-mega-pack-els/) by T0y
@@ -95,7 +100,7 @@ Shoutouts go out to:
 - Completely rewrote the wardrobe to feature much better customizability 
 of your mp-ped
 - Full support for EUP Law & Order + Serve & Rescue
-- - To utilize the EUP-wardrobe, use the [EUP Serve & Rescue 
+  - To utilize the EUP-wardrobe, use the [EUP Serve & Rescue 
 Pack](https://forum.cfx.re/t/release-eup-serve-and-rescue-law-order-7-5-server-side-update-1-2-now-with-esx-permissions/210892). 
 Only install the `eup-stream` part of the download, you neither need 
 NativeUI nor eup-ui for the PD5M-wardrobe to function
