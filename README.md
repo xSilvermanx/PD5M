@@ -9,7 +9,7 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 - Talk to civilians, search them, use a drugtest or a breathalyzer
 - Seize cars or items, fine peds or arrest them
 - Call Coroner and Towtrucks to get rid of dead bodies resp. seized cars
-- Departments: LSPD, BCSO, SAHP (Highway Patrol), SAPR (Park Ranger), SWAT
+- Departments: LSPD, BCSO, SAHP, SAPR (Park Ranger), SWAT
 - Advanced and fully customizable armory, wardrobe and garage - systems
 - Full EUP wardrobe support
 - Work as a towtruck driver for the DPOS (Department of Public Order and Safety; very limited script-support)
@@ -21,6 +21,7 @@ PD5M is a resource for FiveM aiming to provide a functional police-multiplayer t
 ## Controls
 - Use `F3` to enable a crosshair that will help you determine what you are looking at
 - Type `/tp` to open the teleport menu that can send you to every police- and DPOS-station
+- Type `/rank` to choose your department ranks. If you are displaying rank insignia on your uniform, this command will choose the appropriate rank insignia next time you are in the wardrobe
 
 ### Keyboard:
 - Use `E` to interact with an npc you are looking at. Is also used to interact with every marker on the map
