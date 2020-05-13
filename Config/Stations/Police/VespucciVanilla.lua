@@ -17,7 +17,8 @@ PolVespucci = {
 
     },
     cloth = {
-      {x=-1105.91, y=-850.1, z=18.32, handle='VespucciLSPD'},
+      {x=-1105.91, y=-850.1, z=19.32, handle='VespucciLSPD'},
+      {x=-1112.94, y=-858.39, z=13.55, handle='VespucciSWAT'},
     },
     evidence = {
 

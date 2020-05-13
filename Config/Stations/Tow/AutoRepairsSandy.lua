@@ -1,6 +1,6 @@
 TowSandy = {
   handles = {
-    SandyDPOS = {handle='SandyDPOS', name='dpos', stationname = 'Auto Repairs Sandy', shortname = 'Sandy'},
+    SandyDPOS = {handle='SandyDPOS', name='dpos', stationname = 'Auto Repairs Sandy Shores', shortname = 'Sandy Shores'},
   },
   blips = {
     {x=2506.58, y=4097.42, z=38.71, sprite=317, colour=17, alpha=255, name='DPOS Station'},
@@ -10,7 +10,7 @@ TowSandy = {
   },
   markers = {
     cloth = {
-      {x=2506.58, y=4097.42, z=37.71, handle='SandyDPOS'},
+      {x=2506.58, y=4097.42, z=38.71, handle='SandyDPOS'},
     },
     garage = {
       marker = {

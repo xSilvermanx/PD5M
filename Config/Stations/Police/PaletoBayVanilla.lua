@@ -21,7 +21,9 @@ PolPaleto = {
       {x=-449.59, y=6016.55, z=31.72, handle='PaletoBCSO'},
     },
     cloth = {
-      {x=-448.27, y=6008.02, z=30.72, handle='PaletoBCSO'},
+      {x=-448.27, y=6008.02, z=31.72, handle='PaletoBCSO'},
+      {x=-456.32, y=6009.88, z=31.49, handle='PaletoSASP'},
+      {x=-444.18, y=5997.69, z=31.49, handle='PaletoSWAT'},
     },
     evidence = {
       {x=-449.07, y=6012.54, z=31.72, handle='PaletoBCSO'},

@@ -1,23 +1,23 @@
 MedPillbox = {
   handles = {
-    PillboxMed = {handle = 'PillboxMed', name = 'lsmc', stationname = 'Pillbox Hill Medical Center', shortname = 'Pillbox Hill'},
+    PillboxMed = {handle = 'PillboxMed', name = 'lsfd', stationname = 'Pillbox Hill Medical Center', shortname = 'Pillbox Hill'},
   },
   blips = {
     {x=322.72, y=-586.26, z=90.62, sprite=61, colour=1, alpha=255, name='Hospital'},
   },
   tps = {
-
+    {x=389.04, y=-572.68, z=28.72, handle='PillboxMed'},
   },
   markers = {
     cloth = {
-
+      {x=318.79, y=-558.74, z=28.74, handle='PillboxMed'},
     },
     garage = {
       marker = {
-
+        {x=333.79, y=-560.46, z=28.74, handle='PillboxMed'},
       },
       spawnpoint = {
-
+        {x=343.28, y=-557.34, z=28.74, angle=337.59, handle='PillboxMed'},
       },
     },
     heal = {

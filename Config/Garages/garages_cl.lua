@@ -7,6 +7,7 @@ ListSAPRGarage = {}
 ListSWATGarage = {}
 ListDPOSGarage = {}
 ListHELIGarage = {}
+ListFIREGarage = {}
 
 table.insert(ListLSPDGarage, LSPDGarage)
 table.insert(ListBCSOGarage, BCSOGarage)
@@ -15,6 +16,7 @@ table.insert(ListSAPRGarage, SAPRGarage)
 table.insert(ListSWATGarage, SWATGarage)
 table.insert(ListDPOSGarage, DPOSGarage)
 table.insert(ListHELIGarage, HELIGarage)
+table.insert(ListFIREGarage, FIREGarage)
 
 -- LSPD Tables init
 local ListLSPDCarnames = {}
@@ -99,3 +101,15 @@ end
 
 table.insert(ListHELIGarage, ListHELICarnames)
 table.insert(ListHELIGarage, ListHELICarhandles)
+
+-- FIRE Tables init
+local ListFIRECarnames = {}
+local ListFIRECarhandles = {}
+
+for i, vehicle in ipairs(FIREGarage) do
+  table.insert(ListFIRECarnames, vehicle.name)
+  table.insert(ListFIRECarhandles, vehicle.handle)
+end
+
+table.insert(ListFIREGarage, ListFIRECarnames)
+table.insert(ListFIREGarage, ListFIRECarhandles)

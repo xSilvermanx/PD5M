@@ -6,6 +6,35 @@ ListSASPArmory = {}
 ListSAPRArmory = {}
 ListSWATArmory = {}
 
+ArmoryUnderarmorVestDefinition = {
+  name = "Underarmor Vest",
+  handle = "",
+  table = "Equipment",
+  ammo = 0,
+  armor = {
+    IsArmor = true,
+    ArmorValue = 55,
+    CompVars = {
+      Male = {
+        {9, 0, 0},
+        {9, 0, 0},
+      },
+      Female = {
+        {9, 0, 0},
+        {9, 0, 0},
+      },
+    },
+  },
+  attachments = {
+    HasAttachments = false,
+    Components = {
+      {}
+    },
+  },
+}
+
+
+
 for i, option in ipairs(GENArmory) do
   table.insert(LSPDArmory, option)
   table.insert(BCSOArmory, option)

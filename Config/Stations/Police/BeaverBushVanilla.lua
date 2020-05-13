@@ -13,7 +13,7 @@ PolBeaverBush = {
 
     },
     cloth = {
-      {x=391.52, y=798.91, z=186.67, handle='BeaverBushSAPR'},
+      {x=391.52, y=798.91, z=187.67, handle='BeaverBushSAPR'},
     },
     evidence = {
 

@@ -10,7 +10,7 @@ TowBeekers = {
   },
   markers = {
     cloth = {
-      {x=100.32, y=6618.38, z=31.47, handle='PaletoDPOS'},
+      {x=100.32, y=6618.38, z=32.47, handle='PaletoDPOS'},
     },
     garage = {
       marker = {

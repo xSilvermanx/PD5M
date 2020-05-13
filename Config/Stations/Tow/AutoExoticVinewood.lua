@@ -10,7 +10,7 @@ TowVinewood = {
   },
   markers = {
     cloth = {
-      {x=540.16, y=-196.77, z=53.49, handle='VinewoodDPOS'},
+      {x=540.16, y=-196.77, z=54.49, handle='VinewoodDPOS'},
     },
     garage = {
       marker = {

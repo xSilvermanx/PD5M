@@ -39,7 +39,6 @@ Mss_Amb_NonRoadWorthyVehicle_Silverman = {
       {
         Chance = 65.0,
         Result = function()
-          print('Damaging car')
           local VehModel = GetEntityModel(targetveh)
           local MinVec, MaxVec = GetModelDimensions(VehModel)
           local Size = MaxVec - MinVec
@@ -215,7 +214,6 @@ Mss_Amb_NonRoadWorthyVehicle_Silverman = {
       {
         Chance = 10.0,
         Result = function()
-          print('Activating vehicle alarm')
           SetVehicleAlarmTimeLeft(targetveh, 900000)
           SetVehicleAlarm(targetveh, true)
           StartVehicleAlarm(targetveh)
@@ -224,14 +222,12 @@ Mss_Amb_NonRoadWorthyVehicle_Silverman = {
       {
         Chance = 10.0,
         Result = function()
-          print('Pressing Vehicle Horn')
           StartVehicleHorn(targetveh, 900000, "HELDDOWN", false)
         end
       },
       {
         Chance = 65.0,
         Result = function()
-          print('Destroying doors')
           local DoorIndices = {0, 1, 2, 3, 4, 5, 6, 7}
           for i, Index in ipairs(DoorIndices) do
             local rnd = math.random(1, 100)
@@ -247,7 +243,6 @@ Mss_Amb_NonRoadWorthyVehicle_Silverman = {
       {
         Chance = 65.0,
         Result = function()
-          print('Blowing tyres')
           local TyreIndices = {0, 1, 2, 3, 4, 5, 45, 47}
           for i, Index in ipairs(TyreIndices) do
             local rnd = math.random(1, 100)
@@ -262,14 +257,12 @@ Mss_Amb_NonRoadWorthyVehicle_Silverman = {
       {
         Chance = 10.0,
         Result = function()
-          print('throwing mud at the car')
           SetVehicleDirtLevel(targetveh, math.random(8, 15)-0.1)
         end
       },
       {
         Chance = 65.0,
         Result = function()
-          print('They are actually using indicators... no wait...')
           if math.random(1, 2) == 2 then
             SetVehicleIndicatorLights(targetveh, 0, true)
           end
@@ -281,21 +274,18 @@ Mss_Amb_NonRoadWorthyVehicle_Silverman = {
       {
         Chance = 65.0,
         Result = function()
-          print('Who needs lights in the darkness?')
           SetVehicleLights(targetveh, 1)
         end
       },
       {
         Chance = 10.0,
         Result = function()
-          print("Tyres? Haven't changed them in 10 years...")
           SetVehicleReduceGrip(targetveh, true)
         end
       },
       {
         Chance = 10.0,
         Result = function()
-          print('I hate glass')
           for i=0,13,1 do
             if math.random(1,100) <= 30 then
               SmashVehicleWindow(targetveh, i)
