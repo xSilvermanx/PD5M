@@ -90,63 +90,30 @@ Shoutouts go out to:
 - Everyone involved in testing the mod prior to this release.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
 
-## Newest Patch Notes: Ambient Events
-- Added a system that provides work for officers while on-duty
-- System works fully automatic, doesn't need to be activated nor started
-- Added ambient event: car ignoring red lights (randomized, more things may happen)
-- Added ambient event: car not in a road-worthy condition (randomized, different things may happen)
+## Newest Patch Notes: Update v0.2.1 The wardrobe update
 
-Tbh this is not the big update I was hoping to bring to you guys. However Callouts are a huge problem and the first version didn't work at all. Thus I completely removed the Callout-system to publish the mostly-working ambient events. I'll target callouts later on, an idea on how to get a dynamic system done does exist. However this will be extremely complicated so might take a long while.
+- Completely rewrote the wardrobe to feature much better customizability 
+of your mp-ped
+- Full support for EUP Law & Order + Serve & Rescue
+- - To utilize the EUP-wardrobe, use the [EUP Serve & Rescue 
+Pack](https://forum.cfx.re/t/release-eup-serve-and-rescue-law-order-7-5-server-side-update-1-2-now-with-esx-permissions/210892). 
+Only install the `eup-stream` part of the download, you neither need 
+NativeUI nor eup-ui for the PD5M-wardrobe to function
+- Added a check to keep you from opening the wardrobe without an mp-ped
+- Added fire department and paramedic wardrobe and garage for every 
+hospital and fire station (no script-support, only for RP-purposes 
+currently)
+- Added command /rank so you can set your department rank for every 
+ingame department. Uniforms that can display rank insignia will display 
+the appropriate rank insignia when choosing that piece of clothing in 
+the wardrobe
 
-More patchnotes, sorted for files:
-`common_cl_fct.lua`:
-- Added sync to automatically create data for all entities when peds drive vehicles
-- Mission System Handler added: when using the SyncPedAndVeh()-function the mission system detects the used entities as interacted
-- Fixed a bug where vehicles and peds wouldn't have synced data if you used the CheckPlate()-command without prior interaction to the vehicle
-
-`config_cl.lua`:
-- Edited the Standard Driving Behavior. The peds should now drive way more predictable, and should not overtake anymore after being stopped.
-- The towtrucks and coroners shouldn't drive the wrong direction of streets anymore.
-
-`station config Pillbox Hill Medical Center`:
-- Markers at Pillbox Hill Medical Center now heal you instead of displaying the controls.
-
-`cleanupthreads_cl.lua`:
-- Added events that trigger SetEntityAsMissionEntity and SetEntityAsNoLongerNeeded on every client
-- Added event that sets mission entities to wander if they exist
-- Added checks to make sure that mission entities properly get deleted and properly start wandering around after an interaction. Deletion of mission entities only works if the script doesn't get restarted.
-
-`def_gl.lua` and `dev_sv.lua`:
-- Every custom list that was defined serverside only is now global (items, weapons, names, offenses, ...)
-- Serverside definitions of lists related to the mission system
-
-`interaction_cl.lua`:
-- Fixed interaction with E-menu for players with ping > 200 (now problems will occur with a ping > 1000)
-- Changed the FinePed()-function so you can directly start typing a sum instead of deleting huge amounts of text
-- Upped the distance to grab peds using GrabPed()-function
-- included targetveh-support in pedflee()-event. Should properly delete cars now
-- peds in vehicles will now drive way slower when sending them on their way after a traffic stop
-- Fixed a bug that caused a crash of the interaction-script when trying to set weapons for a ped which shouldn't have them
-- Changed the speed at which the peds drive after interacting with you. Should be less speedy in the city, maybe a little bit too slow on the highway.
-- Upped the distances at which you can use RunPlate to reflect the changes made to TrafficStops
-- Set the max cruise speed of fleeing targets in vehicles higher and changed their driving style to be less chaotic. Chases should be harder now.
-- Deleted Blips for fleeing peds. Chases should be harder now.
-- Deleted Blips for hostile peds that get triggered through the interaction script.
-- Fixed a bug where peds you interacted with wouldn't get properly marked as no longer needed.
-
-`interaction_sv.lua`:
-- Fixed a bug where illegal weapons for peds would generate out of the list for legal weapons thus rendering illegal weapons never used
-- Added `flagismissionped` which if set prevents dead bodies from despawning without calling a coroner. Used for mission peds.
-
-`markers_cl.lua`:
-- Deleted large chunks of commented code that was left on accident
-- Changed the creation of the vehicle blip such that it is not named 'Getaway Vehicle' anymore
-
-`towtruck_cl.lua`, `towtruck_sv.lua`, `coroner_cl.lua` and `coroner_sv.lua`:
-- Changed distances and speeds of the coroner during approach and on-scene. Should behave way calmer now
-- Hopefully fixed a bug where the coroner would sometimes only pick up the first dead body. He'd go to every body, pick them up, the bodies would disappear and reappear almost instantly.
-- Fixed towtruck and coroner spawning with incorrect orientation (should work 95% of the time now, last 5% are not a bug but a result of how the script works)
-
-`startup_cl.lua`:
-Deactivated dispatch services for cruising PD and pulled over PD
-
+**Minor changes**
+- Moved ESX and vRP-integration to new folder `Integration`
+- Removed debug messages in Ambient Event "Non Roadworthy Vehicle" that 
+were in the live version on accident
+- Discovered, traced and removed a bug where only a "few" markers were 
+displayed (turns out that there is a limit on how many markers can be 
+displayed at all. I seem to have reached that quite fine :-P). As an 
+unintended side effect performance of PD5M was improved from 0.6 CPU 
+msec to 0.2 CPU msec
