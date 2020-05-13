@@ -63,7 +63,7 @@ ensure pd5m
 The addons listed below can be used to enhance your playing experience. They are fully supported by PD5M. If you want to use them, simply install them as per their installation instructions. Afterwards open `PD5M/Config/config_cl.lua` and set the respective bool at the top of the file to true.
 
 - [EUP Serve & Rescue](https://forum.cfx.re/t/release-eup-serve-and-rescue-law-order-7-5-server-side-update-1-2-now-with-esx-permissions/210892), uploaded by scarefacesg. You only need to install the `eup-stream` part of the download. Remember to activate the correct configurations in pd5m `__resource.lua`.
-
+-
 - [ELS](https://forum.cfx.re/t/release-els-fivem-server-sync-lights-sirens-custom-patterns/64048) by MrDaGree
 - [VisualSettings](https://forum.cfx.re/t/release-serverside-visualsettings/201448) by Jarrrk
 - [LSPD-Mega-Pack](https://www.lcpdfr.com/downloads/gta5mods/vehiclemodels/17911-los-santos-police-department-mega-pack-els/) by T0y
