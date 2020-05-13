@@ -60,16 +60,16 @@ client_scripts {
 	--"Config/Stations/Police/MissionRowSLB.lua",
 
 	-- Paleto Bay Sheriff's Office
-	--"Config/Stations/Police/PaletoBayVanilla.lua",
-	"Config/Stations/Police/PaletoBayMatus.lua",
+	"Config/Stations/Police/PaletoBayVanilla.lua",
+	--"Config/Stations/Police/PaletoBayMatus.lua",
 
 	-- Rockford Hills Police Station
 	"Config/Stations/Police/RockfordVanilla.lua",
 
 
 	-- Sandy Shores Sheriff's Station
-  --"Config/Stations/Police/SandyShoresVanilla.lua",
-	"Config/Stations/Police/SandyShoresBamboozled.lua",
+  	"Config/Stations/Police/SandyShoresVanilla.lua",
+	--"Config/Stations/Police/SandyShoresBamboozled.lua",
 
 	-- Vespucci Beach Police Station
 	"Config/Stations/Police/VespucciBeachVanilla.lua",
@@ -105,8 +105,8 @@ client_scripts {
 
 
 	-- The Bay Care Center
-	--"Config/Stations/Med/PaletoBayVanilla.lua",
-	"Config/Stations/Med/PaletoBayBrown.lua",
+	"Config/Stations/Med/PaletoBayVanilla.lua",
+	--"Config/Stations/Med/PaletoBayBrown.lua",
 
 	-- Paleto Bay Fire Station
 	"Config/Stations/Med/PaletoBayFDVanilla.lua",
@@ -122,8 +122,8 @@ client_scripts {
 	"Config/Stations/Med/RockfordHillsFDVanilla.lua",
 
 	-- Sandy Shores Medical Center
-	--"Config/Stations/Med/SandyShoresVanilla.lua",
-	"Config/Stations/Med/SandyShoresBeek.lua",
+	"Config/Stations/Med/SandyShoresVanilla.lua",
+	--"Config/Stations/Med/SandyShoresBeek.lua",
 
 	-- Sandy Shores Fire Station
 	"Config/Stations/Med/SandyShoresFDVanilla.lua",
