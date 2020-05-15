@@ -98,33 +98,10 @@ Shoutouts go out to:
 - Everyone involved in testing the mod prior to this release.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
 
-## Newest Patch Notes: Update v0.2.1 The wardrobe update
+## Newest Patch Notes: Update v0.2.2 Usability update
 
-- Completely rewrote the wardrobe to feature much better customizability 
-of your mp-ped
-- Full support for EUP Law & Order + Serve & Rescue
-  - To utilize the EUP-wardrobe, use the [EUP Serve & Rescue 
-Pack](https://forum.cfx.re/t/release-eup-serve-and-rescue-law-order-7-5-server-side-update-1-2-now-with-esx-permissions/210892). 
-Only install the `eup-stream` part of the download, you neither need 
-NativeUI nor eup-ui for the PD5M-wardrobe to function
-- Added a check to keep you from opening the wardrobe without an mp-ped
-- Added fire department and paramedic wardrobe and garage for every 
-hospital and fire station (no script-support, only for RP-purposes 
-currently)
-- Added command /rank so you can set your department rank for every 
-ingame department. Uniforms that can display rank insignia will display 
-the appropriate rank insignia when choosing that piece of clothing in 
-the wardrobe
-
-**Minor changes**
-- Moved ESX and vRP-integration to new folder `Integration`
-- Removed debug messages in Ambient Event "Non Roadworthy Vehicle" that 
-were in the live version on accident
-- Discovered, traced and removed a bug where only a "few" markers were 
-displayed (turns out that there is a limit on how many markers can be 
-displayed at all. I seem to have reached that quite fine :-P). As an 
-unintended side effect performance of PD5M was improved from 0.6 CPU 
-msec to 0.2 CPU msec
+- Updated `__resource.lua` to `fxmanifest.lua`
+- Included Variables in `fxmanifest.lua` to easily activate and deactivate the files you need
 
 [discord-img]: https://img.shields.io/badge/Discord-join-blue?style=plastic&logo=discord
 [discord-url]: https://discord.gg/3DNTHeT
