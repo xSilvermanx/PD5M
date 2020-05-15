@@ -1,4 +1,4 @@
-# PD5M
+# PD5M [![Discord][discord-img]][discord-url]
 
 ## Make sure that your resource is written completely lowercase: `pd5m`!
 
@@ -123,3 +123,6 @@ displayed (turns out that there is a limit on how many markers can be
 displayed at all. I seem to have reached that quite fine :-P). As an 
 unintended side effect performance of PD5M was improved from 0.6 CPU 
 msec to 0.2 CPU msec
+
+[discord-img]: https://img.shields.io/badge/discord-join-7289DA.svg
+[discord-url]: https://discord.gg/3DNTHeT
