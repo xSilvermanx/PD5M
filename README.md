@@ -1,4 +1,4 @@
-# PD5M [![Discord][discord-img]][discord-url]
+# PD5M [![Discord][discord-img]][discord-url] [![Release][githubver-img]][githubver-url] [![License][license-img]][license-url]
 
 ## Make sure that your resource is written completely lowercase: `pd5m`!
 
@@ -124,5 +124,11 @@ displayed at all. I seem to have reached that quite fine :-P). As an
 unintended side effect performance of PD5M was improved from 0.6 CPU 
 msec to 0.2 CPU msec
 
-[discord-img]: https://img.shields.io/badge/discord-join-7289DA.svg
+[discord-img]: https://img.shields.io/badge/Discord-join-blue?style=plastic&logo=discord
 [discord-url]: https://discord.gg/3DNTHeT
+
+[githubver-img]: https://img.shields.io/github/v/release/xSilvermanx/PD5M?style=plastic
+[githubver-url]: https://github.com/xSilvermanx/PD5M/releases
+
+[license-img]: https://img.shields.io/github/license/xSilvermanx/PD5M
+[license-url]: https://github.com/xSilvermanx/PD5M/blob/master/LICENSE
