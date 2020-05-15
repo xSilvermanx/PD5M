@@ -132,7 +132,7 @@ msec to 0.2 CPU msec
 [githubver-img]: https://img.shields.io/github/v/release/xSilvermanx/PD5M?style=plastic
 [githubver-url]: https://github.com/xSilvermanx/PD5M/releases
 
-[license-img]: https://img.shields.io/github/license/xSilvermanx/PD5M
+[license-img]: https://img.shields.io/github/license/xSilvermanx/PD5M?style=plastic
 [license-url]: https://github.com/xSilvermanx/PD5M/blob/master/LICENSE
 
 [banner-img]: https://forum.cfx.re/uploads/default/optimized/4X/b/b/0/bb022a8aba80f4e18d4b8865bff06df15849899e_2_690x194.png
