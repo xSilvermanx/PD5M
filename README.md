@@ -1,6 +1,8 @@
 # PD5M [![Discord][discord-img]][discord-url] [![Release][githubver-img]][githubver-url] [![License][license-img]][license-url]
 
 ## Make sure that your resource is written completely lowercase: `pd5m`!
+[![Banner][banner-img]][banner-url]
+
 
 PD5M is a resource for FiveM aiming to provide a functional police-multiplayer to the game. Inspired by LSPDFR and PIS you can take on the role of an officer of the Police Departments to protect and to serve the citizens of San Andreas.
 
@@ -132,3 +134,7 @@ msec to 0.2 CPU msec
 
 [license-img]: https://img.shields.io/github/license/xSilvermanx/PD5M
 [license-url]: https://github.com/xSilvermanx/PD5M/blob/master/LICENSE
+
+[banner-img]: https://forum.cfx.re/uploads/default/optimized/4X/b/b/0/bb022a8aba80f4e18d4b8865bff06df15849899e_2_690x194.png
+[banner-url]: https://forum.cfx.re/t/release-pd5m-multiplayer-pve-police-script-ambient-events
+
