@@ -1,5 +1,4 @@
 CreateThread(function()
-	local playerped = GetPlayerPed(-1)
 	local playerRelGroup = GetPedRelationshipGroupHash(playerped)
 	while true do
 		for Ped in EnumeratePeds() do

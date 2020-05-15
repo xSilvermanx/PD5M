@@ -1,7 +1,6 @@
 -- config variables
 
 -- Callout variables
-CalloutTriggerChance = 5 -- Chance that a callout triggers in a single roll. Rolls every 10 seconds.
 AmbientEventTriggerChance = 10 -- Chance that an ambient event triggers in a single roll. Rolls every 10 seconds.
 
 -- ped creation variables
