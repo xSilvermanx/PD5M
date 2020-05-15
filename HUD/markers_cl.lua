@@ -46,7 +46,6 @@ CreateThread(function()
 		list_show_weap_coords = {}
 		list_show_evidence_coords = {}
 		list_show_help_coords = {}
-
 		local playerped = GetPlayerPed(-1)
 		local plc = GetEntityCoords(playerped, true)
 		for i, coord in ipairs(list_arrest_coords) do
@@ -1662,6 +1661,7 @@ function spawnCar(carname, LicensePlateType, ChosenLicensePlateText, PrimaryColo
 	SetBlipAlpha(PersonalVehicleBlip, 255)
 	SetBlipScale(PersonalVehicleBlip, 1.0)
 	SetBlipDisplay(PersonalVehicleBlip, 2)
+	SetVehicleCanBeUsedByFleeingPeds(vehicle, false)
 	local VehicleName = GetLabelText(GetDisplayNameFromVehicleModel(car))
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString(VehicleName)

@@ -1,4 +1,4 @@
-if ESXEnabled then
+if ConvarEnableESX then
   ESX = nil
 
   Citizen.CreateThread(function()
