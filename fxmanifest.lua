@@ -26,7 +26,7 @@ ConvarEnableBeaverBushSmokey = false -- https://forum.cfx.re/t/release-mlo-beave
 
 -- Fire station and hospital config variables
 ConvarEnablePaletoBayBrown = false -- https://de.gta5-mods.com/maps/mlo-paleto-bay-medical-center
-ConvarEnableSandyShoresBeek = false -- https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem
+ConvarEnableSandyShoresBeek = true -- https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem
 
 -- Vehicle config variables
 ConvarEnableELSLSPDt0yPack = false -- https://www.lcpdfr.com/downloads/gta5mods/vehiclemodels/17911-los-santos-police-department-mega-pack-els/
@@ -86,6 +86,7 @@ client_scripts {
   "Config/Stations/Med/FiacreVanilla.lua",
   "Config/Stations/Med/MountZonahVanilla.lua",
   "Config/Stations/Med/PaletoBayFDVanilla.lua",
+  "Config/Stations/Med/PillboxHillVanilla.lua",
   "Config/Stations/Med/PortolaVanilla.lua",
   "Config/Stations/Med/RockfordHillsFDVanilla.lua",
   "Config/Stations/Med/SandyShoresFDVanilla.lua",
@@ -318,7 +319,6 @@ server_scripts {
 }
 
 client_scripts {
-	"Duty/duty_cl.lua",
   "Duty/ranks_cl.lua",
   "HUD/blips_cl.lua",
 	"HUD/crosshair_cl.lua",
@@ -390,6 +390,12 @@ if ConvarEnablevRP == true then
     "Integration/vRP/lib/Proxy.lua",
     "Integration/vRP/lib/Tunnel.lua",
     "Integration/vRP/vRPIntegration_cl.lua",
+  }
+end
+
+if not ConvarEnableESX and not ConvarEnablevRP then
+  client_scripts {
+    "Duty/duty_cl.lua",
   }
 end
 
