@@ -98,10 +98,10 @@ Shoutouts go out to:
 - Everyone involved in testing the mod prior to this release.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
 
-## Newest Patch Notes: Update v0.2.2 Usability update
+## Newest Patch Notes: Update v0.2.2.1 Usability update
 
-- Updated `__resource.lua` to `fxmanifest.lua`
-- Included Variables in `fxmanifest.lua` to easily activate and deactivate the files you need
+- Fixed a bug where the permission system for ESX and vRP didn't work at all.
+- Fixed medic stations not being loaded properly.
 
 [discord-img]: https://img.shields.io/badge/Discord-join-blue?style=plastic&logo=discord
 [discord-url]: https://discord.gg/3DNTHeT
