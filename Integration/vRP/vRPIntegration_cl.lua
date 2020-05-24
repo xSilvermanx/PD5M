@@ -4,6 +4,10 @@ Tunnel.bindInterface("PD5M",vRPpd5m)
 vRPserver = Tunnel.getInterface("vRP","PD5M")
 vRPpd5mS = Tunnel.getInterface("PD5M","PD5M")
 
+PlayerData = {}
+PlayerData.job = {}
+PlayerData.job.name = 'police'
+
 Citizen.CreateThread(function()
 	while true do
 		vRPpd5mS.isPD({}, function(isacop)

@@ -8,7 +8,6 @@ local list_show_evidence_coords = {}
 local list_show_help_coords = {}
 
 CreateThread(function()
-	local playerped = GetPlayerPed(-1)
 	local range = 40000.0
 
 	if not ActivateArrestMarkers then
@@ -47,8 +46,8 @@ CreateThread(function()
 		list_show_weap_coords = {}
 		list_show_evidence_coords = {}
 		list_show_help_coords = {}
-
-		plc = GetEntityCoords(playerped)
+		local playerped = GetPlayerPed(-1)
+		local plc = GetEntityCoords(playerped, true)
 		for i, coord in ipairs(list_arrest_coords) do
 			if Vdist2(plc.x, plc.y, plc.z, coord.x, coord.y, coord.z) < range then
 				table.insert(list_show_arrest_coords, coord)
@@ -377,6 +376,36 @@ if ActivateClothMarkers then
 
 		while true do
 			if WarMenu.IsMenuOpened('WardrobeMain') then
+				ClothingCurrentDrawables[1] = GetPedPropIndex(playerped, 0)
+				ClothingCurrentDrawables[2] = GetPedPropIndex(playerped, 1)
+				ClothingCurrentDrawables[3] = GetPedPropIndex(playerped, 2)
+				ClothingCurrentDrawables[4] = GetPedPropIndex(playerped, 6)
+				ClothingCurrentDrawables[5] = GetPedPropIndex(playerped, 7)
+				ClothingCurrentDrawables[6] = GetPedDrawableVariation(playerped, 1)
+				ClothingCurrentDrawables[7] = GetPedDrawableVariation(playerped, 3)
+				ClothingCurrentDrawables[8] = GetPedDrawableVariation(playerped, 4)
+				ClothingCurrentDrawables[9] = GetPedDrawableVariation(playerped, 5)
+				ClothingCurrentDrawables[10] = GetPedDrawableVariation(playerped, 6)
+				ClothingCurrentDrawables[11] = GetPedDrawableVariation(playerped, 7)
+				ClothingCurrentDrawables[12] = GetPedDrawableVariation(playerped, 8)
+				ClothingCurrentDrawables[13] = GetPedDrawableVariation(playerped, 9)
+				ClothingCurrentDrawables[14] = GetPedDrawableVariation(playerped, 10)
+				ClothingCurrentDrawables[15] = GetPedDrawableVariation(playerped, 11)
+				ClothingCurrentTextures[1] = GetPedPropTextureIndex(playerped, 0)
+				ClothingCurrentTextures[2] = GetPedPropTextureIndex(playerped, 1)
+				ClothingCurrentTextures[3] = GetPedPropTextureIndex(playerped, 2)
+				ClothingCurrentTextures[4] = GetPedPropTextureIndex(playerped, 6)
+				ClothingCurrentTextures[5] = GetPedPropTextureIndex(playerped, 7)
+				ClothingCurrentTextures[6] = GetPedTextureVariation(playerped, 1)
+				ClothingCurrentTextures[7] = GetPedTextureVariation(playerped, 3)
+				ClothingCurrentTextures[8] = GetPedTextureVariation(playerped, 4)
+				ClothingCurrentTextures[9] = GetPedTextureVariation(playerped, 5)
+				ClothingCurrentTextures[10] = GetPedTextureVariation(playerped, 6)
+				ClothingCurrentTextures[11] = GetPedTextureVariation(playerped, 7)
+				ClothingCurrentTextures[12] = GetPedTextureVariation(playerped, 8)
+				ClothingCurrentTextures[13] = GetPedTextureVariation(playerped, 9)
+				ClothingCurrentTextures[14] = GetPedTextureVariation(playerped, 10)
+				ClothingCurrentTextures[15] = GetPedTextureVariation(playerped, 11)
 				if WarMenu.MenuButton('Uniform', 'WardrobeStandard') then
 					TopCategoryCurrentIndex = 1
 					TopCategorySelectedIndex = 1
@@ -1632,6 +1661,7 @@ function spawnCar(carname, LicensePlateType, ChosenLicensePlateText, PrimaryColo
 	SetBlipAlpha(PersonalVehicleBlip, 255)
 	SetBlipScale(PersonalVehicleBlip, 1.0)
 	SetBlipDisplay(PersonalVehicleBlip, 2)
+	SetVehicleCanBeUsedByFleeingPeds(vehicle, false)
 	local VehicleName = GetLabelText(GetDisplayNameFromVehicleModel(car))
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString(VehicleName)

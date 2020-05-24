@@ -8,14 +8,12 @@ PoliceDrivingBehavior = 525116 -- sets the driving style for AI-Code 3-response.
 -- general variables
 ActivateBlipsOnMap = true -- shows the department-blips, the hospital-blips and the tow-blips set by PD5M.
 ActivateCrosshair = true -- activates the F3-function to display a crosshair in the middle of the screen.
-ESXEnabled = false -- ESX integration thanks to MobTV
 
 -- marker variables
 ActivateArrestMarkers = true -- activates the arrest markers. Should stay activated.
 ActivateClothMarkers = true -- activates the wardrobes.
 ActivateHealMarkers = true -- activates the heal-markers at the hospitals.
 ActivateGarages = true -- activates garages in general. If set to false no garage will be displayed independently of the rest of the settings.
-ActivateHeliPads = true -- activates the Helipads.
 ActivateWeaponMarkers = true -- activates the armory.
 ActivateEvidenceMarkers = true -- activates the evidence markers. Should stay activated.
 ActivateHelpMarkers = true -- activates the help markers.

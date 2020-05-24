@@ -19,7 +19,7 @@ LSPDRanks = {
 }
 
 BCSORanks = {
-  "Deputy",
+  "Deputy I",
   "Deputy II",
   "Corporal I",
   "Corporal II",
@@ -196,7 +196,6 @@ CreateThread(function()
     Wait(0)
   end
 end)
-
 
 
 
