@@ -14,7 +14,6 @@ ActivateArrestMarkers = true -- activates the arrest markers. Should stay activa
 ActivateClothMarkers = true -- activates the wardrobes.
 ActivateHealMarkers = true -- activates the heal-markers at the hospitals.
 ActivateGarages = true -- activates garages in general. If set to false no garage will be displayed independently of the rest of the settings.
-ActivateHeliPads = true -- activates the Helipads.
 ActivateWeaponMarkers = true -- activates the armory.
 ActivateEvidenceMarkers = true -- activates the evidence markers. Should stay activated.
 ActivateHelpMarkers = true -- activates the help markers.
