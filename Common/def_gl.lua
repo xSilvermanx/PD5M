@@ -26,7 +26,7 @@ DrugList = {'Cannabis', 'Cocaine', 'Meth', 'Marijuana', 'Hashish', 'Heroin', 'Op
 -- lists every config that is available in a VehConfigList
 -- notable entries:
 -- PedNetID: if the car is being driven by a ped, the PedNetID-entry is set to the Network ID of the ped.
-VehVariableListGlobal = {'Registration', 'PedNetID', 'savevehitems', 'flagvehillegalitem', 'PedGender', 'FirstName', 'LastName', 'BirthYear', 'BirthMonth', 'BirthDay'}
+VehVariableListGlobal = {'Registration', 'PedNetID', 'savevehitems', 'flagvehillegalitem', 'PedGender', 'FirstName', 'LastName', 'BirthYear', 'BirthMonth', 'BirthDay', 'flagwanted', 'saveoffense'}
 
 ClientPedVariableList = PedVariableListGlobal
 ClientVehVariableList = VehVariableListGlobal

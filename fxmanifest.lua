@@ -1,6 +1,6 @@
 -- Resource Metadata
 fx_version 'bodacious'
-games {'gta5'}
+games { 'gta5' }
 
 author 'xSilvermanx'
 description 'PD5M - Multiplayer PvE Police Script'
@@ -15,7 +15,7 @@ ConvarEnableESX = false -- https://forum.cfx.re/t/release-esx-base/39881
 ConvarEnablevRP = false -- https://forum.cfx.re/t/release-vrp-framework/22894
 
 -- Clothing config variables
-ConvarEnableEUP = false -- https://forum.cfx.re/t/release-eup-serve-and-rescue-law-order-7-5-server-side-update-1-2-now-with-esx-permissions/210892
+ConvarEnableEUP = true -- https://forum.cfx.re/t/release-eup-serve-and-rescue-law-order-7-5-server-side-update-1-2-now-with-esx-permissions/210892
                         -- you only need to install "eup-stream"
 
 -- Police station config variables
@@ -26,7 +26,7 @@ ConvarEnableBeaverBushSmokey = false -- https://forum.cfx.re/t/release-mlo-beave
 
 -- Fire station and hospital config variables
 ConvarEnablePaletoBayBrown = false -- https://de.gta5-mods.com/maps/mlo-paleto-bay-medical-center
-ConvarEnableSandyShoresBeek = true -- https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem
+ConvarEnableSandyShoresBeek = false -- https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem
 
 -- Vehicle config variables
 ConvarEnableELSLSPDt0yPack = false -- https://www.lcpdfr.com/downloads/gta5mods/vehiclemodels/17911-los-santos-police-department-mega-pack-els/

@@ -4,7 +4,7 @@
 AmbientEventTriggerChance = 10 -- Chance that an ambient event triggers in a single roll. Rolls every 10 seconds.
 
 -- ped creation variables
--- -- info: the chances below are given in percent. So a variable of 1.50 stands for 1.5%. Please do only use variables with two decimal place between 0.00 and 100.00.
+-- -- info: the chances below are given in percent. So a variable of 1.50 stands for 1.5%. Please do only use variables with two decimal places between 0.00 and 100.00.
 PedDruggedChance = 0.50 -- Chance that the ped is drugged (standard: 0.50)
 PedDrunkChance = 4.00 -- Chance that the ped is drunk (standard: 4.00)
 PedWantedChance = 1.50 -- Chance that the ped is wanted (standard: 1.50)
@@ -64,4 +64,3 @@ VehIllegalItemChance = 5.00 -- chance that an illegal item is in the car (standa
 
 -- general variables
 ActivateTPfunction = true -- activates the /tp-function.
--- to disable single teleporting options edit the lists in tp_cl.lua lines 15 to 26.

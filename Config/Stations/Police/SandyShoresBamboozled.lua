@@ -37,6 +37,6 @@ PolSandy = {
     },
   },
   corspawn = {
-    {x=1851.21, y=3664.64, z=35.12, angle=122.78, handle='BCSOSandy', name='BCSO Sandy Shores'},
+    {x=1851.21, y=3664.64, z=34.12, angle=122.78, xa=1843.19, ya=3653.28, za=34.26, aa=293.07, handle='SandyShoresBCSO', name='BCSO Sandy Shores'},
   },
 }

@@ -304,6 +304,8 @@ function SyncPedAndVeh(target, targetveh)
 		local BirthYear = ClientPedConfigList[TargetFlagListIndex].BirthYear
 		local BirthMonth = ClientPedConfigList[TargetFlagListIndex].BirthMonth
 		local BirthDay = ClientPedConfigList[TargetFlagListIndex].BirthDay
+		local flagwanted = ClientPedConfigList[TargetFlagListIndex].flagwanted
+		local saveoffense = ClientPedConfigList[TargetFlagListIndex].saveoffense
 
 		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'PedNetID', TargetNetID)
 		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'PedGender', PedGender)
@@ -312,6 +314,8 @@ function SyncPedAndVeh(target, targetveh)
 		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthYear', BirthYear)
 		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthMonth', BirthMonth)
 		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthDay', BirthDay)
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'flagwanted', flagwanted)
+		TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'saveoffense', saveoffense)
 		TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'VehicleNetID', TargetVehNetID)
 	end
 
@@ -416,6 +420,8 @@ function InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
 	local BirthYear = ClientPedConfigList[TargetFlagListIndex].BirthYear
 	local BirthMonth = ClientPedConfigList[TargetFlagListIndex].BirthMonth
 	local BirthDay = ClientPedConfigList[TargetFlagListIndex].BirthDay
+	local flagwanted = ClientPedConfigList[TargetFlagListIndex].flagwanted
+	local saveoffense = ClientPedConfigList[TargetFlagListIndex].saveoffense
 
 	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'PedNetID', TargetNetID)
 	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'PedGender', PedGender)
@@ -424,6 +430,8 @@ function InputPedDataToVehicleConfig(TargetNetID, TargetVehNetID)
 	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthYear', BirthYear)
 	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthMonth', BirthMonth)
 	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'BirthDay', BirthDay)
+	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'flagwanted', flagwanted)
+	TriggerServerEvent('pd5m:syncsv:ChangeVehEntry', TargetVehNetID, 'saveoffense', saveoffense)
 	TriggerServerEvent('pd5m:syncsv:ChangePedEntry', TargetNetID, 'VehicleNetID', TargetVehNetID)
 end
 
