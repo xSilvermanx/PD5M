@@ -2372,7 +2372,7 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 							corrSign = 1
 						end
 
-						local Cx, Cy, Cz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, Ox+corr, Oy-2.0, Oz))
+						local Cx, Cy, Cz = table.unpack(GetOffsetFromEntityInWorldCoords(targetveh, Ox+3*corr, Oy-2.0, Oz))
 
 						TaskGoStraightToCoord(playerped, Cx, Cy, Cz, 1.0, 10000, VehHeading, 0.1)
 						local distanceCheck = true
@@ -2380,8 +2380,9 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
-							if tonumber(distance) < 0.2 then
+							if tonumber(distance) < 0.8 then
 								distanceCheck = false
+								Wait(500)
 							end
 							Wait(100)
 						end
@@ -2395,6 +2396,8 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 							Wait(100)
 						end
 
+						ClearPedTasksImmediately(playerped)
+
 						target = grabbedTarget
 						DetachEntity(grabbedTarget, 0, true)
 						flag_grabbed = false
@@ -2407,8 +2410,9 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
-							if tonumber(distance) < 0.2 then
+							if tonumber(distance) < 0.8 then
 								distanceCheck = false
+								Wait(500)
 							end
 							Wait(100)
 						end
@@ -2431,8 +2435,9 @@ AddEventHandler('pd5m:int:packejectped', function() -- move ped in or out of veh
 						while distanceCheck do
 							local Px, Py, Pz = table.unpack(GetEntityCoords(playerped))
 							local distance = Vdist2(Px, Py, Pz, Cx, Cy, Cz)
-							if tonumber(distance) < 0.2 then
+							if tonumber(distance) < 0.8 then
 								distanceCheck = false
+								Wait(500)
 							end
 							Wait(100)
 						end
@@ -2457,8 +2462,8 @@ end)
 
 RegisterNetEvent('pd5m:int:runid')
 AddEventHandler('pd5m:int:runid', function()
-	local FirstnameSearch = "Firstname "
-	local SurnameSearch = "Surname"
+	local FirstnameSearch = ""
+	local SurnameSearch = ""
 	local TargetSearchNetID = nil
 	local targetSearch = nil
 	local TargetSearchFlagListIndex = nil
@@ -3513,7 +3518,14 @@ if ActivateArrestMarkers then
 
 				local TargetName = FirstName .. " " .. LastName
 
-				DeleteEntity(target)
+				TriggerServerEvent('pd5m:syncsv:RemovePedEntry', TargetNetID)
+				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Stopped')
+				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Talking')
+				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoFear')
+				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'Arrested')
+				TriggerServerEvent('pd5m:syncsv:RemovePedFlagEntry', TargetNetID, 'NoTalk')
+
+				TriggerServerEvent('pd5m:syncsv:native:DeleteEntity', TargetNetID)
 
 				BeginTextCommandThefeedPost("TWOSTRINGS")
 				AddTextComponentSubstringPlayerName("The suspect was brought into the prison and serves their sentence.")

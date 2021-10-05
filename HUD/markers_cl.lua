@@ -1613,7 +1613,6 @@ function spawnCar(carname, LicensePlateType, ChosenLicensePlateText, PrimaryColo
 				Notify('Please remove the vehicle that is blocking the spawn point.')
 			else
 				vehicle = CreateVehicle(car, coord.x, coord.y, coord.z, coord.angle, true, false)
-				SetVehicleNeonLightEnabled(vehicle, 2, true)
 				SetVehicleNumberPlateTextIndex(vehicle, LicensePlateType)
 				if (not (ChosenLicensePlateText == '')) then
 					SetVehicleNumberPlateText(vehicle, ChosenLicensePlateText)
