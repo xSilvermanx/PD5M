@@ -112,3 +112,15 @@ and Fire Departments with Fire Extinguishers and Jerry Cans.
 - Added the rank-command into the wardrobe, removed /rank-command
 - Added Vehicle-Repair and -Impound/Deletion Markers. They are located at every tow truck station and a few police stations
 - Ped Props now get removed when you open the uniform tab in the wardrobe
+
+[discord-img]: https://img.shields.io/badge/Discord-join-blue?style=plastic&logo=discord
+[discord-url]: https://discord.gg/3DNTHeT
+
+[githubver-img]: https://img.shields.io/github/v/release/xSilvermanx/PD5M?style=plastic
+[githubver-url]: https://github.com/xSilvermanx/PD5M/releases
+
+[license-img]: https://img.shields.io/github/license/xSilvermanx/PD5M?style=plastic
+[license-url]: https://github.com/xSilvermanx/PD5M/blob/master/LICENSE
+
+[banner-img]: https://forum.cfx.re/uploads/default/optimized/4X/b/b/0/bb022a8aba80f4e18d4b8865bff06df15849899e_2_690x194.png
+[banner-url]: https://forum.cfx.re/t/release-pd5m-multiplayer-pve-police-script-ambient-events
