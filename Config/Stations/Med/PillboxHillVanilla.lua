@@ -28,5 +28,11 @@ MedPillbox = {
     help = {
 
     },
+    tp = {
+      {x=312.27, y=-553.48, z=28.88, handle = 'PillboxMed'},
+    },
+    weap = {
+      {x=314.76, y=-540.22, z=28.74, handle='PillboxMed'},
+    },
   },
 }

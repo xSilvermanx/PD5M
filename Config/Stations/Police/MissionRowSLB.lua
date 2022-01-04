@@ -38,6 +38,12 @@ PolMissionRow = {
     weap = {
       {x=452.17, y=-980.26, z=30.69, handle='MissionRowLSPD'},
     },
+    delete = {
+      {x=433.9, y=-1011.72, z=28.7, handle='MissionRowLSPD'},
+    },
+    tp = {
+      {x=462.83, y=-1018.26, z=32.98, handle='MissionRowLSPD'},
+    },
   },
   corspawn = {
     {x=401.83, y=-1008.18, z=29.39, angle=0.0, handle='MissionRowLSPD', name='LSPD Station Mission Row'},

@@ -9,14 +9,35 @@ BCSOLegs = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {25,2,{{6,51,0}} },
+        {25,0,{{6,25,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {41,0,{{6,52,0}} },
+        {41,1,{{6,25,0}} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 4,
+    Category = "Eagle",
+    CategoryIndex = 2,
+    Name = "Standard Issue",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {64,1,{{6,25,0}} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {66,1,{{6,25,0}} },
       }
     },
   },
@@ -30,14 +51,35 @@ BCSOLegs = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {32,2,{{6,30,0}} },
+        {32,2,{{6,13,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {31,2,{{6,9,0}} },
+        {31,2,{{6,26,0}} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 4,
+    Category = "Combat Uniform",
+    CategoryIndex = 3,
+    Name = "Standard Issue",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {125,5,{{6,51,0}} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {131,5,{{6,101,0}} },
       }
     },
   },

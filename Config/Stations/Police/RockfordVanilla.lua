@@ -42,6 +42,12 @@ PolRockford = {
       {x=-561.31, y=-132.54, z=38.03, handle='RockfordLSPD'},
       {x=-578.7, y=-133.71, z=35.82, handle='RockfordSWAT'},
     },
+    delete = {
+      {x=-546.08, y=-139.69, z=38.6, handle='RockfordLSPD'},
+    },
+    tp = {
+      {x=-560.22, y=-177.79, z=38.06, handle='RockfordLSPD'},
+    },
   },
   corspawn = {
     {x=-563.73, y=-153.27, z=38.09, angle=112.09, xa=-562.97, ya=-158.53, za=38.13, aa=290.86, handle='RockfordLSPD', name='LSPD Station Rockford Hills'},

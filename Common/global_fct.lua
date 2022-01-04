@@ -25,7 +25,7 @@ function GetNthBinaryFlag(x, n) -- returns the value of the bit at position 2**n
 	end
 	PaddedString = Digits .. String
 	Bit = 32 - n
-	BitValue = string.sub(PaddedString, Bit, Bit)	
+	BitValue = string.sub(PaddedString, Bit, Bit)
 	return BitValue
 end
 
@@ -33,4 +33,10 @@ end
 -- usage: bool = IsInt(NUMBER)
 function IsInt(n)
 	return n == math.floor(n)
+end
+
+function VectorDistance(x1, y1, z1, x2, y2, z2)
+  local dist = math.sqrt((x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2)
+
+  return dist
 end

@@ -63,65 +63,65 @@ FIREAccessoires = {
     },
   },
   {
-    Type = 1,
-    ComponentID = 0,
-    Category = "Helmet",
-    CategoryIndex = 0,
-    Name = "Helicopter",
+    Type = 0,
+    ComponentID = 9,
+    Category = "Vest",
+    CategoryIndex = 2,
+    Name = "Medic Equip",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {79,4,{} },
+        {1,2,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {78,4,{} },
+        {1,2,{} },
       }
     },
   },
   {
     Type = 0,
-    ComponentID = 10,
-    Category = "Sticker",
-    CategoryIndex = 0,
-    Name = "Cloth Label",
+    ComponentID = 8,
+    Category = "Undershirt",
+    CategoryIndex = 1,
+    Name = "EMT Class B",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {57,0,{} },
+        {11,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {65,0,{} },
+        {12,0,{} },
       }
     },
   },
   {
     Type = 0,
-    ComponentID = 10,
-    Category = "Sticker",
-    CategoryIndex = 0,
-    Name = "Cloth Label",
+    ComponentID = 8,
+    Category = "Undershirt",
+    CategoryIndex = 1,
+    Name = "EMT Class B",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {58,0,{} },
+        {12,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {66,0,{} },
+        {11,0,{} },
       }
     },
   },
@@ -226,7 +226,7 @@ FIREAccessoires = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {97,0,{} },
+        {87,0,{} },
       }
     },
   },

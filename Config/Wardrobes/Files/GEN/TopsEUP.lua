@@ -2,273 +2,168 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Uniform",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Medium Sleeve",
+    Name = "Pullover",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {55,0,{{3,0,0},{8,15,0},{9,0,0}} },
+        {139,0,{{3,4,0}, {8,15,0}, {9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {48,0,{{3,14,0},{8,14,0},{9,0,0}} },
+        {136,0,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Pullover",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Brown",
+    Name = "Pullover",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {111,2,{{3,4,0}, {8,15,0}, {9,0,0}} },
+        {139,1,{{3,4,0}, {8,15,0}, {9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {103,2,{{3,3,0},{8,14,0},{9,0,0}} },
+        {136,1,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Pullover",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Black",
+    Name = "Pullover",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {111,3,{{3,4,0}, {8,15,0}, {9,0,0}} },
+        {139,2,{{3,4,0}, {8,15,0}, {9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {103,3,{{3,3,0},{8,14,0},{9,0,0}} },
+        {136,2,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Pullover",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Blue",
+    Name = "Pullover",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {111,4,{{3,4,0}, {8,15,0}, {9,0,0}} },
+        {139,3,{{3,4,0}, {8,15,0}, {9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {103,4,{{3,3,0},{8,14,0},{9,0,0}} },
+        {136,3,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Pullover",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Gray",
+    Name = "Pullover",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {111,5,{{3,4,0}, {8,15,0}, {9,0,0}} },
+        {139,4,{{3,4,0}, {8,15,0}, {9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {103,5,{{3,3,0},{8,14,0},{9,0,0}} },
+        {136,4,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Pullover",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Gray",
+    Name = "Pullover",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {139,0,{{3,4,0}, {8,15,0}, {9,0,0}} },
+        {139,5,{{3,4,0}, {8,15,0}, {9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {136,0,{{3,3,0},{8,14,0},{9,0,0}} },
+        {136,5,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Pullover",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Red",
+    Name = "Pullover",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {139,1,{{3,4,0}, {8,15,0}, {9,0,0}} },
+        {139,6,{{3,4,0}, {8,15,0}, {9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {136,1,{{3,3,0},{8,14,0},{9,0,0}} },
+        {136,6,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Pullover",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Brown",
+    Name = "Pullover",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {139,2,{{3,4,0}, {8,15,0}, {9,0,0}} },
+        {139,7,{{3,4,0}, {8,15,0}, {9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {136,2,{{3,3,0},{8,14,0},{9,0,0}} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 11,
-    Category = "Pullover",
-    CategoryIndex = 0,
-    Name = "Black",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {139,3,{{3,4,0}, {8,15,0}, {9,0,0}} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {136,3,{{3,3,0},{8,14,0},{9,0,0}} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 11,
-    Category = "Pullover",
-    CategoryIndex = 0,
-    Name = "Blue",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {139,4,{{3,4,0}, {8,15,0}, {9,0,0}} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {136,4,{{3,3,0},{8,14,0},{9,0,0}} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 11,
-    Category = "Pullover",
-    CategoryIndex = 0,
-    Name = "White",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {139,5,{{3,4,0}, {8,15,0}, {9,0,0}} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {136,5,{{3,3,0},{8,14,0},{9,0,0}} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 11,
-    Category = "Pullover",
-    CategoryIndex = 0,
-    Name = "Purple",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {139,6,{{3,4,0}, {8,15,0}, {9,0,0}} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {136,6,{{3,3,0},{8,14,0},{9,0,0}} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 11,
-    Category = "Pullover",
-    CategoryIndex = 0,
-    Name = "Green",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {139,7,{{3,4,0}, {8,15,0}, {9,0,0}} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {136,7,{{3,3,0},{8,14,0},{9,0,0}} },
+        {136,7,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
@@ -276,9 +171,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Black",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -297,9 +192,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "White",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -318,9 +213,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Blue",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -339,9 +234,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Green",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -360,9 +255,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Blue",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -381,9 +276,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Blue",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -402,9 +297,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Blue",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -423,9 +318,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Yellow",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -444,9 +339,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Red",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -465,9 +360,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "White",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -486,9 +381,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Green",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -507,9 +402,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Red",
+    Name = "Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -528,9 +423,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "T-Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Gray",
+    Name = "T-Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -549,9 +444,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "T-Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Blue",
+    Name = "T-Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -570,9 +465,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "T-Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "White",
+    Name = "T-Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -591,9 +486,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "T-Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Yellow",
+    Name = "T-Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -612,9 +507,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "T-Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Black",
+    Name = "T-Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -633,9 +528,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "T-Shirt",
+    Category = "Civilian 0",
     CategoryIndex = 0,
-    Name = "Red",
+    Name = "T-Shirt",
     Male = {
       Ranked = false,
       RankList = {},
@@ -654,9 +549,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -675,9 +570,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -696,9 +591,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -717,9 +612,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -738,9 +633,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -759,9 +654,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -780,9 +675,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -801,9 +696,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -822,9 +717,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -843,9 +738,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Jacket T5",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Civilian",
+    Name = "Jacket",
     Male = {
       Ranked = false,
       RankList = {},
@@ -864,9 +759,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Suit",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Black",
+    Name = "Suit",
     Male = {
       Ranked = false,
       RankList = {},
@@ -885,9 +780,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Suit",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "White",
+    Name = "Suit",
     Male = {
       Ranked = false,
       RankList = {},
@@ -906,9 +801,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Suit",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "White",
+    Name = "Suit",
     Male = {
       Ranked = false,
       RankList = {},
@@ -927,9 +822,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Suit",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Gray",
+    Name = "Suit",
     Male = {
       Ranked = false,
       RankList = {},
@@ -948,9 +843,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Suit",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Blue",
+    Name = "Suit",
     Male = {
       Ranked = false,
       RankList = {},
@@ -969,9 +864,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Suit",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Red",
+    Name = "Suit",
     Male = {
       Ranked = false,
       RankList = {},
@@ -990,9 +885,9 @@ GENTops = {
   {
     Type = 0,
     ComponentID = 11,
-    Category = "Suit",
+    Category = "Civilian 5",
     CategoryIndex = 5,
-    Name = "Green",
+    Name = "Suit",
     Male = {
       Ranked = false,
       RankList = {},
@@ -1089,174 +984,6 @@ GENTops = {
       RankList = {},
       ClothList = {
         {14,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Undershirt",
-    CategoryIndex = 1,
-    Name = "Shirt",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {65,16,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {45,16,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Undershirt",
-    CategoryIndex = 1,
-    Name = "Shirt",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {65,17,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {45,17,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Undershirt",
-    CategoryIndex = 1,
-    Name = "Shirt + Tie",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {66,16,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {45,16,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Undershirt",
-    CategoryIndex = 1,
-    Name = "Shirt + Tie",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {66,17,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {45,17,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Undershirt",
-    CategoryIndex = 1,
-    Name = "Pullover",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {72,2,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {67,2,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Undershirt",
-    CategoryIndex = 1,
-    Name = "Pullover",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {72,3,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {67,3,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Undershirt",
-    CategoryIndex = 1,
-    Name = "Pullover",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {72,4,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {67,4,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Undershirt",
-    CategoryIndex = 1,
-    Name = "Pullover",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {72,5,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {67,5,{} },
       }
     },
   },
@@ -1950,27 +1677,6 @@ GENTops = {
       RankList = {},
       ClothList = {
         {6,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Belt",
-    CategoryIndex = 2,
-    Name = "Radio",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {87,0,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {65,0,{} },
       }
     },
   },

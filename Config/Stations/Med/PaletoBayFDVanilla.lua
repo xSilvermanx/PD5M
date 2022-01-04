@@ -26,5 +26,11 @@ FirePaleto = {
     help = {
 
     },
+    tp = {
+      {x=-379.91, y=6087.44, z=31.6, handle='PaletoFire'},
+    },
+    weap = {
+      {x=-371.08, y=6100.46, z=31.49, handle='PaletoFire'},
+    },
   },
 }

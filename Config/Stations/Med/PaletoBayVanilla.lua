@@ -26,5 +26,11 @@ MedPaleto = {
     help = {
 
     },
+    tp = {
+      {x=-257.06, y=6352.0, z=32.34, handle='PaletoMed'},
+    },
+    weap = {
+      {x=-259.58, y=6333.49, z=32.43, handle='PaletoMed'},
+    },
   },
 }

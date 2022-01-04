@@ -19,14 +19,16 @@ ConvarEnableEUP = true -- https://forum.cfx.re/t/release-eup-serve-and-rescue-la
                         -- you only need to install "eup-stream"
 
 -- Police station config variables
-ConvarEnableMissionRowSLB = false -- https://de.gta5-mods.com/maps/community-mission-row-pd
-ConvarEnablePaletoBayMatus = false -- https://de.gta5-mods.com/maps/paleto-bay-sheriff-s-office-extended-sp-and-fivem-mlo
-ConvarEnableSandyShoresBamboozled = false -- https://de.gta5-mods.com/maps/sandy-sheriff-office-extension-mlo-interior
-ConvarEnableBeaverBushSmokey = false -- https://forum.cfx.re/t/release-mlo-beaver-bush-park-ranger-station/1052889
+ConvarEnableMissionRowSLB = true -- https://de.gta5-mods.com/maps/community-mission-row-pd
+ConvarEnablePaletoBayMatus = true -- https://de.gta5-mods.com/maps/paleto-bay-sheriff-s-office-extended-sp-and-fivem-mlo
+ConvarEnableSandyShoresBamboozled = true -- https://de.gta5-mods.com/maps/sandy-sheriff-office-extension-mlo-interior
+ConvarEnableBeaverBushSmokey = true -- https://forum.cfx.re/t/release-mlo-beaver-bush-park-ranger-station/1052889
+ConvarEnableLaMesaMatus = true -- https://esx-scripts.com/de/shop/san-andreas-highway-patrol-mlo/
+ConvarEnableDelPerroPablito = true -- https://de.gta5-mods.com/maps/del-perro-police-department-mlo-add-on-fivem
 
 -- Fire station and hospital config variables
-ConvarEnablePaletoBayBrown = false -- https://de.gta5-mods.com/maps/mlo-paleto-bay-medical-center
-ConvarEnableSandyShoresBeek = false -- https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem
+ConvarEnablePaletoBayBrown = true -- https://de.gta5-mods.com/maps/mlo-paleto-bay-medical-center
+ConvarEnableSandyShoresBeek = true -- https://de.gta5-mods.com/maps/sandy-shores-hospital-mlo-interior-add-on-fivem
 
 -- Vehicle config variables
 ConvarEnableELSLSPDt0yPack = false -- https://www.lcpdfr.com/downloads/gta5mods/vehiclemodels/17911-los-santos-police-department-mega-pack-els/
@@ -35,6 +37,7 @@ ConvarEnableELSSAHPTheHurkPack = false -- https://forum.cfx.re/t/release-2017-ca
 
 
 -- Main system config variables
+ConvarEnableDatabase = true -- Enables the json database script of pd5m. Currently saves player outfits.
 ConvarEnableMainScript = true -- Enables Interaction with peds, radialmenu and many other scripts. If deactivated markers still function properly.
 ConvarEnableMissionScript = true -- Enables Ambient Events; only works with main script enabled
 
@@ -75,10 +78,9 @@ client_scripts {
 -- Loading station config files
 client_scripts {
   "Config/Stations/Police/DavisVanilla.lua",
-  "Config/Stations/Police/DelPerroVanilla.lua",
-  "Config/Stations/Police/LaMesaVanilla.lua",
   "Config/Stations/Police/RockfordVanilla.lua",
   "Config/Stations/Police/VespucciVanilla.lua",
+  "Config/Stations/Police/VespucciBeachVanilla.lua",
   "Config/Stations/Police/VinewoodVanilla.lua",
   "Config/Stations/Med/CentralLSVanilla.lua",
   "Config/Stations/Med/DavisFDVanilla.lua",
@@ -165,6 +167,26 @@ else
   }
 end
 
+if ConvarEnableLaMesaMatus == true then
+  client_scripts {
+    "Config/Stations/Police/LaMesaMatus.lua",
+  }
+else
+  client_scripts {
+    "Config/Stations/Police/LaMesaVanilla.lua",
+  }
+end
+
+if ConvarEnableDelPerroPablito == true then
+  client_scripts {
+    "Config/Stations/Police/DelPerroPablito.lua",
+  }
+else
+  client_scripts {
+    "Config/Stations/Police/DelPerroVanilla.lua",
+  }
+end
+
 -- Loading Garage config files
 client_scripts {
   "Config/Garages/Files/saprgaragesvanilla.lua",
@@ -213,6 +235,8 @@ if ConvarEnableEUP then
     "Config/Armories/Files/SASPArmoryEUP.lua",
     "Config/Armories/Files/SAPRArmoryEUP.lua",
     "Config/Armories/Files/SWATArmoryEUP.lua",
+    "Config/Armories/Files/DPOSArmoryEUP.lua",
+    "Config/Armories/Files/FireArmoryEUP.lua",
   }
 else
   client_scripts {
@@ -222,6 +246,8 @@ else
     "Config/Armories/Files/SASPArmoryVanilla.lua",
     "Config/Armories/Files/SAPRArmoryVanilla.lua",
     "Config/Armories/Files/SWATArmoryVanilla.lua",
+    "Config/Armories/Files/FireArmoryVanilla.lua",
+    "Config/Armories/Files/DPOSArmoryVanilla.lua",
   }
 end
 
@@ -310,6 +336,25 @@ client_scripts {
 	"Config/Wardrobes/wardrobe_cl.lua",
 	"Config/Wardrobes/CategoryDefinitions_cl.lua",
 }
+
+-- Loading database
+if ConvarEnableDatabase then
+  server_scripts {
+    "Database/database_sv.lua",
+    "Database/jsonhandler_sv.lua",
+  }
+
+  client_scripts {
+    "Database/database_cl.lua",
+  }
+else
+  server_scripts {
+    "Database/NoDB_sv.lua"
+  }
+  client_scripts {
+    "Database/NoDB_cl.lua"
+  }
+end
 
 -- Loading marker system
 server_scripts {

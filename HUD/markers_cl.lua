@@ -6,6 +6,9 @@ local list_show_cars_coords = {}
 local list_show_weap_coords = {}
 local list_show_evidence_coords = {}
 local list_show_help_coords = {}
+local list_show_repair_coords = {}
+local list_show_delete_coords = {}
+local list_show_tp_coords = {}
 
 CreateThread(function()
 	local range = 40000.0
@@ -38,6 +41,18 @@ CreateThread(function()
 		list_help_coords = {}
 	end
 
+	if not ActivateRepairMarkers then
+		list_repair_coords = {}
+	end
+
+	if not ActivateDeleteMarkers then
+		list_delete_coords = {}
+	end
+
+	if not ActivateTPMarkers then
+		list_tpmarker_coords = {}
+	end
+
 	while true do
 		list_show_arrest_coords = {}
 		list_show_cloth_coords = {}
@@ -46,6 +61,10 @@ CreateThread(function()
 		list_show_weap_coords = {}
 		list_show_evidence_coords = {}
 		list_show_help_coords = {}
+		list_show_repair_coords = {}
+		list_show_delete_coords = {}
+		list_show_tp_coords = {}
+
 		local playerped = GetPlayerPed(-1)
 		local plc = GetEntityCoords(playerped, true)
 		for i, coord in ipairs(list_arrest_coords) do
@@ -81,6 +100,21 @@ CreateThread(function()
 		for i, coord in ipairs(list_help_coords) do
 			if Vdist2(plc.x, plc.y, plc.z, coord.x, coord.y, coord.z) < range then
 				table.insert(list_show_help_coords, coord)
+			end
+		end
+		for i, coord in ipairs(list_repair_coords) do
+			if Vdist2(plc.x, plc.y, plc.z, coord.x, coord.y, coord.z) < range then
+				table.insert(list_show_repair_coords, coord)
+			end
+		end
+		for i, coord in ipairs(list_delete_coords) do
+			if Vdist2(plc.x, plc.y, plc.z, coord.x, coord.y, coord.z) < range then
+				table.insert(list_show_delete_coords, coord)
+			end
+		end
+		for i, coord in ipairs(list_tpmarker_coords) do
+			if Vdist2(plc.x, plc.y, plc.z, coord.x, coord.y, coord.z) < range then
+				table.insert(list_show_tp_coords, coord)
 			end
 		end
 		Wait(5000)
@@ -148,6 +182,10 @@ CreateThread(function()
 				DrawMarker(var_weap_sasp_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_weap_sasp_scaleX, var_weap_sasp_scaleY, var_weap_sasp_scaleZ, var_weap_sasp_red, var_weap_sasp_green, var_weap_sasp_blue, var_weap_sasp_alpha, var_weap_sasp_bob, var_weap_sasp_face, var_weap_sasp_p19, var_weap_sasp_rotate, var_weap_sasp_textdict, var_weap_sasp_textname, var_weap_sasp_drawonent)
 			elseif list_handles[coord.handle][1].handles[coord.handle].name =='swat' then
 				DrawMarker(var_weap_swat_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_weap_swat_scaleX, var_weap_swat_scaleY, var_weap_swat_scaleZ, var_weap_swat_red, var_weap_swat_green, var_weap_swat_blue, var_weap_swat_alpha, var_weap_swat_bob, var_weap_swat_face, var_weap_swat_p19, var_weap_swat_rotate, var_weap_swat_textdict, var_weap_swat_textname, var_weap_swat_drawonent)
+			elseif list_handles[coord.handle][1].handles[coord.handle].name =='lsfd' or list_handles[coord.handle][1].handles[coord.handle].name =='bcfd' then
+				DrawMarker(var_weap_fire_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_weap_fire_scaleX, var_weap_fire_scaleY, var_weap_fire_scaleZ, var_weap_fire_red, var_weap_fire_green, var_weap_fire_blue, var_weap_fire_alpha, var_weap_fire_bob, var_weap_fire_face, var_weap_fire_p19, var_weap_fire_rotate, var_weap_fire_textdict, var_weap_fire_textname, var_weap_fire_drawonent)
+			elseif list_handles[coord.handle][1].handles[coord.handle].name =='dpos' then
+				DrawMarker(var_weap_dpos_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_weap_dpos_scaleX, var_weap_dpos_scaleY, var_weap_dpos_scaleZ, var_weap_dpos_red, var_weap_dpos_green, var_weap_dpos_blue, var_weap_dpos_alpha, var_weap_dpos_bob, var_weap_dpos_face, var_weap_dpos_p19, var_weap_dpos_rotate, var_weap_dpos_textdict, var_weap_dpos_textname, var_weap_dpos_drawonent)
 			end
 		end
 		for i,coord in ipairs(list_show_evidence_coords) do
@@ -155,6 +193,15 @@ CreateThread(function()
 		end
 		for i,coord in ipairs(list_show_help_coords) do
 			DrawMarker(var_tut_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_tut_scaleX, var_tut_scaleY, var_tut_scaleZ, var_tut_red, var_tut_green, var_tut_blue, var_tut_alpha, var_tut_bob, var_tut_face, var_tut_p19, var_tut_rotate, var_tut_textdict, var_tut_textname, var_tut_drawonent)
+		end
+		for i,coord in ipairs(list_show_repair_coords) do
+			DrawMarker(var_repair_symbol, coord.x, coord.y, coord.z+0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_repair_scaleX, var_repair_scaleY, var_repair_scaleZ, var_repair_red, var_repair_green, var_repair_blue, var_repair_alpha, var_repair_bob, var_repair_face, var_repair_p19, var_repair_rotate, var_repair_textdict, var_repair_textname, var_repair_drawonent)
+		end
+		for i,coord in ipairs(list_show_delete_coords) do
+			DrawMarker(var_impound_symbol, coord.x, coord.y, coord.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_impound_scaleX, var_impound_scaleY, var_impound_scaleZ, var_impound_red, var_impound_green, var_impound_blue, var_impound_alpha, var_impound_bob, var_impound_face, var_impound_p19, var_impound_rotate, var_impound_textdict, var_impound_textname, var_impound_drawonent)
+		end
+		for i,coord in ipairs(list_show_tp_coords) do
+			DrawMarker(var_tp_symbol, coord.x, coord.y, coord.z-1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, var_tp_scaleX, var_tp_scaleY, var_tp_scaleZ, var_tp_red, var_tp_green, var_tp_blue, var_tp_alpha, var_tp_bob, var_tp_face, var_tp_p19, var_tp_rotate, var_tp_textdict, var_tp_textname, var_tp_drawonent)
 		end
 		Wait(0)
 	end
@@ -173,6 +220,9 @@ clothpolice = nil
 if ActivateClothMarkers then
 	local policeindex = nil
 	local ListWarMenuCloth = {}
+	local RankList = {'No Rank'}
+	local RankCurrentIndex = 1
+	local RankSelectedIndex = 1
 
 	CreateThread(function()
 		while true do
@@ -186,27 +236,35 @@ if ActivateClothMarkers then
 					if clothpolice == 'lspd' then
 						policeindex = 1
 						ListWarMenuCloth = ListLSPDCloth
+						RankList = LSPDRanks
 					elseif clothpolice == 'bcso' then
 						policeindex = 2
 						ListWarMenuCloth = ListBCSOCloth
+						RankList = BCSORanks
 					elseif clothpolice == 'sasp' then
 						policeindex = 3
 						ListWarMenuCloth = ListSASPCloth
+						RankList = SASPRanks
 					elseif clothpolice == 'sapr' then
 						policeindex = 4
 						ListWarMenuCloth = ListSAPRCloth
+						RankList = SAPRRanks
 					elseif clothpolice == 'swat' then
 						policeindex = 5
 						ListWarMenuCloth = ListSWATCloth
+						RankList = SWATRanks
 					elseif clothpolice == 'dpos' then
 						policeindex = 6
 						ListWarMenuCloth = ListDPOSCloth
+						RankList = DPOSRanks
 					elseif clothpolice == 'lsfd' then
 						policeindex = 7
 						ListWarMenuCloth = ListLSFDCloth
+						RankList = LSFDRanks
 					elseif clothpolice == 'bcfd' then
 						policeindex = 8
 						ListWarMenuCloth = ListBCFDCloth
+						RankList = BCFDRanks
 					end
 
 					atcloth = true
@@ -231,6 +289,7 @@ if ActivateClothMarkers then
 
 	CreateThread(function()
 
+		local Department = nil
 		local PedGender = nil
 		local playerped = nil
 
@@ -319,14 +378,6 @@ if ActivateClothMarkers then
 		local ChainOptionSelectedIndex = 1
 		local ChainOptionNameList = {1}
 
-		local BadgeCategoryCurrentIndex = 1
-		local BadgeCategorySelectedIndex = 1
-		local BadgeItemCurrentIndex = 1
-		local BadgeItemSelectedIndex = 1
-		local BadgeOptionCurrentIndex = 1
-		local BadgeOptionSelectedIndex = 1
-		local BadgeOptionNameList = {1}
-
 		local BagCategoryCurrentIndex = 1
 		local BagCategorySelectedIndex = 1
 		local BagItemCurrentIndex = 1
@@ -363,6 +414,12 @@ if ActivateClothMarkers then
 		local BraceletOptionSelectedIndex = 1
 		local BraceletOptionNameList = {1}
 
+		local LoadOutfitCurrentIndex = 1
+		local LoadOutfitSelectedIndex = 1
+
+		local DeleteOutfitCurrentIndex = 1
+		local DeleteOutfitSelectedIndex = 1
+
 		WarMenu.CreateMenu('WardrobeMain', 'Wardrobe')
 		WarMenu.CreateSubMenu('WardrobeStandard', 'WardrobeMain', 'Wardrobe') -- change Shirt, Legs and Shoes (components 11, 4, 6)
 		WarMenu.CreateSubMenu('WardrobeAccessoires', 'WardrobeMain', 'Wardrobe') -- change all props, components 1,3,5,7,10
@@ -371,41 +428,12 @@ if ActivateClothMarkers then
 		WarMenu.CreateSubMenu('WardrobeMisc', 'WardrobeAccessoires', 'Wardrobe') -- Components 5, 7, 10
 		WarMenu.CreateSubMenu('WardrobeUndress', 'WardrobeMain', 'Wardrobe') -- undress options for every item
 		WarMenu.CreateSubMenu('WardrobeUndershirt', 'WardrobeStandard', 'Wardrobe') -- change components 8, 9
-
-
+		WarMenu.CreateSubMenu('WardrobeSavedOutfits', 'WardrobeMain', 'Wardrobe')
+		WarMenu.CreateSubMenu('WardrobeLoadOutfit', 'WardrobeSavedOutfits', 'Wardrobe')
+		WarMenu.CreateSubMenu('WardrobeDeleteOutfit', 'WardrobeSavedOutfits', 'Wardrobe')
 
 		while true do
 			if WarMenu.IsMenuOpened('WardrobeMain') then
-				ClothingCurrentDrawables[1] = GetPedPropIndex(playerped, 0)
-				ClothingCurrentDrawables[2] = GetPedPropIndex(playerped, 1)
-				ClothingCurrentDrawables[3] = GetPedPropIndex(playerped, 2)
-				ClothingCurrentDrawables[4] = GetPedPropIndex(playerped, 6)
-				ClothingCurrentDrawables[5] = GetPedPropIndex(playerped, 7)
-				ClothingCurrentDrawables[6] = GetPedDrawableVariation(playerped, 1)
-				ClothingCurrentDrawables[7] = GetPedDrawableVariation(playerped, 3)
-				ClothingCurrentDrawables[8] = GetPedDrawableVariation(playerped, 4)
-				ClothingCurrentDrawables[9] = GetPedDrawableVariation(playerped, 5)
-				ClothingCurrentDrawables[10] = GetPedDrawableVariation(playerped, 6)
-				ClothingCurrentDrawables[11] = GetPedDrawableVariation(playerped, 7)
-				ClothingCurrentDrawables[12] = GetPedDrawableVariation(playerped, 8)
-				ClothingCurrentDrawables[13] = GetPedDrawableVariation(playerped, 9)
-				ClothingCurrentDrawables[14] = GetPedDrawableVariation(playerped, 10)
-				ClothingCurrentDrawables[15] = GetPedDrawableVariation(playerped, 11)
-				ClothingCurrentTextures[1] = GetPedPropTextureIndex(playerped, 0)
-				ClothingCurrentTextures[2] = GetPedPropTextureIndex(playerped, 1)
-				ClothingCurrentTextures[3] = GetPedPropTextureIndex(playerped, 2)
-				ClothingCurrentTextures[4] = GetPedPropTextureIndex(playerped, 6)
-				ClothingCurrentTextures[5] = GetPedPropTextureIndex(playerped, 7)
-				ClothingCurrentTextures[6] = GetPedTextureVariation(playerped, 1)
-				ClothingCurrentTextures[7] = GetPedTextureVariation(playerped, 3)
-				ClothingCurrentTextures[8] = GetPedTextureVariation(playerped, 4)
-				ClothingCurrentTextures[9] = GetPedTextureVariation(playerped, 5)
-				ClothingCurrentTextures[10] = GetPedTextureVariation(playerped, 6)
-				ClothingCurrentTextures[11] = GetPedTextureVariation(playerped, 7)
-				ClothingCurrentTextures[12] = GetPedTextureVariation(playerped, 8)
-				ClothingCurrentTextures[13] = GetPedTextureVariation(playerped, 9)
-				ClothingCurrentTextures[14] = GetPedTextureVariation(playerped, 10)
-				ClothingCurrentTextures[15] = GetPedTextureVariation(playerped, 11)
 				if WarMenu.MenuButton('Uniform', 'WardrobeStandard') then
 					TopCategoryCurrentIndex = 1
 					TopCategorySelectedIndex = 1
@@ -434,15 +462,24 @@ if ActivateClothMarkers then
 					SetPedComponentVariation(playerped, 5, 0, 0, 0)
 					SetPedComponentVariation(playerped, 7, 0, 0, 0)
 					SetPedComponentVariation(playerped, 10, 0, 0, 0)
+					ClearAllPedProps(playerped)
 
 				elseif WarMenu.MenuButton('Accessoires', 'WardrobeAccessoires') then
 				elseif WarMenu.MenuButton('Undress', 'WardrobeUndress') then
+				elseif WarMenu.MenuButton('Saved Outfits', 'WardrobeSavedOutfits') then
 				elseif WarMenu.Button('Exit Menu') then
 					WarMenu.CloseMenu()
 				end
 				WarMenu.Display()
 			elseif WarMenu.IsMenuOpened('WardrobeStandard') then
-				if WarMenu.ComboBox('Top Category', ListWarMenuCloth[1][11].Categories, TopCategoryCurrentIndex, TopCategorySelectedIndex, function(currentIndex, selectedIndex)
+				if WarMenu.ComboBox("Ranks", RankList, RankCurrentIndex, RankSelectedIndex, function(currentIndex, selectedIndex)
+						RankCurrentIndex = currentIndex
+						selectedIndex = currentIndex
+						RankSelectedIndex = selectedIndex
+						PlayerRanks[policeindex] = RankSelectedIndex
+					end) then
+
+				elseif WarMenu.ComboBox('Top Category', ListWarMenuCloth[1][11].Categories, TopCategoryCurrentIndex, TopCategorySelectedIndex, function(currentIndex, selectedIndex)
 						TopCategoryCurrentIndex = currentIndex
 						if currentIndex ~= selectedIndex then
 							TopItemCurrentIndex = 1
@@ -788,14 +825,6 @@ if ActivateClothMarkers then
 					ChainOptionCurrentIndex = 1
 					ChainOptionSelectedIndex = 1
 					ChainOptionNameList = {1}
-
-					BadgeCategoryCurrentIndex = 1
-					BadgeCategorySelectedIndex = 1
-					BadgeItemCurrentIndex = 1
-					BadgeItemSelectedIndex = 1
-					BadgeOptionCurrentIndex = 1
-					BadgeOptionSelectedIndex = 1
-					BadgeOptionNameList = {1}
 
 					BagCategoryCurrentIndex = 1
 					BagCategorySelectedIndex = 1
@@ -1162,51 +1191,7 @@ if ActivateClothMarkers then
 						end
 					end) then
 
-				elseif WarMenu.ComboBox('Extra 4 Category', ListWarMenuCloth[1][10].Categories, BadgeCategoryCurrentIndex, BadgeCategorySelectedIndex, function(currentIndex, selectedIndex)
-						BadgeCategoryCurrentIndex = currentIndex
-						if currentIndex ~= selectedIndex then
-							BadgeItemCurrentIndex = 1
-							BadgeItemSelectedIndex = 1
-							BadgeOptionCurrentIndex = 1
-							BadgeOptionSelectedIndex = 1
-							BadgeOptionNameList = {1}
-						end
-						selectedIndex = currentIndex
-						BadgeCategorySelectedIndex = selectedIndex
-						BadgeCategory = ListWarMenuCloth[1][10].CategoryIndex[BadgeCategorySelectedIndex]
-					end) then
-
-				elseif WarMenu.ComboBox('Extra 4 Item', ListWarMenuCloth[1][10].Items[BadgeCategorySelectedIndex], BadgeItemCurrentIndex, BadgeItemSelectedIndex, function(currentIndex, selectedIndex)
-						BadgeItemCurrentIndex = currentIndex
-						if currentIndex ~= selectedIndex then
-							BadgeOptionCurrentIndex = 1
-							BadgeOptionSelectedIndex = 1
-							BadgeOptionNameList = {1}
-						end
-						selectedIndex = currentIndex
-						BadgeItemSelectedIndex = selectedIndex
-						local BadgeOptionNameListNew = {}
-						for i, list in ipairs(ListWarMenuCloth[1][10].Options[BadgeCategorySelectedIndex][BadgeItemSelectedIndex]) do
-							table.insert(BadgeOptionNameListNew, i)
-						end
-						BadgeOptionNameList = BadgeOptionNameListNew
-					end) then
-
-				elseif WarMenu.ComboBox('Extra 4 Option', BadgeOptionNameList, BadgeOptionCurrentIndex, BadgeOptionSelectedIndex, function(currentIndex, selectedIndex)
-						BadgeOptionCurrentIndex = currentIndex
-						selectedIndex = currentIndex
-						BadgeOptionSelectedIndex = selectedIndex
-						local ClothIndex = 1
-						if ListWarMenuCloth[1][10].Options[BadgeCategorySelectedIndex][BadgeItemSelectedIndex][BadgeOptionSelectedIndex][PedGender].Ranked == true then
-							ClothIndex = ListWarMenuCloth[1][10].Options[BadgeCategorySelectedIndex][BadgeItemSelectedIndex][BadgeOptionSelectedIndex][PedGender].RankList[PlayerRanks[policeindex]]
-						end
-						SetPedComponentVariation(playerped, 10, ListWarMenuCloth[1][10].Options[BadgeCategorySelectedIndex][BadgeItemSelectedIndex][BadgeOptionSelectedIndex][PedGender].ClothList[ClothIndex][1], ListWarMenuCloth[1][10].Options[BadgeCategorySelectedIndex][BadgeItemSelectedIndex][BadgeOptionSelectedIndex][PedGender].ClothList[ClothIndex][2], 0)
-						for i, List in ipairs(ListWarMenuCloth[1][10].Options[BadgeCategorySelectedIndex][BadgeItemSelectedIndex][BadgeOptionSelectedIndex][PedGender].ClothList[ClothIndex][3]) do
-							SetPedComponentVariation(playerped, List[1], List[2], List[3], 0)
-						end
-					end) then
-
-				elseif WarMenu.ComboBox('Extra 5 Category', ListWarMenuCloth[1][5].Categories, BagCategoryCurrentIndex, BagCategorySelectedIndex, function(currentIndex, selectedIndex)
+				elseif WarMenu.ComboBox('Extra 4 Category', ListWarMenuCloth[1][5].Categories, BagCategoryCurrentIndex, BagCategorySelectedIndex, function(currentIndex, selectedIndex)
 						BagCategoryCurrentIndex = currentIndex
 						if currentIndex ~= selectedIndex then
 							BagItemCurrentIndex = 1
@@ -1220,7 +1205,7 @@ if ActivateClothMarkers then
 						BagCategory = ListWarMenuCloth[1][5].CategoryIndex[BagCategorySelectedIndex]
 					end) then
 
-				elseif WarMenu.ComboBox('Extra 5 Item', ListWarMenuCloth[1][5].Items[BagCategorySelectedIndex], BagItemCurrentIndex, BagItemSelectedIndex, function(currentIndex, selectedIndex)
+				elseif WarMenu.ComboBox('Extra 4 Item', ListWarMenuCloth[1][5].Items[BagCategorySelectedIndex], BagItemCurrentIndex, BagItemSelectedIndex, function(currentIndex, selectedIndex)
 						BagItemCurrentIndex = currentIndex
 						if currentIndex ~= selectedIndex then
 							BagOptionCurrentIndex = 1
@@ -1236,7 +1221,7 @@ if ActivateClothMarkers then
 						BagOptionNameList = BagOptionNameListNew
 					end) then
 
-				elseif WarMenu.ComboBox('Extra 5 Option', BagOptionNameList, BagOptionCurrentIndex, BagOptionSelectedIndex, function(currentIndex, selectedIndex)
+				elseif WarMenu.ComboBox('Extra 4 Option', BagOptionNameList, BagOptionCurrentIndex, BagOptionSelectedIndex, function(currentIndex, selectedIndex)
 						BagOptionCurrentIndex = currentIndex
 						selectedIndex = currentIndex
 						BagOptionSelectedIndex = selectedIndex
@@ -1293,8 +1278,44 @@ if ActivateClothMarkers then
 				elseif WarMenu.MenuButton('Back to accessoires', 'WardrobeAccessoires') then
 				end
 				WarMenu.Display()
+			elseif WarMenu.IsMenuOpened('WardrobeSavedOutfits') then
+				if WarMenu.Button('Save Current Outfit') then
+					TriggerEvent('pd5m:db:SaveCurrentOutfit', Department, PedGender)
+				elseif WarMenu.MenuButton('Load Outfit', 'WardrobeLoadOutfit') then
+					LoadOutfitCurrentIndex = 1
+					LoadOutfitSelectedIndex = 1
+				elseif WarMenu.MenuButton('Delete Outfit', 'WardrobeDeleteOutfit') then
+					DeleteOutfitCurrentIndex = 1
+					DeleteOutfitSelectedIndex = 1
+				elseif WarMenu.MenuButton('Back to main menu', 'WardrobeMain') then
+				end
+				WarMenu.Display()
+			elseif WarMenu.IsMenuOpened('WardrobeLoadOutfit') then
+				if WarMenu.ComboBox("Outfit", DBWardrobeMenuData.ListOfOutfitNames[PedGender][Department], LoadOutfitCurrentIndex, LoadOutfitSelectedIndex, function(currentIndex, selectedIndex)
+					LoadOutfitCurrentIndex = currentIndex
+					selectedIndex = currentIndex
+					LoadOutfitSelectedIndex = selectedIndex
+					end) then
+						TriggerEvent('pd5m:db:LoadOutfit', DBWardrobeMenuData.ListOfOutfitNames[PedGender][Department][LoadOutfitSelectedIndex])
+				elseif WarMenu.MenuButton('Back to Saved Outfits', 'WardrobeSavedOutfits') then
+				end
+				WarMenu.Display()
+			elseif WarMenu.IsMenuOpened('WardrobeDeleteOutfit') then
+				if WarMenu.ComboBox("Outfit", DBWardrobeMenuData.ListOfOutfitNames[PedGender][Department], DeleteOutfitCurrentIndex, DeleteOutfitSelectedIndex, function(currentIndex, selectedIndex)
+					DeleteOutfitCurrentIndex = currentIndex
+					selectedIndex = currentIndex
+					DeleteOutfitSelectedIndex = selectedIndex
+					end) then
+						TriggerEvent('pd5m:db:DeleteOutfit', DBWardrobeMenuData.ListOfOutfitNames[PedGender][Department][DeleteOutfitSelectedIndex])
+						WarMenu.OpenMenu('WardrobeSavedOutfits')
+				elseif WarMenu.MenuButton('Back to Saved Outfits', 'WardrobeSavedOutfits') then
+				end
+				WarMenu.Display()
 			elseif IsControlJustPressed(0, 51) and atcloth and PlayerData.job.name == 'police' then
 				playerped = GetPlayerPed(-1)
+				Department = clothpolice
+				RankCurrentIndex = PlayerRanks[policeindex]
+				RankSelectedIndex = PlayerRanks[policeindex]
 				if GetEntityModel(playerped) == GetHashKey('mp_m_freemode_01') then
 					PedGender = 1
 					VariantList = ListMaleGloveVariants
@@ -1351,6 +1372,7 @@ if ActivateHealMarkers then
 		while true do
 			if IsControlJustPressed(0, 51) and atheal == true then -- e
 				SetEntityHealth(GetPlayerPed(-1), GetEntityMaxHealth(GetPlayerPed(-1)))
+				ClearPedBloodDamage(GetPlayerPed(-1))
 			end
 		Wait(0)
 		end
@@ -1697,6 +1719,12 @@ if ActivateWeaponMarkers then
 						ListWarMenuArmory = ListSAPRArmory
 					elseif weaponpolice == 'swat' then
 						ListWarMenuArmory = ListSWATArmory
+					elseif weaponpolice == 'lsfd' then
+						ListWarMenuArmory = ListFIREArmory
+					elseif weaponpolice == 'bcfd' then
+						ListWarMenuArmory = ListFIREArmory
+					elseif weaponpolice == 'dpos' then
+						ListWarMenuArmory = ListDPOSArmory
 					end
 
 					atweapon = true
@@ -1760,6 +1788,8 @@ if ActivateWeaponMarkers then
 					VestSelectedIndex = 1
 					VestDesignCurrentIndex = 1
 					VestDesignSelectedIndex = 1
+				elseif WarMenu.Button('Return all Weapons') then
+					RemoveAllPedWeapons(GetPlayerPed(-1), true)
 				elseif WarMenu.Button('Exit Menu') then
 					WarMenu.CloseMenu()
 				end
@@ -1978,6 +2008,136 @@ if ActivateEvidenceMarkers then
 				AddTextComponentSubstringPlayerName("You brought ~y~" .. NoItems .. "~s~ confiscated items to the evidence chamber.")
 				EndTextCommandThefeedPostMessagetext("CHAR_CALL911", "CHAR_CALL911", false, 4, "Evidence report", "")
 				EndTextCommandThefeedPostTicker(false, false)
+			end
+		Wait(0)
+		end
+	end)
+end
+
+-- -- Repair
+if ActivateRepairMarkers then
+	atrepair = false
+
+	CreateThread(function()
+		while true do
+			for i,coord in ipairs(list_repair_coords) do
+				local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
+				local distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+				if distance < 10 then
+					atrepair = true
+					StartHelpNotify('Press ~INPUT_CONTEXT~ to repair and clean your vehicle.', 500)
+					Wait(40)
+					while distance < 10 do
+						HelpNotify('Press ~INPUT_CONTEXT~ to repair and clean your vehicle.', 500)
+						Wait(500)
+						local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
+						distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+					end
+					EndHelpNotify('Press ~INPUT_CONTEXT~ to repair and clean your vehicle.', 500)
+					atrepair = false
+				end
+			end
+		Wait(1000)
+		end
+	end)
+
+	CreateThread(function()
+		while true do
+			if IsControlJustPressed(0, 51) and atrepair == true then -- e
+				if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
+					local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
+					SetVehicleEngineHealth(veh, 1000)
+					SetVehicleEngineOn(veh, true, true)
+					SetVehicleFixed(veh)
+					SetVehicleDirtLevel(veh, 0)
+				end
+			end
+			Wait(0)
+		end
+	end)
+end
+
+-- -- Impound
+if ActivateDeleteMarkers then
+	atdelete = false
+
+	CreateThread(function()
+		while true do
+			for i,coord in ipairs(list_delete_coords) do
+				local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
+				local distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+				if distance < 10 then
+					atdelete = true
+					StartHelpNotify('Look at a vehicle and press ~INPUT_CONTEXT~ to impound / delete it.', 500)
+					Wait(40)
+					while distance < 10 do
+						HelpNotify('Look at a vehicle and press ~INPUT_CONTEXT~ to impound / delete it.', 500)
+						Wait(500)
+						local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
+						distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+					end
+					EndHelpNotify('Look at a vehicle and press ~INPUT_CONTEXT~ to impound / delete it.', 500)
+					atdelete = false
+				end
+			end
+		Wait(1000)
+		end
+	end)
+
+	CreateThread(function()
+		while true do
+			if IsControlJustPressed(0, 51) and atdelete == true then -- e
+				local playerped = GetPlayerPed(-1)
+				if not IsPedInAnyVehicle(playerped, false) then
+					local camcoords = GetGameplayCamCoord()
+					local lookingvector = GetPlayerLookingVector(playerped, 10)
+					local flag_hasTarget, targetcoords, targetVeh = GetVehInDirection(camcoords, lookingvector)
+					if flag_hasTarget and GetEntityType(targetVeh) == 2 then
+						if GetVehicleNumberOfPassengers(targetVeh) == 0 and IsVehicleSeatFree(targetVeh, -1) then
+							SetEntityAsMissionEntity(targetVeh, true, true)
+							DeleteVehicle(targetVeh)
+						end
+					end
+				else
+					Notify('Exit the vehicle to impound it.')
+				end
+			end
+		Wait(0)
+		end
+	end)
+end
+
+-- -- TP Markers
+if ActivateTPMarkers then
+	attpmarker = false
+
+	CreateThread(function()
+		while true do
+			for i,coord in ipairs(list_tpmarker_coords) do
+				local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
+				local distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+				if distance < 5 then
+					attpmarker = true
+					StartHelpNotify('Press ~INPUT_CONTEXT~ to travel to another station.', 500)
+					Wait(40)
+					while distance < 5 do
+						HelpNotify('Press ~INPUT_CONTEXT~ to travel to another station.', 500)
+						Wait(500)
+						local player_x, player_y, player_z = table.unpack(GetEntityCoords(PlayerPedId(), false))
+						distance = Vdist2(coord.x, coord.y, coord.z, player_x, player_y, player_z)
+					end
+					EndHelpNotify('Press ~INPUT_CONTEXT~ to travel to another station.', 500)
+					attpmarker = false
+				end
+			end
+		Wait(1000)
+		end
+	end)
+
+	CreateThread(function()
+		while true do
+			if IsControlJustPressed(0, 51) and attpmarker == true then -- e
+				TriggerEvent('pd5m:hud:opentpmenu')
 			end
 		Wait(0)
 		end

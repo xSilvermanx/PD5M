@@ -121,6 +121,12 @@ function EndHelpNotify(text, duration)
 	EndTextCommandDisplayHelp(0, 0, 0, duration)
 end
 
+function DisplayNotification(string)
+	SetTextComponentFormat("STRING")
+	AddTextComponentString(string)
+  DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+end
+
 -- returns the first hit ped between two points on the map
 -- usage: bool, Vector3, EntityId = GetPedInDirection(Vector3, Vector3)
 function GetPedInDirection(coordFrom, coordTo)

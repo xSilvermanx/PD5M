@@ -23,6 +23,18 @@ TowBurton = {
     help = {
 
     },
+    repair = {
+      {x=-338.29, y=-137.54, z=39.01, handle='LSCCentral'},
+    },
+    delete = {
+      {x=-327.51, y=-133.71, z=39.01, handle='LSCCentral'},
+    },
+    tp = {
+      {x=-326.98, y=-144.67, z=39.06, handle='LSCCentral'},
+    },
+    weap = {
+      {x=-3440.3, y=-124.62, z=39.01, handle='LSCCentral'},
+    },
   },
   towspawn = {
     {x=-351.06, y=-187.97, z=39.07, angle=109.95, xa=-370.19, ya=-212.36, za=36.85, aa=286.69, handle='LSCCentral', name='Los Santos Customs Burton'},

@@ -5,6 +5,8 @@ ListBCSOArmory = {}
 ListSASPArmory = {}
 ListSAPRArmory = {}
 ListSWATArmory = {}
+ListFIREArmory = {}
+ListDPOSArmory = {}
 
 ArmoryUnderarmorVestDefinition = {
   name = "Underarmor Vest",
@@ -187,3 +189,61 @@ end
 
 table.insert(ListSWATArmory, ListSWATEquipment)
 table.insert(ListSWATArmory, ListSWATWeapons)
+
+-- FIRE Tables init
+local ListFIREEquipment = {
+  data = {},
+  names = {},
+  handles = {},
+  ammo = {},
+  IsArmor = {},
+  HasAttachments = {},
+}
+local ListFIREWeapons = {
+  data = {},
+  names = {},
+  handles = {},
+  ammo = {},
+  IsArmor = {},
+  HasAttachments = {},
+}
+
+for i, option in ipairs(FIREArmory) do
+  if option.table == 'Equipment' then
+    table.insert(ListFIREEquipment.data, option)
+  elseif option.table == 'Weapon' then
+    table.insert(ListFIREWeapons.data, option)
+  end
+end
+
+table.insert(ListFIREArmory, ListFIREEquipment)
+table.insert(ListFIREArmory, ListFIREWeapons)
+
+-- DPOS Tables init
+local ListDPOSEquipment = {
+  data = {},
+  names = {},
+  handles = {},
+  ammo = {},
+  IsArmor = {},
+  HasAttachments = {},
+}
+local ListDPOSWeapons = {
+  data = {},
+  names = {},
+  handles = {},
+  ammo = {},
+  IsArmor = {},
+  HasAttachments = {},
+}
+
+for i, option in ipairs(DPOSArmory) do
+  if option.table == 'Equipment' then
+    table.insert(ListDPOSEquipment.data, option)
+  elseif option.table == 'Weapon' then
+    table.insert(ListDPOSWeapons.data, option)
+  end
+end
+
+table.insert(ListDPOSArmory, ListDPOSEquipment)
+table.insert(ListDPOSArmory, ListDPOSWeapons)

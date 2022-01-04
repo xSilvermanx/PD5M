@@ -17,6 +17,9 @@ ActivateGarages = true -- activates garages in general. If set to false no garag
 ActivateWeaponMarkers = true -- activates the armory.
 ActivateEvidenceMarkers = true -- activates the evidence markers. Should stay activated.
 ActivateHelpMarkers = true -- activates the help markers.
+ActivateRepairMarkers = true
+ActivateDeleteMarkers = true -- activates Car Impound / Deletion Markers
+ActivateTPMarkers = true -- activates Teleportation Markers (alternative way to use the tp-command only in stations)
 
 -- service variables
 TowTruckDrivers = {"cs_floyd", "mp_f_bennymech_01", "mp_m_waremech_01", "s_m_m_autoshop_02", "s_m_m_dockwork_01", "s_m_m_gardener_01", "s_m_y_construct_02", "s_m_y_garbage", "s_m_y_winclean_01", "s_m_y_xmech_01"}
@@ -414,6 +417,38 @@ var_weap_swat_textdict = nil
 var_weap_swat_textname = nil
 var_weap_swat_drawonent = false
 
+var_weap_dpos_symbol = 21
+var_weap_dpos_scaleY = 1.0
+var_weap_dpos_scaleX = 1.0
+var_weap_dpos_scaleZ = 1.0
+var_weap_dpos_red = 255
+var_weap_dpos_green = 150
+var_weap_dpos_blue = 0
+var_weap_dpos_alpha = 200
+var_weap_dpos_bob = false
+var_weap_dpos_face = false
+var_weap_dpos_p19 = 2
+var_weap_dpos_rotate = true
+var_weap_dpos_textdict = nil
+var_weap_dpos_textname = nil
+var_weap_dpos_drawonent = false
+
+var_weap_fire_symbol = 21
+var_weap_fire_scaleY = 1.0
+var_weap_fire_scaleX = 1.0
+var_weap_fire_scaleZ = 1.0
+var_weap_fire_red = 255
+var_weap_fire_green = 0
+var_weap_fire_blue = 0
+var_weap_fire_alpha = 200
+var_weap_fire_bob = false
+var_weap_fire_face = false
+var_weap_fire_p19 = 2
+var_weap_fire_rotate = true
+var_weap_fire_textdict = nil
+var_weap_fire_textname = nil
+var_weap_fire_drawonent = false
+
 -- -- Evidence
 var_evidence_symbol = 29
 var_evidence_scaleX = 0.6
@@ -447,3 +482,54 @@ var_tut_rotate = true
 var_tut_textdict = nil
 var_tut_textname = nil
 var_tut_drawonent = false
+
+-- -- Repair
+var_repair_symbol = 22
+var_repair_scaleX = 2.3
+var_repair_scaleY = 2.3
+var_repair_scaleZ = 2.3
+var_repair_red = 255
+var_repair_green = 150
+var_repair_blue = 0
+var_repair_alpha = 200
+var_repair_bob = false
+var_repair_face = false
+var_repair_p19 = 2
+var_repair_rotate = true
+var_repair_textdict = nil
+var_repair_textname = nil
+var_repair_drawonent = false
+
+-- -- Vehicle Impound
+var_impound_symbol = 30
+var_impound_scaleX = 1.5
+var_impound_scaleY = 1.5
+var_impound_scaleZ = 1.5
+var_impound_red = 255
+var_impound_green = 150
+var_impound_blue = 0
+var_impound_alpha = 200
+var_impound_bob = false
+var_impound_face = true
+var_impound_p19 = 2
+var_impound_rotate = false
+var_impound_textdict = nil
+var_impound_textname = nil
+var_impound_drawonent = false
+
+-- -- TP
+var_tp_symbol = 1
+var_tp_scaleX = 2.0
+var_tp_scaleY = 2.0
+var_tp_scaleZ = 3.0
+var_tp_red = 45
+var_tp_green = 38
+var_tp_blue = 106
+var_tp_alpha = 100
+var_tp_bob = false
+var_tp_face = false
+var_tp_p19 = 2
+var_tp_rotate = false
+var_tp_textdict = nil
+var_tp_textname = nil
+var_tp_drawonent = false

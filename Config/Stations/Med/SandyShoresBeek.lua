@@ -27,5 +27,8 @@ MedSandy = {
     help = {
 
     },
+    tp = {
+
+    },
   },
 }

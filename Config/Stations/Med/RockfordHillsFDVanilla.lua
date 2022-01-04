@@ -26,5 +26,11 @@ FireRockford = {
     help = {
 
     },
+    tp = {
+      {x=-635.43, y=-127.13, z=39.01, handle='RockfordFire'},
+    },
+    weap = {
+      {x=-636.0, y=-116.79, z=38.03, handle='RockfordFire'},
+    },
   },
 }

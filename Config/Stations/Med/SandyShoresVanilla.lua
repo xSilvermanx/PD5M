@@ -26,5 +26,11 @@ MedSandy = {
     help = {
 
     },
+    tp = {
+
+    },
+    weap = {
+      {x=1814.23, y=3673.82, z=34.28, handle='SandyMed'},
+    },
   },
 }

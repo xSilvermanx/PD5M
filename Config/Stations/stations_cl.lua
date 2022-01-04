@@ -171,13 +171,7 @@ end
 
 -- Weap-coords init
 list_weap_coords = {}
-for i, Station in ipairs(PolStations) do
-  for j, weappoint in ipairs(Station.markers.weap) do
-    table.insert(list_weap_coords, weappoint)
-  end
-end
-
-for i, Station in ipairs(OthStations) do
+for i, Station in ipairs(Stations) do
   for j, weappoint in ipairs(Station.markers.weap) do
     table.insert(list_weap_coords, weappoint)
   end
@@ -240,6 +234,35 @@ list_tp_coords = {}
 for i, Station in ipairs(Stations) do
   for j, tppoint in pairs(Station.tps) do
     table.insert(list_tp_coords, tppoint)
+  end
+end
+
+-- repair-coords init
+list_repair_coords = {}
+for i, Station in ipairs(TowStations) do
+  for j, repairpoint in pairs(Station.markers.repair) do
+    table.insert(list_repair_coords, repairpoint)
+  end
+end
+
+-- delete-coords init
+list_delete_coords = {}
+for i, Station in ipairs(TowStations) do
+  for j, deletepoint in pairs(Station.markers.delete) do
+    table.insert(list_delete_coords, deletepoint)
+  end
+end
+for i, Station in ipairs(PolStations) do
+  for j, deletepoint in pairs(Station.markers.delete) do
+    table.insert(list_delete_coords, deletepoint)
+  end
+end
+
+-- tp-marker-coords init
+list_tpmarker_coords = {}
+for i, Station in ipairs(Stations) do
+  for j, tpmarkerpoint in pairs(Station.markers.tp) do
+    table.insert(list_tpmarker_coords, tpmarkerpoint)
   end
 end
 

@@ -37,7 +37,7 @@ DPOSTops = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {54,0,{} },
+        {56,0,{} },
       }
     },
   },
@@ -58,28 +58,7 @@ DPOSTops = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {55,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Belt",
-    CategoryIndex = 2,
-    Name = "Working Belt",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {90,1,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {55,1,{} },
+        {54,0,{} },
       }
     },
   },

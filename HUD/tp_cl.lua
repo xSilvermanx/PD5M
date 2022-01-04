@@ -39,7 +39,7 @@ CreateThread(function()
 					SetEntityCoords(GetPlayerPed(-1), list_lspd_coords[LSPDCurrent].x, list_lspd_coords[LSPDCurrent].y, list_lspd_coords[LSPDCurrent].z, 1, 0, 0, 1)
 					TPMenuOpen = false
 					WarMenu.CloseMenu()
-			elseif WarMenu.ComboBox('BCSO Stations', BCSOStations, BCSOCurrent, BCSOSelected, function(currentIndex, selectedIndex)
+			elseif WarMenu.ComboBox('LSSD Stations', BCSOStations, BCSOCurrent, BCSOSelected, function(currentIndex, selectedIndex)
 					BCSOCurrent = currentIndex
 					BCSOSelected = selectedIndex
 				end) then

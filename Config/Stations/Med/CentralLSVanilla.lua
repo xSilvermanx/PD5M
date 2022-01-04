@@ -28,5 +28,11 @@ MedCentralLS = {
     help = {
 
     },
+    tp = {
+      {x=376.34, y=-1443.5, z=29.43, handle='CentralLSMed'},
+    },
+    weap = {
+      {x=298.93, y=-1451.34, z=29.97, handle='CentralLSMed'},
+    },
   },
 }

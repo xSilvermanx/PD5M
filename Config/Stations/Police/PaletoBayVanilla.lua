@@ -8,7 +8,7 @@ PolPaleto = {
   },
   blips = {
     {x=-445.25, y=6012.7, z=40.15, sprite=60, colour=40, alpha=255, name='SWAT Station'},
-    {x=-445.25, y=6012.7, z=40.15, sprite=60, colour=5, alpha=255, name='BCSO Station'},
+    {x=-445.25, y=6012.7, z=40.15, sprite=60, colour=5, alpha=255, name='LSSD Station'},
     {x=-445.25, y=6012.7, z=40.15, sprite=60, colour=0, alpha=255, name='SASP Station'},
   },
   tps = {
@@ -52,6 +52,12 @@ PolPaleto = {
       {x=-442.55, y=6012.16, z=31.92, handle='PaletoBCSO'},
       {x=-452.16, y=6005.9, z=31.84, handle='PaletoSASP'},
       {x=-447.14, y=6001.01, z=31.69, handle='PaletoSWAT'},
+    },
+    delete = {
+      {x=-477.23, y=6013.92, z=31.33, handle='PaletoBCSO'},
+    },
+    tp = {
+      {x=-447.58, y=5986.11, z=31.49, handle='PaletoBCSO'},
     },
   },
   corspawn = {

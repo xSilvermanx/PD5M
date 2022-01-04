@@ -30,5 +30,11 @@ MedFiacre = {
     help = {
 
     },
+    tp = {
+      {x=1189.37, y=-1529.64, z=34.69, handle= 'FiacreMed'},
+    },
+    weap = {
+      {x=1207.8, y=-1495.45, z=34.84, handle='FiacreMed'},
+    },
   },
 }

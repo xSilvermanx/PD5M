@@ -9,6 +9,48 @@ POLLegs = {
       Ranked = false,
       RankList = {},
       ClothList = {
+        {46,0,{{6,51,0}} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {48,0,{{6,101,0}} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 4,
+    Category = "Combat",
+    CategoryIndex = 3,
+    Name = "Standard Issue",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {46,1,{{6,51,0}} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {48,1,{{6,101,0}} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 4,
+    Category = "Combat",
+    CategoryIndex = 3,
+    Name = "Alternative Issue",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
         {31,0,{{6,25,0}} },
       }
     },
@@ -25,7 +67,7 @@ POLLegs = {
     ComponentID = 4,
     Category = "Combat",
     CategoryIndex = 3,
-    Name = "Standard Issue",
+    Name = "Alternative Issue",
     Male = {
       Ranked = false,
       RankList = {},
@@ -46,7 +88,7 @@ POLLegs = {
     ComponentID = 4,
     Category = "Combat",
     CategoryIndex = 3,
-    Name = "Standard Issue",
+    Name = "Alternative Issue",
     Male = {
       Ranked = false,
       RankList = {},
@@ -67,7 +109,7 @@ POLLegs = {
     ComponentID = 4,
     Category = "Combat",
     CategoryIndex = 3,
-    Name = "Standard Issue",
+    Name = "Alternative Issue",
     Male = {
       Ranked = false,
       RankList = {},
@@ -88,7 +130,7 @@ POLLegs = {
     ComponentID = 4,
     Category = "Combat",
     CategoryIndex = 3,
-    Name = "Standard Issue",
+    Name = "Alternative Issue",
     Male = {
       Ranked = false,
       RankList = {},
@@ -185,6 +227,27 @@ POLLegs = {
       RankList = {},
       ClothList = {
         {109,5,{{6,25,0}} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 6,
+    Category = "Combat",
+    CategoryIndex = 3,
+    Name = "Boots",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {51,0,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {101,0,{} },
       }
     },
   },

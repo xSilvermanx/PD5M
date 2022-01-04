@@ -9,14 +9,14 @@ DPOSLegs = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {36,0,{{6,51,0}} },
+        {36,0,{{6,25,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {35,0,{{6,52,0}} },
+        {35,0,{{6,25,0}} },
       }
     },
   },
@@ -30,14 +30,14 @@ DPOSLegs = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {53,0,{{6,51,0}} },
+        {53,0,{{6,25,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {55,0,{{6,52,0}} },
+        {55,0,{{6,25,0}} },
       }
     },
   },

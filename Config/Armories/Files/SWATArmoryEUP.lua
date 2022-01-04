@@ -1,9 +1,9 @@
 SWATArmory = {
   {
     name = "Pistol",
-    handle = "weapon_heavypistol",
+    handle = "weapon_combatpistol",
     table = "Weapon",
-    ammo = 180,
+    ammo = 48,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -15,37 +15,16 @@ SWATArmory = {
     attachments = {
       HasAttachments = true,
       Components = {
-        {'COMPONENT_AT_PI_FLSH', 'Flashlight'}
-      },
-    },
-  },
-  {
-    name = "Submachine gun",
-    handle = "weapon_smg",
-    table = "Weapon",
-    ammo = 300,
-    armor = {
-      IsArmor = false,
-      ArmorValue = 0,
-      CompVars = {
-        Male = {},
-        Female = {},
-      },
-    },
-    attachments = {
-      HasAttachments = true,
-      Components = {
-        {'COMPONENT_AT_AR_FLSH', 'Flashlight'},
-        {'COMPONENT_AT_PI_SUPP', 'Suppressor'},
-        {'COMPONENT_AT_SCOPE_MACRO_02', 'Scope'},
+        {'COMPONENT_AT_PI_FLSH', 'Flashlight'},
+		{'COMPONENT_AT_PI_SUPP', 'Suppressor'},
       },
     },
   },
   {
     name = "Carbine",
-    handle = "weapon_carbinerifle",
+    handle = "weapon_carbinerifle_mk2",
     table = "Weapon",
-    ammo = 300,
+    ammo = 120,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -57,17 +36,20 @@ SWATArmory = {
     attachments = {
       HasAttachments = true,
       Components = {
-        {"COMPONENT_AT_AR_AFGRIP", 'Grip'},
+        {"COMPONENT_AT_AR_AFGRIP_02", 'Grip'},
         {"COMPONENT_AT_AR_FLSH", 'Flashlight'},
-        {"COMPONENT_AT_SCOPE_MEDIUM", 'Scope'},
+		{"COMPONENT_AT_SCOPE_MEDIUM_MK2", 'Large Scope'},
+        {"COMPONENT_AT_SCOPE_MACRO_MK2", 'Small Scope'},
+		{"COMPONENT_AT_SIGHTS", 'Sights'},
+		{'COMPONENT_AT_AR_SUPP', 'Suppressor'},
       },
     },
   },
   {
     name = "Special Carbine",
-    handle = "weapon_specialcarbine",
+    handle = "weapon_specialcarbine_mk2",
     table = "Weapon",
-    ammo = 300,
+    ammo = 120,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -79,17 +61,20 @@ SWATArmory = {
     attachments = {
       HasAttachments = true,
       Components = {
-        {"COMPONENT_AT_AR_AFGRIP", 'Grip'},
+        {"COMPONENT_AT_AR_AFGRIP_02", 'Grip'},
         {"COMPONENT_AT_AR_FLSH", 'Flashlight'},
-        {"COMPONENT_AT_SCOPE_MEDIUM", 'Scope'},
+		{"COMPONENT_AT_SCOPE_MEDIUM_MK2", 'Large Scope'},
+        {"COMPONENT_AT_SCOPE_MACRO_MK2", 'Small Scope'},
+		{"COMPONENT_AT_SIGHTS", 'Sights'},
+		{'COMPONENT_AT_AR_SUPP', 'Suppressor'},
       },
     },
   },
   {
     name = "Shotgun",
-    handle = "weapon_heavyshotgun",
+    handle = "weapon_pumpshotgun_mk2",
     table = "Weapon",
-    ammo = 300,
+    ammo = 32,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -103,7 +88,6 @@ SWATArmory = {
       Components = {
         {'COMPONENT_AT_AR_FLSH', 'Flashlight'},
         {'COMPONENT_AT_AR_AFGRIP', 'Grip'},
-        {'COMPONENT_HEAVYSHOTGUN_CLIP_03', 'Drum Magazine'}
       },
     },
   },
@@ -111,7 +95,7 @@ SWATArmory = {
     name = "Sniper Rifle",
     handle = "weapon_sniperrifle",
     table = "Weapon",
-    ammo = 100,
+    ammo = 30,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -131,7 +115,7 @@ SWATArmory = {
     name = "Tear gas",
     handle = "weapon_smokegrenade",
     table = "Equipment",
-    ammo = 5,
+    ammo = 25,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -157,14 +141,16 @@ SWATArmory = {
       ArmorValue = 100,
       CompVars = {
         Male = {
-          {9,9,2},
-          {9,27,5},
-          {9,9,3},
+          {9,16,0},
+          {9,27,0},
+          {9,27,2},
+          {9,27,6},
         },
         Female = {
-          {9,6,2},
-          {9,29,5},
-          {9,6,3},
+          {9,18,0},
+          {9,29,0},
+          {9,29,2},
+          {9,29,6},
         },
       },
     },
@@ -175,59 +161,5 @@ SWATArmory = {
       },
     },
   },
-  {
-    name = "Medium Vest",
-    handle = "",
-    table = "Equipment",
-    ammo = 0,
-    armor = {
-      IsArmor = true,
-      ArmorValue = 85,
-      CompVars = {
-        Male = {
-          {9,25,9},
-          {9,11,1},
-        },
-        Female = {
-          {9,12,1},
-          {9,27,9},
-          {9,13,1},
-          {9,8,1},
-          {9,9,1},
-          {9,10,1},
-          {9,3,1},
-        },
-      },
-    },
-    attachments = {
-      HasAttachments = false,
-      Components = {
-        {}
-      },
-    },
-  },
-  {
-    name = "Small Vest",
-    handle = "",
-    table = "Equipment",
-    ammo = 0,
-    armor = {
-      IsArmor = true,
-      ArmorValue = 70,
-      CompVars = {
-        Male = {
-          {9,4,0},
-        },
-        Female = {
-          {9,4,0},
-        },
-      },
-    },
-    attachments = {
-      HasAttachments = false,
-      Components = {
-        {}
-      },
-    },
-  },
+
 }

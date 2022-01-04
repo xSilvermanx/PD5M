@@ -146,5 +146,24 @@ GENArmory = {
       },
     },
   },
-
+  {
+    name = "Fire Extinguisher",
+    handle = "weapon_fireextinguisher",
+    table = "Equipment",
+    ammo = 700,
+    armor = {
+      IsArmor = false,
+      ArmorValue = 0,
+      CompVars = {
+        Male = {},
+        Female = {},
+      },
+    },
+    attachments = {
+      HasAttachments = false,
+      Components = {
+        {}
+      },
+    },
+  },
 }

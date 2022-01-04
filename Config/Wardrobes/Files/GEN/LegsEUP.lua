@@ -2,7 +2,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Trousers",
     Male = {
@@ -23,7 +23,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Trousers",
     Male = {
@@ -44,7 +44,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Trousers",
     Male = {
@@ -65,7 +65,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Trousers",
     Male = {
@@ -86,7 +86,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Trousers",
     Male = {
@@ -107,7 +107,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Trousers",
     Male = {
@@ -128,7 +128,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Trousers",
     Male = {
@@ -149,7 +149,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Trousers",
     Male = {
@@ -170,7 +170,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Jeans",
     Male = {
@@ -191,7 +191,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Jeans",
     Male = {
@@ -212,7 +212,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Jeans",
     Male = {
@@ -380,7 +380,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Baggy",
     Male = {
@@ -401,7 +401,7 @@ GENLegs = {
   {
     Type = 0,
     ComponentID = 4,
-    Category = "Pants",
+    Category = "Civilian",
     CategoryIndex = 2,
     Name = "Baggy",
     Male = {
@@ -450,6 +450,27 @@ GENLegs = {
       Ranked = false,
       RankList = {},
       ClothList = {
+        {97,0,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {86,0,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 6,
+    Category = "Uniform",
+    CategoryIndex = 2,
+    Name = "Boots",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
         {12,6,{} },
       }
     },
@@ -471,14 +492,14 @@ GENLegs = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {24,0,{} },
+        {25,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {24,0,{} },
+        {25,0,{} },
       }
     },
   },
@@ -521,6 +542,27 @@ GENLegs = {
       RankList = {},
       ClothList = {
         {29,2,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 6,
+    Category = "Uniform",
+    CategoryIndex = 2,
+    Name = "Shoes",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {10,0,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {29,0,{} },
       }
     },
   },
@@ -597,14 +639,14 @@ GENLegs = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {30,0,{} },
+        {13,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {9,0,{} },
+        {26,0,{} },
       }
     },
   },

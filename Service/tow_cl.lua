@@ -429,10 +429,6 @@ AddEventHandler('pd5m:tow:aborttowtruck', function(TargetVehNetID)
 end)
 
 -- player used handler to get the variables the flatbedpickup-handler needs.
-RegisterNetEvent('pd5m:tow:playerflatbedpickup')
-AddEventHandler('pd5m:tow:playerflatbedpickup', function()
-
-end)
 
 -- handler to have flatbed pick up cars that are beside it.
 RegisterNetEvent('pd5m:tow:flatbedpickup')

@@ -3,7 +3,7 @@ PolSandy = {
     SandyShoresBCSO = {handle='SandyShoresBCSO', name='bcso', stationname = "Sheriff Office Sandy Shores", shortname = "Sandy Shores"},
   },
   blips = {
-    {x=1852.92, y=3687.03, z=34.27, sprite=60, colour=5, alpha=255, name='BCSO Station'},
+    {x=1852.92, y=3687.03, z=34.27, sprite=60, colour=5, alpha=255, name='LSSD Station'},
   },
   tps = {
     {x=1863.75, y=3683.29, z=33.78, handle='SandyShoresBCSO'},
@@ -34,6 +34,12 @@ PolSandy = {
     },
     weap = {
       {x=1860.51, y=3692.96, z=34.25, handle='SandyShoresBCSO'},
+    },
+    delete = {
+      {x=1866.48, y=3688.3, z=34.27, handle='SandyShoresBCSO'},
+    },
+    tp = {
+      {x=1821.8, y=3683.82, z=34.28, handle='SandyShoresBCSO'},
     },
   },
   corspawn = {

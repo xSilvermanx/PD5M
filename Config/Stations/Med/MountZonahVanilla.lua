@@ -38,5 +38,11 @@ MedMountZonah = {
     help = {
 
     },
+    tp = {
+      {x=-418.36, y=-330.43, z=42.22, handle='MountZonahMed'},
+    },
+    weap = {
+      {x=-475.28, y=-279.99, z=35.68, handle='MountZonahMed'},
+    },
   },
 }

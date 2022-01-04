@@ -1,194 +1,436 @@
 SAPRAccessoires = {
   {
-    Type = 0, -- 0: component, 1: prop
-    ComponentID = 9, -- =component-ID in the FiveM-native SetPedComponentVariation
-    Category = "Chain", -- the item will be categorized inside this category
+    Type = 1,
+    ComponentID = 0,
+    Category = "Hat",
     CategoryIndex = 0,
-    Name = "Badge", -- the item will bear this name. If multiple options have the same name, you can choose different designs
+    Name = "Winter",
     Male = {
-      Ranked = false, -- defines if the clothing has rank insignia
-      ClothList = { -- if "Ranked" is false only put in one option! If "Ranked" is set to true, you can fill this with multiple options.
-        {17, 3, {} },
-      },
+      Ranked = false,
       RankList = {},
+      ClothList = {
+        {8,2,{} },
+      }
     },
     Female = {
       Ranked = false,
+      RankList = {},
       ClothList = {
-        {21, 3, {} },
-      },
-      RankList = {
-
-      },
+        {8,2,{} },
+      }
     },
-
   },
   {
-    Type = 0, -- 0: component, 1: prop
-    ComponentID = 9, -- =component-ID in the FiveM-native SetPedComponentVariation
-    Category = "Chain", -- the item will be categorized inside this category
+    Type = 1,
+    ComponentID = 0,
+    Category = "Hat",
     CategoryIndex = 0,
-    Name = "Badge", -- the item will bear this name. If multiple options have the same name, you can choose different designs
+    Name = "Winter",
     Male = {
-      Ranked = false, -- defines if the clothing has rank insignia
-      ClothList = { -- if "Ranked" is false only put in one option! If "Ranked" is set to true, you can fill this with multiple options.
-        {17, 7, {} },
-      },
+      Ranked = false,
       RankList = {},
+      ClothList = {
+        {8,3,{} },
+      }
     },
     Female = {
       Ranked = false,
+      RankList = {},
       ClothList = {
-        {21, 7, {} },
-      },
-      RankList = {
-
-      },
+        {8,3,{} },
+      }
     },
-
   },
   {
-    Type = 0, -- 0: component, 1: prop
-    ComponentID = 9, -- =component-ID in the FiveM-native SetPedComponentVariation
-    Category = "Tuck-in", -- the item will be categorized inside this category
+    Type = 1,
+    ComponentID = 0,
+    Category = "Hat",
+    CategoryIndex = 0,
+    Name = "Uniform",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {4,0,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {4,0,{} },
+      }
+    },
+  },
+  {
+    Type = 1,
+    ComponentID = 0,
+    Category = "Helmet",
+    CategoryIndex = 0,
+    Name = "Search and Rescue",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {89,2,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {88,2,{} },
+      }
+    },
+  },
+
+  {
+    Type = 1,
+    ComponentID = 0,
+    Category = "Helmet",
+    CategoryIndex = 0,
+    Name = "Search and Rescue",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {89,3,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {88,3,{} },
+      }
+    },
+  },
+
+  {
+    Type = 1,
+    ComponentID = 0,
+    Category = "Helmet",
+    CategoryIndex = 0,
+    Name = "Search and Rescue",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {89,4,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {88,4,{} },
+      }
+    },
+  },
+  {
+    Type = 1,
+    ComponentID = 0,
+    Category = "Cap",
+    CategoryIndex = 0,
+    Name = "Cap",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {135,3,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {134,3,{} },
+      }
+    },
+  },
+  {
+    Type = 1,
+    ComponentID = 0,
+    Category = "Cap",
+    CategoryIndex = 0,
+    Name = "Cap",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {135,9,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {134,9,{} },
+      }
+    },
+  },
+  {
+    Type = 1,
+    ComponentID = 0,
+    Category = "Cap",
+    CategoryIndex = 0,
+    Name = "NPS",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {135,11,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {134,11,{} },
+      }
+    },
+  },
+  {
+    Type = 1,
+    ComponentID = 0,
+    Category = "Cap",
+    CategoryIndex = 0,
+    Name = "Cap",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {135,18,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {134,18,{} },
+      },
+      }
+  },
+  {
+    Type = 1,
+    ComponentID = 0,
+    Category = "Cap",
+    CategoryIndex = 0,
+    Name = "Lifeguard",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {135,19,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {134,19,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 9,
+    Category = "Vest",
+    CategoryIndex = 2,
+    Name = "Search and Rescue",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {1,3,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {1,3,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 9,
+    Category = "Tuck-in",
     CategoryIndex = 3,
-    Name = "Badge + Handcuffs", -- the item will bear this name. If multiple options have the same name, you can choose different designs
+    Name = "Badge + Handcuffs",
     Male = {
-      Ranked = false, -- defines if the clothing has rank insignia
-      ClothList = { -- if "Ranked" is false only put in one option! If "Ranked" is set to true, you can fill this with multiple options.
-        {23, 3, {} },
-      },
+      Ranked = false,
       RankList = {},
+      ClothList = {
+        {23,2,{} },
+      }
     },
     Female = {
       Ranked = false,
+      RankList = {},
       ClothList = {
-        {25, 3, {} },
-      },
-      RankList = {
-
-      },
+        {25,2,{} },
+      }
     },
-
   },
   {
-    Type = 0, -- 0: component, 1: prop
-    ComponentID = 9, -- =component-ID in the FiveM-native SetPedComponentVariation
-    Category = "Tuck-in", -- the item will be categorized inside this category
+    Type = 0,
+    ComponentID = 9,
+    Category = "Tuck-in",
     CategoryIndex = 3,
-    Name = "Badge + Handcuffs", -- the item will bear this name. If multiple options have the same name, you can choose different designs
+    Name = "Badge + Handcuffs",
     Male = {
-      Ranked = false, -- defines if the clothing has rank insignia
-      ClothList = { -- if "Ranked" is false only put in one option! If "Ranked" is set to true, you can fill this with multiple options.
-        {23, 7, {} },
-      },
+      Ranked = false,
       RankList = {},
+      ClothList = {
+        {23,7,{} },
+      }
     },
     Female = {
       Ranked = false,
-      ClothList = {
-        {25, 7, {} },
-      },
-      RankList = {
-
-      },
-    },
-
-  },
-  {
-    Type = 0, -- 0: component, 1: prop
-    ComponentID = 9, -- =component-ID in the FiveM-native SetPedComponentVariation
-    Category = "Undershirt", -- the item will be categorized inside this category
-    CategoryIndex = 1,
-    Name = "Shirt in front of Pullover", -- the item will bear this name. If multiple options have the same name, you can choose different designs
-    Male = {
-      Ranked = false, -- defines if the clothing has rank insignia
-      ClothList = { -- if "Ranked" is false only put in one option! If "Ranked" is set to true, you can fill this with multiple options.
-        {26,3, {} },
-      },
       RankList = {},
-    },
-    Female = {
-      Ranked = false,
       ClothList = {
-        {28, 3, {} },
-      },
-      RankList = {
-
-      },
+        {25,7,{} },
+      }
     },
-
   },
   {
-    Type = 1, -- 0: component, 1: prop
-    ComponentID = 0, -- =component-ID in the FiveM-native SetPedComponentVariation
-    Category = "Hat", -- the item will be categorized inside this category
+    Type = 0,
+    ComponentID = 10,
+    Category = "Rank Insignia",
     CategoryIndex = 0,
-    Name = "Winter Hat", -- the item will bear this name. If multiple options have the same name, you can choose different designs
+    Name = "Rank Insignia Class C",
     Male = {
-      Ranked = false, -- defines if the clothing has rank insignia
-      ClothList = { -- if "Ranked" is false only put in one option! If "Ranked" is set to true, you can fill this with multiple options.
-        {8, 3, {} },
-      },
-      RankList = {},
+      Ranked = true,
+      RankList = {1,2,3,4,5,6,7,8,9,10},
+      ClothList = {
+        {0,0,{} },
+        {7,0,{} },
+        {44,0,{} },
+        {44,6,{} },
+        {44,7,{} },
+        {44,8,{} },
+        {44,9,{} },
+        {44,10,{} },
+        {43,0,{} },
+        {42,0,{} },
+      }
     },
     Female = {
-      Ranked = false,
+      Ranked = true,
+      RankList = {1,2,3,4,5,6,7,8,9,10},
       ClothList = {
-        {8, 3, {} },
-      },
-      RankList = {
-
-      },
+        {0,0,{} },
+        {6,0,{} },
+        {52,0,{} },
+        {52,6,{} },
+        {52,7,{} },
+        {52,8,{} },
+        {52,9,{} },
+        {52,10,{} },
+        {51,0,{} },
+        {50,0,{} },
+      }
     },
-
   },
   {
-    Type = 1, -- 0: component, 1: prop
-    ComponentID = 0, -- =component-ID in the FiveM-native SetPedComponentVariation
-    Category = "Cap", -- the item will be categorized inside this category
+    Type = 0,
+    ComponentID = 10,
+    Category = "Rank Insignia",
     CategoryIndex = 0,
-    Name = "Cap", -- the item will bear this name. If multiple options have the same name, you can choose different designs
+    Name = "Rank Insignia Class B",
     Male = {
-      Ranked = false, -- defines if the clothing has rank insignia
-      ClothList = { -- if "Ranked" is false only put in one option! If "Ranked" is set to true, you can fill this with multiple options.
-        {10, 1, {} },
-      },
-      RankList = {},
+      Ranked = true,
+      RankList = {1,2,3,4,5,6,7,8,9,10},
+      ClothList = {
+        {0,0,{} },
+        {11,5,{} },
+        {44,0,{} },
+        {44,6,{} },
+        {44,7,{} },
+        {44,8,{} },
+        {44,9,{} },
+        {44,10,{} },
+        {43,0,{} },
+        {42,0,{} },
+      }
     },
     Female = {
-      Ranked = false,
+      Ranked = true,
+      RankList = {1,2,3,4,5,6,7,8,9,10},
       ClothList = {
-        {10, 1, {} },
-      },
-      RankList = {
-
-      },
+        {0,0,{} },
+        {10,5,{} },
+        {52,0,{} },
+        {52,6,{} },
+        {52,7,{} },
+        {52,8,{} },
+        {52,9,{} },
+        {52,10,{} },
+        {51,0,{} },
+        {50,0,{} },
+      }
     },
-
   },
   {
-    Type = 1, -- 0: component, 1: prop
-    ComponentID = 0, -- =component-ID in the FiveM-native SetPedComponentVariation
-    Category = "Cap", -- the item will be categorized inside this category
+    Type = 0,
+    ComponentID = 10,
+    Category = "Rank Insignia",
     CategoryIndex = 0,
-    Name = "Cap", -- the item will bear this name. If multiple options have the same name, you can choose different designs
+    Name = "Rank Insignia Class A",
     Male = {
-      Ranked = false, -- defines if the clothing has rank insignia
-      ClothList = { -- if "Ranked" is false only put in one option! If "Ranked" is set to true, you can fill this with multiple options.
-        {10, 3, {} },
-      },
+      Ranked = true,
+      RankList = {1,2,3,4,5,6,7,8,9,10},
+      ClothList = {
+        {0,0,{} },
+        {11,5,{} },
+        {45,0,{} },
+        {45,6,{} },
+        {45,7,{} },
+        {45,8,{} },
+        {45,9,{} },
+        {45,10,{} },
+        {45,11,{} },
+        {45,12,{} },
+      }
+    },
+    Female = {
+      Ranked = true,
+      RankList = {1,2,3,4,5,6,7,8,9,10},
+      ClothList = {
+        {0,0,{} },
+        {10,5,{} },
+        {53,0,{} },
+        {53,6,{} },
+        {53,7,{} },
+        {53,8,{} },
+        {53,9,{} },
+        {53,10,{} },
+        {53,11,{} },
+        {53,12,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 5,
+    Category = "Badges",
+    CategoryIndex = 0,
+    Name = "Badge",
+    Male = {
+      Ranked = false,
       RankList = {},
+      ClothList = {
+        {36,0,{} },
+      }
     },
     Female = {
       Ranked = false,
+      RankList = {},
       ClothList = {
-        {10, 6, {} },
-      },
-      RankList = {
-
-      },
+        {36,0,{} },
+      }
     },
-
   },
 }
