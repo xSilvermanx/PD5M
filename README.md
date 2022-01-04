@@ -98,20 +98,17 @@ Shoutouts go out to:
 - Everyone involved in testing the mod prior to this release.
 - DrBlackError for creating and managing our wonderful [Discord](https://discord.gg/3DNTHeT)!
 
-## Newest Patch Notes: Update v0.2.2.1 Usability update
+## Newest Patch Notes: Update v0.2.4 EUP 9.3
 
-- Fixed a bug where the permission system for ESX and vRP didn't work at all.
-- Fixed medic stations not being loaded properly.
+This release updates the wardrobe to EUP-Version 9.3 and includes the
+option to save your outfits. It also includes Armories for Tow Trucks
+and Fire Departments with Fire Extinguishers and Jerry Cans.
 
-[discord-img]: https://img.shields.io/badge/Discord-join-blue?style=plastic&logo=discord
-[discord-url]: https://discord.gg/3DNTHeT
-
-[githubver-img]: https://img.shields.io/github/v/release/xSilvermanx/PD5M?style=plastic
-[githubver-url]: https://github.com/xSilvermanx/PD5M/releases
-
-[license-img]: https://img.shields.io/github/license/xSilvermanx/PD5M?style=plastic
-[license-url]: https://github.com/xSilvermanx/PD5M/blob/master/LICENSE
-
-[banner-img]: https://forum.cfx.re/uploads/default/optimized/4X/b/b/0/bb022a8aba80f4e18d4b8865bff06df15849899e_2_690x194.png
-[banner-url]: https://forum.cfx.re/t/release-pd5m-multiplayer-pve-police-script-ambient-events
-
+- Armories and Wardrobe have been updated to EUP 9.3
+- Json-Database to save outfits for each department
+- BCSO has changed to LSSD
+- Added Support for SAHP-Station LaMesa by Matus and LSPD-Station Del Perro Pier by Pablito
+- Added TP-markers at every department, removed /tp-command
+- Added the rank-command into the wardrobe, removed /rank-command
+- Added Vehicle-Repair and -Impound/Deletion Markers. They are located at every tow truck station and a few police stations
+- Ped Props now get removed when you open the uniform tab in the wardrobe
