@@ -23,6 +23,18 @@ TowVespucci = {
     help = {
 
     },
+    repair = {
+      {x=-1059.95, y=-851.47, z=4.87, handle='VespucciDPOS'},
+    },
+    delete = {
+      {x=-1038.5, y=-851.55, z=5.04, handle='VespucciDPOS'},
+    },
+    tp = {
+
+    },
+    weap = {
+      {x=-1041.38, y=-845.37, z=5.04, handle='VespucciDPOS'},
+    },
   },
   towspawn = {
     {x=-1053.94, y=-886.05, z=4.91, angle=119.46, xa=-1049.61, ya=-889.97, za=4.95, aa=297.45, handle='VespucciDPOS', name='DPOS Station Vespucci'},

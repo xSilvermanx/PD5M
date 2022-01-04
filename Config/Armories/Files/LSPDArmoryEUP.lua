@@ -1,7 +1,27 @@
 LSPDArmory = {
   {
     name = "Pistol",
-    handle = "weapon_pistol_mk2",
+    handle = "weapon_combatpistol",
+    table = "Weapon",
+    ammo = 48,
+    armor = {
+      IsArmor = false,
+      ArmorValue = 0,
+      CompVars = {
+        Male = {},
+        Female = {},
+      },
+    },
+    attachments = {
+      HasAttachments = true,
+      Components = {
+        {'COMPONENT_AT_PI_FLSH', 'Flashlight'}
+      },
+    },
+  },
+  {
+    name = "Carbine",
+    handle = "weapon_carbinerifle",
     table = "Weapon",
     ammo = 120,
     armor = {
@@ -15,27 +35,7 @@ LSPDArmory = {
     attachments = {
       HasAttachments = true,
       Components = {
-        {'COMPONENT_AT_PI_FLSH_02', 'Flashlight'}
-      },
-    },
-  },
-  {
-    name = "Submachine gun",
-    handle = "weapon_smg",
-    table = "Weapon",
-    ammo = 300,
-    armor = {
-      IsArmor = false,
-      ArmorValue = 0,
-      CompVars = {
-        Male = {},
-        Female = {},
-      },
-    },
-    attachments = {
-      HasAttachments = false,
-      Components = {
-        {}
+        {'COMPONENT_AT_AR_FLSH', 'Flashlight'}
       },
     },
   },
@@ -43,7 +43,7 @@ LSPDArmory = {
     name = "Shotgun",
     handle = "weapon_pumpshotgun",
     table = "Weapon",
-    ammo = 80,
+    ammo = 32,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -69,18 +69,12 @@ LSPDArmory = {
       ArmorValue = 100,
       CompVars = {
         Male = {
-          {9,7,0},
-          {9,15,0},
-          {9,27,5},
-          {9,9,2},
-          {9,9,3},
+          {9,5,2},
+          {9,20,0},
         },
         Female = {
-          {9,17,0},
-          {9,29,5},
-          {9,6,2},
-          {9,6,3},
-
+          {9,3,2},
+          {9,23,0},
         },
       },
     },
@@ -101,20 +95,10 @@ LSPDArmory = {
       ArmorValue = 85,
       CompVars = {
         Male = {
-          {9,12,3},
-          {9,11,4},
-          {9,25,9},
-          {9,11,1},
+          {9,7,0},
         },
         Female = {
-          {9,3,4},
-          {9,12,1},
-          {9,27,9},
-          {9,8,1},
-          {9,13,1},
-          {9,9,1},
-          {9,10,1},
-          {9,3,1},
+          {9,7,0},
         },
       },
     },
@@ -135,11 +119,9 @@ LSPDArmory = {
       ArmorValue = 70,
       CompVars = {
         Male = {
-          {9,4,4},
           {9,4,0},
         },
         Female = {
-          {9,4,4},
           {9,4,0},
         },
       },

@@ -23,6 +23,18 @@ TowLSIA = {
     help = {
 
     },
+    repair = {
+      {x=-1156.16, y=-2007.23, z=13.18, handle='LSCLSIA'},
+    },
+    delete = {
+      {x=-1157.71, y=-2017.65, z=13.18, handle='LSCLSIA'},
+    },
+    tp = {
+      {x=-1167.44, y=-2013.55, z=13.23, handle='LSCLSIA'},
+    },
+    weap = {
+      {x=-1141.31, y=-2005.99, z=13.18, handle='LSCLSIA'},
+    },
   },
   towspawn = {
     {x=-1097.88, y=-1980.73, z=13.12, angle=179.9, xa=-1092.68, ya=-1980.84, za=13.14, aa=350.84, handle='LSCLSIA', name='Los Santos Customs Airport'},

@@ -23,6 +23,18 @@ TowVinewood = {
     help = {
 
     },
+    repair = {
+      {x=547.89, y=-206.43, z=54.14, handle='VinewoodDPOS'},
+    },
+    delete = {
+      {x=534.42, y=-168.28, z=54.65, handle='VinewoodDPOS'},
+    },
+    tp = {
+      {x=547.66, y=-173.69, z=54.48, handle='VinewoodDPOS'},
+    },
+    weap = {
+      {x=548.58, y=-190.49, z=54.48, handle='VinewoodDPOS'},
+    },
   },
   towspawn = {
     {x=530.75, y=-225.58, z=50.36, angle=11.28, xa=543.19, ya=-84.56, za=67.38, aa=123.07, handle='VinewoodDPOS'},

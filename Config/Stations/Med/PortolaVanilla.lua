@@ -26,5 +26,11 @@ MedPortola = {
     help = {
 
     },
+    tp = {
+      {x=-884.44, y=-331.03, z=38.98, handle='PortolaMed'},
+    },
+    weap = {
+      {x=-921.07, y=-323.65, z=39.19, handle='PortolaMed'},
+    },
   },
 }

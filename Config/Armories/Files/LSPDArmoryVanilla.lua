@@ -1,7 +1,27 @@
 LSPDArmory = {
   {
     name = "Pistol",
-    handle = "weapon_pistol_mk2",
+    handle = "weapon_combatpistol",
+    table = "Weapon",
+    ammo = 48,
+    armor = {
+      IsArmor = false,
+      ArmorValue = 0,
+      CompVars = {
+        Male = {},
+        Female = {},
+      },
+    },
+    attachments = {
+      HasAttachments = true,
+      Components = {
+        {'COMPONENT_AT_PI_FLSH', 'Flashlight'}
+      },
+    },
+  },
+  {
+    name = "Carbine",
+    handle = "weapon_carbinerifle",
     table = "Weapon",
     ammo = 120,
     armor = {
@@ -15,27 +35,7 @@ LSPDArmory = {
     attachments = {
       HasAttachments = true,
       Components = {
-        {'COMPONENT_AT_PI_FLSH_02', 'Flashlight'}
-      },
-    },
-  },
-  {
-    name = "Submachine gun",
-    handle = "weapon_smg",
-    table = "Weapon",
-    ammo = 300,
-    armor = {
-      IsArmor = false,
-      ArmorValue = 0,
-      CompVars = {
-        Male = {},
-        Female = {},
-      },
-    },
-    attachments = {
-      HasAttachments = false,
-      Components = {
-        {}
+        {'COMPONENT_AT_AR_FLSH', 'Flashlight'}
       },
     },
   },
@@ -43,7 +43,7 @@ LSPDArmory = {
     name = "Shotgun",
     handle = "weapon_pumpshotgun",
     table = "Weapon",
-    ammo = 80,
+    ammo = 32,
     armor = {
       IsArmor = false,
       ArmorValue = 0,

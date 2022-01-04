@@ -23,6 +23,18 @@ TowSandy = {
     help = {
 
     },
+    repair = {
+      {x=2515.74, y=4119.95, z=38.62, handle='SandyDPOS'},
+    },
+    delete = {
+      {x=2502.44, y=4089.29, z=38.58, handle='SandyDPOS'},
+    },
+    tp = {
+      {x=2525.42, y=4097.98, z=38.63, handle='SandyDPOS'},
+    },
+    weap = {
+      {x=2519.48, y=4113.25, z=38.63, handle='SandyDPOS'},
+    },
   },
   towspawn = {
     {x=2492.10, y=4086.91, z=37.53, angle=335.83, xa=2498.00, ya=4112.42, za=37.89, aa=155.13, handle='SandyDPOS'},

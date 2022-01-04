@@ -1,9 +1,9 @@
 BCSOArmory = {
   {
     name = "Pistol",
-    handle = "weapon_pistol",
+    handle = "weapon_combatpistol",
     table = "Weapon",
-    ammo = 120,
+    ammo = 48,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -20,10 +20,10 @@ BCSOArmory = {
     },
   },
   {
-    name = "Submachine gun",
-    handle = "weapon_smg",
+    name = "Carbine",
+    handle = "weapon_carbinerifle",
     table = "Weapon",
-    ammo = 300,
+    ammo = 120,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -33,9 +33,9 @@ BCSOArmory = {
       },
     },
     attachments = {
-      HasAttachments = false,
+      HasAttachments = true,
       Components = {
-        {}
+        {'COMPONENT_AT_AR_FLSH', 'Flashlight'}
       },
     },
   },
@@ -43,7 +43,7 @@ BCSOArmory = {
     name = "Shotgun",
     handle = "weapon_pumpshotgun",
     table = "Weapon",
-    ammo = 80,
+    ammo = 32,
     armor = {
       IsArmor = false,
       ArmorValue = 0,

@@ -49,6 +49,12 @@ PolLaMesa = {
       {x=837.17, y=-1374.39, z=26.31, handle='LaMesaSASP'},
       {x=847.22, y=-1276.27, z=26.47, handle='LaMesaSWAT'},
     },
+    delete = {
+      {x=863.09, y=-1350.21, z=26.06, handle='LaMesaLSPD'},
+    },
+    tp = {
+      {x=847.76, y=-1317.52, z=26.44, handle='LaMesaLSPD'},
+    },
   },
   corspawn = {
     {x=805.91, y=-1341.60, z=26.24, angle=0.0, xa=791.14, ya=-1296.48, za=26.26, aa=175.88, handle='LaMesaLSPD', name='LSPD Station La Mesa'},

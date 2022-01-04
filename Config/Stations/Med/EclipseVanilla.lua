@@ -26,5 +26,11 @@ MedEclipse = {
     help = {
 
     },
+    tp = {
+      {x=-664.48, y=312.12, z=83.09, handle='EclipseMed'},
+    },
+    weap = {
+      {x=-687.74, y=314.19, z=83.09, handle='EclipseMed'},
+    },
   },
 }

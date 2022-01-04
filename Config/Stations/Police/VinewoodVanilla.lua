@@ -36,7 +36,13 @@ PolVinewood = {
 
     },
     weap = {
-      {x=639.82, y=0.9, z=82.79, handle='VinewoodLSPD'}
+      {x=639.82, y=0.9, z=82.79, handle='VinewoodLSPD'},
+    },
+    delete = {
+      {x=531.96, y=-38.12, z=70.68, handle='VinewoodLSPD'},
+    },
+    tp = {
+      {x=632.4, y=-19.0, z=81.89, handle='VinewoodLSPD'},
     },
   },
   corspawn = {

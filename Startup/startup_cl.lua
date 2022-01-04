@@ -40,5 +40,4 @@ end)
 
 TriggerServerEvent('pd5m:msssv:InitMssTables')
 
-ClothingCurrentDrawables = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-ClothingCurrentTextures = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+TriggerServerEvent('pd5m:dbsv:PlayerConnected')

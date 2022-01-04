@@ -35,6 +35,9 @@ OthBolingbroke = {
     weap = {
       {x=1817.7, y=2594.52, z=45.72, handle='Bolingbroke'},
     },
+    tp = {
+
+    },
   },
   corspawn = {
 

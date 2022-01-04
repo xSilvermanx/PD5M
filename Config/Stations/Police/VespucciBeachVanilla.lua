@@ -35,6 +35,12 @@ PolVespucciBeach = {
     weap = {
       {x=-1317.87, y=-1529.29, z=4.42, handle='VespucciBeachLSPD'}
     },
+    delete = {
+
+    },
+    tp = {
+
+    },
   },
   corspawn = {
 

@@ -26,5 +26,11 @@ FireDavis = {
     help = {
 
     },
+    tp = {
+      {x=198.89, y=-1647.02, z=29.8, handle='DavisFire'},
+    },
+    weap = {
+      {x=205.92, y=-1661.4, z=29.8, handle='DavisFire'},
+    },
   },
 }

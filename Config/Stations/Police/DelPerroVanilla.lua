@@ -35,6 +35,12 @@ PolDelPerro = {
     weap = {
       {x=-1626.07, y=-1019.26, z=13.16, handle='DelPerroLSPD'},
     },
+    delete = {
+      {x=-1620.26, y=-1013.33, z=13.15, handle='DelPerroLSPD'},
+    },
+    tp = {
+      {x=-1634.79, y=-1029.11, z=13.15, handle='DelPerroLSPD'},
+    },
   },
   corspawn = {
 

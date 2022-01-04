@@ -9,14 +9,14 @@ POLTops = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {49,0,{{3,4,0},{8,15,0},{9,0,0}} },
+        {49,0,{{3,4,0},{8,15,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,0,{{3,3,0},{8,14,0},{9,0,0}} },
+        {42,0,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
@@ -30,14 +30,14 @@ POLTops = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {49,1,{{3,4,0},{8,15,0},{9,0,0}} },
+        {49,1,{{3,4,0},{8,15,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,1,{{3,3,0},{8,14,0},{9,0,0}} },
+        {42,1,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
@@ -51,14 +51,14 @@ POLTops = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {49,2,{{3,4,0},{8,15,0},{9,0,0}} },
+        {49,2,{{3,4,0},{8,15,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,2,{{3,3,0},{8,14,0},{9,0,0}} },
+        {42,2,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
@@ -72,14 +72,14 @@ POLTops = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {49,3,{{3,4,0},{8,15,0},{9,0,0}} },
+        {49,3,{{3,4,0},{8,15,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,3,{{3,3,0},{8,14,0},{9,0,0}} },
+        {42,3,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
@@ -93,14 +93,14 @@ POLTops = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {49,4,{{3,4,0},{8,15,0},{9,0,0}} },
+        {49,4,{{3,4,0},{8,15,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,4,{{3,3,0},{8,14,0},{9,0,0}} },
+        {42,4,{{3,3,0},{8,14,0},{9,0,0},{5,0,0},{10,0,0}} },
       }
     },
   },
@@ -130,49 +130,7 @@ POLTops = {
     ComponentID = 8,
     Category = "Belt",
     CategoryIndex = 2,
-    Name = "Radio Baton",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {53,0,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {31,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Belt",
-    CategoryIndex = 2,
-    Name = "Radio Baton",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {38,0,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {34,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Belt",
-    CategoryIndex = 2,
-    Name = "Radio Baton",
+    Name = "Radio Taser",
     Male = {
       Ranked = false,
       RankList = {},
@@ -193,28 +151,7 @@ POLTops = {
     ComponentID = 8,
     Category = "Belt",
     CategoryIndex = 2,
-    Name = "Radio Baton",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {57,0,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {51,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Belt",
-    CategoryIndex = 2,
-    Name = "Radio Nightstick",
+    Name = "Radio Baton Flashlight",
     Male = {
       Ranked = false,
       RankList = {},
@@ -235,19 +172,19 @@ POLTops = {
     ComponentID = 8,
     Category = "Belt",
     CategoryIndex = 2,
-    Name = "Radio Nightstick",
+    Name = "Radio Baton Flashlight",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {55,0,{} },
+        {42,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {3,0,{} },
+        {8,0,{} },
       }
     },
   },
@@ -298,19 +235,124 @@ POLTops = {
     ComponentID = 8,
     Category = "Belt",
     CategoryIndex = 2,
+    Name = "Radio Baton",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {49,0,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {31,0,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 8,
+    Category = "Belt",
+    CategoryIndex = 2,
+    Name = "Radio Baton",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {49,1,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {31,1,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 8,
+    Category = "Belt",
+    CategoryIndex = 2,
+    Name = "Radio Baton Taser",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {53,1,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {27,0,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 8,
+    Category = "Belt",
+    CategoryIndex = 2,
+    Name = "Radio Baton",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {55,0,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {32,0,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 8,
+    Category = "Belt",
+    CategoryIndex = 2,
+    Name = "Radio Baton Taser",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {56,1,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {33,1,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 8,
+    Category = "Belt",
+    CategoryIndex = 2,
     Name = "Radio Nightstick",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {58,0,{} },
+        {57,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {35,0,{} },
+        {34,0,{} },
       }
     },
   },
@@ -319,19 +361,19 @@ POLTops = {
     ComponentID = 8,
     Category = "Belt",
     CategoryIndex = 2,
-    Name = "Radio Flashlight Baton",
+    Name = "Radio Baton Taser",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,0,{} },
+        {94,1,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {8,0,{} },
+        {101,1,{} },
       }
     },
   },
@@ -340,40 +382,19 @@ POLTops = {
     ComponentID = 8,
     Category = "Belt",
     CategoryIndex = 2,
-    Name = "Radio Flashlight Baton",
+    Name = "Radio Baton Leg Taser",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,1,{} },
+        {95,1,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {8,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Belt",
-    CategoryIndex = 2,
-    Name = "Radio Holster",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {122,0,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {152,0,{} },
+        {100,1,{} },
       }
     },
   },
@@ -424,54 +445,12 @@ POLTops = {
     ComponentID = 8,
     Category = "Shoulder",
     CategoryIndex = 3,
-    Name = "Holster",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {16,1,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {9,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Shoulder",
-    CategoryIndex = 3,
     Name = "Holster Empty",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
         {18,0,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {10,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 8,
-    Category = "Shoulder",
-    CategoryIndex = 3,
-    Name = "Holster Empty",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {18,1,{} },
       }
     },
     Female = {

@@ -26,5 +26,11 @@ FireSandy = {
     help = {
 
     },
+    tp = {
+      {x=1686.28, y=3593.23, z=35.57, handle='SandyFire'},
+    },
+    weap = {
+      {x=1690.24, y=3608.35, z=35.36, handle='SandyFire'},
+    },
   },
 }

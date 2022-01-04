@@ -3,7 +3,7 @@ SAPRArmory = {
     name = "Pistol",
     handle = "weapon_combatpistol",
     table = "Weapon",
-    ammo = 120,
+    ammo = 48,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -16,6 +16,28 @@ SAPRArmory = {
       HasAttachments = true,
       Components = {
         {'COMPONENT_AT_PI_FLSH', 'Flashlight'}
+      },
+    },
+  },
+  {
+    name = "Hunting Rifle",
+    handle = "weapon_marksmanrifle_mk2",
+    table = "Weapon",
+    ammo = 30,
+    armor = {
+      IsArmor = false,
+      ArmorValue = 0,
+      CompVars = {
+        Male = {},
+        Female = {},
+      },
+    },
+    attachments = {
+      HasAttachments = true,
+      Components = {
+        {'COMPONENT_AT_AR_FLSH', 'Flashlight'},
+		{'COMPONENT_AT_SIGHTS', 'Holographic Sight'},
+		{'COMPONENT_AT_AR_SUPP', 'Suppressor'},
       },
     },
   },
@@ -40,40 +62,6 @@ SAPRArmory = {
     },
   },
   {
-    name = "Large Vest",
-    handle = "",
-    table = "Equipment",
-    ammo = 0,
-    armor = {
-      IsArmor = true,
-      ArmorValue = 100,
-      CompVars = {
-        Male = {
-          {9,9,0},
-          {9,9,2},
-          {9,27,5},
-          {9,9,1},
-          {9,9,3},
-          {9,16,0},
-        },
-        Female = {
-          {9,6,0},
-          {9,6,2},
-          {9,29,5},
-          {9,6,1},
-          {9,18,0},
-          {9,6,3},
-        },
-      },
-    },
-    attachments = {
-      HasAttachments = false,
-      Components = {
-        {}
-      },
-    },
-  },
-  {
     name = "Medium Vest",
     handle = "",
     table = "Equipment",
@@ -83,23 +71,16 @@ SAPRArmory = {
       ArmorValue = 85,
       CompVars = {
         Male = {
-          {9,25,9},
-          {9,25,7},
-          {9,11,1},
+          {9,18,2},
+          {9,18,3},
+          {9,18,4},
+          {9,36,0},
         },
         Female = {
-          {9,12,2},
-          {9,12,1},
-          {9,27,9},
-          {9,27,7},
-          {9,13,2},
-          {9,8,2},
-          {9,9,2},
-          {9,10,2},
-          {9,13,1},
-          {9,8,1},
-          {9,9,1},
-          {9,10,1},
+          {9,22,2},
+          {9,22,3},
+          {9,22,4},
+          {9,49,0},
         },
       },
     },
@@ -120,10 +101,10 @@ SAPRArmory = {
       ArmorValue = 70,
       CompVars = {
         Male = {
-          {9,4,0},
+          {9,4,3},
         },
         Female = {
-          {9,4,0},
+          {9,4,3},
         },
       },
     },

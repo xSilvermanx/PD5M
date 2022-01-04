@@ -45,6 +45,12 @@ PolDavis = {
       {x=360.53, y=-1584.36, z=29.29, handle='DavisLSPD'},
       {x=371.83, y=-1626.21, z=29.29, handle='DavisSWAT'},
     },
+    delete = {
+
+    },
+    tp = {
+
+    },
   },
   corspawn = {
     {x=368.48, y=-1568.78, z=29.26, angle=232.39, xa=395.25, ya=-1570.28, za=29.34, aa=49.09, handle='DavisLSPD', name='LSPD Station Davis'},

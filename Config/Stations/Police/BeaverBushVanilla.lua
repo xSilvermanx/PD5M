@@ -35,6 +35,12 @@ PolBeaverBush = {
     weap = {
       {x=387.01, y=791.36, z=187.69, handle='BeaverBushSAPR'},
     },
+    delete = {
+      {x=370.49, y=792.35, z=187.5, handle='BeaverBushSAPR'},
+    },
+    tp = {
+      {x=383.37, y=802.53, z=187.63, handle='BeaverBushSAPR'},
+    },
   },
   corspawn = {
 

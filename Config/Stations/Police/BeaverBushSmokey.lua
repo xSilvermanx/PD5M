@@ -13,7 +13,7 @@ PolBeaverBush = {
 
     },
     cloth = {
-      {x=386.26, y=796.32, z=191.38, handle='BeaverBushSAPR'},
+      {x=386.26, y=796.32, z=190.38, handle='BeaverBushSAPR'},
     },
     evidence = {
 
@@ -34,6 +34,12 @@ PolBeaverBush = {
     },
     weap = {
       {x=387.27, y=799.73, z=190.38, handle='BeaverBushSAPR'},
+    },
+    delete = {
+      {x=371.04, y=791.12, z=187.44, handle='BeaverBushSAPR'},
+    },
+    tp = {
+      {x=381.69, y=802.53, z=187.63, handle='BeaverBushSAPR'},
     },
   },
   corspawn = {

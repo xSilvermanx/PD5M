@@ -1,9 +1,9 @@
 BCSOArmory = {
   {
     name = "Pistol",
-    handle = "weapon_pistol",
+    handle = "weapon_combatpistol",
     table = "Weapon",
-    ammo = 120,
+    ammo = 48,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -20,10 +20,10 @@ BCSOArmory = {
     },
   },
   {
-    name = "Submachine gun",
-    handle = "weapon_smg",
+    name = "Carbine",
+    handle = "weapon_carbinerifle",
     table = "Weapon",
-    ammo = 300,
+    ammo = 120,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -33,9 +33,9 @@ BCSOArmory = {
       },
     },
     attachments = {
-      HasAttachments = false,
+      HasAttachments = true,
       Components = {
-        {}
+        {'COMPONENT_AT_AR_FLSH', 'Flashlight'}
       },
     },
   },
@@ -43,7 +43,7 @@ BCSOArmory = {
     name = "Shotgun",
     handle = "weapon_pumpshotgun",
     table = "Weapon",
-    ammo = 80,
+    ammo = 32,
     armor = {
       IsArmor = false,
       ArmorValue = 0,
@@ -89,28 +89,14 @@ BCSOArmory = {
       ArmorValue = 100,
       CompVars = {
         Male = {
-          {9,7,1},
-          {9,27,0},
-          {9,27,1},
-          {9,15,2},
-          {9,27,5},
-          {9,9,0},
-          {9,9,2},
-          {9,9,3},
-          {9,9,1},
-          {9,16,0},
+          {9,5,3},
+          {9,20,1},
+          {9,20,4},
         },
         Female = {
-          {9,29,0},
-          {9,29,1},
-          {9,17,2},
-          {9,17,1},
-          {9,29,5},
-          {9,6,0},
-          {9,6,2},
-          {9,6,3},
-          {9,6,1},
-          {9,18,0},
+          {9,3,3},
+          {9,23,1},
+          {9,23,4},
         },
       },
     },
@@ -131,27 +117,12 @@ BCSOArmory = {
       ArmorValue = 85,
       CompVars = {
         Male = {
-          {9,12,1},
-          {9,11,2},
-          {9,25,9},
-          {9,25,7},
-          {9,11,1},
+          {9,7,1},
+          {9,18,1},
         },
         Female = {
-          {9,3,2},
-          {9,12,2},
-          {9,12,1},
-          {9,27,9},
-          {9,27,7},
-          {9,13,2},
-          {9,8,2},
-          {9,9,2},
-          {9,10,2},
-          {9,13,1},
-          {9,3,1},
-          {9,8,1},
-          {9,9,1},
-          {9,10,1},
+          {9,7,1},
+          {9,22,7},
         },
       },
     },
@@ -172,12 +143,12 @@ BCSOArmory = {
       ArmorValue = 70,
       CompVars = {
         Male = {
+          {9,4,1},
           {9,4,2},
-          {9,4,0},
         },
         Female = {
+          {9,4,1},
           {9,4,2},
-          {9,4,0},
         },
       },
     },

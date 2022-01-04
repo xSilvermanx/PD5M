@@ -23,6 +23,18 @@ TowDavis = {
     help = {
 
     },
+    repair = {
+      {x=403.41, y=-1644.49, z=29.29, handle='DavisDPOS'},
+    },
+    delete = {
+      {x=396.96, y=-1633.15, z=29.29, handle='DavisDPOS'},
+    },
+    tp = {
+      {x=389.71, y=-1641.64, z=29.25, handle='DavisDPOS'},
+    },
+    weap = {
+      {x=394.54, y=-1646.48, z=29.29, handle='DavisDPOS'},
+    },
   },
   towspawn = {
     {x=387.41, y=-1584.61, z=29.26, angle=228.49, xa=417.41, ya=-1588.49, za=29.34, aa=49.22, handle='DavisDPOS', name='DPOS Station Davis'},

@@ -23,6 +23,18 @@ TowLaMesa = {
     help = {
 
     },
+    repair = {
+      {x=732.46, y=-1088.88, z=22.17, handle='LSCLaMesa'},
+    },
+    delete = {
+      {x=720.88, y=-1069.28, z=23.06, handle='LSCLaMesa'},
+    },
+    tp = {
+      {x=735.76, y=-1071.43, z=22.23, handle='LSCLaMesa'},
+    },
+    weap = {
+      {x=728.49, y=-1074.04, z=22.17, handle='LSCLaMesa'},
+    },
   },
   towspawn = {
     {x=791.34, y=-1073.81, z=28.4, angle=5.7, xa=786.00, ya=-1073.72, za=28.39, aa=182.18, handle='LSCLaMesa', name='Los Santos Customs La Mesa'},

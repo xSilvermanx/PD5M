@@ -45,6 +45,12 @@ PolVespucci = {
       {x=-1108.69, y=-845.55, z=19.32, handle='VespucciLSPD'},
       {x=-1109.7, y=-853.8, z=13.53, handle='VespucciSWAT'},
     },
+    delete = {
+
+    },
+    tp = {
+      {x=-1036.57, y=-844.22, z=8.32, handle='VespucciLSPD'},
+    },
   },
   corspawn = {
     {x=-1145.59, y=-826.04, z=14.77, angle=309.96, xa=-1124.69, ya=-793.47, za=17.37, aa=128.82, handle='VespucciLSPD', name='LSPD Station Vespucci'},

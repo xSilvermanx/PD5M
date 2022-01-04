@@ -67,19 +67,19 @@ POLAccessoires = {
     ComponentID = 0,
     Category = "Helmet",
     CategoryIndex = 0,
-    Name = "Riot Open Visor",
+    Name = "Riot",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {81,0,{} },
+        {126,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {80,0,{} },
+        {125,0,{} },
       }
     },
   },
@@ -88,103 +88,19 @@ POLAccessoires = {
     ComponentID = 0,
     Category = "Helmet",
     CategoryIndex = 0,
-    Name = "Riot Open Visor",
+    Name = "Riot",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {81,1,{} },
+        {124,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {80,1,{} },
-      }
-    },
-  },
-  {
-    Type = 1,
-    ComponentID = 0,
-    Category = "Helmet",
-    CategoryIndex = 0,
-    Name = "Riot Open Visor",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {81,2,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {80,2,{} },
-      }
-    },
-  },
-  {
-    Type = 1,
-    ComponentID = 0,
-    Category = "Helmet",
-    CategoryIndex = 0,
-    Name = "Riot Closed Visor",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {80,0,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {79,0,{} },
-      }
-    },
-  },
-  {
-    Type = 1,
-    ComponentID = 0,
-    Category = "Helmet",
-    CategoryIndex = 0,
-    Name = "Riot Closed Visor",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {80,1,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {79,1,{} },
-      }
-    },
-  },
-  {
-    Type = 1,
-    ComponentID = 0,
-    Category = "Helmet",
-    CategoryIndex = 0,
-    Name = "Riot Closed Visor",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {80,2,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {79,2,{} },
+        {123,0,{} },
       }
     },
   },
@@ -235,48 +151,6 @@ POLAccessoires = {
     ComponentID = 7,
     Category = "Holster",
     CategoryIndex = 0,
-    Name = "Leg",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {1,1,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {1,1,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Leg",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {1,2,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {1,2,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
     Name = "Belt Empty",
     Male = {
       Ranked = false,
@@ -311,48 +185,6 @@ POLAccessoires = {
       RankList = {},
       ClothList = {
         {3,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Leg Empty",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {3,1,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {3,1,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Leg Empty",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {3,2,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {3,2,{} },
       }
     },
   },
@@ -424,19 +256,19 @@ POLAccessoires = {
     ComponentID = 7,
     Category = "Holster",
     CategoryIndex = 0,
-    Name = "Leg",
+    Name = "Belt Training",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,0,{} },
+        {9,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {29,0,{} },
+        {9,0,{} },
       }
     },
   },
@@ -450,14 +282,14 @@ POLAccessoires = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {42,1,{} },
+        {56,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {29,1,{} },
+        {33,0,{} },
       }
     },
   },
@@ -471,44 +303,23 @@ POLAccessoires = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {43,0,{} },
+        {57,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {30,0,{} },
+        {34,0,{} },
       }
     },
   },
   {
     Type = 0,
     ComponentID = 7,
-    Category = "Holster",
+    Category = "Pistol",
     CategoryIndex = 0,
-    Name = "Leg Empty",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {43,1,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {30,1,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Leg",
+    Name = "SWAT Pants",
     Male = {
       Ranked = false,
       RankList = {},
@@ -526,106 +337,43 @@ POLAccessoires = {
   },
   {
     Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Leg Empty",
+    ComponentID = 9,
+    Category = "Vest",
+    CategoryIndex = 2,
+    Name = "Equip Vest",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {111,0,{} },
+        {1,0,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {82,0,{} },
+        {1,0,{} },
       }
     },
   },
   {
     Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Vest",
+    ComponentID = 9,
+    Category = "Vest",
+    CategoryIndex = 2,
+    Name = "Equip Vest",
     Male = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {119,0,{} },
+        {1,1,{} },
       }
     },
     Female = {
       Ranked = false,
       RankList = {},
       ClothList = {
-        {0,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Vest",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {119,1,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {0,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Vest Empty",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {120,0,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {0,0,{} },
-      }
-    },
-  },
-  {
-    Type = 0,
-    ComponentID = 7,
-    Category = "Holster",
-    CategoryIndex = 0,
-    Name = "Vest Empty",
-    Male = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {120,1,{} },
-      }
-    },
-    Female = {
-      Ranked = false,
-      RankList = {},
-      ClothList = {
-        {0,0,{} },
+        {1,1,{} },
       }
     },
   },

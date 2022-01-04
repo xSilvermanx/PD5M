@@ -1,6 +1,69 @@
 FIRETops = {
   {
     Type = 0,
+    ComponentID = 11,
+    Category = "Jacket T6",
+    CategoryIndex = 6,
+    Name = "HI-VIS Fire Jacket",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {250,1,{{3,4,0},{5,0,0},{8,15,0},{9,0,0},{10,0,0}} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {258,1,{{3,4,0},{5,0,0},{8,15,0},{9,0,0},{10,0,0}} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 11,
+    Category = "Jacket T6",
+    CategoryIndex = 6,
+    Name = "HI-VIS Fire Jacket",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {314,0,{{3,4,0},{5,0,0},{8,15,0},{9,0,0},{10,0,0}} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {325,0,{{3,3,0},{5,0,0},{8,14,0},{9,0,0},{10,0,0}} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 11,
+    Category = "Jacket T6",
+    CategoryIndex = 6,
+    Name = "HI-VIS Fire Jacket",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {315,0,{{3,4,0},{5,0,0},{8,15,0},{9,0,0},{10,0,0}} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {326,0,{{3,3,0},{5,0,0},{8,14,0},{9,0,0},{10,0,0}} },
+      }
+    },
+  },
+  {
+    Type = 0,
     ComponentID = 8,
     Category = "Belt",
     CategoryIndex = 2,
@@ -86,9 +149,30 @@ FIRETops = {
   {
     Type = 0,
     ComponentID = 8,
-    Category = "Equip",
+    Category = "Shoulder",
     CategoryIndex = 3,
-    Name = "Breathing Equipment",
+    Name = "Oxygen Bottle",
+    Male = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {151,0,{} },
+      }
+    },
+    Female = {
+      Ranked = false,
+      RankList = {},
+      ClothList = {
+        {187,0,{} },
+      }
+    },
+  },
+  {
+    Type = 0,
+    ComponentID = 8,
+    Category = "Shoulder",
+    CategoryIndex = 3,
+    Name = "Radio",
     Male = {
       Ranked = false,
       RankList = {},
@@ -107,9 +191,9 @@ FIRETops = {
   {
     Type = 0,
     ComponentID = 8,
-    Category = "Equip",
-    CategoryIndex = 5,
-    Name = "Breathing Equipment",
+    Category = "Shoulder",
+    CategoryIndex = 3,
+    Name = "Radio",
     Male = {
       Ranked = false,
       RankList = {},
