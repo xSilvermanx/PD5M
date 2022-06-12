@@ -13,6 +13,7 @@ version '0.2.1.1'
 -- Server framework config variables
 ConvarEnableESX = false -- https://forum.cfx.re/t/release-esx-base/39881
 ConvarEnablevRP = false -- https://forum.cfx.re/t/release-vrp-framework/22894
+ConvarEnableQBCore = false -- https://github.com/qbcore-framework
 
 -- Clothing config variables
 ConvarEnableEUP = true -- https://forum.cfx.re/t/release-eup-serve-and-rescue-law-order-7-5-server-side-update-1-2-now-with-esx-permissions/210892
@@ -438,7 +439,18 @@ if ConvarEnablevRP == true then
   }
 end
 
-if not ConvarEnableESX and not ConvarEnablevRP then
+if ConvarEnableQBCore == true then
+  server_scripts {
+
+  }
+
+  client_scripts {
+    "Integration/QBCore/QBCoreIntegration_cl.lua",
+  }
+end
+	
+
+if not ConvarEnableESX and not ConvarEnablevRP and not ConvarEnableQBCore then
   client_scripts {
     "Duty/duty_cl.lua",
   }
