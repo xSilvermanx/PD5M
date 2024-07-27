@@ -1086,7 +1086,7 @@ AddEventHandler('pd5m:int:stopcar', function(targetveh, TargetInVeh)
 		end
 	end
 	Notify('Car has stopped.')
-	SetBlockingOfNonTemporaryEvents(TargetInVeh, false)
+	SetBlockingOfNonTemporaryEvents(TargetInVeh, true)
 	TaskVehicleDriveWander(target, targetveh, 17.0, PedDrivingBehavior)
 end)
 
